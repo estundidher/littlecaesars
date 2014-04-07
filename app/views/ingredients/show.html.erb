@@ -1,0 +1,17 @@
+<%= tb_breadcrumb link_to(Ingredient.model_name.human.pluralize, ingredients_path), t('titles.show', model_name: Ingredient.model_name.human) %>
+
+<p>
+  <strong><%= Ingredient.human_attribute_name 'ingredient' %>:</strong>
+</p>
+
+<p>
+  <strong><%= Ingredient.human_attribute_name 'name' %>:</strong>
+  <%= @ingredient.name %>
+</p>
+
+<%= image_tag @ingredient.avatar.url %>
+<%= image_tag @ingredient.avatar.url(:medium) %>
+<%= image_tag @ingredient.avatar.url(:thumb) %>
+
+<%= tb_button_edit edit_ingredient_path(@ingredient) %>
+<%= tb_button_back ingredients_path %>

@@ -1,0 +1,9 @@
+<tr>
+    <td> <%= ingredient.id %> </td>
+	<td> <%= ingredient.name %> </td>
+    <td>
+    	<%= tb_grid_show ingredient %>
+    	<%= tb_grid_edit edit_ingredient_path(ingredient) %>
+    	<%= tb_grid_remove ingredient %>
+    </td>
+</tr>

@@ -1,0 +1,12 @@
+<%= form_for @size, html: {:role => 'form', :style => 'width:500px;'} do |f| %>
+
+  <%= tb_show_errors_for @size %>
+
+  <div class="form-group <%= tb_has_error @size, :name %>">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <%= tb_submit @size %>
+  <%= tb_button_back sizes_path %>
+<% end %>

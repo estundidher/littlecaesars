@@ -1,0 +1,30 @@
+.tagfy {
+
+    height: 100% !important;
+    padding-top: 0px !important;
+    min-height: 30px !important;
+}
+
+.tagfy .label {
+    margin-top: 7px;
+    margin-right: 5px;
+    float:left;
+}
+
+.tagfy .glyphicon-remove {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.tagfy input {
+
+    border: none;
+    box-shadow: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    margin-top: 5px;
+    width: auto !important;
+    max-width: inherit;
+}
