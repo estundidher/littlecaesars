@@ -1,0 +1,34 @@
+<%= tb_breadcrumb link_to(Dish.model_name.human.pluralize, dishes_path), t('titles.show', model_name: Dish.model_name.human) %>
+
+<p>
+    <%= image_tag @dish.photo.url(:thumb) %>
+</p>
+
+<p>
+  <strong><%= t 'category' %>:</strong>
+  <%= @dish.category.name %>
+</p>
+
+<p>
+  <strong><%= t 'name' %>:</strong>
+  <%= @dish.name %>
+</p>
+
+<p>
+  <strong><%= t 'description' %>:</strong>
+  <%= @dish.description %>
+</p>
+
+<p>
+  <strong><%= t 'ingredients' %>:</strong>
+  <ul>
+  <% @dish.ingredients.each do |ingredient| %>
+    <li>
+        <%= ingredient.name %>
+    </li>
+  <% end %>
+  </ul>
+</p>
+
+<%= tb_button_edit edit_dish_path(@dish) %>
+<%= tb_button_back dishes_path %>

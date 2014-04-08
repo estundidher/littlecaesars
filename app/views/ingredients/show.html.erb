@@ -5,13 +5,18 @@
 </p>
 
 <p>
-  <strong><%= Ingredient.human_attribute_name 'name' %>:</strong>
+  <strong><%= t 'name' %>:</strong>
   <%= @ingredient.name %>
 </p>
 
-<%= image_tag @ingredient.avatar.url %>
-<%= image_tag @ingredient.avatar.url(:medium) %>
-<%= image_tag @ingredient.avatar.url(:thumb) %>
+<p>
+  <strong><%= t 'price' %>:</strong>
+  <%= number_to_currency @ingredient.price %>
+</p>
+
+<p>
+    <%= image_tag @ingredient.avatar.url(:thumb) %>
+</p>
 
 <%= tb_button_edit edit_ingredient_path(@ingredient) %>
 <%= tb_button_back ingredients_path %>

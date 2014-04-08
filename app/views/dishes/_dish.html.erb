@@ -1,0 +1,10 @@
+<tr>
+    <td> <%= dish.id %> </td>
+	<td> <%= dish.name %> </td>
+    <td> <%= dish.category.name %> </td>
+    <td>
+    	<%= tb_grid_show dish %>
+    	<%= tb_grid_edit edit_dish_path(dish) %>
+    	<%= tb_grid_remove dish %>
+    </td>
+</tr>

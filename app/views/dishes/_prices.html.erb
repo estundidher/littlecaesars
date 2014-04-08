@@ -1,0 +1,7 @@
+<ul>
+    <% dish.prices do |price| %>
+    <li>
+        <%= price.size.name %> : <%= price.price %>
+    </li>
+    <% end %>
+</ul>

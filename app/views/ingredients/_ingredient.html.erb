@@ -1,6 +1,7 @@
 <tr>
     <td> <%= ingredient.id %> </td>
 	<td> <%= ingredient.name %> </td>
+    <td> <%= number_to_currency ingredient.price %> </td>
     <td>
     	<%= tb_grid_show ingredient %>
     	<%= tb_grid_edit edit_ingredient_path(ingredient) %>

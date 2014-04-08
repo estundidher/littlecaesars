@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 4.1.1'
+gem 'meiomask-rails', '~> 1.1.12'
 
 # picture upload
 gem 'paperclip', github: 'thoughtbot/paperclip'

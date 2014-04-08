@@ -259,11 +259,21 @@ en:
       ingredient: Ingredient
       size: Size
       category: Category
+      dish: Dish
     attributes:
       ingredient:
           name: Name
           price: Price
+          avatar: Photo
       size:
           name: Name
+          description: Description
       category:
           name: Name
+      dish:
+          name: Name
+          description: Description
+          category: Category
+          photo: Photo
+          ingredients: Ingredients
+          prices: Prices

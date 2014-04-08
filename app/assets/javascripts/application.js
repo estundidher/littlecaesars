@@ -20,3 +20,10 @@
 //= require turbolinks
 //= require bootstrap/bootstrap
 //= require_tree .
+//= require meiomask
+
+$(function() {
+    $('.check_all').on('click', function () {
+        $(this).closest('table').find(':checkbox').prop('checked', this.checked);
+    });
+});

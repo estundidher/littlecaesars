@@ -1,0 +1,3 @@
+<%= tb_breadcrumb Dish.model_name.human.pluralize %>
+<%= render partial: 'list' %>
+<%= tb_button_new new_dish_path, t('links.new', model: Dish.model_name.human) %>

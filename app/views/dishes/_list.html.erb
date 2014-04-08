@@ -1,0 +1,13 @@
+<table class="table table-condensed">
+	<thead>
+		<tr>
+			<th style="width:30px;"> # </th>
+			<th><%= Dish.human_attribute_name("name") %></th>
+			<th><%= Dish.human_attribute_name("category") %></th>
+			<th style="width:60px;"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render @dishes %>
+	</tbody>
+</table>

@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :sizes
   resources :categories
 
+  #dishes
+  resources :dishes
+  post 'dishes/price', to: 'dishes#add_price', as: :add_price_dishes
+
   # You can have the root of your site routed with "root"
   root 'home#index'
 

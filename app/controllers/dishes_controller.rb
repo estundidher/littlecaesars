@@ -1,2 +1,104 @@
 class DishesController < ApplicationController
+
+  before_action :set_dishes, only: [:show, :edit, :update, :destroy]
+
+  # GET /dishes
+  # GET /dishes.json
+  def index
+    respond_to do |format|
+      format.html { @dishes = Dish.all }
+      format.json { @dishes = Dish.order(:name) }
+    end
+  end
+
+  # GET /dishes
+  # GET /dishes.json
+  def list
+    @dishes = Dish.all
+  end
+
+  # GET /dishes/1
+  # GET /dishes/1.json
+  def show
+  end
+
+  # GET /dishes/new
+  def new
+    @dish = Dish.new
+  end
+
+  # GET /dishes/1/edit
+  def edit
+  end
+
+  # POST /dishes
+  # POST /dishes.json
+  def create
+    @dish = Dish.new(dish_params)
+
+    respond_to do |format|
+      if @dish.save
+        format.html { redirect_to @dish, notice: 'Dish was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @dish }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @dish.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /dishes/1
+  # PATCH/PUT /dishes/1.json
+  def update
+    respond_to do |format|
+      if @dish.update(dish_params)
+        format.html { redirect_to @dish, notice: 'Dish was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @dish.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /dishes/1
+  # DELETE /dishes/1.json
+  def destroy
+    @dish.destroy
+    respond_to do |format|
+      format.html { redirect_to dishes_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def update_dishes
+    @dishes = Dish.where(dish_id:nil).order(:name).map{|s| [s.name, s.id]}.insert(0, "")
+  end
+
+  def add_price
+    @dish = Dish.find(params[:id])
+    @price = @dish.prices.build(:size => Size.find(params[:size]), :value => params[:price])
+    @price.save
+
+    render "prices"
+  end
+
+  def autocomplete
+    if(params[:selected] == '')
+      render json: Dish.where("name like ?", "%#{params[:term]}%").order(:name).map{|s| [id:s.id, label:s.name, value:s.name]}.flatten
+    else
+      render json: Dish.where("name like ? and id not in (?)", "%#{params[:term]}%", params[:selected].split(',').map(&:to_i)).order(:name).map{|s| [id:s.id, label:s.name, value:s.name]}.flatten
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_dishes
+      @dish = Dish.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def dish_params
+      params.require(:dish).permit(:name, :description, :photo, :category_id, :ingredient_ids => [])
+    end
 end

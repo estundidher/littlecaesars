@@ -3,8 +3,8 @@ class CreateDishes < ActiveRecord::Migration
     create_table :dishes do |t|
       t.string :name
       t.string :description
-      t.references :category, index: true
-
+      t.integer :category_id
+      t.foreign_key :categories
       t.timestamps
     end
   end

@@ -9,5 +9,10 @@
   <%= @size.name %>
 </p>
 
+<p>
+  <strong><%= Size.human_attribute_name 'description' %>:</strong>
+  <%= @size.description %>
+</p>
+
 <%= tb_button_edit edit_size_path(@size) %>
 <%= tb_button_back sizes_path %>
