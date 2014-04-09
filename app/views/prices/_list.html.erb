@@ -22,3 +22,10 @@
     <% end %>
   </tbody>
 </table>
+
+<script type="text/javascript">
+  $('a[data-remote]').on('ajax:success', function(e, data, status, xhr) {
+    $("#modal_container").empty().append(xhr.responseText);
+    $("#price_modal").modal('show');
+  });
+</script>
