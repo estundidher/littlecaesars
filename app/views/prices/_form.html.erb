@@ -1,0 +1,26 @@
+<%= form_for price, html: {:role => 'form', :id => "price_form_modal"}, remote: true do |f| %>
+  <%= tb_show_errors_for price %>
+  <%= f.hidden_field :dish_id, value: price.dish_id %>
+  <div class="form-group <%= tb_has_error price, :size %>">
+        <%= f.label :size_id %>
+        <%= f.collection_select :size_id, Size.order(:name), :id, :name,
+                                {prompt: true, selected: price.size_id},
+                                {class: 'form-control'} %>
+  </div>
+  <div class="form-group <%= tb_has_error price, :value %>">
+    <%= f.label :value %>
+    <%= f.text_field :value, class: 'form-control meiomask' %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+
+  $('.meiomask').setMask({mask:'99.999', type:'reverse', maxLength: 6});
+
+  $('#price_form_modal').on('ajax:success', function(e, data, status, xhr) {
+      $("#price_modal_form_container").hide()
+                                      .empty()
+                                      .append(xhr.responseText)
+                                      .fadeIn('fast');
+  });
+</script>

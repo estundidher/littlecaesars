@@ -1,0 +1,24 @@
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr>
+        <th style="width:30px;"> # </th>
+        <th>Size</th>
+        <th style="width:60px;">Price</th>
+        <th style="width:61px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if dish.prices.size > 0 %>
+      <%= render dish.prices %>
+    <% end %>
+    <% if dish.prices.size < Size.count %>
+      <tr>
+        <td colspan="4">
+          <center>
+            <%= link_to "add price", price_modal_path(dish.id), remote: true %>
+          </center>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

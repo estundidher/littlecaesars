@@ -1,0 +1,1 @@
+  <%= render "prices", locals: { dish:@dish } %>
