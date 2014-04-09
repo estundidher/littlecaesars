@@ -28,7 +28,7 @@
   <div class="form-group <%= tb_has_error @dish, :ingredients %>">
     <%= f.label :ingredients %>
     <%= f.collection_check_boxes :ingredient_ids, Ingredient.order(:name), :id, :name do |b|
-        b.label(class: "checkbox") { b.check_box + b.text  }
+        b.label(class: "checkbox") { b.check_box + b.text }
     end %>
   </div>
 
