@@ -32,24 +32,13 @@
     end %>
   </div>
 
-  <%= render partial: "prices", locals: { dish:@dish } %>
-
-  <div class="form-group">
-    <%= f.label :prices %>
-    <% Size.order(:name).each do |size| %>
-      <label class="checkbox">
-        <input type="checkbox"> <%= size.name %>
-      </label>
-      <input type="text" class="meiomask" name="" />
-    <% end %>
-  </div>
+  <% if @dish.id %>
+    <div class="form-group <%= tb_has_error @dish, :ingredients %>">
+      <%= f.label :prices %>
+      <%= render "/prices/list", dish:@dish %>
+    </div>
+  <% end %>
 
   <%= tb_submit @dish %>
   <%= tb_button_back dishes_path %>
 <% end %>
-
-<script type="text/javascript">
-  $(function() {
-      $('.meiomask').setMask({mask:'99.99', type:'reverse', maxLength: 5});
-  });
-</script>

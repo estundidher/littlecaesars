@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  # You can have the root of your site routed with "root"
+  root 'home#index'
+
   #subjects
   resources :ingredients
   resources :sizes
@@ -9,10 +12,10 @@ Rails.application.routes.draw do
 
   #dishes
   resources :dishes
-  post 'dishes/price', to: 'dishes#add_price', as: :add_price_dishes
 
-  # You can have the root of your site routed with "root"
-  root 'home#index'
+  #prices
+  get 'dishes/:dish_id/prices/modal', to: 'prices#modal', as: :price_modal
+  resources :prices
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

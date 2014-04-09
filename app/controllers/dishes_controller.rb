@@ -75,14 +75,6 @@ class DishesController < ApplicationController
     @dishes = Dish.where(dish_id:nil).order(:name).map{|s| [s.name, s.id]}.insert(0, "")
   end
 
-  def add_price
-    @dish = Dish.find(params[:id])
-    @price = @dish.prices.build(:size => Size.find(params[:size]), :value => params[:price])
-    @price.save
-
-    render "prices"
-  end
-
   def autocomplete
     if(params[:selected] == '')
       render json: Dish.where("name like ?", "%#{params[:term]}%").order(:name).map{|s| [id:s.id, label:s.name, value:s.name]}.flatten
