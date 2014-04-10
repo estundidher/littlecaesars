@@ -241,6 +241,9 @@ en:
     show: Show
     edit: Edit
     destroy: Delete
+    close: Close
+    save: Save
+    add: Add %{model_name}
 
   titles:
     new: New %{model_name}
@@ -260,6 +263,7 @@ en:
       ingredient: Ingredient
       size: Size
       category: Category
+      price: Price
       dish: Dish
     attributes:
       ingredient:
@@ -271,6 +275,9 @@ en:
           description: Description
       category:
           name: Name
+      price:
+          size: Size
+          value: Price
       dish:
           name: Name
           description: Description

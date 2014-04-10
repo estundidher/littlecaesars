@@ -7,7 +7,7 @@
   <div class="form-group <%= tb_has_error price, :size %>">
         <%= f.label :size_id %>
         <%= f.collection_select :size_id,
-                                Size.available(price), :id, :name,
+                                Size.available_for(price), :id, :name,
                                 {prompt: true, selected: price.size_id},
                                 {class: 'form-control'} %>
   </div>

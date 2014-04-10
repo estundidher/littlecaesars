@@ -2,8 +2,8 @@
   <thead>
     <tr>
         <th style="width:30px;"> # </th>
-        <th>Size</th>
-        <th style="width:60px;">Price</th>
+        <th> <%= Price.human_attribute_name "size" %> </th>
+        <th style="width:60px;"> <%= Price.human_attribute_name "value" %> </th>
         <th style="width:43px;"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
       <tr>
         <td colspan="4">
           <center>
-            <%= link_to "add price", price_modal_path(dish.id), remote: true, class:'add_price' %>
+            <%= link_to t('links.add', model_name:Price.model_name.human), price_modal_path(dish.id), remote: true, class:'add_price' %>
           </center>
         </td>
       </tr>

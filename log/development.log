@@ -28544,3 +28544,1423 @@ Processing by PricesController#destroy as JS
   [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `sizes`
   Rendered prices/_list.html.erb (17.0ms)
 Completed 200 OK in 30ms (Views: 18.8ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/dishes/2" for 127.0.0.1 at 2014-04-10 18:16:25 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by DishesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mDish Load (0.4ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  Rendered layouts/_breadcrumb.html.erb (0.5ms)
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT  `categories`.* FROM `categories`  WHERE `categories`.`id` = 6 LIMIT 1[0m
+  [1m[35mIngredient Load (0.4ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `dishes_ingredients` ON `ingredients`.`id` = `dishes_ingredients`.`ingredient_id` WHERE `dishes_ingredients`.`dish_id` = 2
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `prices`  WHERE `prices`.`dish_id` = 2[0m
+  [1m[35mPrice Load (0.2ms)[0m  SELECT `prices`.* FROM `prices`  WHERE `prices`.`dish_id` = 2
+  [1m[36mSize Load (0.3ms)[0m  [1mSELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 1 LIMIT 1[0m
+  [1m[35mSize Load (0.3ms)[0m  SELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 2 LIMIT 1
+  Rendered prices/_price.html.erb (18.1ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `sizes`[0m
+  Rendered prices/_list.html.erb (32.8ms)
+  Rendered dishes/show.html.erb within layouts/application (100.5ms)
+  Rendered layouts/_navigation.html.erb (7.7ms)
+  Rendered layouts/_flash_messages.html.erb (0.9ms)
+Completed 200 OK in 3327ms (Views: 3281.8ms | ActiveRecord: 13.2ms)
+
+
+Started GET "/dishes/2/prices/modal" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+Processing by PricesController#modal as JS
+  Parameters: {"dish_id"=>"2"}
+  Rendered layouts/_form_errors.html.erb (17.1ms)
+  [1m[35mDish Load (0.4ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  [1m[36mSize Load (0.6ms)[0m  [1mSELECT `sizes`.* FROM `sizes`  WHERE (`sizes`.`id` NOT IN (SELECT `sizes`.`id` FROM `sizes` INNER JOIN `prices` ON `sizes`.`id` = `prices`.`size_id` WHERE `prices`.`dish_id` = 2))  ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (43.2ms)
+  Rendered prices/modal.html.erb within layouts/ajax (63.2ms)
+Completed 200 OK in 75ms (Views: 71.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.ui.core.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.ui.theme.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.ui.menu.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/category.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/dishes.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/ingredients.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/prices.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/sizes.css?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/bootstrap.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/bootstrap/tagfy.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:28 +0800
+
+
+Started GET "/assets/category.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:29 +0800
+
+
+Started GET "/assets/dishes.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:29 +0800
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:29 +0800
+
+
+Started GET "/assets/ingredients.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:29 +0800
+
+
+Started GET "/assets/prices.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:29 +0800
+
+
+Started GET "/assets/sizes.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:29 +0800
+
+
+Started GET "/assets/meiomask.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:29 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-04-10 18:16:29 +0800
+
+
+Started GET "/assets/fonts/glyphicons-halflings-regular.woff" for 127.0.0.1 at 2014-04-10 18:16:29 +0800
+
+
+Started GET "/dishes/2/prices/modal" for 127.0.0.1 at 2014-04-10 18:16:30 +0800
+Processing by PricesController#modal as JS
+  Parameters: {"dish_id"=>"2"}
+  Rendered layouts/_form_errors.html.erb (0.0ms)
+  [1m[35mDish Load (0.3ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  [1m[36mSize Load (0.4ms)[0m  [1mSELECT `sizes`.* FROM `sizes`  WHERE (`sizes`.`id` NOT IN (SELECT `sizes`.`id` FROM `sizes` INNER JOIN `prices` ON `sizes`.`id` = `prices`.`size_id` WHERE `prices`.`dish_id` = 2))  ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (7.7ms)
+  Rendered prices/modal.html.erb within layouts/ajax (10.4ms)
+Completed 200 OK in 14ms (Views: 12.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/prices/16/edit" for 127.0.0.1 at 2014-04-10 18:16:35 +0800
+Processing by PricesController#edit as JS
+  Parameters: {"id"=>"16"}
+  [1m[35mPrice Load (0.3ms)[0m  SELECT  `prices`.* FROM `prices`  WHERE `prices`.`id` = 16 LIMIT 1
+  Rendered layouts/_form_errors.html.erb (0.0ms)
+  [1m[36mSize Load (0.3ms)[0m  [1mSELECT `sizes`.* FROM `sizes`   ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (6.0ms)
+  Rendered prices/modal.html.erb within layouts/ajax (8.9ms)
+Completed 200 OK in 14ms (Views: 11.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/prices/16/edit" for 127.0.0.1 at 2014-04-10 18:16:43 +0800
+Processing by PricesController#edit as JS
+  Parameters: {"id"=>"16"}
+  [1m[35mPrice Load (0.3ms)[0m  SELECT  `prices`.* FROM `prices`  WHERE `prices`.`id` = 16 LIMIT 1
+  Rendered layouts/_form_errors.html.erb (0.0ms)
+  [1m[36mSize Load (0.3ms)[0m  [1mSELECT `sizes`.* FROM `sizes`   ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (6.2ms)
+  Rendered prices/modal.html.erb within layouts/ajax (8.9ms)
+Completed 200 OK in 14ms (Views: 12.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/prices/16/edit" for 127.0.0.1 at 2014-04-10 18:16:50 +0800
+Processing by PricesController#edit as JS
+  Parameters: {"id"=>"16"}
+  [1m[35mPrice Load (0.3ms)[0m  SELECT  `prices`.* FROM `prices`  WHERE `prices`.`id` = 16 LIMIT 1
+  Rendered layouts/_form_errors.html.erb (0.0ms)
+  [1m[36mSize Load (0.3ms)[0m  [1mSELECT `sizes`.* FROM `sizes`   ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (6.0ms)
+  Rendered prices/modal.html.erb within layouts/ajax (8.8ms)
+Completed 200 OK in 14ms (Views: 12.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/dishes/2" for 127.0.0.1 at 2014-04-10 18:19:23 +0800
+Processing by DishesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mDish Load (0.3ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  Rendered layouts/_breadcrumb.html.erb (0.1ms)
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT  `categories`.* FROM `categories`  WHERE `categories`.`id` = 6 LIMIT 1[0m
+  [1m[35mIngredient Load (0.5ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `dishes_ingredients` ON `ingredients`.`id` = `dishes_ingredients`.`ingredient_id` WHERE `dishes_ingredients`.`dish_id` = 2
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `prices`  WHERE `prices`.`dish_id` = 2[0m
+  [1m[35mPrice Load (0.2ms)[0m  SELECT `prices`.* FROM `prices`  WHERE `prices`.`dish_id` = 2
+  [1m[36mSize Load (0.2ms)[0m  [1mSELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 1 LIMIT 1[0m
+  [1m[35mSize Load (0.3ms)[0m  SELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 2 LIMIT 1
+  Rendered prices/_price.html.erb (13.1ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `sizes`[0m
+  Rendered prices/_list.html.erb (27.8ms)
+  Rendered dishes/show.html.erb within layouts/application (100.7ms)
+  Rendered layouts/_navigation.html.erb (2.9ms)
+  Rendered layouts/_flash_messages.html.erb (0.0ms)
+Completed 200 OK in 136ms (Views: 109.2ms | ActiveRecord: 13.3ms)
+
+
+Started GET "/assets/jquery.ui.core.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery.ui.theme.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery.ui.menu.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/category.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/dishes.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/ingredients.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/prices.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/sizes.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/bootstrap.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/bootstrap/tagfy.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/category.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/dishes.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/ingredients.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/prices.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/sizes.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/meiomask.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/assets/fonts/glyphicons-halflings-regular.woff" for 127.0.0.1 at 2014-04-10 18:19:24 +0800
+
+
+Started GET "/dishes/2" for 127.0.0.1 at 2014-04-10 18:19:38 +0800
+Processing by DishesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mDish Load (0.4ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  Rendered layouts/_breadcrumb.html.erb (0.1ms)
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT  `categories`.* FROM `categories`  WHERE `categories`.`id` = 6 LIMIT 1[0m
+  [1m[35mIngredient Load (0.4ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `dishes_ingredients` ON `ingredients`.`id` = `dishes_ingredients`.`ingredient_id` WHERE `dishes_ingredients`.`dish_id` = 2
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `prices`  WHERE `prices`.`dish_id` = 2[0m
+  [1m[35mPrice Load (0.2ms)[0m  SELECT `prices`.* FROM `prices`  WHERE `prices`.`dish_id` = 2
+  [1m[36mSize Load (0.5ms)[0m  [1mSELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 1 LIMIT 1[0m
+  [1m[35mSize Load (0.3ms)[0m  SELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 2 LIMIT 1
+  Rendered prices/_price.html.erb (17.5ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `sizes`[0m
+  Rendered prices/_list.html.erb (31.0ms)
+  Rendered dishes/show.html.erb within layouts/application (80.4ms)
+  Rendered layouts/_navigation.html.erb (2.9ms)
+  Rendered layouts/_flash_messages.html.erb (0.0ms)
+Completed 200 OK in 114ms (Views: 87.3ms | ActiveRecord: 15.8ms)
+
+
+Started GET "/assets/jquery.ui.autocomplete.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:38 +0800
+
+
+Started GET "/assets/jquery.ui.menu.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:38 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:38 +0800
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:38 +0800
+
+
+Started GET "/assets/jquery.ui.core.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:38 +0800
+
+
+Started GET "/assets/jquery.ui.theme.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/category.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/dishes.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/ingredients.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/prices.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/sizes.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/bootstrap.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/bootstrap/tagfy.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/category.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/dishes.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/ingredients.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/prices.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/sizes.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/meiomask.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/assets/fonts/glyphicons-halflings-regular.woff" for 127.0.0.1 at 2014-04-10 18:19:39 +0800
+
+
+Started GET "/dishes/2" for 127.0.0.1 at 2014-04-10 18:19:46 +0800
+Processing by DishesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mDish Load (0.3ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  Rendered layouts/_breadcrumb.html.erb (0.1ms)
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT  `categories`.* FROM `categories`  WHERE `categories`.`id` = 6 LIMIT 1[0m
+  [1m[35mIngredient Load (0.4ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `dishes_ingredients` ON `ingredients`.`id` = `dishes_ingredients`.`ingredient_id` WHERE `dishes_ingredients`.`dish_id` = 2
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `prices`  WHERE `prices`.`dish_id` = 2[0m
+  [1m[35mPrice Load (0.3ms)[0m  SELECT `prices`.* FROM `prices`  WHERE `prices`.`dish_id` = 2
+  [1m[36mSize Load (0.3ms)[0m  [1mSELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 1 LIMIT 1[0m
+  [1m[35mSize Load (0.3ms)[0m  SELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 2 LIMIT 1
+  Rendered prices/_price.html.erb (13.3ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `sizes`[0m
+  Rendered prices/_list.html.erb (32.3ms)
+  Rendered dishes/show.html.erb within layouts/application (96.1ms)
+  Rendered layouts/_navigation.html.erb (5.9ms)
+  Rendered layouts/_flash_messages.html.erb (0.1ms)
+Completed 200 OK in 134ms (Views: 106.7ms | ActiveRecord: 16.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.ui.core.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.ui.menu.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.ui.theme.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/category.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/dishes.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/ingredients.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/prices.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/sizes.css?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/bootstrap.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/bootstrap/tagfy.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/category.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/dishes.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/ingredients.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/prices.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/sizes.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/meiomask.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/assets/fonts/glyphicons-halflings-regular.woff" for 127.0.0.1 at 2014-04-10 18:19:47 +0800
+
+
+Started GET "/dishes/2" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+Processing by DishesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mDish Load (0.3ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  Rendered layouts/_breadcrumb.html.erb (0.1ms)
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT  `categories`.* FROM `categories`  WHERE `categories`.`id` = 6 LIMIT 1[0m
+  [1m[35mIngredient Load (0.4ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `dishes_ingredients` ON `ingredients`.`id` = `dishes_ingredients`.`ingredient_id` WHERE `dishes_ingredients`.`dish_id` = 2
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `prices`  WHERE `prices`.`dish_id` = 2[0m
+  [1m[35mPrice Load (0.2ms)[0m  SELECT `prices`.* FROM `prices`  WHERE `prices`.`dish_id` = 2
+  [1m[36mSize Load (0.3ms)[0m  [1mSELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 1 LIMIT 1[0m
+  [1m[35mSize Load (0.3ms)[0m  SELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 2 LIMIT 1
+  Rendered prices/_price.html.erb (13.5ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `sizes`[0m
+  Rendered prices/_list.html.erb (26.2ms)
+  Rendered dishes/show.html.erb within layouts/application (70.9ms)
+  Rendered layouts/_navigation.html.erb (2.7ms)
+  Rendered layouts/_flash_messages.html.erb (0.0ms)
+Completed 200 OK in 102ms (Views: 79.8ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.ui.menu.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.ui.core.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.ui.theme.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/category.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/dishes.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/ingredients.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/prices.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/sizes.css?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/bootstrap.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/bootstrap/tagfy.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/category.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/dishes.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/ingredients.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/prices.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/sizes.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/meiomask.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/assets/fonts/glyphicons-halflings-regular.woff" for 127.0.0.1 at 2014-04-10 18:22:11 +0800
+
+
+Started GET "/prices/16/edit" for 127.0.0.1 at 2014-04-10 18:22:17 +0800
+Processing by PricesController#edit as JS
+  Parameters: {"id"=>"16"}
+  [1m[35mPrice Load (0.3ms)[0m  SELECT  `prices`.* FROM `prices`  WHERE `prices`.`id` = 16 LIMIT 1
+  Rendered layouts/_form_errors.html.erb (0.0ms)
+  [1m[36mSize Load (0.5ms)[0m  [1mSELECT `sizes`.* FROM `sizes`   ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (7.3ms)
+  Rendered prices/modal.html.erb within layouts/ajax (11.0ms)
+Completed 200 OK in 16ms (Views: 14.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/dishes/2" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+Processing by DishesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mDish Load (0.4ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  Rendered layouts/_breadcrumb.html.erb (0.1ms)
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT  `categories`.* FROM `categories`  WHERE `categories`.`id` = 6 LIMIT 1[0m
+  [1m[35mIngredient Load (0.4ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `dishes_ingredients` ON `ingredients`.`id` = `dishes_ingredients`.`ingredient_id` WHERE `dishes_ingredients`.`dish_id` = 2
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `prices`  WHERE `prices`.`dish_id` = 2[0m
+  [1m[35mPrice Load (0.3ms)[0m  SELECT `prices`.* FROM `prices`  WHERE `prices`.`dish_id` = 2
+  [1m[36mSize Load (0.4ms)[0m  [1mSELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 1 LIMIT 1[0m
+  [1m[35mSize Load (0.4ms)[0m  SELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 2 LIMIT 1
+  Rendered prices/_price.html.erb (5.1ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `sizes`[0m
+  Rendered prices/_list.html.erb (10.0ms)
+  Rendered dishes/show.html.erb within layouts/application (20.2ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  Rendered layouts/_flash_messages.html.erb (0.1ms)
+Completed 200 OK in 41ms (Views: 36.3ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.ui.core.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.ui.menu.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.ui.theme.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/category.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/dishes.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/ingredients.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/prices.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/sizes.css?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/bootstrap.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/bootstrap/tagfy.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/category.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/dishes.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/ingredients.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/prices.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/sizes.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/meiomask.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/assets/fonts/glyphicons-halflings-regular.woff" for 127.0.0.1 at 2014-04-10 18:23:06 +0800
+
+
+Started GET "/prices/16/edit" for 127.0.0.1 at 2014-04-10 18:23:07 +0800
+Processing by PricesController#edit as JS
+  Parameters: {"id"=>"16"}
+  [1m[35mPrice Load (0.3ms)[0m  SELECT  `prices`.* FROM `prices`  WHERE `prices`.`id` = 16 LIMIT 1
+  Rendered layouts/_form_errors.html.erb (0.0ms)
+  [1m[36mSize Load (0.4ms)[0m  [1mSELECT `sizes`.* FROM `sizes`   ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (6.7ms)
+  Rendered prices/modal.html.erb within layouts/ajax (10.2ms)
+Completed 200 OK in 15ms (Views: 13.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/dishes/2" for 127.0.0.1 at 2014-04-10 18:26:49 +0800
+Processing by DishesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mDish Load (0.3ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  Rendered layouts/_breadcrumb.html.erb (0.1ms)
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT  `categories`.* FROM `categories`  WHERE `categories`.`id` = 6 LIMIT 1[0m
+  [1m[35mIngredient Load (0.4ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `dishes_ingredients` ON `ingredients`.`id` = `dishes_ingredients`.`ingredient_id` WHERE `dishes_ingredients`.`dish_id` = 2
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `prices`  WHERE `prices`.`dish_id` = 2[0m
+  [1m[35mPrice Load (0.3ms)[0m  SELECT `prices`.* FROM `prices`  WHERE `prices`.`dish_id` = 2
+  [1m[36mSize Load (0.3ms)[0m  [1mSELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 1 LIMIT 1[0m
+  [1m[35mSize Load (0.4ms)[0m  SELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 2 LIMIT 1
+  Rendered prices/_price.html.erb (16.9ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `sizes`[0m
+  Rendered prices/_list.html.erb (34.4ms)
+  Rendered dishes/show.html.erb within layouts/application (92.2ms)
+  Rendered layouts/_navigation.html.erb (4.4ms)
+  Rendered layouts/_flash_messages.html.erb (0.1ms)
+Completed 200 OK in 138ms (Views: 106.3ms | ActiveRecord: 16.4ms)
+
+
+Started GET "/assets/jquery.ui.theme.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:49 +0800
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:49 +0800
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery.ui.core.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery.ui.menu.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/category.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/dishes.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/ingredients.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/prices.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/sizes.css?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/bootstrap.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/bootstrap/tagfy.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/category.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/dishes.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/ingredients.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/prices.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/sizes.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/meiomask.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/assets/fonts/glyphicons-halflings-regular.woff" for 127.0.0.1 at 2014-04-10 18:26:50 +0800
+
+
+Started GET "/prices/16/edit" for 127.0.0.1 at 2014-04-10 18:26:51 +0800
+Processing by PricesController#edit as JS
+  Parameters: {"id"=>"16"}
+  [1m[35mPrice Load (0.3ms)[0m  SELECT  `prices`.* FROM `prices`  WHERE `prices`.`id` = 16 LIMIT 1
+  Rendered layouts/_form_errors.html.erb (0.0ms)
+  [1m[36mSize Load (0.3ms)[0m  [1mSELECT `sizes`.* FROM `sizes`   ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (6.1ms)
+  Rendered prices/modal.html.erb within layouts/ajax (9.7ms)
+Completed 200 OK in 15ms (Views: 12.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/dishes/2/prices/modal" for 127.0.0.1 at 2014-04-10 18:27:00 +0800
+Processing by PricesController#modal as JS
+  Parameters: {"dish_id"=>"2"}
+  Rendered layouts/_form_errors.html.erb (0.0ms)
+  [1m[35mDish Load (0.3ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  [1m[36mSize Load (0.5ms)[0m  [1mSELECT `sizes`.* FROM `sizes`  WHERE (`sizes`.`id` NOT IN (SELECT `sizes`.`id` FROM `sizes` INNER JOIN `prices` ON `sizes`.`id` = `prices`.`size_id` WHERE `prices`.`dish_id` = 2))  ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (9.2ms)
+  Rendered prices/modal.html.erb within layouts/ajax (12.4ms)
+Completed 200 OK in 17ms (Views: 15.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/dishes/2/prices/modal" for 127.0.0.1 at 2014-04-10 18:27:11 +0800
+Processing by PricesController#modal as JS
+  Parameters: {"dish_id"=>"2"}
+  Rendered layouts/_form_errors.html.erb (0.0ms)
+  [1m[35mDish Load (0.3ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  [1m[36mSize Load (0.4ms)[0m  [1mSELECT `sizes`.* FROM `sizes`  WHERE (`sizes`.`id` NOT IN (SELECT `sizes`.`id` FROM `sizes` INNER JOIN `prices` ON `sizes`.`id` = `prices`.`size_id` WHERE `prices`.`dish_id` = 2))  ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (7.5ms)
+  Rendered prices/modal.html.erb within layouts/ajax (10.7ms)
+Completed 200 OK in 16ms (Views: 14.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/dishes/2" for 127.0.0.1 at 2014-04-10 18:29:08 +0800
+Processing by DishesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mDish Load (0.2ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  Rendered layouts/_breadcrumb.html.erb (0.1ms)
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT  `categories`.* FROM `categories`  WHERE `categories`.`id` = 6 LIMIT 1[0m
+  [1m[35mIngredient Load (0.5ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `dishes_ingredients` ON `ingredients`.`id` = `dishes_ingredients`.`ingredient_id` WHERE `dishes_ingredients`.`dish_id` = 2
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `prices`  WHERE `prices`.`dish_id` = 2[0m
+  [1m[35mPrice Load (0.2ms)[0m  SELECT `prices`.* FROM `prices`  WHERE `prices`.`dish_id` = 2
+  [1m[36mSize Load (0.2ms)[0m  [1mSELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 1 LIMIT 1[0m
+  [1m[35mSize Load (0.3ms)[0m  SELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 2 LIMIT 1
+  Rendered prices/_price.html.erb (12.0ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `sizes`[0m
+  Rendered prices/_list.html.erb (28.1ms)
+  Rendered dishes/show.html.erb within layouts/application (81.2ms)
+Completed 500 Internal Server Error in 96ms
+
+ActionView::Template::Error (no implicit conversion of Symbol into Integer):
+    15:       <tr>
+    16:         <td colspan="4">
+    17:           <center>
+    18:             <%= link_to t('links.add', Price.model_name.human), price_modal_path(dish.id), remote: true, class:'add_price' %>
+    19:           </center>
+    20:         </td>
+    21:       </tr>
+  app/views/prices/_list.html.erb:18:in `_app_views_prices__list_html_erb__394185433041302169_70177948658860'
+  app/views/dishes/show.html.erb:22:in `_app_views_dishes_show_html_erb___4442865608234875568_70177939658560'
+
+
+  Rendered /Users/roalcantara/.rvm/gems/ruby-2.1.0@global/gems/actionpack-4.1.0.rc2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/roalcantara/.rvm/gems/ruby-2.1.0@global/gems/actionpack-4.1.0.rc2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/roalcantara/.rvm/gems/ruby-2.1.0@global/gems/actionpack-4.1.0.rc2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (12.1ms)
+
+
+Started GET "/dishes/2" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+Processing by DishesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mDish Load (0.3ms)[0m  SELECT  `dishes`.* FROM `dishes`  WHERE `dishes`.`id` = 2 LIMIT 1
+  Rendered layouts/_breadcrumb.html.erb (0.1ms)
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT  `categories`.* FROM `categories`  WHERE `categories`.`id` = 6 LIMIT 1[0m
+  [1m[35mIngredient Load (0.4ms)[0m  SELECT `ingredients`.* FROM `ingredients` INNER JOIN `dishes_ingredients` ON `ingredients`.`id` = `dishes_ingredients`.`ingredient_id` WHERE `dishes_ingredients`.`dish_id` = 2
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `prices`  WHERE `prices`.`dish_id` = 2[0m
+  [1m[35mPrice Load (0.5ms)[0m  SELECT `prices`.* FROM `prices`  WHERE `prices`.`dish_id` = 2
+  [1m[36mSize Load (0.4ms)[0m  [1mSELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 1 LIMIT 1[0m
+  [1m[35mSize Load (0.4ms)[0m  SELECT  `sizes`.* FROM `sizes`  WHERE `sizes`.`id` = 2 LIMIT 1
+  Rendered prices/_price.html.erb (5.1ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `sizes`[0m
+  Rendered prices/_list.html.erb (11.9ms)
+  Rendered dishes/show.html.erb within layouts/application (20.6ms)
+  Rendered layouts/_navigation.html.erb (2.6ms)
+  Rendered layouts/_flash_messages.html.erb (0.0ms)
+Completed 200 OK in 42ms (Views: 37.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.css?body=1" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+
+
+Started GET "/assets/jquery.ui.menu.css?body=1" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+
+
+Started GET "/assets/jquery.ui.theme.css?body=1" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+
+
+Started GET "/assets/jquery.ui.core.css?body=1" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+
+
+Started GET "/assets/category.css?body=1" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+
+
+Started GET "/assets/dishes.css?body=1" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+
+
+Started GET "/assets/ingredients.css?body=1" for 127.0.0.1 at 2014-04-10 19:00:59 +0800
+
+
+Started GET "/assets/main.css?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/prices.css?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/sizes.css?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/bootstrap.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/bootstrap/tagfy.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/category.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/dishes.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/ingredients.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/prices.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/sizes.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/meiomask.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/assets/fonts/glyphicons-halflings-regular.woff" for 127.0.0.1 at 2014-04-10 19:01:00 +0800
+
+
+Started GET "/prices/16/edit" for 127.0.0.1 at 2014-04-10 19:01:04 +0800
+Processing by PricesController#edit as JS
+  Parameters: {"id"=>"16"}
+  [1m[35mPrice Load (0.3ms)[0m  SELECT  `prices`.* FROM `prices`  WHERE `prices`.`id` = 16 LIMIT 1
+  Rendered layouts/_form_errors.html.erb (0.1ms)
+  [1m[36mSize Load (0.4ms)[0m  [1mSELECT `sizes`.* FROM `sizes`   ORDER BY `sizes`.`name` ASC[0m
+  Rendered prices/_form.html.erb (7.4ms)
+  Rendered prices/modal.html.erb within layouts/ajax (11.1ms)
+Completed 200 OK in 17ms (Views: 15.0ms | ActiveRecord: 0.7ms)

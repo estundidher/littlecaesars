@@ -12,7 +12,7 @@ class Size < ActiveRecord::Base
             :length => {:maximum => 100},
             :uniqueness => true
 
-  def self.available price
+  def self.available_for price
     if price.id
       order(:name)
     else
