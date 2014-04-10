@@ -3,23 +3,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Add Price</h4>
+        <h4 class="modal-title">
+          <%= t("titles.#{@price.id ? 'edit' : 'add'}", model_name: Price.model_name.human) %>
+        </h4>
       </div>
       <div id="price_modal_form_container" class="modal-body">
         <%= render 'form', price:@price %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="price_form_modal_save" type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="price_modal_save btn btn-primary">Save</button>
       </div>
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-
-  $('#price_form_modal_save').on('click', function() {
-    $('#price_form_modal').submit();
-  });
-
-</script>

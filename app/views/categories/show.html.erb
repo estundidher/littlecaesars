@@ -1,12 +1,9 @@
 <%= tb_breadcrumb link_to(Category.model_name.human.pluralize, categories_path), t('titles.show', model_name: Category.model_name.human) %>
-<p>
-  <strong><%= Category.human_attribute_name 'category' %>:</strong>
-</p>
 
-<p>
-  <strong><%= Category.human_attribute_name 'name' %>:</strong>
-  <%= @category.name %>
-</p>
+<dl>
+  <dt><%= Category.human_attribute_name 'name' %></dt>
+  <dd><%= @category.name %></dd>
+</dl>
 
 <%= tb_button_edit edit_category_path(@category) %>
 <%= tb_button_back categories_path %>

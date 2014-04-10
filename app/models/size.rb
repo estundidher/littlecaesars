@@ -11,4 +11,13 @@ class Size < ActiveRecord::Base
             :presence => true,
             :length => {:maximum => 100},
             :uniqueness => true
+
+  def self.available price
+    if price.id
+      order(:name)
+    else
+      where.not(id:price.dish.sizes).order(:name)
+    end
+  end
+
 end

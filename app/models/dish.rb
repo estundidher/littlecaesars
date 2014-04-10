@@ -1,6 +1,6 @@
 class Dish < ActiveRecord::Base
 
-  has_many :prices
+  has_many :prices, :dependent => :destroy
   has_many :sizes, through: :prices
 
   has_and_belongs_to_many :ingredients

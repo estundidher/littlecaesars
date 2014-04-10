@@ -1,10 +1,9 @@
 <tr>
   <td> <%= price.id %> </td>
   <td> <%= price.size.name %> </td>
-  <td> <%= price.value %> </td>
+  <td> <%= number_to_currency price.value %> </td>
   <td>
-      <a href="/dishes/1"><i class="glyphicon glyphicon-eye-open"></i> </a>
-      <a href="/dishes/1/edit"><i class="glyphicon glyphicon-pencil"></i> </a>
-      <a data-confirm="Are you sure?" data-method="delete" href="/dishes/1" rel="nofollow"><i class="glyphicon glyphicon-remove"></i> </a>
+    <%= tb_grid_edit edit_price_path(price), true, 'alter_price' %>
+    <%= tb_grid_remove price, true, 'remove_price' %>
   </td>
 </tr>

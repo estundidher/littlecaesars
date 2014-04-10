@@ -4,7 +4,7 @@
         <th style="width:30px;"> # </th>
         <th>Size</th>
         <th style="width:60px;">Price</th>
-        <th style="width:61px;"></th>
+        <th style="width:43px;"></th>
     </tr>
   </thead>
   <tbody>
@@ -15,17 +15,10 @@
       <tr>
         <td colspan="4">
           <center>
-            <%= link_to "add price", price_modal_path(dish.id), remote: true %>
+            <%= link_to "add price", price_modal_path(dish.id), remote: true, class:'add_price' %>
           </center>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<script type="text/javascript">
-  $('a[data-remote]').on('ajax:success', function(e, data, status, xhr) {
-    $("#modal_container").empty().append(xhr.responseText);
-    $("#price_modal").modal('show');
-  });
-</script>

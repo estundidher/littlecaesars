@@ -246,6 +246,7 @@ en:
     new: New %{model_name}
     show: Show %{model_name}
     edit: Edit %{model_name}
+    add: Add %{model_name}
 
   tokenInput:
     hintText: Type in a search term

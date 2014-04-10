@@ -4,7 +4,7 @@ before_action :set_prices, only: [:show, :edit, :update, :destroy]
 
   # GET /modal
   def modal
-    @price = params[:id] ? Price.find(params[:id]) : Price.new
+    @price = Price.new
     @price.dish_id = params[:dish_id]
     render layout: 'ajax'
   end
@@ -50,28 +50,26 @@ before_action :set_prices, only: [:show, :edit, :update, :destroy]
 
   # GET /prices/1/edit
   def edit
+    render 'modal', layout: 'ajax'
   end
 
   # POST /prices
   def create
     @price = Price.new(price_params)
-
-    @price.save
-
-    render partial: 'form', locals: {price:@price}
+    if @price.save
+      render partial: 'list', locals: {dish:@price.dish}
+    else
+      render partial: 'form', locals: {price:@price}, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /prices/1
   # PATCH/PUT /prices/1.json
   def update
-    respond_to do |format|
-      if @price.update(price_params)
-        format.html { redirect_to @price, notice: 'Price was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @price.errors, status: :unprocessable_entity }
-      end
+    if @price.update(price_params)
+      render partial: 'list', locals: {dish:@price.dish}
+    else
+      render partial: 'form', locals: {price:@price}, status: :unprocessable_entity
     end
   end
 
@@ -79,10 +77,7 @@ before_action :set_prices, only: [:show, :edit, :update, :destroy]
   # DELETE /prices/1.json
   def destroy
     @price.destroy
-    respond_to do |format|
-      format.html { redirect_to prices_url }
-      format.json { head :no_content }
-    end
+    render partial: 'list', locals: {dish:@price.dish}
   end
 
   def update_prices

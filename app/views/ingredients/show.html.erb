@@ -1,22 +1,13 @@
 <%= tb_breadcrumb link_to(Ingredient.model_name.human.pluralize, ingredients_path), t('titles.show', model_name: Ingredient.model_name.human) %>
 
-<p>
-  <strong><%= Ingredient.human_attribute_name 'ingredient' %>:</strong>
-</p>
+<p> <%= image_tag @ingredient.avatar.url(:thumb) %> </p>
 
-<p>
-  <strong><%= t 'name' %>:</strong>
-  <%= @ingredient.name %>
-</p>
-
-<p>
-  <strong><%= t 'price' %>:</strong>
-  <%= number_to_currency @ingredient.price %>
-</p>
-
-<p>
-    <%= image_tag @ingredient.avatar.url(:thumb) %>
-</p>
+<dl>
+  <dt><%= Ingredient.human_attribute_name 'name' %></dt>
+  <dd><%= @ingredient.name %></dd>
+  <dt><%= Ingredient.human_attribute_name 'price' %></dt>
+  <dd><%= number_to_currency @ingredient.price %></dd>
+</dl>
 
 <%= tb_button_edit edit_ingredient_path(@ingredient) %>
 <%= tb_button_back ingredients_path %>

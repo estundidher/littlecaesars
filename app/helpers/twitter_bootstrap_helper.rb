@@ -1,9 +1,6 @@
 module TwitterBootstrapHelper
 
 	def tb_class_for flash_type
-
-		puts "-------------- flash_type: #{flash_type}"
-
 		case flash_type.to_s
 		  when "success"
 		    "alert-success" # Green
@@ -60,14 +57,20 @@ module TwitterBootstrapHelper
 		link_to "<i class='glyphicon glyphicon-eye-open'></i> ".html_safe, path
 	end
 
-	def tb_grid_edit model
-		link_to "<i class='glyphicon glyphicon-pencil'></i> ".html_safe, model
+	def tb_grid_edit model, remote = nil, className = nil
+		link_to "<i class='glyphicon glyphicon-pencil'></i> ".html_safe,
+									model,
+									remote: remote,
+                                    class: "#{className}"
 	end
 
-	def tb_grid_remove model
-		link_to "<i class='glyphicon glyphicon-remove'></i> ".html_safe, model,
-                                    method: :delete,
-                                    data: {confirm: t('warnings.confirm')}
+	def tb_grid_remove model, remote = nil, className = nil
+		link_to "<i class='glyphicon glyphicon-remove'></i> ".html_safe,
+										model,
+										remote: remote,
+                                    	method: :delete,
+                                     	class: "#{className}",
+                                      	data: {confirm: t('warnings.confirm')}
 	end
 
 	def tb_grid_link path, icon

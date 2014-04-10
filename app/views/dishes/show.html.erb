@@ -1,34 +1,27 @@
 <%= tb_breadcrumb link_to(Dish.model_name.human.pluralize, dishes_path), t('titles.show', model_name: Dish.model_name.human) %>
+<p> <%= image_tag @dish.photo.url(:thumb) %> </p>
 
-<p>
-    <%= image_tag @dish.photo.url(:thumb) %>
-</p>
-
-<p>
-  <strong><%= t 'category' %>:</strong>
-  <%= @dish.category.name %>
-</p>
-
-<p>
-  <strong><%= t 'name' %>:</strong>
-  <%= @dish.name %>
-</p>
-
-<p>
-  <strong><%= t 'description' %>:</strong>
-  <%= @dish.description %>
-</p>
-
-<p>
-  <strong><%= t 'ingredients' %>:</strong>
-  <ul>
-  <% @dish.ingredients.each do |ingredient| %>
-    <li>
-        <%= ingredient.name %>
-    </li>
+<dl>
+  <dt><%= Dish.human_attribute_name 'category' %></dt>
+  <dd><%= @dish.category.name %></dd>
+  <dt><%= Dish.human_attribute_name 'name' %></dt>
+  <dd><%= @dish.name %></dd>
+  <% if @dish.description? %>
+    <dt><%= Dish.human_attribute_name 'description' %></dt>
+    <dd><%= @dish.description %></dd>
   <% end %>
-  </ul>
-</p>
+  <dt><%= Dish.human_attribute_name 'ingredients' %></dt>
+   <% @dish.ingredients.each do |ingredient| %>
+    <dd><%= ingredient.name %></dd>
+  <% end %>
+</dl>
+
+<div class="form-group">
+  <%= label @dish, :prices %>
+  <div id="dishes_prices_list_container" style="width: 400px;">
+    <%= render "/prices/list", dish:@dish %>
+  </div>
+</div>
 
 <%= tb_button_edit edit_dish_path(@dish) %>
 <%= tb_button_back dishes_path %>
