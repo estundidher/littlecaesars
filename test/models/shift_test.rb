@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CategoryControllerTest < ActionController::TestCase
+class ShiftTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

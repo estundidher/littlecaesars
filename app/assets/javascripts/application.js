@@ -19,11 +19,20 @@
 //= require jquery.ui.autocomplete
 //= require turbolinks
 //= require bootstrap/bootstrap
-//= require_tree .
 //= require meiomask
+//= require moment
+//= require bootstrap-datetimepicker
+//= require_tree .
 
 $(function() {
-    $('.check_all').on('click', function () {
-        $(this).closest('table').find(':checkbox').prop('checked', this.checked);
-    });
+  $('.check_all').on('click', function () {
+      $(this).closest('table').find(':checkbox').prop('checked', this.checked);
+  });
 });
+
+function bindDateTimePickers() {
+
+    $('.datetimepicker_timer').datetimepicker({
+        pickDate: false
+    });
+}

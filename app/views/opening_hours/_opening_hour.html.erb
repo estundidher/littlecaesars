@@ -1,0 +1,8 @@
+<tr>
+  <td> <%= opening_hour.id %> </td>
+  <td> <%= opening_hour.day_of_week %> </td>
+  <td>
+    <%= tb_grid_edit edit_opening_hour_path(opening_hour), true, 'alter_opening_hour' %>
+    <%= tb_grid_remove opening_hour, true, 'remove_opening_hour' %>
+  </td>
+</tr>

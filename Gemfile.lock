@@ -38,6 +38,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.0)
+    bootstrap3-datetimepicker-rails (3.0.0)
+      momentjs-rails (~> 2.5.0)
     builder (3.2.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -71,6 +73,8 @@ GEM
     meiomask-rails (1.1.12)
     mime-types (1.25.1)
     minitest (5.3.2)
+    momentjs-rails (2.5.1)
+      railties (>= 3.1)
     multi_json (1.9.2)
     mysql2 (0.3.15)
     polyglot (0.3.4)
@@ -132,12 +136,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap3-datetimepicker-rails (~> 3.0.0)
   coffee-rails (~> 4.0.0)
   foreigner
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails (~> 4.1.1)
   meiomask-rails (~> 1.1.12)
+  momentjs-rails (~> 2.5.0)
   mysql2
   paperclip!
   rails (= 4.1.0.rc2)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408075256) do
+ActiveRecord::Schema.define(version: 20140411071517) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -52,6 +52,29 @@ ActiveRecord::Schema.define(version: 20140408075256) do
     t.datetime "avatar_updated_at"
   end
 
+  create_table "opening_hours", force: true do |t|
+    t.integer  "place_id"
+    t.string   "day_of_week"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "opening_hours", ["place_id"], name: "opening_hours_place_id_fk", using: :btree
+
+  create_table "places", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "description"
+    t.text     "map"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
   create_table "prices", force: true do |t|
     t.integer  "dish_id"
     t.integer  "size_id"
@@ -62,6 +85,16 @@ ActiveRecord::Schema.define(version: 20140408075256) do
 
   add_index "prices", ["dish_id"], name: "prices_dish_id_fk", using: :btree
   add_index "prices", ["size_id"], name: "prices_size_id_fk", using: :btree
+
+  create_table "shifts", force: true do |t|
+    t.integer  "opening_hour_id"
+    t.time     "start_at"
+    t.time     "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shifts", ["opening_hour_id"], name: "shifts_opening_hour_id_fk", using: :btree
 
   create_table "sizes", force: true do |t|
     t.string   "name"
@@ -76,7 +109,11 @@ ActiveRecord::Schema.define(version: 20140408075256) do
   add_foreign_key "dishes_ingredients", "dishes", name: "dishes_ingredients_dish_id_fk"
   add_foreign_key "dishes_ingredients", "ingredients", name: "dishes_ingredients_ingredient_id_fk"
 
+  add_foreign_key "opening_hours", "places", name: "opening_hours_place_id_fk"
+
   add_foreign_key "prices", "dishes", name: "prices_dish_id_fk"
   add_foreign_key "prices", "sizes", name: "prices_size_id_fk"
+
+  add_foreign_key "shifts", "opening_hours", name: "shifts_opening_hour_id_fk"
 
 end

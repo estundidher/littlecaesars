@@ -9,13 +9,19 @@ Rails.application.routes.draw do
   resources :ingredients
   resources :sizes
   resources :categories
+  resources :places
 
   #dishes
   resources :dishes
 
   #prices
-  get 'dishes/:dish_id/prices/modal', to: 'prices#modal', as: :price_modal
+  get 'dishes/:dish_id/prices/new', to: 'prices#new', as: :price_new
   resources :prices
+
+  #opening_hours
+  get 'places/:place_id/opening_hour/new', to: 'opening_hours#new', as: :opening_hour_new
+  get 'opening_hour/shift/add', to: 'opening_hours#add_shift', as: :opening_hour_add_shift
+  resources :opening_hours
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

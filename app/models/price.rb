@@ -7,7 +7,8 @@ class Price < ActiveRecord::Base
             :presence => true
 
   validates :size,
-            :presence => true
+            :presence => true,
+            uniqueness: { scope: :dish, message: "should have one Size per Dish!" }
 
   validates :value,
             :presence => true,

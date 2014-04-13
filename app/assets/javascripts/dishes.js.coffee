@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'page:change', ->
+$(document).ready ->
 
   $(document).on 'ajax:success', '.add_price', (e, data, status, xhr) ->
     console.log "add_price fired!"
@@ -10,6 +10,7 @@ $(document).on 'page:change', ->
     $('#price_modal').modal 'show'
 
   $(document).on 'ajax:success', '.alter_price', (e, data, status, xhr) ->
+    console.log "alter_price fired!"
     $('#modal_container').empty().append xhr.responseText
     $('#price_modal').modal 'show'
 

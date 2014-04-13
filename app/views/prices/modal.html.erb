@@ -11,10 +11,12 @@
         <%= render 'form', price:@price %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">
+          <i class='glyphicon glyphicon-ban-circle'></i>
           <%= t '.links.close' %>
         </button>
         <button type="button" class="price_modal_save btn btn-primary">
+          <i class='glyphicon glyphicon-ok-circle'></i>
           <%= t '.links.save' %>
         </button>
       </div>

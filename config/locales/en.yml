@@ -265,23 +265,40 @@ en:
       category: Category
       price: Price
       dish: Dish
+      place: Place
+      opening_hour: Opening Hours
+      shift: Shift
     attributes:
       ingredient:
-          name: Name
-          price: Price
-          avatar: Photo
+        name: Name
+        price: Price
+        avatar: Photo
       size:
-          name: Name
-          description: Description
+        name: Name
+        description: Description
       category:
-          name: Name
+        name: Name
       price:
-          size: Size
-          value: Price
+        size: Size
+        value: Price
       dish:
-          name: Name
-          description: Description
-          category: Category
-          photo: Photo
-          ingredients: Ingredients
-          prices: Prices
+        name: Name
+        description: Description
+        category: Category
+        photo: Photo
+        ingredients: Ingredients
+        prices: Prices
+      place:
+        photo: Photo
+        name: Name
+        address: Address
+        phone: Phone
+        description: Description
+        map: Map
+        opening_hours: Opening Hours
+      opening_hour:
+        day_of_week: Day of Week
+        shifts: Shifts
+      shift:
+        start_at: Start at
+        end_at: End at

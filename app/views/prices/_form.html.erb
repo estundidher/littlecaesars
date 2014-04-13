@@ -16,11 +16,11 @@
     <%= f.label :value %>
     <%= f.text_field :value,
                      :value => number_to_currency(price.value, :precision => 2),
-                     class: 'form-control meiomask' %>
+                     class: 'form-control price_mask' %>
   </div>
 
 <% end %>
 
 <script type="text/javascript">
-  $('.meiomask').setMask({mask:'99.999', type:'reverse', maxLength: 6});
+  $('.price_mask').setMask({mask:'99.999', type:'reverse', maxLength: 6});
 </script>

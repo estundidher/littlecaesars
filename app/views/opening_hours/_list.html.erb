@@ -1,0 +1,23 @@
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr>
+        <th style="width:30px;"> # </th>
+        <th> <%= OpeningHour.human_attribute_name "day_of_week" %> </th>
+        <th style="width:43px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if place.opening_hours.size > 0 %>
+      <%= render place.opening_hours %>
+    <% end %>
+    <tr>
+      <td colspan="4">
+        <center>
+          <%= link_to t('links.add', model_name:OpeningHour.model_name.human), opening_hour_new_path(place.id),
+                      remote: true,
+                      class:'add_opening_hour' %>
+        </center>
+      </td>
+    </tr>
+  </tbody>
+</table>
