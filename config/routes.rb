@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
   #opening_hours
   get 'places/:place_id/opening_hour/new', to: 'opening_hours#new', as: :opening_hour_new
-  get 'opening_hour/shift/add', to: 'opening_hours#add_shift', as: :opening_hour_add_shift
+  get 'opening_hour/shift/add', to: 'opening_hours#add_shift', as: :add_shift
+  delete 'opening_hour/shift/:id', to: 'opening_hours#destroy_shift', as: :destroy_shift
   resources :opening_hours
 
   # Example of regular route:

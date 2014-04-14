@@ -54,11 +54,16 @@ $(document).ready ->
 
   $(document).on 'ajax:success', '.add_shift', (e, data, status, xhr) ->
     console.log "add_shift 'ajax:success' fired!"
-    $('#opening_hour_shifts_container .row').last().prev().find('.remove_shift').prop 'disabled', true
+    $('#opening_hour_shifts_container .row').last().find('.remove_shift,.delete_shift').prop 'disabled', true
     $('#opening_hour_shifts_container .row').last().after xhr.responseText
     bindDateTimePickers();
 
+  $(document).on 'ajax:success', '.delete_shift', (e, data, status, xhr) ->
+    console.log ".delete_shift click fired!"
+    $('#opening_hour_shifts_container .row').last().prev().find('.remove_shift,.delete_shift').prop 'disabled', false
+    $(this).closest('.row').fadeOut('fast').remove()
+
   $(document).on 'click', '.remove_shift', (e) ->
     console.log ".remove_shift click fired!"
-    $('#opening_hour_shifts_container .row').last().prev().find('.remove_shift').prop 'disabled', false
+    $('#opening_hour_shifts_container .row').last().prev().find('.remove_shift,.delete_shift').prop 'disabled', false
     $(this).closest('.row').fadeOut('fast').remove()

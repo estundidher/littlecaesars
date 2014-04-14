@@ -1,9 +1,5 @@
-
 <div class="row">
   <%= fields_for "opening_hour[shifts_attributes][]", shift, index: shift_index do |shift_form| %>
-    <% if shift.id? %>
-      <%= shift_form.hidden_field :id, value: shift.id %>
-    <% end %>
     <div class='col-md-5'>
       <div class="form-group">
         <div class='input-group date datetimepicker_timer'>
@@ -30,9 +26,9 @@
   <% if shift_index > 0 %>
     <div class='col-md-1'>
       <div class="form-group">
-        <button type="button" class="btn btn-default remove_shift">
-          <i class="glyphicon glyphicon-remove"></i>
-        </button>
+          <button type="button" class="btn btn-default remove_shift" <%=  'disabled' if ((shift.opening_hour.shifts.count-1) != shift_index) %>>
+            <i class="glyphicon glyphicon-remove"></i>
+          </button>
       </div>
     </div>
   <% end %>

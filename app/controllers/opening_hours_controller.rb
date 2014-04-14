@@ -20,6 +20,12 @@ class OpeningHoursController < ApplicationController
     render partial:'shift', :locals => {shift: Shift.new, shift_index: params[:shifts].to_i}, layout: nil
   end
 
+  # DELETE /opening_hours/shift/:id
+  def destroy_shift
+    Shift.find(params[:id]).destroy
+    head :no_content, status: :ok
+  end
+
   # POST /opening_hours
   def create
     @opening_hour = OpeningHour.new(opening_hour_params)
@@ -33,6 +39,7 @@ class OpeningHoursController < ApplicationController
   # PATCH/PUT /opening_hours/1
   # PATCH/PUT /opening_hours/1.json
   def update
+    @opening_hour.shifts.destroy_all
     if @opening_hour.update(opening_hour_params)
       render partial:'list', locals: {place:@opening_hour.place}, layout: nil
     else
