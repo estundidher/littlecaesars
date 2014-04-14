@@ -29,6 +29,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 # picture upload
 gem 'paperclip', github: 'thoughtbot/paperclip'
 
+gem 'devise'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 

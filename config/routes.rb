@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
   get 'opening_hour/shift/add', to: 'opening_hours#add_shift', as: :add_shift
   delete 'opening_hour/shift/:id', to: 'opening_hours#destroy_shift', as: :destroy_shift
   resources :opening_hours
+
+  resources :users
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

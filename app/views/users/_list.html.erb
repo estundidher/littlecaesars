@@ -1,0 +1,13 @@
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th style="width:30px;"> # </th>
+      <th><%= User.human_attribute_name "username" %></th>
+      <th><%= User.human_attribute_name "email" %></th>
+      <th style="width:60px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @users %>
+  </tbody>
+</table>

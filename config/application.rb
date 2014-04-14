@@ -23,5 +23,8 @@ module Caesars
     #config.paperclip_defaults = {:storage => :fog,
     #                             :fog_credentials => {:provider => "Local", :local_root => "#{Rails.root}/public"},
     #                             :fog_directory => "", :fog_host => "localhost"}
+
+    #devise configuration for Heroku
+    config.assets.initialize_on_precompile = false
   end
 end
