@@ -1,8 +1,8 @@
-<%= form_for price, html: {:role => 'form', :id => "price_form"}, remote: true do |f| %>
+<%= form_for price, html: {role: 'form', id: 'price_form'}, remote: true do |f| %>
 
   <%= tb_show_errors_for price %>
 
-  <%= f.hidden_field :dish_id, value: price.dish_id %>
+  <%= f.hidden_field :product_id, value: price.product_id %>
 
   <div class="form-group <%= tb_has_error price, :size %>">
         <%= f.label :size_id %>
@@ -16,11 +16,11 @@
     <%= f.label :value %>
     <%= f.text_field :value,
                      :value => number_to_currency(price.value, :precision => 2),
-                     class: 'form-control price_mask' %>
+                     class: 'form-control money_mask' %>
   </div>
 
 <% end %>
 
 <script type="text/javascript">
-  $('.price_mask').setMask({mask:'99.999', type:'reverse', maxLength: 6});
+  Application.bind_moneyMask();
 </script>

@@ -260,20 +260,16 @@ en:
       <<: *errors
 
     models:
-      ingredient: Ingredient
       size: Size
       category: Category
       price: Price
-      dish: Dish
+      product_type: Product Type
+      product: Product
       place: Place
       opening_hour: Opening Hours
       shift: Shift
       user: User
     attributes:
-      ingredient:
-        name: Name
-        price: Price
-        avatar: Photo
       size:
         name: Name
         description: Description
@@ -282,12 +278,17 @@ en:
       price:
         size: Size
         value: Price
-      dish:
+      product_type:
         name: Name
+        sizable: Has different sizes?
+        allowItems: Has items?
+      product:
+        name: Name
+        price: Price
         description: Description
         category: Category
         photo: Photo
-        ingredients: Ingredients
+        items: Items
         prices: Prices
       place:
         photo: Photo

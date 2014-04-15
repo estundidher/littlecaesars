@@ -6,17 +6,18 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  #subjects
-  resources :ingredients
   resources :sizes
   resources :categories
+  resources :product_types
   resources :places
+  resources :users
 
-  #dishes
-  resources :dishes
+  #products
+  get 'products/options', to: 'products#options', as: :products_reload_options
+  resources :products
 
   #prices
-  get 'dishes/:dish_id/prices/new', to: 'prices#new', as: :price_new
+  get 'products/:product_id/prices/new', to: 'prices#new', as: :price_new
   resources :prices
 
   #opening_hours
@@ -24,8 +25,6 @@ Rails.application.routes.draw do
   get 'opening_hour/shift/add', to: 'opening_hours#add_shift', as: :add_shift
   delete 'opening_hour/shift/:id', to: 'opening_hours#destroy_shift', as: :destroy_shift
   resources :opening_hours
-
-  resources :users
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

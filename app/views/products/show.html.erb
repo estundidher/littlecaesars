@@ -1,0 +1,37 @@
+<%= tb_breadcrumb link_to(Product.model_name.human.pluralize, products_path), t('titles.show', model_name: Product.model_name.human) %>
+
+<p> <%= image_tag @product.photo.url(:thumb) %> </p>
+
+<dl>
+  <dt><%= Product.human_attribute_name 'type' %></dt>
+  <dd><%= @product.type.name %></dd>
+  <dt><%= Product.human_attribute_name 'category' %></dt>
+  <dd><%= @product.category.name %></dd>
+  <dt><%= Product.human_attribute_name 'name' %></dt>
+  <dd><%= @product.name %></dd>
+  <% if @product.description? %>
+    <dt><%= Product.human_attribute_name 'description' %></dt>
+    <dd><%= @product.description %></dd>
+  <% end %>
+  <% if @product.type.allowItems? %>
+    <dt><%= Product.human_attribute_name 'ingredients' %></dt>
+    <dd> <%= @product.items_friendly %> </dd>
+  <% end %>
+  <% if @product.priceable? %>
+    <dt><%= Product.human_attribute_name 'price' %></dt>
+    <dd><%= number_to_currency @product.price %></dd>
+  <% end %>
+  <%= auditable @product %>
+</dl>
+
+<% if @product.type.sizable? %>
+<div class="form-group">
+  <%= label @product, :prices %>
+  <div id="products_prices_list_container" style="width: 400px;">
+    <%= render "/prices/list", product:@product %>
+  </div>
+</div>
+<% end %>
+
+<%= tb_button_edit edit_product_path(@product) %>
+<%= tb_button_back products_path %>

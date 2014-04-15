@@ -16,34 +16,36 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-    <ul class="nav navbar-nav">
-
     <% if current_user.try(:admin?) %>
-      <li> <%= link_to Category.model_name.human.pluralize, categories_path %> </li>
-      <li> <%= link_to Size.model_name.human.pluralize, sizes_path %> </li>
-      <li> <%= link_to Ingredient.model_name.human.pluralize, ingredients_path %> </li>
-      <li> <%= link_to Dish.model_name.human.pluralize, dishes_path %> </li>
-      <li> <%= link_to Place.model_name.human.pluralize, places_path %> </li>
-      <li> <%= link_to User.model_name.human.pluralize, users_path %> </li>
-    <% end%>
-    </ul>
-
-    <% if user_signed_in? %>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <%= current_user.username %> <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li> <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+      <ul class="nav navbar-nav">
+        <li> <%= link_to ProductType.model_name.human.pluralize, product_types_path %> </li>
+        <li> <%= link_to Category.model_name.human.pluralize, categories_path %> </li>
+        <li> <%= link_to Size.model_name.human.pluralize, sizes_path %> </li>
+        <li> <%= link_to Product.model_name.human.pluralize, products_path %> </li>
+        <li> <%= link_to Place.model_name.human.pluralize, places_path %> </li>
+        <li> <%= link_to User.model_name.human.pluralize, users_path %> </li>
       </ul>
-    <% end %>
+    <% end%>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <%= current_user.username %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li> <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+      <% else %>
+        <li> <%= link_to 'Sign in', new_user_session_path %> </li>
+        <li> <%= link_to 'Sign up', new_user_registration_path %> </li>
+      <% end %>
+    </ul>
 
   </div><!-- /.navbar-collapse -->
 </nav>

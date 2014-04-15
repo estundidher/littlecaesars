@@ -3,7 +3,7 @@
     <div class='col-md-5'>
       <div class="form-group">
         <div class='input-group date datetimepicker_timer'>
-          <%= shift_form.text_field :start_at, :class=>'form-control', :value=>shift.start_at %>
+          <%= shift_form.text_field :start_at, class: 'form-control datetimepicker_timer', value: shift.start_at %>
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span>
           </span>
@@ -14,7 +14,7 @@
     <div class='col-md-5'>
       <div class="form-group">
         <div class='input-group date datetimepicker_timer'>
-          <%= shift_form.text_field :end_at, :class=>'form-control', :value=>shift.end_at %>
+          <%= shift_form.text_field :end_at, class: 'form-control datetimepicker_timer', value: shift.end_at %>
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span>
           </span>

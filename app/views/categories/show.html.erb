@@ -3,6 +3,7 @@
 <dl>
   <dt><%= Category.human_attribute_name 'name' %></dt>
   <dd><%= @category.name %></dd>
+  <%= auditable @category %>
 </dl>
 
 <%= tb_button_edit edit_category_path(@category) %>

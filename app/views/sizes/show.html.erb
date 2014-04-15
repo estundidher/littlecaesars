@@ -5,6 +5,7 @@
   <dd><%= @size.name %></dd>
   <dt><%= Size.human_attribute_name 'description' %></dt>
   <dd><%= @size.description %></dd>
+  <%= auditable @size %>
 </dl>
 
 <%= tb_button_edit edit_size_path(@size) %>

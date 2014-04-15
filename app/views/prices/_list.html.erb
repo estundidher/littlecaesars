@@ -8,15 +8,15 @@
     </tr>
   </thead>
   <tbody>
-    <% if dish.prices.size > 0 %>
-      <%= render dish.prices %>
+    <% if product.prices.size > 0 %>
+      <%= render product.prices %>
     <% end %>
-    <% if dish.prices.size < Size.count %>
+    <% if product.prices.size < Size.count %>
       <tr>
         <td colspan="4">
           <center>
             <%= link_to t('links.add', model_name:Price.model_name.human),
-                        price_new_path(dish.id),
+                        price_new_path(product.id),
                         remote: true,
                         class:'add_price' %>
           </center>

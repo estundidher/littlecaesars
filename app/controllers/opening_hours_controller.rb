@@ -2,7 +2,7 @@ class OpeningHoursController < ApplicationController
 
   before_action :set_opening_hour, only: [:edit, :update, :destroy]
 
-  # GET /dish/:place_id/opening_hours/new
+  # GET /:place_id/opening_hours/new
   def new
     @opening_hour = OpeningHour.new
     @opening_hour.shifts.build

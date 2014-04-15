@@ -2,10 +2,10 @@ class PricesController < ApplicationController
 
   before_action :set_prices, only: [:edit, :update, :destroy]
 
-  # GET /dish/:dish_id/prices/new
+  # GET /product/:product_id/prices/new
   def new
     @price = Price.new
-    @price.dish_id = params[:dish_id]
+    @price.product_id = params[:product_id]
     render 'modal', layout: nil
   end
 
@@ -18,7 +18,7 @@ class PricesController < ApplicationController
   def create
     @price = Price.new(price_params)
     if @price.save!
-      render partial: 'list', locals: {dish:@price.dish}, layout: nil
+      render partial: 'list', locals: {product:@price.product}, layout: nil
     else
       render partial: 'form', locals: {price:@price}, layout: nil, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class PricesController < ApplicationController
   # PATCH/PUT /prices/1.json
   def update
     if @price.update!(price_params)
-      render partial: 'list', locals: {dish:@price.dish}, layout: nil
+      render partial: 'list', locals: {product:@price.product}, layout: nil
     else
       render partial: 'form', locals: {price:@price}, layout: nil, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class PricesController < ApplicationController
   # DELETE /prices/1.json
   def destroy
     @price.destroy!
-    render partial: 'list', layout: nil, locals: {dish:@price.dish}
+    render partial: 'list', layout: nil, locals: {product:@price.product}
   end
 
   private
@@ -49,6 +49,6 @@ class PricesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def price_params
-      params.require(:price).permit :dish_id, :size_id, :value
+      params.require(:price).permit :product_id, :size_id, :value
     end
 end
