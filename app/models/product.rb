@@ -22,16 +22,16 @@ class Product < ActiveRecord::Base
 
   belongs_to :category
 
-  validates :name,
-            presence: true,
-            length: {maximum: 50},
-            uniqueness: true
-
-  validates :name,
+  validates :type,
             presence: true
 
   validates :category,
             presence: true
+
+  validates :name,
+            presence: true,
+            length: {maximum: 50},
+            uniqueness: true
 
   validates :description,
             length: {maximum: 200}
@@ -41,7 +41,7 @@ class Product < ActiveRecord::Base
             presence: true, if: :priceable?
 
   def priceable?
-    !self.type.sizable?
+    !self.try(:type).try(:sizable?)
   end
 
   validates_attachment :photo,
