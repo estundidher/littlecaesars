@@ -1,0 +1,9 @@
+<tr>
+  <td> <%= price.id %> </td>
+  <td> <%= price.size.name %> </td>
+  <td> <%= number_to_currency price.value %> </td>
+  <td>
+    <%= tb_grid_edit edit_admin_price_path(price), true, 'alter_price' %>
+    <%= tb_grid_remove [:admin, price], true, 'remove_price' %>
+  </td>
+</tr>

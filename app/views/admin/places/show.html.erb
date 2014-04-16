@@ -1,0 +1,34 @@
+<%= tb_breadcrumb link_to(Place.model_name.human.pluralize, admin_categories_path), t('titles.show', model_name: Place.model_name.human) %>
+
+<p> <%= image_tag @place.photo.url(:thumb) %> </p>
+
+<dl>
+  <dt><%= Place.human_attribute_name 'name' %></dt>
+  <dd><%= @place.name %></dd>
+  <dt><%= Place.human_attribute_name 'address' %></dt>
+  <dd><%= @place.address %></dd>
+  <dt><%= Place.human_attribute_name 'phone' %></dt>
+  <dd><%= @place.phone %></dd>
+  <dt><%= Place.human_attribute_name 'description' %></dt>
+  <dd><%= @place.description %></dd>
+  <% if @place.map? %>
+  <dt><%= Place.human_attribute_name 'map' %></dt>
+  <dd>
+    <iframe src="<%= @place.map %>"
+            width="400"
+            height="300"
+            frameborder="0"
+            style="border:0"></iframe>
+  </dd>
+  <% end %>
+</dl>
+
+<div class="form-group">
+  <%= label :opening_hours, Place.human_attribute_name('opening_hours') %>
+  <div id="place_opening_hours_list_container" style="width: 400px;">
+    <%= render "/admin/opening_hours/list", place:@place %>
+  </div>
+</div>
+
+<%= tb_button_edit edit_admin_place_path(@place) %>
+<%= tb_button_back admin_places_path %>

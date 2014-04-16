@@ -1,0 +1,27 @@
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr>
+        <th style="width:30px;"> # </th>
+        <th> <%= Price.human_attribute_name "size" %> </th>
+        <th style="width:60px;"> <%= Price.human_attribute_name "value" %> </th>
+        <th style="width:43px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if product.prices.size > 0 %>
+      <%= render product.prices %>
+    <% end %>
+    <% if product.prices.size < Size.count %>
+      <tr>
+        <td colspan="4">
+          <center>
+            <%= link_to t('links.add', model_name:Price.model_name.human),
+                        admin_price_new_path(product.id),
+                        remote: true,
+                        class:'add_price' %>
+          </center>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

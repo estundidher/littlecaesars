@@ -1,0 +1,11 @@
+<tr>
+  <td> <%= place.id %> </td>
+  <td> <%= place.name %> </td>
+  <td> <%= place.address %> </td>
+  <td> <%= place.phone %> </td>
+  <td>
+    <%= tb_grid_show [:admin, place] %>
+    <%= tb_grid_edit edit_admin_place_path(place) %>
+    <%= tb_grid_remove [:admin, place] %>
+  </td>
+</tr>

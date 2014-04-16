@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def admin?
+      controller.class.name.split("::").first=="Admin"
+  end
+
   def auditable model
     html = "<dt> #{t 'created_by'}</dt>"
     html << "<dd> #{model.created_by.username} </dd>"

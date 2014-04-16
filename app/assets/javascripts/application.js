@@ -22,7 +22,7 @@
 //= require meiomask
 //= require moment
 //= require bootstrap-datetimepicker
-//= require_tree .
+//= require home
 
 $(function() {
     Application.bind_checkAll();
@@ -46,19 +46,5 @@ var Application = {
 
   bind_moneyMask: function() {
     return $('.money_mask').setMask({mask:'99.99', type:'reverse', maxLength: 5});
-  }
-};
-
-var Products = {
-
-  load_options_by_type: function(path, type_id) {
-    $('#product_options_container').hide()
-                                   .empty();
-    if(type_id != null && type_id != undefined && type_id != '') {
-      $.get(path, {id:type_id}).done(function(data) {
-          $('#product_options_container') .html(data)
-                                          .fadeIn('fast');
-      });
-    }
   }
 };

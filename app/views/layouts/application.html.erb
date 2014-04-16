@@ -2,11 +2,12 @@
 <html>
   <head>
     <title>Caesars</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track'=>true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track'=>true %>
+    <%= javascript_include_tag 'admin', 'data-turbolinks-track'=>true if admin? %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body class="<%= 'admin' if admin? %>">
     <%= render partial: 'layouts/navigation' %>
     <div class="container">
       <%= render partial: "layouts/flash_messages", flash: flash %>

@@ -6,25 +6,27 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  resources :sizes
-  resources :categories
-  resources :product_types
-  resources :places
-  resources :users
+  namespace :admin do
+    resources :sizes
+    resources :categories
+    resources :product_types
+    resources :places
+    resources :users
 
-  #products
-  get 'products/options', to: 'products#options', as: :products_reload_options
-  resources :products
+    #products
+    get 'products/options', to: 'products#options', as: :products_reload_options
+    resources :products
 
-  #prices
-  get 'products/:product_id/prices/new', to: 'prices#new', as: :price_new
-  resources :prices
+    #prices
+    get 'products/:product_id/prices/new', to: 'prices#new', as: :price_new
+    resources :prices
 
-  #opening_hours
-  get 'places/:place_id/opening_hour/new', to: 'opening_hours#new', as: :opening_hour_new
-  get 'opening_hour/shift/add', to: 'opening_hours#add_shift', as: :add_shift
-  delete 'opening_hour/shift/:id', to: 'opening_hours#destroy_shift', as: :destroy_shift
-  resources :opening_hours
+    #opening_hours
+    get 'places/:place_id/opening_hour/new', to: 'opening_hours#new', as: :opening_hour_new
+    get 'opening_hour/shift/add', to: 'opening_hours#add_shift', as: :add_shift
+    delete 'opening_hour/shift/:id', to: 'opening_hours#destroy_shift', as: :destroy_shift
+    resources :opening_hours
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

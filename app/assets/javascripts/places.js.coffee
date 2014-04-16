@@ -48,7 +48,7 @@ $(document).ready ->
 
   $(document).on 'ajax:before', '.add_shift', (event, xhr, settings) ->
     console.log "add_shift 'ajax:before' fired!"
-    $(this).data('params', { shifts: $('#opening_hour_shifts_container .row').size() });
+    $(this).data('params', {id: $('#opening_hour_id').val(), shifts: $('#opening_hour_shifts_container .row').size()});
 
   $(document).on 'ajax:success', '.add_shift', (e, data, status, xhr) ->
     console.log "add_shift 'ajax:success' fired!"

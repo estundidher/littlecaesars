@@ -1,0 +1,14 @@
+<%= tb_breadcrumb link_to(ProductType.model_name.human.pluralize, admin_product_types_path), t('titles.show', model_name: ProductType.model_name.human) %>
+
+<dl>
+  <dt><%= ProductType.human_attribute_name 'name' %></dt>
+  <dd><%= @product_type.name %></dd>
+  <dt><%= ProductType.human_attribute_name 'sizable' %></dt>
+  <dd><%= @product_type.sizable %></dd>
+  <dt><%= ProductType.human_attribute_name 'allowItems' %></dt>
+  <dd><%= @product_type.allowItems %></dd>
+  <%= auditable @product_type %>
+</dl>
+
+<%= tb_button_edit edit_admin_product_type_path(@product_type) %>
+<%= tb_button_back admin_product_types_path %>

@@ -1,0 +1,10 @@
+<%= tb_breadcrumb link_to(Category.model_name.human.pluralize, admin_categories_path), t('titles.show', model_name: Category.model_name.human) %>
+
+<dl>
+  <dt><%= Category.human_attribute_name 'name' %></dt>
+  <dd><%= @category.name %></dd>
+  <%= auditable @category %>
+</dl>
+
+<%= tb_button_edit edit_admin_category_path(@category) %>
+<%= tb_button_back admin_categories_path %>
