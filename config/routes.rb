@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     get 'opening_hour/shift/add', to: 'opening_hours#add_shift', as: :add_shift
     delete 'opening_hour/shift/:id', to: 'opening_hours#destroy_shift', as: :destroy_shift
     resources :opening_hours
+
+    get 'home', to: 'home#index', as: :home
   end
 
   # Example of regular route:

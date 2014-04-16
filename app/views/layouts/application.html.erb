@@ -315,132 +315,135 @@
 
       <!-- Banner Start -->
 
-      <div class="banner padd">
-        <div class="container">
-          <!-- Image -->
-          <%= image_tag "crown-white.png", class: 'img-responsive' %>
-          <!-- Heading -->
-          <h2 class="white">Page Title</h2>
-          <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li class="active">Page Title</li>
-          </ol>
-          <div class="clearfix"></div>
+      <% if !admin? %>
+        <div class="banner padd">
+          <div class="container">
+            <!-- Image -->
+            <%= image_tag "crown-white.png", class: 'img-responsive' %>
+            <!-- Heading -->
+            <h2 class="white">Page Title</h2>
+            <ol class="breadcrumb">
+              <li><a href="index.html">Home</a></li>
+              <li class="active">Page Title</li>
+            </ol>
+            <div class="clearfix"></div>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <!-- Banner End -->
 
-
-
       <!-- Inner Content -->
       <div class="inner-page padd">
-
-        <%= render partial: "layouts/flash_messages", flash: flash %>
-        <%= yield %>
-
+        <div class="container">
+          <%= render partial: "layouts/flash_messages", flash: flash %>
+          <%= yield %>
+        </div>
       </div><!-- / Inner Page Content End -->
 
       <!-- Footer Start -->
 
       <div class="footer padd">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3 col-sm-6">
-              <!-- Footer widget -->
-              <div class="footer-widget">
-                <!-- Logo area -->
-                <div class="logo">
-                  <%= image_tag "logo.png", class: 'img-responsive' %>
+
+        <% if !admin? %>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 col-sm-6">
+                <!-- Footer widget -->
+                <div class="footer-widget">
+                  <!-- Logo area -->
+                  <div class="logo">
+                    <%= image_tag "logo.png", class: 'img-responsive' %>
+                    <!-- Heading -->
+                    <h1> <%= t 'brand' %> </h1>
+                  </div>
+                  <!-- Paragraph -->
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua.</p>
+                  <hr />
                   <!-- Heading -->
-                  <h1> <%= t 'brand' %> </h1>
-                </div>
-                <!-- Paragraph -->
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua.</p>
-                <hr />
-                <!-- Heading -->
-                <h6>On-line Payment Clients</h6>
-                <!-- Images -->
-                <a href="#"><%= image_tag "payment/2co.gif", class: 'payment img-responsive' %></a>
-                <a href="#"><%= image_tag "payment/authorizenet.gif", class: 'payment img-responsive' %></a>
-                <a href="#"><%= image_tag "payment/discover.gif", class: 'payment img-responsive' %></a>
-                <a href="#"><%= image_tag "payment/egold.gif", class: 'payment img-responsive' %></a>
-                <a href="#"><%= image_tag "payment/mastercard.gif", class: 'payment img-responsive' %></a>
-                <a href="#"><%= image_tag "payment/paypal.gif", class: 'payment img-responsive' %></a>
-                <a href="#"><%= image_tag "payment/visa.gif", class: 'payment img-responsive' %></a>
-                <a href="#"><%= image_tag "payment/worldpay.gif", class: 'payment img-responsive' %></a>
-              </div> <!--/ Footer widget end -->
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <!-- Footer widget -->
-              <div class="footer-widget">
-                <!-- Heading -->
-                <h4>Famous Dishes</h4>
-                <!-- Images -->
-                <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
-                <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
-                <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
-                <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
-                <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
-                <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
-                <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
-                <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
-                <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
-                <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
-              </div> <!--/ Footer widget end -->
-            </div>
-            <div class="clearfix visible-sm"></div>
-            <div class="col-md-3 col-sm-6">
-              <!-- Footer widget -->
-              <div class="footer-widget">
-                <!-- Heading -->
-                <h4>Join Us Today</h4>
-                <!-- Paragraph -->
-                <p>There is no one who loves pain itself, who seeks after it and wants to have it.</p>
-                <!-- Subscribe form -->
-                <form role="form">
-                  <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Your name" />
+                  <h6>On-line Payment Clients</h6>
+                  <!-- Images -->
+                  <a href="#"><%= image_tag "payment/2co.gif", class: 'payment img-responsive' %></a>
+                  <a href="#"><%= image_tag "payment/authorizenet.gif", class: 'payment img-responsive' %></a>
+                  <a href="#"><%= image_tag "payment/discover.gif", class: 'payment img-responsive' %></a>
+                  <a href="#"><%= image_tag "payment/egold.gif", class: 'payment img-responsive' %></a>
+                  <a href="#"><%= image_tag "payment/mastercard.gif", class: 'payment img-responsive' %></a>
+                  <a href="#"><%= image_tag "payment/paypal.gif", class: 'payment img-responsive' %></a>
+                  <a href="#"><%= image_tag "payment/visa.gif", class: 'payment img-responsive' %></a>
+                  <a href="#"><%= image_tag "payment/worldpay.gif", class: 'payment img-responsive' %></a>
+                </div> <!--/ Footer widget end -->
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <!-- Footer widget -->
+                <div class="footer-widget">
+                  <!-- Heading -->
+                  <h4>Famous Dishes</h4>
+                  <!-- Images -->
+                  <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
+                  <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
+                  <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
+                  <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
+                  <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
+                  <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
+                  <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
+                  <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
+                  <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
+                  <a href="#"><%= image_tag "dish/dish1.jpg", class: 'dish img-responsive' %></a>
+                </div> <!--/ Footer widget end -->
+              </div>
+              <div class="clearfix visible-sm"></div>
+              <div class="col-md-3 col-sm-6">
+                <!-- Footer widget -->
+                <div class="footer-widget">
+                  <!-- Heading -->
+                  <h4>Join Us Today</h4>
+                  <!-- Paragraph -->
+                  <p>There is no one who loves pain itself, who seeks after it and wants to have it.</p>
+                  <!-- Subscribe form -->
+                  <form role="form">
+                    <div class="form-group">
+                      <input class="form-control" type="text" placeholder="Your name" />
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="email" placeholder="Your email" />
+                    </div>
+                    <button class="btn btn-danger" type="button">Subscribe</button>
+                  </form>
+                </div> <!--/ Footer widget end -->
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <!-- Footer widget -->
+                <div class="footer-widget">
+                  <!-- Heading -->
+                  <h4>Contact Us</h4>
+                  <div class="contact-details">
+                    <!-- Address / Icon -->
+                    <i class="fa fa-map-marker br-red"></i> <span>#768, 5th floor, N S Building,<br />Csm Block, Park Road,<br /> Bangalore - 234567</span>
+                    <div class="clearfix"></div>
+                    <!-- Contact Number / Icon -->
+                    <i class="fa fa-phone br-green"></i> <span>+91 88-88-888888</span>
+                    <div class="clearfix"></div>
+                    <!-- Email / Icon -->
+                    <i class="fa fa-envelope-o br-lblue"></i> <span><a href="#">abc@example.com</a></span>
+                    <div class="clearfix"></div>
                   </div>
-                  <div class="form-group">
-                    <input class="form-control" type="email" placeholder="Your email" />
+                  <!-- Social media icon -->
+                  <div class="social">
+                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
                   </div>
-                  <button class="btn btn-danger" type="button">Subscribe</button>
-                </form>
-              </div> <!--/ Footer widget end -->
+                </div> <!--/ Footer widget end -->
+              </div>
             </div>
-            <div class="col-md-3 col-sm-6">
-              <!-- Footer widget -->
-              <div class="footer-widget">
-                <!-- Heading -->
-                <h4>Contact Us</h4>
-                <div class="contact-details">
-                  <!-- Address / Icon -->
-                  <i class="fa fa-map-marker br-red"></i> <span>#768, 5th floor, N S Building,<br />Csm Block, Park Road,<br /> Bangalore - 234567</span>
-                  <div class="clearfix"></div>
-                  <!-- Contact Number / Icon -->
-                  <i class="fa fa-phone br-green"></i> <span>+91 88-88-888888</span>
-                  <div class="clearfix"></div>
-                  <!-- Email / Icon -->
-                  <i class="fa fa-envelope-o br-lblue"></i> <span><a href="#">abc@example.com</a></span>
-                  <div class="clearfix"></div>
-                </div>
-                <!-- Social media icon -->
-                <div class="social">
-                  <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                  <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                  <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                  <a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
-                </div>
-              </div> <!--/ Footer widget end -->
+            <!-- Copyright -->
+            <div class="footer-copyright">
+              <!-- Paragraph -->
+              <p>&copy; Copyright 2014 <a href="#"><%= t 'brand' %></a></p>
             </div>
           </div>
-          <!-- Copyright -->
-          <div class="footer-copyright">
-            <!-- Paragraph -->
-            <p>&copy; Copyright 2014 <a href="#"><%= t 'brand' %></a></p>
-          </div>
-        </div>
+        <% end %>
       </div>
 
       <!-- Footer End -->

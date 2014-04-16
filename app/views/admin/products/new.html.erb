@@ -1,3 +1,3 @@
-<%= tb_breadcrumb link_to(Product.model_name.human.pluralize, products_path), t('titles.new', model_name: Product.model_name.human) %>
+<%= tb_breadcrumb link_to(Product.model_name.human.pluralize, admin_products_path), t('titles.new', model_name: Product.model_name.human) %>
 
 <%= render 'form' %>
