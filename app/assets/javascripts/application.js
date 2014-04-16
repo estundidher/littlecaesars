@@ -19,6 +19,7 @@
 //= require jquery.ui.autocomplete
 //= require turbolinks
 //= require bootstrap/bootstrap
+//= require theme/theme
 //= require meiomask
 //= require moment
 //= require bootstrap-datetimepicker
@@ -28,6 +29,9 @@ $(function() {
     Application.bind_checkAll();
     Application.bind_dateTimePickers();
     Application.bind_moneyMask();
+    Application.bind_cart();
+    Application.bind_tooltip();
+    Application.bind_scroolToTop();
 });
 
 var Application = {
@@ -46,5 +50,48 @@ var Application = {
 
   bind_moneyMask: function() {
     return $('.money_mask').setMask({mask:'99.99', type:'reverse', maxLength: 5});
+  },
+
+  /* *************************************** */
+  /* Cart Button Drop Down */
+  /* *************************************** */
+  bind_cart: function() {
+    $('.btn-cart-md .cart-link').click(function(e){
+        e.preventDefault();
+        var $dd_menu = $('.btn-cart-md .cart-dropdown')
+        if ($dd_menu.hasClass('open')) {
+            $dd_menu.fadeOut();
+            $dd_menu.removeClass('open');
+        } else {
+            $dd_menu.fadeIn();
+            $dd_menu.addClass('open');
+        }
+    });
+  },
+
+  /* *************************************** */
+  /* Tool Tip JS */
+  /* *************************************** */
+  bind_tooltip: function() {
+    $('.my-tooltip').tooltip();
+  },
+
+  /* *************************************** */
+  /* Scroll to Top */
+  /* *************************************** */
+  bind_scroolToTop: function() {
+    $(".totop").hide();
+    $(window).scroll(function(){
+    if ($(this).scrollTop() > 300) {
+        $('.totop').fadeIn();
+    } else {
+        $('.totop').fadeOut();
+    }
+    });
+    $(".totop a").click(function(e) {
+        e.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
   }
 };
