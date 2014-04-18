@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= t 'brand' %></title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= yield :head %>
+  </head>
+  <body class="<%= 'admin' if admin? %>">
+    <%= content_for?(:content) ? yield(:content) : yield %>
+  </body>
+</html>

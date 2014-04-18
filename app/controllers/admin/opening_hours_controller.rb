@@ -1,4 +1,4 @@
-class Admin::OpeningHoursController < ApplicationController
+class Admin::OpeningHoursController < Admin::BaseController
 
   before_action :set_opening_hour, only: [:edit, :update, :destroy]
 

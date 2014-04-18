@@ -5,8 +5,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  get 'gallery', to: 'home#gallery', as: :home_gallery
 
   namespace :admin do
+
+    root 'home#index'
+
     resources :sizes
     resources :categories
     resources :product_types

@@ -1,4 +1,4 @@
-class Admin::PricesController < ApplicationController
+class Admin::PricesController < Admin::BaseController
 
   before_action :set_prices, only: [:edit, :update, :destroy]
 

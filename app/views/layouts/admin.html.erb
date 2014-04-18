@@ -1,0 +1,14 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'admin', 'data-turbolinks-track'=>true %>
+<% end %>
+
+<% content_for :content do %>
+  <%= render partial: 'layouts/navigation' %>
+  <div class="container">
+    <%= render partial: "layouts/flash_messages", flash: flash %>
+    <%= yield %>
+  </div>
+  <div id="modal_container"></div>
+<% end %>
+
+<%= render template: "layouts/base" %>

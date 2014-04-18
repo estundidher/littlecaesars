@@ -1,4 +1,4 @@
-class Admin::ProductsController < ApplicationController
+class Admin::ProductsController < Admin::BaseController
 
   before_action :set_products, only: [:show, :edit, :update, :destroy]
 

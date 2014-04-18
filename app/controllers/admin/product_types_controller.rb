@@ -1,4 +1,4 @@
-class Admin::ProductTypesController < ApplicationController
+class Admin::ProductTypesController < Admin::BaseController
 
   before_action :set_product_type, only: [:show, :edit, :update, :destroy]
 
