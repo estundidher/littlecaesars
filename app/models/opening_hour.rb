@@ -24,4 +24,8 @@ class OpeningHour < ActiveRecord::Base
       Date::DAYNAMES - self.place.opening_hours.map{|h| h.day_of_week}
     end
   end
+
+  def after_initialize
+    self.shifts.build if self.shifts.nil?
+  end
 end

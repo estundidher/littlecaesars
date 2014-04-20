@@ -1,21 +1,34 @@
 Rails.application.routes.draw do
+  devise_for :customers
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+
+  #home
   get 'gallery', to: 'home#gallery', as: :home_gallery
+  get 'contact', to: 'home#contact', as: :contact
+  get 'product/:id-:name', to: 'home#product', as: :home_product
+  get 'pick_up', to: 'home#pick_up', as: :pick_up
+
+  #cart
+  get 'cart/add/:id', to: 'cart#modal', as: :cart_add
+  post 'cart/add/:id', to: 'cart#add', as: :cart_add_item
 
   namespace :admin do
 
+    #home
     root 'home#index'
+    get 'sign_in', to: 'home#sign_in', as: :sign_in
 
     resources :sizes
     resources :categories
     resources :product_types
     resources :places
     resources :users
+    resources :customers
 
     #products
     get 'products/options', to: 'products#options', as: :products_reload_options

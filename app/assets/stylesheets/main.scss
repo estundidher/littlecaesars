@@ -369,6 +369,24 @@ table { background: #fff; }
 .header .navbar-default .navbar-nav > li ul.dropdown-md a.btn{ margin-top: 8px; }
 
 /*
+ * Add to Cart
+ */
+
+.cart-modal .single-item p {
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #9a9a9a;
+}
+
+.cart-modal table {
+
+  margin-top: 12px;
+  background: #fffbe5;
+  border-radius: 2px;
+  border: 1px solid #ecdd94;
+}
+
+/*
  * Cart Link
  */
 

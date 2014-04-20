@@ -3,12 +3,11 @@
 <% end %>
 
 <% content_for :content do %>
-  <%= render partial: 'layouts/navigation' %>
+  <%= render partial: 'admin/navigation' %>
   <div class="container">
-    <%= render partial: "layouts/flash_messages", flash: flash %>
+    <%= render partial: 'layouts/flash_messages', flash: flash %>
     <%= yield %>
   </div>
-  <div id="modal_container"></div>
 <% end %>
 
-<%= render template: "layouts/base" %>
+<%= render template: 'layouts/base' %>

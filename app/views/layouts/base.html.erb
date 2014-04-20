@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title><%= t 'brand' %></title>
+    <title><%= t 'brand' %> <%= " - #{yield :page_title}" if content_for :page_title %> </title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -10,5 +10,18 @@
   </head>
   <body class="<%= 'admin' if admin? %>">
     <%= content_for?(:content) ? yield(:content) : yield %>
+    <!-- Footer Start -->
+    <div class="footer padd">
+      <div class="container">
+        <%= yield :footer if content_for :footer %>
+        <!-- Copyright -->
+        <div class="footer-copyright">
+          <!-- Paragraph -->
+          <p>&copy; Copyright 2014 <%= link_to t('brand'), root_path %></a></p>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+    <div id="modal_container"></div>
   </body>
 </html>

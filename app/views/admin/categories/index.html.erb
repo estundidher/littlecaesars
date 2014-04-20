@@ -1,1 +1,3 @@
-<%= tb_breadcrumb 'Home' %>
+<%= tb_breadcrumb Category.model_name.human.pluralize %>
+<%= render partial: 'list' %>
+<%= tb_button_new new_admin_category_path, t('links.new', model: Category.model_name.human) %>

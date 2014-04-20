@@ -1,7 +1,9 @@
 class Product < ActiveRecord::Base
   include Auditable
 
-  scope :items_not_allowed, -> { joins(:type).where(product_types: {allowItems:false}).order(:name) }
+  scope:items_not_allowed, -> { joins(:type).where(product_types: {allowItems:false}).order(:name) }
+
+  scope:pizzas, -> (limit = nil) { where(type:ProductType.where(name:'Pizza')).order(:name).limit(limit) }
 
   has_many :prices, dependent: :destroy
   has_many :sizes, through: :prices
@@ -13,8 +15,8 @@ class Product < ActiveRecord::Base
                           through: :products_products
 
   has_attached_file :photo,
-                    styles: {medium:"300x300>", thumb:"100x100>"},
-                    default_url: "/images/:style/missing.png"
+                    styles: {large:'400x450>', medium:'300x300>', thumb:'100x100>'},
+                    default_url: '/images/:style/missing.png'
 
   belongs_to :type,
              class_name: 'ProductType',
@@ -31,7 +33,7 @@ class Product < ActiveRecord::Base
   validates :name,
             presence: true,
             length: {maximum: 50},
-            uniqueness: true
+            uniqueness: {case_sensitive: false}
 
   validates :description,
             length: {maximum: 200}
@@ -45,14 +47,18 @@ class Product < ActiveRecord::Base
   end
 
   validates_attachment :photo,
-                       content_type: {content_type:["image/jpg", "image/gif", "image/png"]},
+                       content_type: {content_type:['image/jpg', 'image/jpeg', 'image/gif', 'image/png']},
                        size: {in: 0..500.kilobytes}
 
-  # Validate filename
-  validates_attachment_file_name :photo,
-                                matches: [/png\Z/, /jpe?g\Z/]
+  def items_friendly limit = nil
+    if limit
+      self.items.map(&:name).join(', ').truncate(limit)
+    else
+      self.items.map(&:name).join(', ')
+    end
+  end
 
-  def items_friendly
-    self.items.map(&:name).join(', ')
+  def to_param
+    "#{id}-#{name.parameterize}"
   end
 end

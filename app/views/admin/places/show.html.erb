@@ -1,6 +1,6 @@
-<%= tb_breadcrumb link_to(Place.model_name.human.pluralize, admin_categories_path), t('titles.show', model_name: Place.model_name.human) %>
+<%= tb_breadcrumb link_to(Place.model_name.human.pluralize, admin_places_path), t('titles.show', model_name: Place.model_name.human) %>
 
-<p> <%= image_tag @place.photo.url(:thumb) %> </p>
+<p> <%= image_tag @place.photo.url(:medium) %> </p>
 
 <dl>
   <dt><%= Place.human_attribute_name 'name' %></dt>

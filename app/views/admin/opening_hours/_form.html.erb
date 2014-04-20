@@ -10,11 +10,11 @@
 
   <div class="row">
     <div class="form-group col-md-5 <%= tb_has_error opening_hour, :day_of_week %>">
-          <%= f.label :day_of_week %>
-          <%= f.select :day_of_week,
-                        opening_hour.dates_available,
-                        {prompt: true, selected: opening_hour.day_of_week},
-                        {class: 'form-control'} %>
+      <%= f.label :day_of_week %>
+      <%= f.select :day_of_week,
+                    opening_hour.dates_available,
+                    {prompt: true, selected: opening_hour.day_of_week},
+                    {class: 'form-control'} %>
     </div>
   </div>
 

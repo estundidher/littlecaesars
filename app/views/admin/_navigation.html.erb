@@ -16,12 +16,27 @@
 
     <% if current_user.try(:admin?) %>
       <ul class="nav navbar-nav">
-        <li> <%= link_to ProductType.model_name.human.pluralize, admin_product_types_path %> </li>
-        <li> <%= link_to Category.model_name.human.pluralize, admin_categories_path %> </li>
-        <li> <%= link_to Size.model_name.human.pluralize, admin_sizes_path %> </li>
-        <li> <%= link_to Product.model_name.human.pluralize, admin_products_path %> </li>
-        <li> <%= link_to Place.model_name.human.pluralize, admin_places_path %> </li>
-        <li> <%= link_to User.model_name.human.pluralize, admin_users_path %> </li>
+        <li <%= is_active 'admin/product_types' %>>
+          <%= link_to ProductType.model_name.human.pluralize, admin_product_types_path %>
+        </li>
+        <li <%= is_active 'admin/categories' %>>
+          <%= link_to Category.model_name.human.pluralize, admin_categories_path %>
+        </li>
+        <li <%= is_active 'admin/sizes' %>>
+          <%= link_to Size.model_name.human.pluralize, admin_sizes_path %>
+        </li>
+        <li <%= is_active 'admin/products' %>>
+          <%= link_to Product.model_name.human.pluralize, admin_products_path %>
+        </li>
+        <li <%= is_active 'admin/places' %>>
+          <%= link_to Place.model_name.human.pluralize, admin_places_path %>
+        </li>
+        <li <%= is_active 'admin/users' %>>
+          <%= link_to User.model_name.human.pluralize, admin_users_path %>
+        </li>
+        <li <%= is_active 'admin/customers' %>>
+          <%= link_to Customer.model_name.human.pluralize, admin_customers_path %>
+        </li>
       </ul>
     <% end%>
 
@@ -39,9 +54,6 @@
               <li><a href="#">Separated link</a></li>
             </ul>
           </li>
-      <% else %>
-        <li> <%= link_to 'Sign in', new_user_session_path %> </li>
-        <li> <%= link_to 'Sign up', new_user_registration_path %> </li>
       <% end %>
     </ul>
 

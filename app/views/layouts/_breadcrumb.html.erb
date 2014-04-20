@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
+  <li> <%= link_to 'Home', (admin? ? admin_root_path : root_path) %> </li>
   <% if previous %>
   <li><%= previous %></li>
   <% end %>

@@ -1,8 +1,10 @@
       <!-- Header Start -->
       <div class="header">
         <div class="container">
+
           <!-- Header top area content -->
           <div class="header-top">
+
             <div class="row">
               <div class="col-md-4 col-sm-4">
                 <!-- Header top left content contact -->
@@ -11,86 +13,25 @@
                   <span><i class="fa fa-phone red"></i> 888-888-8888</span>
                 </div>
               </div>
+
               <div class="col-md-4 col-sm-4">
-                <!-- Header top right content search box -->
-                <div class=" header-search">
-                  <form class="form" role="form">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                      </span>
-                    </div>
-                  </form>
-                </div>
+
               </div>
+
               <div class="col-md-4 col-sm-4">
-                <!-- Button Kart -->
-                <div class="btn-cart-md">
-                  <a class="cart-link" href="#">
-                    <!-- Image -->
-                    <%= image_tag "cart.png", class: 'img-responsive' %>
-                    <!-- Heading -->
-                    <h4>Shopping Cart</h4>
-                    <span>3 items $489/-</span>
-                    <div class="clearfix"></div>
-                  </a>
-                  <ul class="cart-dropdown" role="menu">
-                    <li>
-                      <!-- Cart items for shopping list -->
-                      <div class="cart-item">
-                        <!-- Item remove icon -->
-                        <a href="#"><i class="fa fa-times"></i></a>
-                        <!-- Image -->
-                        <%= image_tag "nav-menu/nav1.jpg", class: 'img-responsive img-rounded' %>
-                        <!-- Title for purchase item -->
-                        <span class="cart-title"><a href="#">Exception Reins Evocative</a></span>
-                        <!-- Cart item price -->
-                        <span class="cart-price pull-right red">$200/-</span>
-                        <div class="clearfix"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <!-- Cart items for shopping list -->
-                      <div class="cart-item">
-                        <!-- Item remove icon -->
-                        <a href="#"><i class="fa fa-times"></i></a>
-                        <!-- Image -->
-                        <%= image_tag "nav-menu/nav2.jpg", class: 'img-responsive img-rounded' %>
-                        <!-- Title for purchase item -->
-                        <span class="cart-title"><a href="#">Taut Mayoress Alias Appendicitis</a></span>
-                        <!-- Cart item price -->
-                        <span class="cart-price pull-right red">$190/-</span>
-                        <div class="clearfix"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <!-- Cart items for shopping list -->
-                      <div class="cart-item">
-                        <!-- Item remove icon -->
-                        <a href="#"><i class="fa fa-times"></i></a>
-                        <!-- Image -->
-                        <%= image_tag "nav-menu/nav3.jpg", class: 'img-responsive img-rounded' %>
-                        <!-- Title for purchase item -->
-                        <span class="cart-title"><a href="#">Sinter et Molests Perfectionist</a></span>
-                        <!-- Cart item price -->
-                        <span class="cart-price pull-right red">$99/-</span>
-                        <div class="clearfix"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <!-- Cart items for shopping list -->
-                      <div class="cart-item">
-                        <a class="btn btn-danger" data-toggle="modal" href="#shoppingcart1">Checkout</a>
-                      </div>
-                    </li>
+                <% if customer_signed_in? %>
+                  <%= render partial:'home/cart' %>
+                <% else %>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li> <%= link_to 'Sign Up', new_customer_registration_path %> </li>
+                    <li> <%= link_to 'Sign In', new_customer_session_path %> </li>
                   </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="clearfix"></div>
+                <% end %>
               </div>
             </div>
+
           </div>
+
           <div class="row">
             <div class="col-md-4 col-sm-5">
               <!-- Link -->
@@ -124,9 +65,9 @@
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                       <li>
-                        <a href="index.html">
-                          <%= image_tag "nav-menu/nav1.jpg", class: 'img-responsive' %> Home
-                        </a>
+                        <%= link_to root_path do %>
+                          <%= image_tag 'nav-menu/nav1.jpg', class: 'img-responsive' %> Home
+                        <% end %>
                       </li>
                       <li class="dropdown hidden-xs">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -188,9 +129,9 @@
                         </ul>
                       </li>
                       <li>
-                        <a href="gallery.html">
-                          <%= image_tag "nav-menu/nav3.jpg", class: 'img-responsive' %> Gallery
-                        </a>
+                        <%= link_to home_gallery_path do %>
+                          <%= image_tag 'nav-menu/nav3.jpg', class: 'img-responsive' %> Gallery
+                        <% end %>
                       </li>
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -205,19 +146,9 @@
                         </ul>
                       </li>
                       <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <%= image_tag "nav-menu/nav5.jpg", class: 'img-responsive' %> Pages <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a href="error.html">404 Error</a></li>
-                          <li><a href="0-base.html">Blank Page</a></li>
-                          <li><a href="blog.html">Blog</a></li>
-                          <li><a href="blog-single.html">Blog Single</a></li>
-                          <li><a href="components.html">Components</a></li>
-                          <li><a href="general.html">General</a></li>
-                          <li><a href="nutrition-info.html">Nutrition Info</a></li>
-                          <li><a href="recipe.html">Recipes</a></li>
-                        </ul>
+                        <%= link_to pick_up_path do %>
+                          <%= image_tag "nav-menu/nav5.jpg", class: 'img-responsive' %> Pick up
+                        <% end %>
                       </li>
                       <li>
                         <a href="aboutus.html">

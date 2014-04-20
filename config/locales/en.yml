@@ -244,12 +244,16 @@ en:
     close: Close
     save: Save
     add: Add %{model_name}
+    add_to: Add to %{model_name}
+    add_simple: Add
 
   titles:
     new: New %{model_name}
     show: Show %{model_name}
     edit: Edit %{model_name}
     add: Add %{model_name}
+    add_to: Add to %{model_name}
+    add_simple: Add
 
   tokenInput:
     hintText: Type in a search term
@@ -269,6 +273,7 @@ en:
       opening_hour: Opening Hours
       shift: Shift
       user: User
+      customer: Customer
     attributes:
       size:
         name: Name
@@ -307,3 +312,7 @@ en:
       user:
         username: Username
         email: Email
+      customer:
+        name: Name
+        surname: Surname
+        mobile: Mobile

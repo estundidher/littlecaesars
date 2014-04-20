@@ -1,0 +1,16 @@
+<h2>Sign in</h2>
+<%= form_for :user, :url => session_path(:user), html: {role:'form', style:'width: 30%;'} do |f| %>
+  <div class="form-group">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+  </div>
+  <%= f.label :remember_me, :class => "checkbox" do %>
+    <%= f.check_box :remember_me %>remember me
+  <% end %>
+  <%= tb_submit nil, 'Sign in' %>
+  <%= link_to "Forgot your password?", new_password_path(:user) %>
+<% end %>

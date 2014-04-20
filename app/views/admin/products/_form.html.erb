@@ -31,11 +31,11 @@
 
   <div class="form-group <%= tb_has_error @product, :description %>">
     <%= f.label :description %>
-    <%= f.text_field :description, class: 'form-control' %>
+    <%= f.text_area :description, class: 'form-control' %>
   </div>
 
   <div id="product_options_container">
-    <% if @product.id %>
+    <% if @product.type || @product.id %>
       <%= render 'options', product:@product %>
     <% end %>
   </div>

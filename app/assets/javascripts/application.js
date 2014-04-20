@@ -24,14 +24,18 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require home
+//= require cart
+//= require isotope.pkgd.min
 
 $(function() {
-    Application.bind_checkAll();
-    Application.bind_dateTimePickers();
-    Application.bind_moneyMask();
-    Application.bind_cart();
-    Application.bind_tooltip();
-    Application.bind_scroolToTop();
+  Application.bind_checkAll();
+  Application.bind_dateTimePickers();
+  Application.bind_moneyMask();
+  Application.bind_cart();
+  Application.bind_tooltip();
+  Application.bind_scroolToTop();
+
+  Application.bind_isotope('.isotope_contenteiner', '.isotope_item');
 });
 
 var Application = {
@@ -50,6 +54,16 @@ var Application = {
 
   bind_moneyMask: function() {
     return $('.money_mask').setMask({mask:'99.99', type:'reverse', maxLength: 5});
+  },
+
+  bind_isotope: function(cointainer, itemClass) {
+
+    // init
+    $(cointainer).isotope({
+      // options
+      itemSelector: itemClass,
+      layoutMode: 'fitRows'
+    });
   },
 
   /* *************************************** */

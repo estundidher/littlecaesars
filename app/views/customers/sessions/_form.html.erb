@@ -1,0 +1,36 @@
+<%= form_for resource, as: resource_name, url: session_path(resource_name),
+    html: {role: 'form', class: 'form-horizontal', style: 'width:500px;'} do |f| %>
+
+  <%= tb_show_errors_for @customer %>
+
+  <div class="form-group <%= tb_has_error @customer, :email %>">
+    <%= f.label :email, class:'col-md-2 control-label' %>
+    <div class="col-md-8">
+      <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %>
+    </div>
+  </div>
+
+  <div class="form-group <%= tb_has_error @customer, :password %>">
+    <%= f.label :password, class:'col-md-2 control-label'  %>
+    <div class="col-md-8">
+      <%= f.password_field :password,
+                           autocomplete: "off",
+                           class: 'form-control',
+                           placeholder: 'Password' %>
+    </div>
+  </div>
+
+  <div class="checkbox <%= tb_has_error @customer, :remember_me %>">
+    <%= f.label :remember_me do %>
+      <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-8">
+      <%= f.submit "Sign in", class: 'btn btn-danger btn-sm' %>
+      <%= tb_button_back root_path %>
+    </div>
+  </div>
+
+<% end %>

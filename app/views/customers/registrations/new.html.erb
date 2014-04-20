@@ -1,0 +1,39 @@
+<% content_for :page_title, 'Sign Up' %>
+
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'Sign Up' %>
+<% end %>
+
+<div class="checkout">
+  <div class="container">
+    <h4>Sign Up</h4>
+    <div class="row">
+      <div class="col-md-7 col-sm-6">
+        <%= render 'form' %>
+      </div>
+      <div class="col-md-5 col-sm-6">
+        <!-- Checkout sidebar items -->
+        <div class="sidebar-item">
+          <!-- Heading -->
+          <h5 class="pull-left">Pick Up</h5>
+          <!-- Sidebar content icon -->
+          <i class="fa fa-truck br-green pull-right"></i>
+          <div class="clearfix"></div>
+          <!-- Sidebar Paragraph -->
+          <p>Lorem ipsum dolor sit amet, conse ctetur adipi sicing elit, sed do eiusmod tempor incid idunt ut labore et conse ctetur adipi sicing elit, sed do eiusmod dolore magna aliqua.</p>
+        </div>
+        <!-- Checkout sidebar items -->
+        <div class="sidebar-item">
+          <!-- Heading -->
+          <h5 class="pull-left">Complain / Support</h5>
+          <!-- Sidebar content icon -->
+          <i class="fa fa-headphones br-red pull-right"></i>
+          <div class="clearfix"></div>
+          <!-- Sidebar Paragraph -->
+          <p>Lorem ipsum dolor sit amet, conse ctetur adipi sicing elit, sed do eiusmod tempor incid idunt ut labore et conse ctetur adipi sicing elit, sed do eiusmod dolore magna aliqua.</p>
+        </div>
+      </div>
+    </div>
+    <%= render "customers/shared/links" %>
+  </div>
+</div>

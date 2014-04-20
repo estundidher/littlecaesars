@@ -5,6 +5,7 @@ class CreateCartItems < ActiveRecord::Migration
       t.foreign_key :carts
       t.belongs_to :product, null: false
       t.foreign_key :products
+      t.integer :quantity, null: false
       t.timestamps
     end
   end

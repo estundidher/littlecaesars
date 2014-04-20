@@ -1,0 +1,50 @@
+<% content_for :page_title, 'Gallery' %>
+
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'Gallery' %>
+<% end %>
+
+                <!-- Shopping Start -->
+                <div class="shopping">
+                  <div class="container">
+                    <!-- Shopping items content -->
+                    <div class="shopping-content">
+                      <div class="row">
+                        <% Product.pizzas.each do |product| %>
+                          <div class="col-md-3 col-sm-6">
+                            <!-- Shopping items -->
+                            <div class="shopping-item">
+                              <!-- Image -->
+                              <%= link_to home_product_path(product.id, product.name.parameterize) do %>
+                                <%= image_tag product.photo.url(:large), class: 'img-responsive' %>
+                              <% end %>
+                              <!-- Shopping item name / Heading -->
+                              <h4 class="pull-left">
+                                <a href="item-single.html">
+                                  <%= product.name %>
+                                </a>
+                              </h4>
+                              <span class="item-price pull-right">
+                                <%= number_to_currency product.prices[0].value %>
+                              </span>
+                              <div class="clearfix"></div>
+                              <!-- Paragraph -->
+                              <p><%= product.items_friendly 30 %></p>
+                              <!-- Buy now button -->
+                              <div class="visible-xs">
+                                  <a class="btn btn-danger btn-sm" href="#">Buy Now</a>
+                              </div>
+                              <!-- Shopping item hover block & link -->
+
+                              <div class="item-hover br-red hidden-xs"></div>
+                                <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                                    cart_add_path(product.id),
+                                    remote: true, class:"link hidden-xs #{customer_signed_in? ? 'add_to_cart' : 'new_user'}" %>
+                              <span class="hot-tag br-red">Hot</span>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- Shopping End -->

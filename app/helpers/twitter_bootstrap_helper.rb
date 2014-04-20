@@ -19,38 +19,40 @@ module TwitterBootstrapHelper
 		render 'layouts/form_errors', model:model
 	end
 
-	def tb_submit model = nil, message = nil
-		button_tag(type: 'submit', class: 'btn btn-primary') do
+	def tb_submit model = nil, message = nil, className = 'btn btn-primary btn-sm'
+		button_tag(type: 'submit', class: className) do
 		 "<i class='glyphicon glyphicon-ok'></i> ".html_safe + message ||= t("links.#{model.id ? 'update' : 'create'}")
 		end
 	end
 
 	def tb_button_back path, message = nil
 		link_to "<i class='glyphicon glyphicon-arrow-left'></i> ".html_safe + message ||= t('.links.back'),
-      			path, :class => 'btn btn-default', :role=> 'button'
+      			path, :class => 'btn btn-default btn-sm', :role=> 'button'
 	end
 
 	def tb_button_new path, message
 		link_to "<i class='glyphicon glyphicon-file'></i> ".html_safe + message,
-      			path, :class => 'btn btn-primary', :role=> 'button'
+      			path, :class => 'btn btn-primary btn-sm', :role=> 'button'
 	end
 
 	def tb_button_edit path, message = nil
 		link_to "<i class='glyphicon glyphicon-pencil'></i> ".html_safe + message ||= t('.links.edit'),
-      			path, :class => 'btn btn-primary', :role=> 'button'
+      			path, :class => 'btn btn-primary btn-sm', :role=> 'button'
 	end
 
 	def tb_button path, icon, message = nil, id = nil, tooltip = nil
 		link_to "<i class='glyphicon glyphicon-#{icon}'></i> ".html_safe + message, path,
 						:id => "#{id}",
-      			:class => 'btn btn-default',
+      			:class => 'btn btn-default btn-sm',
       			:role => 'button',
       			:data => {:toggle=>"tooltip", :placement=>"right", "original-title"=>"#{tooltip}" }
 
 	end
 
 	def tb_has_error model, field
-		model.errors.any? && model.errors[field] != [] ? 'has-error' : ''
+		if model
+			model.errors.any? && model.errors[field] != [] ? 'has-error' : ''
+		end
 	end
 
 	def tb_grid_show path
