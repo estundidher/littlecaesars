@@ -3,7 +3,7 @@ class CreateProductTypes < ActiveRecord::Migration
     create_table :product_types do |t|
       t.string :name, null: false
       t.boolean :sizable, null: false
-      t.boolean :allowItems, null: false
+      t.boolean :additionable, null: false
       t.integer :created_by, null: false
       t.integer :updated_by, null: true
       t.timestamps

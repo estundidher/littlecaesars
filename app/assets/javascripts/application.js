@@ -27,7 +27,8 @@
 //= require cart
 //= require isotope.pkgd.min
 
-$(function() {
+$(document).on('ready page:load', function () {
+
   Application.bind_checkAll();
   Application.bind_dateTimePickers();
   Application.bind_moneyMask();

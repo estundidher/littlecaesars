@@ -13,11 +13,11 @@
     <dt><%= Product.human_attribute_name 'description' %></dt>
     <dd><%= @product.description %></dd>
   <% end %>
-  <% if @product.type.allowItems? %>
+  <% if @product.type.additionable? %>
     <dt><%= Product.human_attribute_name 'ingredients' %></dt>
     <dd> <%= @product.items_friendly %> </dd>
   <% end %>
-  <% if @product.priceable? %>
+  <% unless @product.sizable? %>
     <dt><%= Product.human_attribute_name 'price' %></dt>
     <dd><%= number_to_currency @product.price %></dd>
   <% end %>

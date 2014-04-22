@@ -1,4 +1,4 @@
-class CustomerTestesController < ApplicationController
+class CustomerController < ApplicationController
 
   before_action :set_customers, only: [:show, :edit, :update, :destroy]
 

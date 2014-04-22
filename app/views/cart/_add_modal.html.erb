@@ -1,0 +1,53 @@
+<div id="cart_add_item_modal" class="modal fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">
+          <%= product.name %>
+        </h4>
+      </div>
+      <div id="price_modal_form_container" class="modal-body">
+        <div class="single-item">
+          <div class="row">
+            <div class="col-md-4 col-sm-5">
+              <!-- Product image -->
+              <%= image_tag product.photo.url(:large), class: 'img-responsive img-thumbnail' %>
+            </div>
+            <div class="col-md-8 col-sm-7">
+              <!-- Heading -->
+              <h4> Ingredients </h4>
+              <div class="row">
+                <div class="col-md-12 col-sm-12">
+                  <!-- Single item details -->
+                  <div class="item-details">
+                    <!-- Paragraph -->
+                    <p class="text-justify"> <%= product.items_friendly %> </p>
+                    <br/>
+                    <div class="table-responsive" id="cart_add_item_modal_form_container">
+                        <%= render partial:'form', locals:{cart_item:cart_item, product:product} %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">
+          <i class='glyphicon glyphicon-ban-circle'></i>
+          <%= t 'links.close' %>
+        </button>
+        <button type="button" class="cart_add_item_save btn btn-primary">
+          <i class='glyphicon glyphicon-shopping-cart'></i>
+          <%= t 'links.add_simple' %>
+        </button>
+        <button type="button" class="cart_add_item_checkout btn btn-info">
+          <i class='glyphicon glyphicon-ok-sign'></i>
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

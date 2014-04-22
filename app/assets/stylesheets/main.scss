@@ -493,9 +493,9 @@ table { background: #fff; }
     border: 2px solid #fff;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.25);
 }
-
 .cart-dropdown .cart-item span { display: block; margin-left: 70px }
 .cart-dropdown .cart-item span.cart-title { font-size: 15px; }
+.cart-dropdown .cart-item span.cart-title small { font-size: 10px; }
 .cart-dropdown .cart-item span.cart-price { display:inline-block; font-weight: 700; }
 
 /*

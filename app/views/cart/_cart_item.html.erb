@@ -1,0 +1,23 @@
+<li>
+  <!-- Cart items for shopping list -->
+  <div class="cart-item">
+    <!-- Item remove icon -->
+    <%= link_to cart_remove_item_path(cart_item.id), remote: true,
+        method: :delete, data: {confirm: 'Are you sure?'}, class: 'cart_item_remove' do %>
+      <i class="fa fa-times"></i>
+    <% end %>
+    <!-- Image -->
+    <%= image_tag cart_item.photo.url(:medium), class: 'img-responsive img-rounded' %>
+    <!-- Title for purchase item -->
+    <span class="cart-title">
+      <%= cart_item.name %>
+      <% if cart_item.sizable? %>
+        <br />
+        <small> <%= cart_item.size.name %> </small>
+      <% end %>
+    </span>
+    <!-- Cart item price -->
+    <span class="cart-price pull-right red"> <%= number_to_currency cart_item.total %> </span>
+    <div class="clearfix"></div>
+  </div>
+</li>

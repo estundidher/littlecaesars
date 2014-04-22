@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   include Auditable
 
-  scope:items_not_allowed, -> { joins(:type).where(product_types: {allowItems:false}).order(:name) }
+  scope:items_not_allowed, -> { joins(:type).where(product_types: {additionable:false}).order(:name) }
 
   scope:pizzas, -> (limit = nil) { where(type:ProductType.where(name:'Pizza')).order(:name).limit(limit) }
 
@@ -44,6 +44,10 @@ class Product < ActiveRecord::Base
 
   def priceable?
     !self.try(:type).try(:sizable?)
+  end
+
+  def sizable?
+    self.try(:type).try(:sizable?)
   end
 
   validates_attachment :photo,

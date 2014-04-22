@@ -2,7 +2,8 @@ class OpeningHour < ActiveRecord::Base
   include Auditable
 
   belongs_to :place
-  has_many :shifts, dependent: :destroy
+  has_many :shifts,
+           dependent: :destroy
 
   accepts_nested_attributes_for :shifts
 

@@ -3,9 +3,9 @@
 one:
   name: MyString
   sizable: false
-  allowItems: false
+  additionable: false
 
 two:
   name: MyString
   sizable: false
-  allowItems: false
+  additionable: false

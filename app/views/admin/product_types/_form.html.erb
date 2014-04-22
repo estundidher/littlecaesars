@@ -13,9 +13,9 @@
     <% end %>
   </div>
 
-  <div class="checkbox <%= tb_has_error @product_type, :allowItems %>">
-    <%= f.label :allowItems do %>
-      <%= f.check_box :allowItems %> <%= ProductType.human_attribute_name 'allowItems' %>
+  <div class="checkbox <%= tb_has_error @product_type, :additionable %>">
+    <%= f.label :additionable do %>
+      <%= f.check_box :additionable %> <%= ProductType.human_attribute_name 'additionable' %>
     <% end %>
   </div>
 

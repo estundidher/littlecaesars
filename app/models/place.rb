@@ -1,7 +1,8 @@
 class Place < ActiveRecord::Base
   include Auditable
 
-  has_many :opening_hours, :dependent => :destroy
+  has_many :opening_hours,
+           dependent: :destroy
 
   has_attached_file :photo,
                     styles: {large:'400x450>', medium:'300x300>', thumb:'100x100>'},

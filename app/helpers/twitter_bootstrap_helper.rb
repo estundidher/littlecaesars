@@ -27,26 +27,25 @@ module TwitterBootstrapHelper
 
 	def tb_button_back path, message = nil
 		link_to "<i class='glyphicon glyphicon-arrow-left'></i> ".html_safe + message ||= t('.links.back'),
-      			path, :class => 'btn btn-default btn-sm', :role=> 'button'
+      			path, class: 'btn btn-default btn-sm', role: 'button'
 	end
 
 	def tb_button_new path, message
 		link_to "<i class='glyphicon glyphicon-file'></i> ".html_safe + message,
-      			path, :class => 'btn btn-primary btn-sm', :role=> 'button'
+      			path, class: 'btn btn-primary btn-sm', role: 'button'
 	end
 
 	def tb_button_edit path, message = nil
 		link_to "<i class='glyphicon glyphicon-pencil'></i> ".html_safe + message ||= t('.links.edit'),
-      			path, :class => 'btn btn-primary btn-sm', :role=> 'button'
+      			path, class: 'btn btn-primary btn-sm', role: 'button'
 	end
 
 	def tb_button path, icon, message = nil, id = nil, tooltip = nil
 		link_to "<i class='glyphicon glyphicon-#{icon}'></i> ".html_safe + message, path,
-						:id => "#{id}",
-      			:class => 'btn btn-default btn-sm',
-      			:role => 'button',
-      			:data => {:toggle=>"tooltip", :placement=>"right", "original-title"=>"#{tooltip}" }
-
+				id: "#{id}",
+      			class: 'btn btn-default btn-sm',
+      			role: 'button',
+      			data: {toggle:'tooltip', placement:'right', 'original-title'=> "#{tooltip}" }
 	end
 
 	def tb_has_error model, field

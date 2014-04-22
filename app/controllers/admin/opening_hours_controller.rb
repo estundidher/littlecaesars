@@ -4,8 +4,9 @@ class Admin::OpeningHoursController < Admin::BaseController
 
   # GET /:place_id/opening_hours/new
   def new
-    @opening_hour = OpeningHour.new
-    @opening_hour.place_id = params[:place_id]
+    @place = Place.find(params[:place_id])
+    @opening_hour = @place.opening_hours.build
+    @opening_hour.shifts.build
     render 'modal', layout: nil
   end
 

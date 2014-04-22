@@ -1,0 +1,16 @@
+<%= form_for cart_item, html: {role: 'form', id: "cart_add_item_form"}, remote: true do |f| %>
+
+  <%= f.hidden_field :cart_id, value: cart_item.cart.id %>
+
+  <%= tb_show_errors_for cart_item %>
+
+  <% if product.type.sizable? %>
+    <%= render partial:'form_sizable', locals:{f:f, cart_item:cart_item, product:product} %>
+  <% end %>
+
+  <div class="form-group <%= tb_has_error cart_item, :notes %>">
+    <%= f.label :cart_item, :notes %>
+    <%= f.text_area :notes, class: 'form-control' %>
+  </div>
+
+<% end %>

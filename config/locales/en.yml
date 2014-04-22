@@ -286,7 +286,7 @@ en:
       product_type:
         name: Name
         sizable: Has different sizes?
-        allowItems: Has items?
+        additionable: Has and allow add items?
       product:
         name: Name
         price: Price

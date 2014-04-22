@@ -11,18 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420105423) do
+ActiveRecord::Schema.define(version: 20140422030611) do
 
   create_table "cart_items", force: true do |t|
-    t.integer  "cart_id",    null: false
-    t.integer  "product_id", null: false
-    t.integer  "quantity",   null: false
+    t.string   "type",           null: false
+    t.integer  "cart_id",        null: false
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.integer  "price_id"
+    t.integer  "first_half_id"
+    t.integer  "second_half_id"
+    t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "cart_items", ["cart_id"], name: "cart_items_cart_id_fk", using: :btree
+  add_index "cart_items", ["first_half_id"], name: "cart_items_first_half_id_fk", using: :btree
+  add_index "cart_items", ["price_id"], name: "cart_items_price_id_fk", using: :btree
   add_index "cart_items", ["product_id"], name: "cart_items_product_id_fk", using: :btree
+  add_index "cart_items", ["second_half_id"], name: "cart_items_second_half_id_fk", using: :btree
 
   create_table "carts", force: true do |t|
     t.integer  "status",      default: 0, null: false
@@ -111,10 +119,10 @@ ActiveRecord::Schema.define(version: 20140420105423) do
   add_index "prices", ["size_id"], name: "prices_size_id_fk", using: :btree
 
   create_table "product_types", force: true do |t|
-    t.string   "name",       null: false
-    t.boolean  "sizable",    null: false
-    t.boolean  "allowItems", null: false
-    t.integer  "created_by", null: false
+    t.string   "name",         null: false
+    t.boolean  "sizable",      null: false
+    t.boolean  "additionable", null: false
+    t.integer  "created_by",   null: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -199,7 +207,10 @@ ActiveRecord::Schema.define(version: 20140420105423) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "cart_items", "cart_items", name: "cart_items_first_half_id_fk", column: "first_half_id"
+  add_foreign_key "cart_items", "cart_items", name: "cart_items_second_half_id_fk", column: "second_half_id"
   add_foreign_key "cart_items", "carts", name: "cart_items_cart_id_fk"
+  add_foreign_key "cart_items", "prices", name: "cart_items_price_id_fk"
   add_foreign_key "cart_items", "products", name: "cart_items_product_id_fk"
 
   add_foreign_key "carts", "customers", name: "carts_customer_id_fk"

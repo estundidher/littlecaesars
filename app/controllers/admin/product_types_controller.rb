@@ -93,6 +93,6 @@ class Admin::ProductTypesController < Admin::BaseController
     def product_type_params
       params.require(:product_type).permit :name,
                                            :sizable,
-                                           :allowItems
+                                           :additionable
     end
 end
