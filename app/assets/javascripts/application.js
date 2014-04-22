@@ -71,17 +71,24 @@ var Application = {
   /* Cart Button Drop Down */
   /* *************************************** */
   bind_cart: function() {
-    $('.btn-cart-md .cart-link').click(function(e){
+    $('.btn-cart-md .cart-link').click(function(e) {
         e.preventDefault();
-        var $dd_menu = $('.btn-cart-md .cart-dropdown')
-        if ($dd_menu.hasClass('open')) {
-            $dd_menu.fadeOut();
-            $dd_menu.removeClass('open');
-        } else {
-            $dd_menu.fadeIn();
-            $dd_menu.addClass('open');
-        }
+        Application.cart_toggle();
     });
+  },
+
+  /* *************************************** */
+  /* Cart Toggle */
+  /* *************************************** */
+  cart_toggle: function(speed) {
+    var $dd_menu = $('.btn-cart-md .cart-dropdown');
+    if ($dd_menu.hasClass('open')) {
+        $dd_menu.fadeOut(speed);
+        $dd_menu.removeClass('open');
+    } else {
+        $dd_menu.fadeIn(speed);
+        $dd_menu.addClass('open');
+    }
   },
 
   /* *************************************** */

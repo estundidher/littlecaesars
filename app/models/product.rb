@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
 
   scope:items_not_allowed, -> { joins(:type).where(product_types: {additionable:false}).order(:name) }
 
-  scope:pizzas, -> (limit = nil) { where(type:ProductType.where(name:'Pizza')).order(:name).limit(limit) }
+  scope:shoppable, -> (limit = nil) { where(enabled:true).joins(:type).where(product_types: {shoppable:true}).order(:name).limit(limit) }
 
   has_many :prices, dependent: :destroy
   has_many :sizes, through: :prices
@@ -59,6 +59,18 @@ class Product < ActiveRecord::Base
       self.items.map(&:name).join(', ').truncate(limit)
     else
       self.items.map(&:name).join(', ')
+    end
+  end
+
+  def describe limit = nil
+    if self.type.additionable
+      self.items_friendly limit
+    else
+      if limit
+        self.description.truncate limit
+      else
+        self.description
+      end
     end
   end
 

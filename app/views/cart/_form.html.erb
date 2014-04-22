@@ -6,6 +6,8 @@
 
   <% if product.type.sizable? %>
     <%= render partial:'form_sizable', locals:{f:f, cart_item:cart_item, product:product} %>
+  <% elsif product.type.quantitable? %>
+    <%= render partial:'form_quantitable', locals:{f:f, cart_item:cart_item, product:product} %>
   <% end %>
 
   <div class="form-group <%= tb_has_error cart_item, :notes %>">

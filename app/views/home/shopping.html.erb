@@ -10,29 +10,29 @@
     <!-- Shopping items content -->
     <div class="shopping-content">
       <div class="row">
-        <% Product.pizzas.each do |product| %>
+        <% Product.shoppable.each do |product| %>
           <div class="col-md-3 col-sm-6">
             <!-- Shopping items -->
             <div class="shopping-item">
               <!-- Image -->
-              <%= link_to home_product_path(product.id, product.name.parameterize) do %>
-                <%= image_tag product.photo.url(:large), class: 'img-responsive' %>
+              <%= link_to home_product_path(product.id, product.name.parameterize), {title: product.describe} do %>
+                <%= image_tag product.photo.url(:large), class: 'img-responsive', alt: product.describe %>
               <% end %>
               <!-- Shopping item name / Heading -->
-              <h4 class="pull-left">
-                <a href="item-single.html">
-                  <%= product.name %>
-                </a>
-              </h4>
-              <span class="item-price pull-right">
-                <%= number_to_currency product.prices[0].value %>
-              </span>
+              <h4 class="pull-left"> <%= product.name %> </h4>
               <div class="clearfix"></div>
               <!-- Paragraph -->
-              <p><%= product.items_friendly 30 %></p>
+              <p> <%= product.describe 30 %> </p>
+              <% if product.type.sizable? %>
+                <% product.prices.each do |price| %>
+                  <%= render partial: 'shopping_price', locals: {name: price.size.name, value: price.value} %>
+                <% end %>
+              <% elsif product.type.quantitable? %>
+                <%= render partial: 'shopping_price', locals: {name: 'Price', value: product.price} %>
+              <% end %>
               <!-- Buy now button -->
               <div class="visible-xs">
-                  <a class="btn btn-danger btn-sm" href="#">Buy Now</a>
+                <a class="btn btn-danger btn-sm" href="#">Buy Now</a>
               </div>
               <!-- Shopping item hover block & link -->
               <div class="item-hover br-red hidden-xs"></div>

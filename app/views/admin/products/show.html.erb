@@ -3,6 +3,8 @@
 <p> <%= image_tag @product.photo.url(:thumb) %> </p>
 
 <dl>
+  <dt><%= Product.human_attribute_name 'enabled' %></dt>
+  <dd><%= @product.enabled %></dd>
   <dt><%= Product.human_attribute_name 'type' %></dt>
   <dd><%= @product.type.name %></dd>
   <dt><%= Product.human_attribute_name 'category' %></dt>

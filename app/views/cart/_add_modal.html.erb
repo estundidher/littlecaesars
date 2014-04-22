@@ -16,13 +16,25 @@
             </div>
             <div class="col-md-8 col-sm-7">
               <!-- Heading -->
-              <h4> Ingredients </h4>
+              <h4>
+                <% if product.type.additionable %>
+                  <%= Product.human_attribute_name 'ingredients' %>
+                <% else %>
+                  <%= Product.human_attribute_name 'description' %>
+                <% end %>
+              </h4>
               <div class="row">
                 <div class="col-md-12 col-sm-12">
                   <!-- Single item details -->
                   <div class="item-details">
                     <!-- Paragraph -->
-                    <p class="text-justify"> <%= product.items_friendly %> </p>
+                    <p class="text-justify">
+                      <% if product.type.additionable %>
+                        <%= product.items_friendly %>
+                      <% else %>
+                        <%= product.description %>
+                      <% end %>
+                    </p>
                     <br/>
                     <div class="table-responsive" id="cart_add_item_modal_form_container">
                         <%= render partial:'form', locals:{cart_item:cart_item, product:product} %>
@@ -45,7 +57,7 @@
         </button>
         <button type="button" class="cart_add_item_checkout btn btn-info">
           <i class='glyphicon glyphicon-ok-sign'></i>
-          Checkout
+          <%= Cart.human_attribute_name 'checkout' %>
         </button>
       </div>
     </div>

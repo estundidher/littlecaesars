@@ -274,6 +274,13 @@ en:
       shift: Shift
       user: User
       customer: Customer
+      cart: Cart
+      cart_item: Cart Item
+      cart_item_additionable: Cart Item
+      cart_item_quantitable: Cart Item
+      cart_item_sizable: Cart Item
+      cart_item_sizable_additionable: Cart Item
+      cart_item_splittable: Cart Item
     attributes:
       size:
         name: Name
@@ -287,7 +294,9 @@ en:
         name: Name
         sizable: Has different sizes?
         additionable: Has and allow add items?
+        shoppable: Shoppable
       product:
+        enabled: Enabled
         name: Name
         price: Price
         description: Description
@@ -316,3 +325,25 @@ en:
         name: Name
         surname: Surname
         mobile: Mobile
+      cart:
+        customer: Customer
+        status: Status
+        checkout: Checkout
+        total: Total
+      cart_item:
+        cart: Cart
+        notes: Notes
+      cart_item_additionable:
+        product: Product
+        additions: Additions
+      cart_item_quantitable:
+        product: Product
+        quantity: Quantity
+      cart_item_sizable:
+        price: Price
+      cart_item_sizable_additionable:
+        price: Price
+        additions: Additions
+      cart_item_splittable:
+        first_half: First Half
+        second_half: Second Half

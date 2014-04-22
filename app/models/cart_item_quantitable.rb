@@ -15,4 +15,24 @@ class CartItemQuantitable < CartItem
       errors.add :product, 'has to be quantitable!'
     end
   end
+
+  def quantitable?
+    true
+  end
+
+  def total
+    self.product.price * self.quantity
+  end
+
+  def name
+    self.product.name
+  end
+
+  def photo
+    self.product.photo
+  end
+
+  def sizable?
+    false
+  end
 end

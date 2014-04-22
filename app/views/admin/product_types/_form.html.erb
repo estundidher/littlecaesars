@@ -7,6 +7,12 @@
     <%= f.text_field :name, class: 'form-control' %>
   </div>
 
+  <div class="checkbox <%= tb_has_error @product_type, :shoppable %>">
+    <%= f.label :shoppable do %>
+      <%= f.check_box :shoppable %> <%= ProductType.human_attribute_name 'shoppable' %>
+    <% end %>
+  </div>
+
   <div class="checkbox <%= tb_has_error @product_type, :sizable %>">
     <%= f.label :sizable do %>
       <%= f.check_box :sizable %> <%= ProductType.human_attribute_name 'sizable' %>

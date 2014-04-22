@@ -12,8 +12,9 @@
     <span class="cart-title">
       <%= cart_item.name %>
       <% if cart_item.sizable? %>
-        <br />
-        <small> <%= cart_item.size.name %> </small>
+        <br /> <small> <%= cart_item.size.name %> </small>
+      <% elsif cart_item.quantitable? %>
+        <br /> <small> <%= cart_item.quantity %> units </small>
       <% end %>
     </span>
     <!-- Cart item price -->

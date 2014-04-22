@@ -8,9 +8,19 @@ class Cart < ActiveRecord::Base
            dependent: :destroy,
            class_name: 'CartItem'
 
-  def newItem product
+  def new_item product, params = nil
     if product.type.sizable?
+      if params.nil?
         CartItemSizable.new cart:self
+      else
+        CartItemSizable.new params
+      end
+    elsif product.type.quantitable?
+      if params.nil?
+        CartItemQuantitable.new cart:self, product: product
+      else
+        CartItemQuantitable.new params
+      end
     end
   end
 

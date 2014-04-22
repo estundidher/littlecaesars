@@ -2,6 +2,12 @@
 
   <%= tb_show_errors_for @product %>
 
+  <div class="checkbox <%= tb_has_error @product, :enabled %>">
+    <%= f.label :enabled do %>
+      <%= f.check_box :enabled %> <%= ProductType.human_attribute_name 'enabled' %>
+    <% end %>
+  </div>
+
   <div class="form-group <%= tb_has_error @product, :photo %>">
     <%= f.label :photo %>
     <%= f.file_field :photo %>

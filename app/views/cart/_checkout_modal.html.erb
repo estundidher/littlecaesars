@@ -11,11 +11,18 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
+              <th> <%= Product.human_attribute_name 'name' %> </th>
+              <th style="text-align: center;"> <%= Product.human_attribute_name 'quantity' %> </th>
+              <th> <%= Product.human_attribute_name 'price' %> </th>
             </tr>
           </thead>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th style="text-align: center;"> <%= Cart.human_attribute_name 'total' %> </th>
+              <th> <%= number_to_currency cart.total %> </th>
+            </tr>
+          </tfoot>
           <tbody>
             <% cart.items.each do |cart_item| %>
               <tr>
@@ -25,7 +32,7 @@
                     <small> (<%= cart_item.size.name %>) </small>
                   <% end %>
                 </td>
-                <td> <%= cart_item.quantity %> </td>
+                <td style="text-align: center;"> <%= cart_item.quantity %> </td>
                 <td> <%= number_to_currency cart_item.total %> </td>
               </tr>
             <% end %>
@@ -34,7 +41,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
-        <button type="button" class="btn btn-info">Checkout</button>
+        <button type="button" class="btn btn-info">
+          <%= Cart.human_attribute_name 'checkout' %>
+        </button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

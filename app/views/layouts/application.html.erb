@@ -64,7 +64,7 @@
               <!-- Heading -->
               <h4>Famous Dishes</h4>
               <!-- Images -->
-              <% Product.pizzas.each do |product| %>
+              <% Product.shoppable.each do |product| %>
                 <%= link_to home_product_path(product.id, product.name.parameterize) do %>
                   <%= image_tag product.photo.url(:large), class: 'dish img-responsive' %>
                 <% end %>

@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   before_action :set_products, only: [:product]
 
-  def gallery
+  def shopping
   end
 
   def product

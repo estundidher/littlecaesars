@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422030611) do
+ActiveRecord::Schema.define(version: 20140422115027) do
 
   create_table "cart_items", force: true do |t|
     t.string   "type",           null: false
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20140422030611) do
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "shoppable"
   end
 
   add_index "product_types", ["created_by"], name: "product_types_created_by_fk", using: :btree
@@ -133,12 +134,12 @@ ActiveRecord::Schema.define(version: 20140422030611) do
   add_index "product_types", ["updated_by"], name: "product_types_updated_by_fk", using: :btree
 
   create_table "products", force: true do |t|
-    t.string   "name",                                       null: false
+    t.string   "name",                                                       null: false
     t.string   "description"
     t.decimal  "price",              precision: 4, scale: 2
-    t.integer  "product_type_id",                            null: false
-    t.integer  "category_id",                                null: false
-    t.integer  "created_by",                                 null: false
+    t.integer  "product_type_id",                                            null: false
+    t.integer  "category_id",                                                null: false
+    t.integer  "created_by",                                                 null: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -146,6 +147,7 @@ ActiveRecord::Schema.define(version: 20140422030611) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.boolean  "enabled",                                    default: false, null: false
   end
 
   add_index "products", ["category_id"], name: "products_category_id_fk", using: :btree

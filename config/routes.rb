@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   #home
-  get 'gallery',           to: 'home#gallery', as: :home_gallery
+  get 'shopping',          to: 'home#shopping', as: :home_shopping
   get 'contact',           to: 'home#contact', as: :contact
   get 'product/:id-:name', to: 'home#product', as: :home_product
   get 'pick_up',           to: 'home#pick_up', as: :pick_up
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   #cart
   get 'cart/add/:product_id',  to: 'cart#add',      as: :cart_new_item
   post 'cart/add',             to: 'cart#create',   as: :cart_item_sizables
+  post 'cart/add',             to: 'cart#create',   as: :cart_item_quantitables
   delete 'cart/:id',           to: 'cart#destroy',  as: :cart_remove_item
   get 'cart/:id/checkout',     to: 'cart#checkout', as: :cart_checkout
 

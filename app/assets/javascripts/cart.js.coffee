@@ -33,6 +33,10 @@ $(document).ready ->
 
 #cart_item
 
+  $(document).on 'ajax:before', '.cart_item_remove', (event, xhr, settings) ->
+    console.log "cart_item_remove ajax:before fired!"
+    Application.cart_toggle('fast');
+
   $(document).on 'ajax:success', '.cart_item_remove', (e, data, status, xhr) ->
     console.log "cart_item_remove ajax:success fired!"
     $("#cart_container").hide().empty().append(xhr.responseText).show()

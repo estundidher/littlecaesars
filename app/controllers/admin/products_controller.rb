@@ -96,6 +96,13 @@ class Admin::ProductsController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit :name, :description, :photo, :price, :product_type_id, :category_id, :item_ids => []
+      params.require(:product).permit :name,
+                                      :enabled,
+                                      :description,
+                                      :photo,
+                                      :price,
+                                      :product_type_id,
+                                      :category_id,
+                                      :item_ids => []
     end
 end
