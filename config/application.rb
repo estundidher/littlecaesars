@@ -20,7 +20,9 @@ module Caesars
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.assets.paths << "#{Rails}/vendor/assets/fonts"
+    # add app/vendor/assets/fonts to the asset path
+    config.assets.paths << Rails.root.join('app', 'vendor', 'assets', 'fonts')
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 
     #devise configuration for Heroku
     config.assets.initialize_on_precompile = false
