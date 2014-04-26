@@ -76,3 +76,5 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'foreigner'
+
+ruby '2.1.1'
