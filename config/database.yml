@@ -16,6 +16,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  adapter: sqlite3
   database: db/test.sqlite3
 
 # Do not keep production credentials in the repository,

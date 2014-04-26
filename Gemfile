@@ -45,16 +45,21 @@ gem 'aws-sdk'
 # direct upload form helper and assets
 # gem 's3_direct_upload'
 
-# Use postgrees as the database for Active Record
-gem 'pg'
+group :test do
+  gem 'sqlite3'
+end
 
 group :development do
+  # Use postgrees as the database for Active Record
+  gem 'pg'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 
 group :production do
+  # Use postgrees as the database for Active Record
+  gem 'pg'
 
   #heroku integration
   gem 'rails_12factor'

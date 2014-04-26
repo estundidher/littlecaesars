@@ -5,6 +5,9 @@ defaults: &defaults
 development:
   <<: *defaults
   bucket: 'caesars-development'
+test:
+  <<: *defaults
+  bucket: 'caesars-test'
 production:
   <<: *defaults
   bucket: 'caesars-prod'

@@ -17,7 +17,6 @@
 //= require jquery.ui.mouse
 //= require jquery.ui.position
 //= require jquery.ui.autocomplete
-//= require s3_direct_upload
 //= require turbolinks
 //= require bootstrap/bootstrap
 //= require theme/theme
