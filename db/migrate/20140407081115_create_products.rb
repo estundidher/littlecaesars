@@ -1,7 +1,7 @@
 class CreateProducts < ActiveRecord::Migration
   def change
     create_table :products do |t|
-      t.boolean :enabled, null: false, default: 1
+      t.boolean :enabled, null: false, default: true
       t.string :name, null: false
       t.string :description
       t.decimal :price, precision:4, scale:2

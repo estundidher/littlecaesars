@@ -2,9 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0.rc2'
-
-# Use mysql2 as the database for Active Record
-gem 'mysql2'
+# gem 'rails', '3.2.13'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -40,8 +38,30 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+# S3 API
+gem 'aws-sdk'
+#gem 'aws-s3', require: 'aws/s3'
+
+# direct upload form helper and assets
+gem 's3_direct_upload'
+
+group :development do
+
+  # Use mysql2 as the database for Active Record
+  gem 'mysql2'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+end
+
+group :production do
+
+  # Use postgrees as the database for Active Record
+  gem 'pg'
+
+  #heroku integration
+  gem 'rails_12factor'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

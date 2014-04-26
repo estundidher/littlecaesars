@@ -23,7 +23,7 @@
 
                                 <div class="row">
 
-                                  <% Product.pizzas.each do |product| %>
+                                  <% Product.shoppable.each do |product| %>
                                     <div class="col-md-3 col-sm-6">
                                       <%= link_to home_product_path(product.id, product.name.parameterize) do %>
                                         <%= image_tag product.photo.url(:large), class: 'dish img-responsive' %>

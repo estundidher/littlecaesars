@@ -1,22 +1,15 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
 default: &default
-  adapter: mysql2
-  encoding: utf8
+  adapter: postgresql
   reconnect: false
   pool: 5
-  username: caesars
-  password: caesars
-  socket: /tmp/mysql.sock
   timeout: 5000
+  encoding: utf8
 
 development:
   <<: *default
   database: caesars_development
+  username: caesars
+  password: caesars..
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -32,4 +25,11 @@ test:
 #   sqlite3://myuser:mypass@localhost/full/path/to/somedatabase
 #
 production:
-  url: <%= ENV["DATABASE_URL"] %>
+  <<: *default
+  #ec2-79-125-21-70.eu-west-1.compute.amazonaws.com
+  #database: d3u1kjamv0toqu
+  #user: yrfknokwpcdtru
+  #port: 5432
+  #Password: 6RvM5TF-OXhYCjRIbfxNMlg7de
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling

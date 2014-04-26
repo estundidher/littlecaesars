@@ -64,10 +64,16 @@ class Admin::ProductsController < Admin::BaseController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product.destroy
-    respond_to do |format|
-      format.html { redirect_to admmin_products_url }
-      format.json { head :no_content }
+
+    begin
+      @product.destroy
+      respond_to do |format|
+        format.html { redirect_to admmin_products_url }
+        format.json { head :no_content }
+      end
+    rescue ActiveRecord::StatementInvalid
+      render action: 'edit'
+      return
     end
   end
 

@@ -324,7 +324,11 @@ en:
       customer:
         name: Name
         surname: Surname
+        family_name: Family Name
         mobile: Mobile
+        email: Email
+        password: Password
+        confirm: Confirm
       cart:
         customer: Customer
         status: Status

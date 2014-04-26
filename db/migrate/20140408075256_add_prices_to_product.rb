@@ -5,7 +5,7 @@ class AddPricesToProduct < ActiveRecord::Migration
       t.foreign_key :products
       t.belongs_to :size, null: false
       t.foreign_key :sizes
-      t.decimal :value, :precision => 5, :scale => 2
+      t.decimal :value, precision: 5, scale: 2
       t.timestamps
     end
   end

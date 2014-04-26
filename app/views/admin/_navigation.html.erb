@@ -14,7 +14,7 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-    <% if current_user.try(:admin?) %>
+    <% if user_signed_in? %>
       <ul class="nav navbar-nav">
         <li <%= is_active 'admin/product_types' %>>
           <%= link_to ProductType.model_name.human.pluralize, admin_product_types_path %>

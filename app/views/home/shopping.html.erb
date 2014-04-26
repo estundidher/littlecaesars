@@ -39,10 +39,10 @@
                 <% if customer_signed_in? %>
                   <%= link_to t('links.add_to', model_name:Cart.model_name.human),
                       cart_new_item_path(product.id),
-                      remote: true, class:"link hidden-xs add_to_cart" %>
+                      remote: true, class: "link hidden-xs add_to_cart" %>
                 <% else %>
                   <%= link_to t('links.add_to', model_name:Cart.model_name.human),
-                        new_customer_registration_path, class:"link hidden-xs" %>
+                      new_customer_registration_path, class: "link hidden-xs" %>
                 <% end %>
               <span class="hot-tag br-red">Hot</span>
             </div>

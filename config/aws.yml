@@ -1,0 +1,10 @@
+defaults: &defaults
+  access_key_id: 'AKIAIRQXBPIFD7R4PHJQ'
+  secret_access_key: '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'
+  region: 'ap-southeast-2'
+development:
+  <<: *defaults
+  bucket: 'caesars-development'
+production:
+  <<: *defaults
+  bucket: 'caesars-prod'

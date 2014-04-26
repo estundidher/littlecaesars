@@ -1,7 +1,7 @@
 class CreateProductTypes < ActiveRecord::Migration
   def change
     create_table :product_types do |t|
-      t.boolean :shoppable, null: false, default: 0
+      t.boolean :shoppable, null: false, default: false
       t.string :name, null: false
       t.boolean :sizable, null: false
       t.boolean :additionable, null: false

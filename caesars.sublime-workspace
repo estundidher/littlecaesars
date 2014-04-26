@@ -63,6 +63,15 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "databaseChangeLog = {\n\n    changeSet(author: \"roalcantara (generated)\", id: \"1398262589748-1\") {\n        addColumn(tableName: \"service_order\") {\n            column(name: \"created_by_user_id\", type: \"bigint\")\n        }\n    }\n\n    changeSet(author: \"roalcantara (generated)\", id: \"1398262589748-3\") {\n        createIndex(indexName: \"FK990D154480ACF238\", tableName: \"service_order\") {\n            column(name: \"created_by_user_id\")\n        }\n    }\n\n    changeSet(author: \"roalcantara (generated)\", id: \"1398262589748-2\") {\n        addForeignKeyConstraint(baseColumnNames: \"created_by_user_id\", baseTableName: \"service_order\", constraintName: \"FK990D154480ACF238\", deferrable: \"false\", initiallyDeferred: \"false\", referencedColumnNames: \"id\", referencedTableName: \"user\", referencesUniqueColumn: \"false\")\n    }\n\n    changeSet(author: \"roalcantara (generated)\", id: \"1396961317078-2\") {\n        grailsChange {\n            change {\n                //sql.executeUpdate \"update osmanagersas.service_order se set se.created_by_user_id = (select this_.user_id from audit_log this_ where this_.entity_id=se.id and this_.entity_name='class br.com.avalon.osmanager.domain.entities.ServiceOrder' and this_.event_type='INSERT' order by this_.date_created asc) where se.created_by_user_id is null\"\n            }\n        }\n    }\n}",
+			"settings":
+			{
+				"buffer_size": 1313,
+				"line_ending": "Unix",
+				"name": "databaseChangeLog = {"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -96,6 +105,25 @@
 	},
 	"file_history":
 	[
+		"/Users/roalcantara/Documents/caesars/config/database.yml",
+		"/Users/roalcantara/Documents/caesars/config/aws.yml",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/products/_form.html.erb",
+		"/Users/roalcantara/Documents/caesars/config/initializers/paperclip.rb",
+		"/Users/roalcantara/Documents/caesars/app/models/product.rb",
+		"/Users/roalcantara/Documents/caesars/Gemfile",
+		"/Users/roalcantara/Documents/caesars/config/environments/development.rb",
+		"/Users/roalcantara/Documents/caesars/config/environments/production.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/customers/confirmations/new.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/controllers/admin/products_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/products/show.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/products/index.html.erb",
+		"/Users/roalcantara/Documents/caesars/config/initializers/s3_direct_upload.rb",
+		"/Users/roalcantara/Documents/caesars/config/initializers/aws.rb",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/application.js",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/products.js.coffee",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/product_types.js.coffee",
+		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/application.css",
+		"/Users/roalcantara/Desktop/index.html",
 		"/Users/roalcantara/Documents/Orly/app/views/layouts/_form_errors.html.erb",
 		"/Users/roalcantara/Documents/Orly/vendor/assets/javascripts/bootstrap/tagfy.js",
 		"/Users/roalcantara/Documents/Orly/app/views/questions/_form.html.erb",
@@ -204,10 +232,7 @@
 		"/Users/roalcantara/Documents/Gossip/app/controllers/home_controller.rb",
 		"/Users/roalcantara/Documents/Gossip/app/views/home/index.html.erb",
 		"/Users/roalcantara/Documents/Gossip/app/controllers/index_controller.rb",
-		"/Users/roalcantara/Documents/Gossip/app/assets/stylesheets/application.css",
-		"/Users/roalcantara/Documents/Gossip/config/application.rb",
-		"/Users/roalcantara/Documents/Gossip/vendor/assets/css/bootstrap.css",
-		"/Users/roalcantara/Movies/2005 Constantine 720P MP4/Constantine[2005]DvDRip[Eng]-BoBo.srt"
+		"/Users/roalcantara/Documents/Gossip/app/assets/stylesheets/application.css"
 	],
 	"find":
 	{
@@ -226,6 +251,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"'\n",
+			"'pg'",
 			" |",
 			"| ",
 			"console.log('tag_style: ' + tag_style);",
@@ -288,8 +315,37 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"settings":
+					{
+						"buffer_size": 1313,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1313,
+								1313
+							]
+						],
+						"settings":
+						{
+							"auto_name": "databaseChangeLog = {",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -339,6 +395,26 @@
 		"selected_items":
 		[
 			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"product.",
+				"app/models/product.rb"
+			],
+			[
+				"prod",
+				"app/models/product.rb"
+			],
+			[
+				"form",
+				"app/views/admin/products/_form.html.erb"
+			],
+			[
+				"applicationcss",
+				"app/assets/stylesheets/application.css"
+			],
+			[
 				"try.html.erb",
 				"app/views/questions/try.html.erb"
 			],
@@ -381,10 +457,6 @@
 			[
 				"en",
 				"config/locales/en.yml"
-			],
-			[
-				"form",
-				"app/views/questions/_form.html.erb"
 			],
 			[
 				"question",
@@ -453,10 +525,6 @@
 			[
 				"subj",
 				"app/controllers/subjects_controller.rb"
-			],
-			[
-				"gem",
-				"Gemfile"
 			],
 			[
 				"applo",
@@ -645,6 +713,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 239.0,
+	"side_bar_width": 284.0,
 	"status_bar_visible": true
 }
