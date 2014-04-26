@@ -27,9 +27,9 @@ test:
 #
 production:
   <<: *default
-  database: caesars_development
-  username: caesars
-  password: caesars..
+  #database: caesars_development
+  #username: caesars
+  #password: caesars..
   #ec2-79-125-21-70.eu-west-1.compute.amazonaws.com
   #database: d3u1kjamv0toqu
   #user: yrfknokwpcdtru
