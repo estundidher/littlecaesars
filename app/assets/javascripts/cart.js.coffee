@@ -4,9 +4,18 @@
 
 $(document).ready ->
 
+  $(document).on 'click', '.cart-modal .label a', (e) ->
+    if $(this).parent().hasClass('label-success')
+      $(this).parent().removeClass('label-success').addClass('label-default')
+      $(this).find('i').removeClass('glyphicon-remove').addClass('glyphicon-plus')
+    else
+      $(this).parent().removeClass('label-default').addClass('label-success')
+      $(this).find('i').removeClass('glyphicon-plus').addClass('glyphicon-remove')
+
   $(document).on 'ajax:success', '.add_to_cart', (e, data, status, xhr) ->
     console.log "add_to_cart 'ajax:success' fired!"
     $('#modal_container').empty().append xhr.responseText
+    Application.bind_carousel();
     $('#cart_add_item_modal').modal 'show'
 
   $(document).on 'click', '.cart_add_item_save', (e) ->

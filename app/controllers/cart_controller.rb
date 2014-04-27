@@ -40,7 +40,7 @@ private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
       if params[:id].nil?
-        @cart = Cart.find_or_create_by(customer: current_customer, status: :open)
+        @cart = Cart.find_or_create_by(customer: current_customer, status: Cart.statuses[:open])
       else
         @cart = Cart.find(params[:id])
       end

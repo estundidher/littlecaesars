@@ -229,7 +229,7 @@ en:
     errors:
       <<: *errors
 
-  brand: Caesars
+  brand: Little Caesars
 
   warnings:
     confirm: Are you sure?

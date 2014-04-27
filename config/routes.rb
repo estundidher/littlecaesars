@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   root 'home#index'
 
   #home
-  get 'shopping',          to: 'home#shopping', as: :home_shopping
-  get 'contact',           to: 'home#contact', as: :contact
-  get 'product/:id-:name', to: 'home#product', as: :home_product
-  get 'pick_up',           to: 'home#pick_up', as: :pick_up
+  get 'shopping/:id', to: 'home#category', as: :category
+  get 'shopping',     to: 'home#shopping', as: :shopping
+  get 'contact',      to: 'home#contact',  as: :contact
+  get 'product/:id',  to: 'home#product',  as: :product
+  get 'pick_up',      to: 'home#pick_up',  as: :pick_up
+  get 'about',        to: 'home#about',    as: :about
 
   #cart
   get 'cart/add/:product_id',  to: 'cart#add',      as: :cart_new_item

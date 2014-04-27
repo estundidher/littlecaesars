@@ -1,4 +1,4 @@
-<div id="cart_add_item_modal" class="modal fade" role="dialog" aria-hidden="true">
+<div id="cart_add_item_modal" class="modal fade cart-modal" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -14,39 +14,71 @@
               <!-- Product image -->
               <%= image_tag product.photo.url(:large), class: 'img-responsive img-thumbnail' %>
             </div>
-            <div class="col-md-8 col-sm-7">
-              <!-- Heading -->
-              <h4>
-                <% if product.type.additionable %>
-                  <%= Product.human_attribute_name 'ingredients' %>
-                <% else %>
-                  <%= Product.human_attribute_name 'description' %>
-                <% end %>
-              </h4>
-              <div class="row">
-                <div class="col-md-12 col-sm-12">
-                  <!-- Single item details -->
-                  <div class="item-details">
-                    <!-- Paragraph -->
-                    <p class="text-justify">
+
+            <%= form_for cart_item, html: {role: 'form', id: "cart_add_item_form"}, remote: true do |f| %>
+              <div class="col-md-8 col-sm-7">
+                <!-- Heading -->
+                <h4>
+                  <% if product.type.additionable %>
+                    <%= Product.human_attribute_name 'ingredients' %>
+                  <% else %>
+                    <%= Product.human_attribute_name 'description' %>
+                  <% end %>
+                </h4>
+                <div class="row">
+                  <div class="col-md-12 col-sm-12">
+                    <!-- Single item details -->
+                    <div class="item-details">
                       <% if product.type.additionable %>
-                        <%= product.items_friendly %>
+                        <% product.items.each do |item| %>
+                          <div style="display: inline-block; margin-top: 10px;">
+                            <span class="label label-success">
+                              <%= item.name %>
+                              <a href="JavaScript:void(0);">
+                                <i class="glyphicon glyphicon-remove"></i>
+                              </a>
+                            </span>
+                          </div>
+                          &nbsp;
+                        <% end %>
                       <% else %>
                         <%= product.description %>
                       <% end %>
-                    </p>
-                    <br/>
-                    <div class="table-responsive" id="cart_add_item_modal_form_container">
-                        <%= render partial:'form', locals:{cart_item:cart_item, product:product} %>
+                      <br/><br/>
+                      <div class="table-responsive" id="cart_add_item_modal_form_container">
+                        <%= render partial:'form', locals:{f:f, cart_item:cart_item, product:product} %>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+
+              <% if product.type.additionable? %>
+                <div class="col-md-12 col-sm-12">
+                  <h4>Toppings</h4>
+                  <% Product.not_additionable_nor_shoppable(product.items).each do |product| %>
+                    <div style="display: inline-block; margin-top: 10px;">
+                      <span class="label label-default">
+                        <%= product.name %> (<%= number_to_currency product.price %>)
+                        <a href="JavaScript:void(0);">
+                          <i class="glyphicon glyphicon-plus"></i>
+                        </a>
+                      </span>
+                    </div>
+                    &nbsp;
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
       <div class="modal-footer">
+
+        <div class="pull-left">
+          Total: <span class="item-price">$31</span>
+        </div>
+
         <button type="button" class="btn btn-warning" data-dismiss="modal">
           <i class='glyphicon glyphicon-ban-circle'></i>
           <%= t 'links.close' %>

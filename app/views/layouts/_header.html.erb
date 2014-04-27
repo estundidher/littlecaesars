@@ -29,7 +29,7 @@
         <div class="col-md-2 col-sm-2">
           <% if customer_signed_in? %>
             <div id="cart_container">
-              <% @cart = Cart.find_or_create_by customer: current_customer, status: :open %>
+              <% @cart = Cart.find_or_create_by customer: current_customer, status: Cart.statuses[:open] %>
               <%= render partial: '/cart/cart', locals:{cart:@cart} %>
             </div>
           <% else %>
@@ -140,7 +140,7 @@
                   </ul>
                 </li>
                 <li>
-                  <%= link_to home_shopping_path do %>
+                  <%= link_to shopping_path do %>
                     <%= image_tag 'nav-menu/nav3.jpg', class: 'img-responsive' %> Shop
                   <% end %>
                 </li>
@@ -150,9 +150,9 @@
                   <% end %>
                 </li>
                 <li>
-                  <a href="aboutus.html">
+                  <%= link_to about_path do %>
                     <%= image_tag "nav-menu/nav6.jpg", class: 'img-responsive' %> About
-                  </a>
+                  <% end %>
                 </li>
               </ul>
             </div><!-- /.navbar-collapse -->

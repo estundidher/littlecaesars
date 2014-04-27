@@ -1,7 +1,7 @@
 <% if product.type.additionable %>
   <div class="form-group <%= tb_has_error product, :items %>">
     <%= label :product, :items %>
-    <% items = Product.items_not_allowed %>
+    <% items = Product.not_additionable_nor_shoppable %>
     <% if items.size() > 0 %>
       <%= collection_check_boxes :product, :item_ids, items, :id, :name do |b|
           b.label(class: "checkbox") { b.check_box + b.text }

@@ -1,9 +1,25 @@
 class Product < ActiveRecord::Base
   include Auditable
 
-  scope:items_not_allowed, -> { joins(:type).where(product_types: {additionable:false}).order(:name) }
+  scope :not_additionable_nor_shoppable, -> (except = nil) {
 
-  scope:shoppable, -> (limit = nil) { where(enabled:true).joins(:type).where(product_types: {shoppable:true}).order(:name).limit(limit) }
+    query = where(enabled:true)
+
+    if except
+      query = query.where.not(id:except)
+    end
+
+    query.joins(:type)
+         .where(product_types: {additionable:false, shoppable:false})
+         .order(:name)
+  }
+
+  scope :shoppable, -> (limit = nil) {
+
+    where(enabled:true).joins(:type)
+                       .where(product_types: {shoppable:true})
+                       .order(:name).limit(limit)
+  }
 
   has_many :prices, dependent: :destroy
   has_many :sizes, through: :prices

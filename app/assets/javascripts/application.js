@@ -35,6 +35,7 @@ $(document).on('ready page:load', function () {
   Application.bind_cart();
   Application.bind_tooltip();
   Application.bind_scroolToTop();
+  Application.bind_carousel();
 
   Application.bind_isotope('.isotope_contenteiner', '.isotope_item');
 });
@@ -89,6 +90,15 @@ var Application = {
         $dd_menu.fadeIn(speed);
         $dd_menu.addClass('open');
     }
+  },
+
+  /* *************************************** */
+  /* Carrousel */
+  /* *************************************** */
+  bind_carousel: function() {
+    $('.carousel').carousel({
+      interval: false
+    });
   },
 
   /* *************************************** */
