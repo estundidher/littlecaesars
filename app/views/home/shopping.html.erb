@@ -1,0 +1,19 @@
+<% content_for :page_title, 'Shopping' %>
+<% content_for :page_description, 'Choose your pizza!' %>
+<% content_for :page_keywords, 'Pizza' %>
+
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'Shopping' %>
+<% end %>
+
+<!-- Shopping Start -->
+<div class="shopping">
+  <div class="container">
+    <!-- Shopping items content -->
+    <div class="shopping-content">
+      <% Category.with_shoppable_products.each do |category| %>
+        <%= render partial:'category', locals:{category:category} %>
+      <% end %>
+    </div>
+  </div>
+</div><!-- Shopping End -->
