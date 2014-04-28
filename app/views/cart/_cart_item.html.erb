@@ -11,15 +11,24 @@
     <!-- Title for purchase item -->
     <span class="cart-title">
       <%= cart_item.name %>
+      <ul>
       <% if cart_item.sizable? %>
-        <br /> <small> <%= cart_item.size.name %> </small>
+        <li>
+          &nbsp<%= number_to_currency cart_item.price.value %> <%= cart_item.size.name %>
+        </li>
       <% elsif cart_item.quantitable? %>
-        <br /> <small> <%= cart_item.quantity %> units </small>
+        <li>
+          <%= number_to_currency cart_item.product.price %> x <%= cart_item.quantity %> units
+        </li>
       <% end %>
-
-      <% if cart_item.additionable? and cart_item.additions.size > 0 %>
-        <br /> <small> <%= cart_item.additions.size %> additions </small>
+      <% if cart_item.additionable? %>
+        <% cart_item.additions.each do |addition| %>
+          <li>
+            + <%= number_to_currency addition.price %> <%= addition.name %>
+          </li>
+        <% end %>
       <% end %>
+      </ul>
     </span>
     <!-- Cart item price -->
     <span class="cart-price pull-right red"> <%= number_to_currency cart_item.total %> </span>

@@ -542,6 +542,9 @@ Additional Styles (required)
 .cart-dropdown .cart-item span.cart-title small { font-size: 10px; }
 .cart-dropdown .cart-item span.cart-price { display:inline-block; font-weight: 700; }
 
+.cart-dropdown .cart-item span.cart-title ul {list-style: none;}
+.cart-dropdown .cart-item span.cart-title ul li {font-size: 11px; margin-left: -43px;}
+
 /*
  * -    SETTINGS FOR BANNER CONTAINERS  -
  */

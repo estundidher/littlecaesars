@@ -29,7 +29,14 @@
                 <td>
                   <%= cart_item.name %>
                   <% if cart_item.sizable? %>
-                    <small> (<%= cart_item.size.name %>) </small>
+                    <br> <small> &nbsp&nbsp&nbsp<%= number_to_currency cart_item.price.value %> <%= cart_item.size.name %> </small>
+                  <% end %>
+                  <% if cart_item.additionable? %>
+                    <% cart_item.additions.each do |addition| %>
+                      <br> <small>
+                        + <%= number_to_currency addition.price %> <%= addition.name %>
+                      </small>
+                    <% end %>
                   <% end %>
                 </td>
                 <td style="text-align: center;"> <%= cart_item.quantity %> </td>
