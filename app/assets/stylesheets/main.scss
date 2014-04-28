@@ -426,32 +426,8 @@ Additional Styles (required)
   margin-top: 10px;
 }
 
-.glyphicon-chevron-right-thin {
-  background-image: image-url("/assets/icons/arrow-xs-right.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  display: inline-block;
-  height: 12px;
-  margin-left: 5px;
-  width: 12px;
-
-  &:before {
-    content: "";
-  }
-}
-
-.glyphicon-chevron-left-thin {
-  background-image: image-url("/assets/icons/arrow-xs-left.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  display: inline-block;
-  height: 12px;
-  margin-left: 5px;
-  width: 12px;
-
-  &:before {
-    content: "";
-  }
+.cart-modal .addition i {
+  cursor: pointer;
 }
 
 /*
@@ -1385,7 +1361,7 @@ div.ppt { display:none !important; }
 .inner-page .shopping .shopping-item img { border: 1px solid #f5f5f5; }
 .inner-page .shopping .shopping-item h4 {
     margin-top: 15px;
-    margin-left: 10px;
+    margin-left: 3px;
     font-size: 16px;
     line-height: 26px;
 }
@@ -1401,7 +1377,7 @@ div.ppt { display:none !important; }
 }
 .inner-page .shopping .shopping-item p {
     margin-bottom: 10px;
-    margin-left: 10px;
+    margin-left: 3px;
     font-size: 13px;
     text-align: left;
     color: #9a9a9a;
@@ -1437,6 +1413,29 @@ div.ppt { display:none !important; }
         -ms-transition: all 0.4s ease-in-out;
          -o-transition: all 0.4s ease-in-out;
             transition: all 0.4s ease-in-out;
+}
+
+.inner-page .shopping-item .price {
+
+  margin-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-bottom: 1px dashed #ddd;
+}
+
+.inner-page .shopping-item .price h4 {
+
+  margin: 0;
+  font-size: 16px;
+  line-height: 23px;
+}
+
+.inner-page .shopping-item .price span {
+
+  font-size: 15px;
+  line-height: 23px;
+  font-weight: 700;
 }
 
 .inner-page .shopping-item a.btn { margin-bottom: 10px; }

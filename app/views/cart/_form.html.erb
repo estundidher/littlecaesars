@@ -1,18 +1,22 @@
-<%= form_for cart_item, html: {role: 'form', id: "cart_add_item_form"}, remote: true do |f| %>
+<%= form_for cart_item, html: {role: 'form', id: 'cart_add_item_form'}, remote: true do |f| %>
+
+  <input type="hidden" id="cart_add_item_calculate_url" value="<%= cart_item_calculate_path %>">
 
   <%= f.hidden_field :cart_id, value: cart_item.cart.id %>
 
   <%= tb_show_errors_for cart_item %>
 
   <% if product.type.sizable? %>
-    <%= render partial:'form_sizable', locals:{f:f, cart_item:cart_item, product:product} %>
+    <%= render partial:'form_sizable', locals: {f:f, cart_item:cart_item, product:product} %>
   <% elsif product.type.quantitable? %>
-    <%= render partial:'form_quantitable', locals:{f:f, cart_item:cart_item, product:product} %>
+    <%= render partial:'form_quantitable', locals: {f:f, cart_item:cart_item, product:product} %>
   <% end %>
 
   <div class="form-group <%= tb_has_error cart_item, :notes %>">
     <%= f.label :cart_item, :notes %>
     <%= f.text_area :notes, class: 'form-control' %>
   </div>
+
+  <%= render partial:'form_additionable', locals: {cart_item:cart_item} if product.type.additionable? %>
 
 <% end %>

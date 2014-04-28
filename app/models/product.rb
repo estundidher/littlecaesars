@@ -26,9 +26,7 @@ class Product < ActiveRecord::Base
 
   has_and_belongs_to_many :items,
                           class_name: 'Product',
-                          foreign_key: :product_id,
-                          association_foreign_key: :item_id,
-                          through: :products_products
+                          association_foreign_key: :item_id
 
   has_attached_file :photo,
                     styles: {large:'400x450>', medium:'300x300>', mini:'200x100>', thumb:'100x100>'},

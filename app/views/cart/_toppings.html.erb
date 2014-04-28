@@ -7,7 +7,11 @@
         <% Product.not_additionable_nor_shoppable(product.items).each_with_index do |topping, index| %>
           <div class="item <%= 'active' if index == 0%>">
             <div class="thumbnail">
-              <img src="http://placehold.it/200x100/" alt="Slide1">
+              <% if topping.photo.exists? %>
+                <%= image_tag topping.photo.url(:mini), class: 'img-responsive' %>
+              <% else %>
+                <img src="http://placehold.it/200x100/" alt="Slide1">
+              <% end %>
               <div class="caption">
                 <h6><%= topping.name %></h6>
                 <p>

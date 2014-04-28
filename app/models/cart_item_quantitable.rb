@@ -16,12 +16,16 @@ class CartItemQuantitable < CartItem
     end
   end
 
+  def additionable?
+    false
+  end
+
   def quantitable?
     true
   end
 
   def total
-    self.product.price * self.quantity
+    self.product.price * (self.quantity || 1)
   end
 
   def name

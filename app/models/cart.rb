@@ -9,12 +9,27 @@ class Cart < ActiveRecord::Base
            class_name: 'CartItem'
 
   def new_item product, params = nil
-    if product.type.sizable?
+
+    if product.type.sizable? && product.type.additionable?
       if params.nil?
-        CartItemSizable.new cart:self
+        item = CartItemSizableAdditionable.new cart:self
       else
-        CartItemSizable.new params
+        item = CartItemSizableAdditionable.new params
       end
+      if item.price.nil?
+        item.price = product.prices.first
+      end
+      item
+    elsif product.type.sizable?
+      if params.nil?
+        item = CartItemSizable.new cart:self
+      else
+        item = CartItemSizable.new params
+      end
+      if item.price.nil?
+        item.price = product.prices.first
+      end
+      item
     elsif product.type.quantitable?
       if params.nil?
         CartItemQuantitable.new cart:self, product: product

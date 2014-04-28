@@ -96,7 +96,7 @@ var Application = {
   /* Carrousel */
   /* *************************************** */
   bind_carousel: function() {
-    $('.carousel').carousel({
+    return $('.carousel').carousel({
       interval: false
     });
   },
@@ -122,8 +122,16 @@ var Application = {
     });
     $(".totop a").click(function(e) {
         e.preventDefault();
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+        $("html, body").animate({ scrollTop: 0 }, 'slow');
         return false;
+    });
+  }
+};
+
+var Cart = {
+  calculate_price: function() {
+    $.post($('#cart_add_item_calculate_url').val(), $('#cart_add_item_form').serialize(), function(data) {
+      return $('.item-price').hide().empty().append(data).slideDown('fast')
     });
   }
 };

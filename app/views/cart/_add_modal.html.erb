@@ -13,13 +13,9 @@
             <div class="col-md-4 col-sm-5">
               <!-- Product image -->
               <%= image_tag product.photo.url(:large), class: 'img-responsive img-thumbnail' %>
-
-              <% if product.type.additionable? %>
-                <%= render partial:'toppings', locals:{product:product} %>
-              <% end %>
+              <%= render partial:'toppings', locals:{product:product} if product.type.additionable? %>
             </div>
-
-            <%= form_for cart_item, html: {role: 'form', id: "cart_add_item_form"}, remote: true do |f| %>
+            <%= form_for cart_item, html: {role: 'form', id: 'cart_add_item_form'}, remote: true do |f| %>
               <div class="col-md-8 col-sm-7">
                 <h4><!-- Heading -->
                   <% if product.type.additionable %>
@@ -48,22 +44,14 @@
                         <%= product.description %>
                       <% end %>
                       <br/><br/>
-
                       <div class="table-responsive" id="cart_add_item_modal_form_container">
                         <%= render partial:'form', locals:{cart_item:cart_item, product:product} %>
                       </div>
                     </div>
-
-                    <% if product.type.additionable? %>
-                      <h4>Additions</h4>
-                      <div id="cart_add_item_modal_additions_container"></div>
-                    <% end %>
-
                   </div>
                 </div>
               </div>
             <% end %>
-
           </div>
         </div>
       </div>
@@ -74,7 +62,9 @@
               Total:
             </div>
             <div class="col-md-1 col-sm-1">
-              <span class="item-price">$31</span>
+              <span class="item-price">
+                <%= number_to_currency cart_item.total %>
+              </span>
             </div>
           </div>
         </div>

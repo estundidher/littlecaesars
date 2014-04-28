@@ -68,16 +68,30 @@ $(document).ready ->
 
 #toppings
 
+  $(document).on 'change', '.cart_add_item_modal_size', (e) ->
+    Cart.calculate_price()
+
   $(document).on 'click', '#toppings_carousel_button_add', (e) ->
-    addition = $('<div>', {'class': 'addition'}).append(
+
+    $remove = $('<i>', {'class': 'glyphicon glyphicon-remove white'})
+
+    $remove.on 'click', ->
+      $div = $(this).parent().parent()
+      $div.fadeOut 'fast', ->
+        $div.remove()
+        Cart.calculate_price()
+
+    $addition = $('<div>', {'class': 'addition'}).hide().append(
       $('<span>', {'class': 'label label-warning'})
-        .append($('<input>', {type: 'hidden', name:'cart_item_sizable[addition][0].id', value: $(this).data("id")}))
+        .append($('<input>', {type: 'hidden', name:'cart_item_sizable_additionable[addition_ids][]', value: $(this).data("id")}))
         .append($(this).data("name"))
-        .append(' (' + $(this).data("price") + ')')
-        .append($('<i>', {'class': 'glyphicon glyphicon-remove white'}))
-    )
+        .append(' (' + $(this).data("price") + ') ')
+        .append($remove)).prepend(' ')
 
     if $('#cart_add_item_modal_additions_container .addition:last').length == 0
-        $('#cart_add_item_modal_additions_container').prepend(addition).prepend(' ')
+      $('#cart_add_item_modal_additions_container').prepend($addition)
     else
-        $('#cart_add_item_modal_additions_container .addition:last').after(addition).prepend(' ')
+      $('#cart_add_item_modal_additions_container .addition:last').after($addition)
+
+    $addition.fadeIn 'fast', ->
+      Cart.calculate_price()

@@ -16,6 +16,10 @@
       <% elsif cart_item.quantitable? %>
         <br /> <small> <%= cart_item.quantity %> units </small>
       <% end %>
+
+      <% if cart_item.additionable? and cart_item.additions.size > 0 %>
+        <br /> <small> <%= cart_item.additions.size %> additions </small>
+      <% end %>
     </span>
     <!-- Cart item price -->
     <span class="cart-price pull-right red"> <%= number_to_currency cart_item.total %> </span>

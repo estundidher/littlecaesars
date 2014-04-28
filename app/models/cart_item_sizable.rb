@@ -17,6 +17,10 @@ class CartItemSizable < CartItem
     self.price.product.photo
   end
 
+  def additionable?
+    false
+  end
+
   def sizable?
     true
   end

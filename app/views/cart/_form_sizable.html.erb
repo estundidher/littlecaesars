@@ -3,5 +3,5 @@
 <div class="form-group <%= tb_has_error cart_item, :size %>">
   <%= f.label :price_id, 'Size' %>
   <%= f.select :price_id,
-              options_for_select(product.prices.collect{|price| ["#{price.size.name}: #{number_to_currency price.value}", price.id] }), {}, {class: 'form-control'}  %>
+              options_for_select(product.prices.collect{|price| ["#{price.size.name}: #{number_to_currency price.value}", price.id] }), {}, {class: 'form-control cart_add_item_modal_size'}  %>
 </div>
