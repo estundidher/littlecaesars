@@ -5,12 +5,12 @@
 $(document).ready ->
 
   $(document).on 'click', '.cart-modal .label a', (e) ->
-    if $(this).parent().hasClass('label-success')
-      $(this).parent().removeClass('label-success').addClass('label-default')
-      $(this).find('i').removeClass('glyphicon-remove').addClass('glyphicon-plus')
+    if $(this).parent().hasClass('label-info')
+      $(this).parent().removeClass('label-info').addClass('label-default')
+      $(this).find('i').removeClass('glyphicon-remove').removeClass('white').addClass('glyphicon-plus black')
     else
-      $(this).parent().removeClass('label-default').addClass('label-success')
-      $(this).find('i').removeClass('glyphicon-plus').addClass('glyphicon-remove')
+      $(this).parent().removeClass('label-default').addClass('label-info')
+      $(this).find('i').removeClass('glyphicon-plus').removeClass('black').addClass('glyphicon-remove white')
 
   $(document).on 'ajax:success', '.add_to_cart', (e, data, status, xhr) ->
     console.log "add_to_cart 'ajax:success' fired!"
@@ -65,3 +65,19 @@ $(document).ready ->
   $(document).on 'hidden.bs.modal', '#checkout_modal', (e) ->
     console.log "#checkout_modal 'hidden.bs.modal' fired!"
     $('#modal_container').empty()
+
+#toppings
+
+  $(document).on 'click', '#toppings_carousel_button_add', (e) ->
+    addition = $('<div>', {'class': 'addition'}).append(
+      $('<span>', {'class': 'label label-warning'})
+        .append($('<input>', {type: 'hidden', name:'cart_item_sizable[addition][0].id', value: $(this).data("id")}))
+        .append($(this).data("name"))
+        .append(' (' + $(this).data("price") + ')')
+        .append($('<i>', {'class': 'glyphicon glyphicon-remove white'}))
+    )
+
+    if $('#cart_add_item_modal_additions_container .addition:last').length == 0
+        $('#cart_add_item_modal_additions_container').prepend(addition).prepend(' ')
+    else
+        $('#cart_add_item_modal_additions_container .addition:last').after(addition).prepend(' ')

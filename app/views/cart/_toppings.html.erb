@@ -1,0 +1,38 @@
+<h4>Toppings</h4>
+<div class="container" style="margin-left: -30px;">
+  <div class="col-md-2">
+    <!-- Carousel ================================================== -->
+    <div id="toppings_carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <% Product.not_additionable_nor_shoppable(product.items).each_with_index do |topping, index| %>
+          <div class="item <%= 'active' if index == 0%>">
+            <div class="thumbnail">
+              <img src="http://placehold.it/200x100/" alt="Slide1">
+              <div class="caption">
+                <h6><%= topping.name %></h6>
+                <p>
+                  <a id="toppings_carousel_button_add" href="JavaScript:void(0);"
+                     data-id="<%= topping.id %>"
+                     data-name="<%= topping.name %>"
+                     data-price="<%= number_to_currency topping.price %>"
+                     class="btn btn-warning btn-sm" role="button">
+                    <i class='glyphicon glyphicon-plus-sign'></i>
+                    <%= number_to_currency topping.price %>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div><!-- End Item -->
+        <% end %>
+      </div><!-- End Carousel Inner -->
+      <div class="carousel-controls">
+        <a class="left carousel-control" href="#toppings_carousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#toppings_carousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+    </div><!-- /.carousel -->
+  </div>
+</div>

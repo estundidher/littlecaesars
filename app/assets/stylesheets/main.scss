@@ -393,6 +393,67 @@ table { background: #fff; }
   color: #f75353;
 }
 
+/*#####################
+Additional Styles (required)
+######################*/
+.cart-modal .carousel .thumbnail {
+  margin-bottom:0;
+}
+.cart-modal .carousel-control {
+  color:#428BCA;
+  top:44%;
+  bottom:auto;
+  opacity:1;
+}
+.cart-modal .carousel-control:hover {
+  color:#d9534f;
+}
+.cart-modal .carousel-control.left, .carousel-control.right {
+  background-image:none !important;
+}
+.cart-modal .carousel-control.right {
+  left:auto;
+  right:-28px;
+}
+.cart-modal .carousel-control.left {
+  right:auto;
+  left:-15px;
+}
+
+.cart-modal .addition {
+  margin-right: 5px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.glyphicon-chevron-right-thin {
+  background-image: image-url("/assets/icons/arrow-xs-right.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 12px;
+  margin-left: 5px;
+  width: 12px;
+
+  &:before {
+    content: "";
+  }
+}
+
+.glyphicon-chevron-left-thin {
+  background-image: image-url("/assets/icons/arrow-xs-left.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 12px;
+  margin-left: 5px;
+  width: 12px;
+
+  &:before {
+    content: "";
+  }
+}
+
 /*
  * Cart Link
  */

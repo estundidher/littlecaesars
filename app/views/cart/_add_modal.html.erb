@@ -13,12 +13,15 @@
             <div class="col-md-4 col-sm-5">
               <!-- Product image -->
               <%= image_tag product.photo.url(:large), class: 'img-responsive img-thumbnail' %>
+
+              <% if product.type.additionable? %>
+                <%= render partial:'toppings', locals:{product:product} %>
+              <% end %>
             </div>
 
             <%= form_for cart_item, html: {role: 'form', id: "cart_add_item_form"}, remote: true do |f| %>
               <div class="col-md-8 col-sm-7">
-                <!-- Heading -->
-                <h4>
+                <h4><!-- Heading -->
                   <% if product.type.additionable %>
                     <%= Product.human_attribute_name 'ingredients' %>
                   <% else %>
@@ -32,10 +35,10 @@
                       <% if product.type.additionable %>
                         <% product.items.each do |item| %>
                           <div style="display: inline-block; margin-top: 10px;">
-                            <span class="label label-success">
+                            <span class="label label-info">
                               <%= item.name %>
                               <a href="JavaScript:void(0);">
-                                <i class="glyphicon glyphicon-remove"></i>
+                                <i class="glyphicon glyphicon-remove white"></i>
                               </a>
                             </span>
                           </div>
@@ -45,51 +48,43 @@
                         <%= product.description %>
                       <% end %>
                       <br/><br/>
+
                       <div class="table-responsive" id="cart_add_item_modal_form_container">
-                        <%= render partial:'form', locals:{f:f, cart_item:cart_item, product:product} %>
+                        <%= render partial:'form', locals:{cart_item:cart_item, product:product} %>
                       </div>
                     </div>
+
+                    <% if product.type.additionable? %>
+                      <h4>Additions</h4>
+                      <div id="cart_add_item_modal_additions_container"></div>
+                    <% end %>
+
                   </div>
                 </div>
               </div>
-
-              <% if product.type.additionable? %>
-                <div class="col-md-12 col-sm-12">
-                  <h4>Toppings</h4>
-                  <% Product.not_additionable_nor_shoppable(product.items).each do |product| %>
-                    <div style="display: inline-block; margin-top: 10px;">
-                      <span class="label label-default">
-                        <%= product.name %> (<%= number_to_currency product.price %>)
-                        <a href="JavaScript:void(0);">
-                          <i class="glyphicon glyphicon-plus"></i>
-                        </a>
-                      </span>
-                    </div>
-                    &nbsp;
-                  <% end %>
-                </div>
-              <% end %>
             <% end %>
+
           </div>
         </div>
       </div>
       <div class="modal-footer">
-
         <div class="pull-left">
-          Total: <span class="item-price">$31</span>
+          <div class="row">
+            <div class="col-md-4 col-sm-4" style="padding-top: 4px;">
+              Total:
+            </div>
+            <div class="col-md-1 col-sm-1">
+              <span class="item-price">$31</span>
+            </div>
+          </div>
         </div>
-
         <button type="button" class="btn btn-warning" data-dismiss="modal">
           <i class='glyphicon glyphicon-ban-circle'></i>
-          <%= t 'links.close' %>
+          <%= t 'links.cancel' %>
         </button>
         <button type="button" class="cart_add_item_save btn btn-primary">
           <i class='glyphicon glyphicon-shopping-cart'></i>
           <%= t 'links.add_simple' %>
-        </button>
-        <button type="button" class="cart_add_item_checkout btn btn-info">
-          <i class='glyphicon glyphicon-ok-sign'></i>
-          <%= Cart.human_attribute_name 'checkout' %>
         </button>
       </div>
     </div>

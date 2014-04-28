@@ -31,7 +31,7 @@ class Product < ActiveRecord::Base
                           through: :products_products
 
   has_attached_file :photo,
-                    styles: {large:'400x450>', medium:'300x300>', thumb:'100x100>'},
+                    styles: {large:'400x450>', medium:'300x300>', mini:'200x100>', thumb:'100x100>'},
                     default_url: '/images/:style/missing.png'
 
   belongs_to :type,
