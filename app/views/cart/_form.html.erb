@@ -1,4 +1,4 @@
-<%= form_for cart_item, html: {role: 'form', id: 'cart_add_item_form'}, remote: true do |f| %>
+<%= form_for cart_item, html: {role: 'form', id: 'cart_add_item_form', class: 'form-inline'}, remote: true do |f| %>
 
   <input type="hidden" id="cart_add_item_calculate_url" value="<%= cart_item_calculate_path %>">
 
@@ -12,11 +12,10 @@
     <%= render partial:'form_quantitable', locals: {f:f, cart_item:cart_item, product:product} %>
   <% end %>
 
-  <div class="form-group <%= tb_has_error cart_item, :notes %>">
-    <%= f.label :cart_item, :notes %>
-    <%= f.text_area :notes, class: 'form-control' %>
-  </div>
-
-  <%= render partial:'form_additionable', locals: {cart_item:cart_item} if product.type.additionable? %>
-
+  <% if product.type.additionable %>
+    <%= render partial:'form_additionable', locals: {cart_item:cart_item, product:product} if product.type.additionable? %>
+  <% else %>
+    <h4> <%= Product.human_attribute_name 'description' %> </h4>
+    <%= product.description %>
+  <% end %>
 <% end %>

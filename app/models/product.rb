@@ -29,7 +29,7 @@ class Product < ActiveRecord::Base
                           association_foreign_key: :item_id
 
   has_attached_file :photo,
-                    styles: {large:'400x450>', medium:'300x300>', mini:'200x100>', thumb:'100x100>'},
+                    styles: {large:'400x450>', medium:'300x300>', mini:'120x60>', thumb:'100x100>'},
                     default_url: '/images/:style/missing.png'
 
   belongs_to :type,

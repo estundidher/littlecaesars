@@ -396,9 +396,21 @@ table { background: #fff; }
 /*#####################
 Additional Styles (required)
 ######################*/
+.cart-modal .carousel {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .cart-modal .carousel .thumbnail {
   margin-bottom:0;
+  height: 162px;
 }
+
+.cart-modal .carousel .thumbnail img{
+  width: 110px;
+  height: 60px;
+}
+
 .cart-modal .carousel-control {
   color:#428BCA;
   top:44%;
@@ -413,11 +425,11 @@ Additional Styles (required)
 }
 .cart-modal .carousel-control.right {
   left:auto;
-  right:-28px;
+  right:-58px;
 }
 .cart-modal .carousel-control.left {
   right:auto;
-  left:-15px;
+  left:-45px;
 }
 
 .cart-modal .addition {
@@ -428,6 +440,10 @@ Additional Styles (required)
 
 .cart-modal .addition i {
   cursor: pointer;
+}
+
+.cart-modal .additionables h4 {
+    padding-left: 10px;
 }
 
 /*
