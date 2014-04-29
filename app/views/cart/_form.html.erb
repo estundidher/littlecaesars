@@ -10,7 +10,7 @@
   <% end %>
 
   <% if product.type.sizable? %>
-    <%= render partial:'form_sizable', locals: {f:f, cart_item:cart_item, product:product} %>
+    <% #render partial:'form_sizable', locals: {f:f, cart_item:cart_item, product:product} %>
   <% end %>
 
   <% if product.type.additionable %>

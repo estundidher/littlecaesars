@@ -9,10 +9,14 @@
         <div class="single-item">
           <%= form_for cart_item, html: {role: 'form', id: 'cart_add_item_form', class: 'form-horizontal'}, remote: true do |f| %>
             <div class="row">
-              <div class="col-md-4 col-sm-5">
-                <%= image_tag product.photo.url(:large), class: 'img-responsive img-thumbnail' %>
+              <div class="col-md-4 col-sm-4">
+                <% if product.type.sizable? %>
+                  <%= render partial:'sizables', locals:{f:f, cart_item:cart_item, product:product} %>
+                <% else %>
+                  <%= image_tag product.photo.url(:large), class: 'img-responsive img-thumbnail' %>
+                <% end %>
               </div>
-              <div class="col-md-8 col-sm-7">
+              <div class="col-md-8 col-sm-8">
                 <div class="row">
                   <div class="col-md-12 col-sm-12">
                     <div class="item-details">

@@ -4,6 +4,11 @@
 
 $(document).ready ->
 
+  $(document).on 'slid', '#sizes_carousel', (e) ->
+    console.log '#sizes_carousel slid event fired! id : ' + $('#sizes_carousel .item.active .id').val()
+    $('#cart_item_sizable_additionable_price_id').val $('#sizes_carousel .item.active .id').val()
+    Cart.calculate_price()
+
   $(document).on 'click', '.cart-modal .label a', (e) ->
     if $(this).parent().hasClass('label-info')
       $(this).parent().removeClass('label-info').addClass('label-default')

@@ -30,7 +30,7 @@
         <div class="item-hover br-red hidden-xs"></div>
           <% if customer_signed_in? %>
             <%= link_to t('links.add_to', model_name:Cart.model_name.human),
-                cart_new_item_path(product.id),
+                cart_new_item_path(product),
                 remote: true, class: "link hidden-xs add_to_cart" %>
           <% else %>
             <%= link_to t('links.add_to', model_name:Cart.model_name.human),
