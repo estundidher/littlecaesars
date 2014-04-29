@@ -88,10 +88,7 @@ $(document).ready ->
         .append(' (' + $(this).data("price") + ') ')
         .append($remove)).prepend(' ')
 
-    if $('#cart_add_item_modal_additions_container .addition:last').length == 0
-      $('#cart_add_item_modal_additions_container').prepend($addition)
-    else
-      $('#cart_add_item_modal_additions_container .addition:last').after($addition)
+    $('#cart_add_item_modal_additions_container').append $addition
 
     $addition.fadeIn 'fast', ->
       Cart.calculate_price()

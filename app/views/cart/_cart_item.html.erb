@@ -18,7 +18,7 @@
         </li>
       <% elsif cart_item.quantitable? %>
         <li>
-          <%= number_to_currency cart_item.product.price %> x <%= cart_item.quantity %> units
+          &nbsp<%= number_to_currency cart_item.product.price %> x <%= cart_item.quantity %> units
         </li>
       <% end %>
       <% if cart_item.additionable? %>
