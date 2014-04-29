@@ -38,6 +38,8 @@ $(document).on('ready page:load', function () {
   Application.bind_carousel();
 
   Application.bind_isotope('.isotope_contenteiner', '.isotope_item');
+
+  Home.bind_slider_revolution();
 });
 
 var Application = {
@@ -135,3 +137,29 @@ var Cart = {
     });
   }
 };
+
+var Home = {
+
+  /* ******************************************** */
+  /*  JS for SLIDER REVOLUTION  */
+  /* ******************************************** */
+  bind_slider_revolution: function() {
+
+    $('.tp-banner').revolution({
+        delay:9000,
+        startheight:500,
+        hideThumbs:10,
+        navigationType:"bullet",
+        hideArrowsOnMobile:"on",
+        touchenabled:"on",
+        onHoverStop:"on",
+        navOffsetHorizontal:0,
+        navOffsetVertical:20,
+        stopAtSlide:-1,
+        stopAfterLoops:-1,
+        shadow:0,
+        fullWidth:"on",
+        fullScreen:"off"
+    });
+  }
+}

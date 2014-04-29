@@ -3,7 +3,12 @@ class HomeController < ApplicationController
   before_action :set_product, only: [:product]
   before_action :set_category, only: [:category]
 
+  def index
+    render layout:'generic'
+  end
+
   def shopping
+
   end
 
   def category
