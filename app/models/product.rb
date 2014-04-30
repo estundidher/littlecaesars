@@ -21,6 +21,13 @@ class Product < ActiveRecord::Base
                        .order(:name).limit(limit)
   }
 
+  scope :shoppable_additionable, -> (limit = nil) {
+
+    where(enabled:true).joins(:type)
+                       .where(product_types: {shoppable:true, additionable:true})
+                       .order(:name).limit(limit)
+  }
+
   has_many :prices, dependent: :destroy
   has_many :sizes, through: :prices
 

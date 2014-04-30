@@ -1,27 +1,27 @@
-<%= f.hidden_field :product_id, value: product.id %>
-<%= f.hidden_field :price_id, value: product.prices.first.id %>
-<div id="sizes_carousel" class="carousel slide">
-  <div class="carousel-inner">
-    <% product.prices.each_with_index do |price, index| %>
-      <div class="item<%= ' active' if index == 0 %>">
-        <input type="hidden" class="id" id="sizes_carousel_price" value="<%= price.id %>" />
-        <%= image_tag product.photo.url(:medium), alt:price.size.name %>
-        <div class="carousel-caption">
-          <h4><%= price.size.name %></h4>
-          <p><%= price.size.description %></p>
-        </div>
-        <span class="hot-tag br-red">
-          <%= number_to_currency price.value %>
-        </span>
-      </div>
+<div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+    <i class='glyphicon glyphicon-cutlery'></i>&nbsp;
+    <span id="cart_add_item_modal_size_name">
+      <% default = product.prices.first %>
+      <%= default.size.name %> (<%= number_to_currency default.value %>)
+    </span>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <% product.prices.each do |price| %>
+      <li>
+        <a href="JavaScript:void(0);" class="cart_add_item_modal_size" data-id="<%= price.id %>"
+          data-name="<%= price.size.name %> (<%= number_to_currency price.value %>)">
+          <%= price.size.name %>
+          <span class="size-price">
+            <%= number_to_currency price.value %>
+          </span>
+          <br>
+          <div class="size-price-small">
+            (<%= price.size.description %>)
+          </div>
+        </a>
+      </li>
     <% end %>
-  </div>
-  <div class="carousel-controls">
-    <a class="left carousel-control" href="#sizes_carousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#sizes_carousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-  </div>
+  </ul>
 </div>

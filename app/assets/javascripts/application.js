@@ -36,9 +36,8 @@ $(document).on('ready page:load', function () {
   Application.bind_tooltip();
   Application.bind_scroolToTop();
   Application.bind_carousel();
-
+  Application.bind_tabs();
   Application.bind_isotope('.isotope_contenteiner', '.isotope_item');
-
   Home.bind_slider_revolution();
 });
 
@@ -126,6 +125,13 @@ var Application = {
         e.preventDefault();
         $("html, body").animate({ scrollTop: 0 }, 'slow');
         return false;
+    });
+  },
+
+  bind_tabs: function() {
+    $('.nav-tabs a').click(function (e) {
+       e.preventDefault();
+       $(this).tab('show');
     });
   }
 };

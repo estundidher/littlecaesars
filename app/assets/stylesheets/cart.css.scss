@@ -24,12 +24,31 @@ $screen-sm-min:              $screen-sm !default;
   border: 1px solid #ecdd94;
 }
 
-.cart-modal span.item-price {
+.cart-modal span.item-price, span.size-price {
   font-size: 20px;
   font-family: 'Open Sans Condensed', sans-serif;
   line-height: 26px;
   font-weight: 700;
   color: #f75353;
+}
+
+.cart-modal .btn-group .btn.btn-warning {
+  margin-left: 5px;
+}
+
+.cart-modal span.size-price {
+  font-size: 13px;
+}
+
+.cart-modal .size-price-small {
+  font-size: 10px;
+  margin-top: -5px;
+}
+
+.cart-modal .dropdown-menu > li > a {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 12px;
 }
 
 /*#####################
@@ -84,128 +103,3 @@ Additional Styles (required)
 .cart-modal .additionables h4 {
     padding-left: 10px;
 }
-
-// Optional captions
-// -----------------------------
-// Hidden by default for smaller viewports
-.cart-modal .carousel .carousel-caption {
-  //position: absolute;
-  //left: 15%;
-  //right: 15%;
-  //bottom: 20px;
-  z-index: 10;
-  //padding-top: 20px;
-  //padding-bottom: 20px;
-  color: $carousel-caption-color;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 5px;
-
-  background:#111;
-  opacity: 0.8;
-  transition:opacity 0.3s;
-
-  text-align: center;
-  text-shadow: $carousel-text-shadow;
-  & .btn {
-    text-shadow: none; // No shadow for button elements in carousel-caption
-  }
-}
-
-.cart-modal .carousel .carousel-caption h4 {
-  margin: 0px;
-}
-.cart-modal .carousel .carousel-caption h4, .carousel-caption p {
-  color: #ffffff;
-  line-height: 20px;
-}
-
-.cart-modal .carousel .carousel-caption p {
-  margin-bottom: 0px;
-  font-size: 12px;
-  color: #ffffff !important;
-}
-
-// Scale up controls for tablets and up
-@media screen and (min-width: $screen-sm-min) {
-
-  // Scale up the controls a smidge
-  .cart-modal .carousel .carousel-control {
-    .glyphicons-chevron-left,
-    .glyphicons-chevron-right,
-    .icon-prev,
-    .icon-next {
-      width: 30px;
-      height: 30px;
-      margin-top: -15px;
-      margin-left: -15px;
-      font-size: 30px;
-    }
-  }
-
-  // Show and left align the captions
-  .cart-modal .carousel .carousel-caption {
-    left: 0px;
-    right: 0px;
-    padding-bottom: 0px;
-  }
-
-  // Move up the indicators
-  .cart-modal .carousel .carousel-indicators {
-    bottom: 20px;
-  }
-}
-
-.cart-modal .carousel .item .hot-tag {
-  top: 10px;
-  right: 10px;
-  z-index: 20;
-  width: 45px;
-  height: 45px;
-  line-height: 45px;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: 'Open Sans Condensed', sans-serif;
-  border: 0;
-  border-top-right-radius: 15px;
-}
-
-#sizes_carousel .carousel-control.right {
-  left: auto;
-  right: -26px;
-}
-
-#sizes_carousel .carousel-control {
-  left: -15px;
-}
-
-/*
-
-.carousel-control.right {
-left: auto;
-right: 15px;
-}
-.carousel-control {
-position: absolute;
-top: 40%;
-left: 15px;
-width: 40px;
-height: 40px;
-margin-top: -20px;
-font-size: 60px;
-font-weight: 100;
-line-height: 30px;
-color: #ffffff;
-text-align: center;
-background: #222222;
-border: 3px solid #ffffff;
--webkit-border-radius: 23px;
--moz-border-radius: 23px;
-border-radius: 23px;
-opacity: 0.5;
-filter: alpha(opacity=50);
-}
-
-*/

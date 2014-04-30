@@ -4,9 +4,10 @@
 
 $(document).ready ->
 
-  $(document).on 'slid', '#sizes_carousel', (e) ->
-    console.log '#sizes_carousel slid event fired! id : ' + $('#sizes_carousel .item.active .id').val()
-    $('#cart_item_sizable_additionable_price_id').val $('#sizes_carousel .item.active .id').val()
+  $(document).on 'click', '.cart_add_item_modal_size', (e) ->
+    console.log 'cart_add_item_modal_size. clicked! id : ' + $(this).data('id')
+    $('.cart_item_sizable_price_id').val $(this).data('id')
+    $('#cart_add_item_modal_size_name').html $(this).data('name')
     Cart.calculate_price()
 
   $(document).on 'click', '.cart-modal .label a', (e) ->
@@ -21,6 +22,7 @@ $(document).ready ->
     console.log "add_to_cart 'ajax:success' fired!"
     $('#modal_container').empty().append xhr.responseText
     Application.bind_carousel();
+    Application.bind_tabs();
     $('#cart_add_item_modal').modal 'show'
 
   $(document).on 'click', '.cart_add_item_save', (e) ->
