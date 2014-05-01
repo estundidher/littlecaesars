@@ -28,6 +28,14 @@ class Product < ActiveRecord::Base
                        .order(:name).limit(limit)
   }
 
+  scope :shoppable_additionable_splittable, -> (limit = nil) {
+
+    where(enabled:true).joins(:type, :sizes)
+                       .where(product_types: {shoppable:true, additionable:true})
+                       .where(sizes: {splittable:true})
+                       .order(:name).limit(limit)
+  }
+
   has_many :prices, dependent: :destroy
   has_many :sizes, through: :prices
 
@@ -37,6 +45,14 @@ class Product < ActiveRecord::Base
 
   has_attached_file :photo,
                     styles: {large:'400x450>', medium:'300x300>', mini:'120x60>', thumb:'100x100>'},
+                    default_url: '/images/:style/missing.png'
+
+  has_attached_file :photo_left,
+                    styles: {large:'175x250>'},
+                    default_url: '/images/:style/missing.png'
+
+  has_attached_file :photo_right,
+                    styles: {large:'175x250>'},
                     default_url: '/images/:style/missing.png'
 
   belongs_to :type,
@@ -63,6 +79,19 @@ class Product < ActiveRecord::Base
             numericality: true,
             presence: true, if: :priceable?
 
+  validates_attachment :photo,
+                       content_type: {content_type:['image/jpg', 'image/jpeg', 'image/gif', 'image/png']},
+                       size: {in: 0..500.kilobytes}
+
+  validates_attachment :photo_left,
+                       content_type: {content_type:['image/jpg', 'image/jpeg', 'image/gif', 'image/png']},
+                       size: {in: 0..500.kilobytes},
+                       presence: true, if: :splittable?
+
+  validates_attachment :photo_right,
+                       content_type: {content_type:['image/jpg', 'image/jpeg', 'image/gif', 'image/png']},
+                       size: {in: 0..500.kilobytes},
+                       presence: true, if: :splittable?
   def priceable?
     !self.try(:type).try(:sizable?)
   end
@@ -70,10 +99,6 @@ class Product < ActiveRecord::Base
   def sizable?
     self.try(:type).try(:sizable?)
   end
-
-  validates_attachment :photo,
-                       content_type: {content_type:['image/jpg', 'image/jpeg', 'image/gif', 'image/png']},
-                       size: {in: 0..500.kilobytes}
 
   def items_friendly limit = nil
     if limit
@@ -93,6 +118,10 @@ class Product < ActiveRecord::Base
         self.description
       end
     end
+  end
+
+  def splittable?
+    self.sizes.map{|size| size.splittable} if self.sizable? and self.sizes.any?
   end
 
   def to_param

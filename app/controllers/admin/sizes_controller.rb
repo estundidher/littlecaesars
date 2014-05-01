@@ -91,6 +91,6 @@ class Admin::SizesController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def size_params
-      params.require(:size).permit :name, :description
+      params.require(:size).permit :name, :description, :splittable
     end
 end

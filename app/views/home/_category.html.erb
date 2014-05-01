@@ -1,17 +1,16 @@
 <%= link_to category_path(category), {title: category.name} do %>
   <h3><%= category.name %></h3>
 <% end %>
+
 <div class="row">
   <% category.products.shoppable.each do |product| %>
     <div class="col-md-3 col-sm-6">
-      <!-- Shopping items -->
-      <div class="shopping-item">
+      <div class="shopping-item"> <!-- Shopping items -->
         <!-- Image -->
         <%= link_to product_path(product), {title: product.describe} do %>
           <%= image_tag product.photo.url(:large), class: 'img-responsive', alt: product.describe %>
         <% end %>
-        <!-- Shopping item name / Heading -->
-        <h4 class="pull-left"> <%= product.name %> </h4>
+        <h4 class="pull-left"> <%= product.name %> </h4><!-- Shopping item name / Heading -->
         <div class="clearfix"></div>
         <!-- Paragraph -->
         <p> <%= product.describe 30 %> </p>
@@ -24,14 +23,29 @@
         <% end %>
         <!-- Buy now button -->
         <div class="visible-xs">
-          <a class="btn btn-danger btn-sm" href="#">Buy Now</a>
+          <% if customer_signed_in? %>
+            <% if product.type.additionable? %>
+              <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                  cart_path(product), class: "btn btn-danger btn-sm" %>
+            <% else %>
+              <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                  cart_new_item_path(product), remote: true, class: "btn btn-danger btn-sm" %>
+            <% end %>
+          <% else %>
+            <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                new_customer_registration_path, class: "btn btn-danger btn-sm" %>
+          <% end %>
         </div>
         <!-- Shopping item hover block & link -->
         <div class="item-hover br-red hidden-xs"></div>
           <% if customer_signed_in? %>
-            <%= link_to t('links.add_to', model_name:Cart.model_name.human),
-                cart_new_item_path(product),
-                remote: true, class: "link hidden-xs add_to_cart" %>
+            <% if product.type.additionable? %>
+              <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                  cart_path(product), class: "link hidden-xs" %>
+            <% else %>
+              <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                  cart_new_item_path(product), remote: true, class: "link hidden-xs add_to_cart" %>
+            <% end %>
           <% else %>
             <%= link_to t('links.add_to', model_name:Cart.model_name.human),
                 new_customer_registration_path, class: "link hidden-xs" %>

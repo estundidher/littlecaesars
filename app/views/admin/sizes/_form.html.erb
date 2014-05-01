@@ -2,6 +2,12 @@
 
   <%= tb_show_errors_for @size %>
 
+  <div class="checkbox <%= tb_has_error @size, :splittable %>">
+    <%= f.label :splittable do %>
+      <%= f.check_box :splittable %> <%= Size.human_attribute_name 'splittable' %>
+    <% end %>
+  </div>
+
   <div class="form-group <%= tb_has_error @size, :name %>">
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>

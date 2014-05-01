@@ -106,6 +106,8 @@ class Admin::ProductsController < Admin::BaseController
                                       :enabled,
                                       :description,
                                       :photo,
+                                      :photo_left,
+                                      :photo_right,
                                       :price,
                                       :product_type_id,
                                       :category_id,

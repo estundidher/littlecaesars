@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.ui.core
 //= require jquery.ui.widget
@@ -38,7 +39,6 @@ $(document).on('ready page:load', function () {
   Application.bind_carousel();
   Application.bind_tabs();
   Application.bind_isotope('.isotope_contenteiner', '.isotope_item');
-  Home.bind_slider_revolution();
 });
 
 var Application = {

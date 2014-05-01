@@ -36,19 +36,26 @@ $screen-sm-min:              $screen-sm !default;
   margin-right: 5px;
 }
 
-.cart-modal span.size-price {
+.cart-modal .splittable .dropdown-menu {
+  left: -60px;
+}
+
+.cart-modal .sizable span.size-price {
   font-size: 13px;
 }
 
-.cart-modal .size-price-small {
+.cart-modal .sizable .size-price-small {
   font-size: 10px;
   margin-top: -5px;
 }
 
 .cart-modal .dropdown-menu > li > a {
+  font-size: 12px;
+}
+
+.cart-modal .sizable .dropdown-menu > li > a {
   padding-top: 0px;
   padding-bottom: 0px;
-  font-size: 12px;
 }
 
 /*#####################
@@ -101,5 +108,31 @@ Additional Styles (required)
 }
 
 .cart-modal .additionables h4 {
-    padding-left: 10px;
+  padding-left: 10px;
 }
+
+.splittable .carousel-control.left, .carousel-control.right {
+  background-image:none !important;
+}
+
+.carousel.vertical .carousel-inner {
+  height: 100%;
+}
+.carousel.vertical .item {
+  -webkit-transition: 0.6s ease-in-out top;
+  -moz-transition:    0.6s ease-in-out top;
+  -ms-transition:     0.6s ease-in-out top;
+  -o-transition:      0.6s ease-in-out top;
+  left:               0;
+}
+.carousel.vertical .active,
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right    { top:     0; }
+.carousel.vertical .next,
+.carousel.vertical .active.right  { top:  100%; }
+.carousel.vertical .prev,
+.carousel.vertical .active.left   { top: -100%; }
+
+/*
+
+*/

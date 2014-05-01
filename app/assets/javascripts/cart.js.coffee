@@ -8,15 +8,23 @@ $(document).ready ->
     console.log 'cart_add_item_modal_size. clicked! id : ' + $(this).data('id')
     $('.cart_item_sizable_price_id').val $(this).data('id')
     $('#cart_add_item_modal_size_name').html $(this).data('name')
+    if $(this).data('splittable')
+      $('.splittable .btn').removeClass 'disabled'
+    else
+      if !$('.splittable .btn').hasClass 'disabled'
+        $('.splittable .btn').addClass 'disabled'
+    Cart.calculate_price()
+
+  $(document).on 'change', '.cart_add_item_modal_quantity', (e) ->
     Cart.calculate_price()
 
   $(document).on 'click', '.cart-modal .label a', (e) ->
     if $(this).parent().hasClass('label-info')
       $(this).parent().removeClass('label-info').addClass('label-default')
-      $(this).find('i').removeClass('glyphicon-remove').removeClass('white').addClass('glyphicon-plus black')
+      $(this).find('i').removeClass('glyphicon-remove').removeClass('white').addClass('glyphicon-plus-sign')
     else
       $(this).parent().removeClass('label-default').addClass('label-info')
-      $(this).find('i').removeClass('glyphicon-plus').removeClass('black').addClass('glyphicon-remove white')
+      $(this).find('i').removeClass('glyphicon-plus-sign').addClass('glyphicon-remove white')
 
   $(document).on 'ajax:success', '.add_to_cart', (e, data, status, xhr) ->
     console.log "add_to_cart 'ajax:success' fired!"
@@ -79,23 +87,40 @@ $(document).ready ->
     Cart.calculate_price()
 
   $(document).on 'click', '#toppings_carousel_button_add', (e) ->
-
     $remove = $('<i>', {'class': 'glyphicon glyphicon-remove white'})
-
     $remove.on 'click', ->
       $div = $(this).parent().parent()
       $div.fadeOut 'fast', ->
         $div.remove()
         Cart.calculate_price()
-
     $addition = $('<div>', {'class': 'addition'}).hide().append(
       $('<span>', {'class': 'label label-warning'})
         .append($('<input>', {type: 'hidden', name:'cart_item_sizable_additionable[addition_ids][]', value: $(this).data("id")}))
         .append($(this).data("name"))
         .append(' (' + $(this).data("price") + ') ')
         .append($remove)).prepend(' ')
-
     $('#cart_add_item_modal_additions_container').append $addition
-
     $addition.fadeIn 'fast', ->
       Cart.calculate_price()
+
+#split
+$(document).on 'slid.bs.carousel', '.splittable_top', ->
+  console.log "splittable_top 'slide.bs.carousel' fired! id: " + $(this).find('.active .splittable_top_id').val()
+
+$(document).on 'ajax:success', '.btn-group.splittable a', (e, data, status, xhr) ->
+  console.log ".btn-group.splittable a 'ajax:success' fired! category: " + $(this).data('category') + ', splittable: ' + $(this).data('splittable')
+  $('.btn-group.splittable.' + $(this).data('splittable')).find('.title').empty().html($(this).data('category'))
+  $('#splittable_' + $(this).data('splittable') + '_container').hide().empty()
+                                                               .append(xhr.responseText).fadeIn 'fast'
+  Application.bind_carousel();
+
+
+
+
+
+
+
+
+
+
+

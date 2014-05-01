@@ -19,6 +19,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 4.1.1'
 gem 'meiomask-rails', '~> 1.1.12'
+gem 'jquery-turbolinks'
 
 # http://eonasdan.github.io/bootstrap-datetimepicker/
 gem 'momentjs-rails', '~> 2.5.0'

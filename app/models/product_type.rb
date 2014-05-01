@@ -13,8 +13,4 @@ class ProductType < ActiveRecord::Base
   def quantitable?
     !self.additionable?
   end
-
-  def splittable
-    !self.quantitable?
-  end
 end

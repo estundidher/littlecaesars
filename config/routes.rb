@@ -8,21 +8,25 @@ Rails.application.routes.draw do
   root 'home#index'
 
   #home
-  get 'shopping/:id', to: 'home#category', as: :category
-  get 'shopping',     to: 'home#shopping', as: :shopping
-  get 'contact',      to: 'home#contact',  as: :contact
-  get 'product/:id',  to: 'home#product',  as: :product
-  get 'pick_up',      to: 'home#pick_up',  as: :pick_up
-  get 'about',        to: 'home#about',    as: :about
+  get 'shopping/:id',         to: 'home#category', as: :category
+  get 'shopping',             to: 'home#shopping', as: :shopping
+  get 'contact',              to: 'home#contact',  as: :contact
+  get 'shopping/product/:id', to: 'home#product',  as: :product
+  get 'pick_up',              to: 'home#pick_up',  as: :pick_up
+  get 'about',                to: 'home#about',    as: :about
 
   #cart
-  get 'cart/add/:product_id',  to: 'cart#add',      as: :cart_new_item
-  post 'cart/add',             to: 'cart#create',   as: :cart_item_sizables
-  post 'cart/add',             to: 'cart#create',   as: :cart_item_quantitables
-  post 'cart/add',             to: 'cart#create',   as: :cart_item_sizable_additionables
-  post 'cart/calculate',       to: 'cart#calculate',as: :cart_item_calculate
-  delete 'cart/:id',           to: 'cart#destroy',  as: :cart_remove_item
-  get 'cart/:id/checkout',     to: 'cart#checkout', as: :cart_checkout
+  get 'cart/add/:product_id',        to: 'cart#modal',    as: :cart_new_item
+  post 'cart/add',                   to: 'cart#create',   as: :cart_item_sizables
+  post 'cart/add',                   to: 'cart#create',   as: :cart_item_quantitables
+  post 'cart/add',                   to: 'cart#create',   as: :cart_item_sizable_additionables
+  post 'cart/calculate',             to: 'cart#calculate',as: :cart_item_calculate
+  delete 'cart/:id',                 to: 'cart#destroy',  as: :cart_remove_item
+  get 'cart/:id/checkout',           to: 'cart#checkout', as: :cart_checkout
+
+  #cart page
+  get 'cart(/:product_id)',                to: 'cart#index',      as: :cart
+  get 'cart/split/:side/:category_id',to: 'cart#splittable', as: :cart_splittable
 
   namespace :admin do
 

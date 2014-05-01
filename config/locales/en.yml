@@ -285,6 +285,7 @@ en:
       size:
         name: Name
         description: Description
+        splittable: Allow Split
       category:
         name: Name
       price:
@@ -302,6 +303,8 @@ en:
         description: Description
         category: Category
         photo: Photo
+        photo_left: Left Photo
+        photo_right: Right Photo
         items: Items
         prices: Prices
       place:

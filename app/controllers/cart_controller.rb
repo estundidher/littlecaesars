@@ -1,25 +1,24 @@
 class CartController < ApplicationController
 
-  before_action :set_cart, only: [:add, :checkout, :create, :calculate]
+  before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index]
   before_action :set_cart_item, only: [:destroy]
+  before_action :set_product, only: [:modal, :calculate, :create, :index]
+  before_action :set_category, only: [:splittable]
 
   # GET /cart/add/1
-  def add
-    @product = Product.find params[:product_id]
+  def modal
     @cart_item = @cart.new_item @product
     render partial: 'add_modal', locals:{cart_item:@cart_item, product: @product}, layout: nil
   end
 
   # POST /cart/calculate
   def calculate
-    @product = Product.find cart_item_params[:product_id]
     @cart_item = @cart.new_item @product, cart_item_params
     render partial:'form_price', locals:{cart_item:@cart_item}, layout: nil
   end
 
   # POST /cart/add/1
   def create
-    @product = Product.find cart_item_params[:product_id]
     @cart_item = @cart.new_item @product, cart_item_params
     if @cart_item.save
       render partial:'cart', locals:{cart:@cart_item.cart}, layout: nil
@@ -42,6 +41,20 @@ class CartController < ApplicationController
     render partial:'checkout_modal', locals:{cart:@cart}, layout: nil
   end
 
+  # GET /cart
+  def index
+    @cart_item = CartItemSizableAdditionable.new cart:@cart
+    @categories = Category.with_shoppable_products
+    @products = @categories.first.products.shoppable_additionable_splittable
+    render layout:'generic'
+  end
+
+  # GET /cart/splittable/:side/:category_id
+  def splittable
+    @products = @category.products.shoppable_additionable
+    render partial:'splittable', locals:{side:params[:side], products:@products}, layout: nil
+  end
+
 private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -55,6 +68,18 @@ private
 
   def set_cart_item
     @cart_item = CartItem.find(params[:id])
+  end
+
+  def set_product
+    unless params[:product_id].nil?
+      @product = Product.find params[:product_id]
+    end
+  end
+
+  def set_category
+    unless params[:category_id].nil?
+      @category = Category.find params[:category_id]
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
