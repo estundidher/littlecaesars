@@ -1,0 +1,23 @@
+<div id="splittable_<%= side %>" class="carousel slide vertical splittable <%= side %>">
+  <div class="carousel-inner">
+    <% products.each_with_index do |product, index| %>
+      <div class="item<%= ' active' if index == 0 %>" style="text-align: center;">
+        <% if product.photo.exists? %>
+          <% if side == 'right' %>
+            <%= image_tag product.photo_right.url(:large), class: 'img-responsive', alt: product.name %>
+          <% else %>
+            <%= image_tag product.photo_left.url(:large), class: 'img-responsive', alt: product.name %>
+          <% end %>
+        <% else %>
+          <img src="http://placehold.it/175x250/" alt="<%= product.name %>" class"img-responsive">
+        <% end %>
+       </div>
+    <% end %>
+  </div>
+  <a class="left carousel-control" href="#splittable_<%= side %>" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-down"></span>
+  </a>
+  <a class="right carousel-control" href="#splittable_<%= side %>" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+</div>

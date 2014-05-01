@@ -1,0 +1,23 @@
+<div class="btn-group sizable">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+    <i class='glyphicon glyphicon-cutlery'></i>&nbsp;
+    <span id="cart_add_item_modal_size_name">
+      <%= cart_item.price.size.name %> (<%= number_to_currency cart_item.price.value %>)
+    </span>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <% product.prices.each do |price| %>
+      <li>
+        <a href="JavaScript:void(0);" class="cart_add_item_modal_size" data-id="<%= price.id %>"
+          data-name="<%= price.size.name %> (<%= number_to_currency price.value %>)"
+          data-splittable="<%= price.size.splittable %>">
+          <%= price.size.name %>
+          <span class="size-price"><%= number_to_currency price.value %></span>
+          <br>
+          <div class="size-price-small">(<%= price.size.description %>)</div>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>

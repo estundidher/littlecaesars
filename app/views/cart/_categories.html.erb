@@ -1,0 +1,19 @@
+ <div class="btn-group splittable <%= splittable %>" style="width: 100%;">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="width: 100%; text-align: <%= align %>;">
+    <% if align == 'left' %>
+      <span class="caret"></span>
+    <% end %>
+    &nbsp;<span class="title"><%= @categories.first.name %><span>&nbsp;
+    <% if align == 'right' %>
+      <span class="caret"></span>
+    <% end %>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <% @categories.each do |category| %>
+      <li>
+        <%= link_to category.name, cart_splittable_path(splittable, category), remote: true,
+            data: {splittable: splittable, category: category.name} %>
+      </li>
+    <% end %>
+  </ul>
+</div>
