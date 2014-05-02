@@ -1,7 +1,7 @@
 <% cache("splittable_#{category.to_param}_#{side}") do %>
   <div id="splittable_<%= side %>" class="carousel slide vertical splittable <%= side %>">
+    <input type="hidden" id="cache_id" value="<%= "splittable_#{category.to_param}_#{side}" %>">
     <div class="carousel-inner">
-      <input type="hidden" id="cache_id" value="<%= "splittable_#{category.to_param}_#{side}" %>">
       <% products.each_with_index do |product, index| %>
         <% cache("splittable_#{category.to_param}_#{side}_#{product.to_param}") do %>
           <div class="item<%= ' active' if index == 0 %>" style="text-align: center;" data-id="<%= product.id %>" data-side="<%= side %>">
