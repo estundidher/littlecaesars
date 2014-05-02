@@ -2,10 +2,16 @@
   <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="width: 100%; text-align: <%= align %>;">
     <% if align == 'left' %>
       <span class="caret"></span>
+    <% else %>
+      <%= image_tag 'loader_danger.gif', class:'loader', style:'display:none' %>
     <% end %>
-    &nbsp;<span class="title"><%= @categories.first.name %><span>&nbsp;
+    &nbsp;
+    <span class="title"><%= @category.name %></span>
+    &nbsp;
     <% if align == 'right' %>
       <span class="caret"></span>
+    <% else %>
+      <%= image_tag 'loader_danger.gif', class:'loader', style:'display:none' %>
     <% end %>
   </button>
   <ul class="dropdown-menu" role="menu">

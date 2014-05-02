@@ -107,12 +107,19 @@ $(document).ready ->
 $(document).on 'slid.bs.carousel', '.splittable_top', ->
   console.log "splittable_top 'slide.bs.carousel' fired! id: " + $(this).find('.active .splittable_top_id').val()
 
+$(document).on 'ajax:before', '.btn-group.splittable a', (e, data, status, xhr) ->
+  console.log ".btn-group.splittable a 'ajax:before' fired! category: " + $(this).data('category') + ', splittable: ' + $(this).data('splittable')
+  $('.btn-group.splittable.' + $(this).data('splittable') + ' .loader').fadeIn 'fast'
+  $dropdown = $('.btn-group.splittable.' + $(this).data('splittable'))
+  $dropdown.find('.title').empty().html($(this).data('category'))
+  $dropdown.removeClass('open')
+
 $(document).on 'ajax:success', '.btn-group.splittable a', (e, data, status, xhr) ->
   console.log ".btn-group.splittable a 'ajax:success' fired! category: " + $(this).data('category') + ', splittable: ' + $(this).data('splittable')
-  $('.btn-group.splittable.' + $(this).data('splittable')).find('.title').empty().html($(this).data('category'))
   $('#splittable_' + $(this).data('splittable') + '_container').hide().empty()
                                                                .append(xhr.responseText).fadeIn 'fast'
   Application.bind_carousel();
+  $('.btn-group.splittable.' + $(this).data('splittable') + ' .loader').fadeOut 'fast'
 
 
 

@@ -8,7 +8,7 @@ class CartController < ApplicationController
   # GET /cart/add/1
   def modal
     @cart_item = @cart.new_item @product
-    render partial: 'add_modal', locals:{cart_item:@cart_item, product: @product}, layout: nil
+    render partial: 'add_modal', locals:{cart_item:@cart_item, product:@product}, layout: nil
   end
 
   # POST /cart/calculate
@@ -23,7 +23,7 @@ class CartController < ApplicationController
     if @cart_item.save
       render partial:'cart', locals:{cart:@cart_item.cart}, layout: nil
     else
-      render partial:'form', locals:{cart_item:@cart_item, product: @product}, layout: nil, status: :unprocessable_entity
+      render partial:'form', locals:{cart_item:@cart_item, product:@product}, layout:nil, status: :unprocessable_entity
     end
   end
 
@@ -45,14 +45,15 @@ class CartController < ApplicationController
   def index
     @cart_item = CartItemSizableAdditionable.new cart:@cart
     @categories = Category.with_shoppable_products
-    @products = @categories.first.products.shoppable_additionable_splittable
+    @category = @categories.first
+    @products = @category.products.shoppable_additionable_splittable
     render layout:'generic'
   end
 
   # GET /cart/splittable/:side/:category_id
   def splittable
     @products = @category.products.shoppable_additionable
-    render partial:'splittable', locals:{side:params[:side], products:@products}, layout: nil
+    render partial:'splittable', locals:{side:params[:side], category:@category, products:@products}, layout: nil
   end
 
 private

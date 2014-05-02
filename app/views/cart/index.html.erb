@@ -18,10 +18,10 @@
 
       <div class="col-md-4 col-sm-4">
         <div id="splittable_left_container" class="col-md-6 col-sm-6" style="padding-right: 0px;">
-          <%= render partial:'splittable', locals:{side:'left', products:@products} %>
+          <%= render partial:'splittable', locals:{side:'left', category:@category, products:@products} %>
         </div>
         <div id="splittable_right_container" class="col-md-6 col-sm-6" style="padding-left: 0px;">
-          <%= render partial:'splittable', locals:{side:'right', products:@products} %>
+          <%= render partial:'splittable', locals:{side:'right', category:@category, products:@products} %>
         </div>
       </div>
 
