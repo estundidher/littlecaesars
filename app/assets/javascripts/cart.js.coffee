@@ -104,8 +104,9 @@ $(document).ready ->
       Cart.calculate_price()
 
 #split
-$(document).on 'slid.bs.carousel', '.splittable_top', ->
-  console.log "splittable_top 'slide.bs.carousel' fired! id: " + $(this).find('.active .splittable_top_id').val()
+$(document).on 'slid.bs.carousel', '.splittable', ->
+  $active = $(this).find('.active')
+  console.log "splittable_top 'slide.bs.carousel' fired! id: " + $active.data('id') + ', side: ' + $active.data('side')
 
 $(document).on 'ajax:before', '.btn-group.splittable a', (e, data, status, xhr) ->
   console.log ".btn-group.splittable a 'ajax:before' fired! category: " + $(this).data('category') + ', splittable: ' + $(this).data('splittable')

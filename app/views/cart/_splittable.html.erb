@@ -3,7 +3,7 @@
     <div class="carousel-inner">
       <% products.each_with_index do |product, index| %>
         <% cache(p) do %>
-          <div class="item<%= ' active' if index == 0 %>" style="text-align: center;">
+          <div class="item<%= ' active' if index == 0 %>" style="text-align: center;" data-id="<%= product.id %>" data-side="<%= side %>">
             <% if product.photo.exists? %>
               <% if side == 'right' %>
                 <%= image_tag product.photo_right.url(:large), class:'img-responsive', alt:product.name %>
