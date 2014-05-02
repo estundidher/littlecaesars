@@ -80,4 +80,7 @@ end
 
 gem 'foreigner'
 
+gem 'memcachier'
+gem 'dalli'
+
 ruby '2.1.1'
