@@ -11,12 +11,6 @@ class Admin::CustomersController < Admin::BaseController
     end
   end
 
-  # GET /customers
-  # GET /customers.json
-  def list
-    @customers = Customer.all
-  end
-
   # GET /customers/1
   # GET /customers/1.json
   def show

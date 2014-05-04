@@ -11,12 +11,6 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  # GET /users
-  # GET /users.json
-  def list
-    @users = User.all
-  end
-
   # GET /users/1
   # GET /users/1.json
   def show

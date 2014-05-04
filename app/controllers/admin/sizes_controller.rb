@@ -11,12 +11,6 @@ class Admin::SizesController < Admin::BaseController
     end
   end
 
-  # GET /sizes
-  # GET /sizes.json
-  def list
-    @sizes = Size.all
-  end
-
   # GET /sizes/1
   # GET /sizes/1.json
   def show

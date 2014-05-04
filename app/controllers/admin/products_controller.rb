@@ -5,16 +5,27 @@ class Admin::ProductsController < Admin::BaseController
   # GET /products
   # GET /products.json
   def index
-    respond_to do |format|
-      format.html { @products = Product.all }
-      format.json { @products = Product.order(:name) }
-    end
-  end
 
-  # GET /products
-  # GET /products.json
-  def list
-    @products = Product.all
+    @product = params[:product].present? ? Product.new(product_params) : Product.new
+
+    query = Product.all
+
+    if @product.name?
+      query = query.where('name ilike ?', "%#{@product.name}%")
+    end
+
+    if @product.product_type_id?
+      query = query.where(product_type_id:@product.product_type_id)
+    end
+
+    if @product.category_id?
+      query = query.where(category_id:@product.category_id)
+    end
+
+    respond_to do |format|
+      format.html { @products = query.order(:name) }
+      format.json { @products = query.order(:name) }
+    end
   end
 
   # GET /products/1

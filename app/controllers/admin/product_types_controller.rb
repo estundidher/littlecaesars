@@ -11,12 +11,6 @@ class Admin::ProductTypesController < Admin::BaseController
     end
   end
 
-  # GET /product_types
-  # GET /product_types.json
-  def list
-    @product_types = ProductType.all
-  end
-
   # GET /product_types/1
   # GET /product_types/1.json
   def show

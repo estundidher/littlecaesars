@@ -11,12 +11,6 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
-  # GET /categories
-  # GET /categories.json
-  def list
-    @categories = Category.all
-  end
-
   # GET /categories/1
   # GET /categories/1.json
   def show

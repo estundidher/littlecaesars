@@ -159,6 +159,7 @@ en:
   helpers:
     select:
       prompt: Please select
+      all: All
     submit:
       create: Create %{model}
       submit: Save %{model}
@@ -246,6 +247,7 @@ en:
     add: Add %{model_name}
     add_to: Add to %{model_name}
     add_simple: Add
+    search: Search
 
   titles:
     new: New %{model_name}
