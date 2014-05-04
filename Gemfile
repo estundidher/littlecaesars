@@ -81,7 +81,7 @@ end
 gem 'foreigner'
 
 #gem 'memcachier'
-gem 'memcached', '~> 1.7.2'
+#gem 'memcached', '~> 1.7.2'
 gem 'dalli', '~> 2.7.1'
 
 ruby '2.1.1'
