@@ -45,7 +45,11 @@ class CartController < ApplicationController
   def index
     @cart_item = CartItemSizableAdditionable.new cart:@cart
     @categories = Category.with_shoppable_products
-    @category = @categories.first
+    if @product.nil?
+      @category = @categories.first
+    else
+      @category = @product.category
+    end
     @products = @category.products.shoppable_additionable_splittable
     render layout:'generic'
   end

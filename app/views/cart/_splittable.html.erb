@@ -2,18 +2,19 @@
   <div id="splittable_<%= side %>" class="carousel slide vertical splittable <%= side %>">
     <input type="hidden" id="cache_id" value="<%= "splittable_#{category.to_param}_#{side}" %>">
     <div class="carousel-inner">
-      <% products.each_with_index do |product, index| %>
-        <% cache("splittable_#{category.to_param}_#{side}_#{product.to_param}") do %>
-          <div class="item<%= ' active' if index == 0 %>" style="text-align: center;" data-id="<%= product.id %>" data-side="<%= side %>">
-            <input type="hidden" id="cache_item_id" value="<%= "splittable_#{category.to_param}_#{side}_#{product.to_param}" %>">
-            <% if product.photo.exists? %>
+      <% active_index = (defined?(product) ? products.index(product) : 0) %>
+      <% products.each_with_index do |splittable, index| %>
+        <% cache("splittable_#{category.to_param}_#{side}_#{splittable.to_param}_#{(splittable.updated_at || splittable.created_at).to_i}") do %>
+          <div class="item<%= ' active' if index == active_index %>" style="text-align: center;" data-id="<%= splittable.id %>" data-side="<%= side %>">
+            <input type="hidden" id="cache_item_id" value="<%= "splittable_#{category.to_param}_#{side}_#{splittable.to_param}_#{splittable.updated_at.to_i}" %>">
+            <% if splittable.photo.exists? %>
               <% if side == 'right' %>
-                <%= image_tag product.photo_right.url(:large), class:'img-responsive', alt:product.name %>
+                <%= image_tag splittable.photo_right.url(:large), class:'img-responsive', alt:splittable.name %>
               <% else %>
-                <%= image_tag product.photo_left.url(:large), class:'img-responsive', alt:product.name %>
+                <%= image_tag splittable.photo_left.url(:large), class:'img-responsive', alt:splittable.name %>
               <% end %>
             <% else %>
-              <img src="http://placehold.it/175x250/" alt="<%= product.name %>" class"img-responsive">
+              <img src="http://placehold.it/175x250/" alt="<%= splittable.name %>" class"img-responsive">
             <% end %>
           </div>
         <% end %>
