@@ -103,16 +103,21 @@ $(document).ready ->
     $addition.fadeIn 'fast', ->
       Cart.calculate_price()
 
-loadProduct = (spliter) ->
-  $active = $(spliter).find('.active')
-  console.log ".splittable 'slide.bs.carousel' fired! id: " + $active.data('id') + ', side: ' + $active.data('side')
-  $('#splittable_' + $active.data('side') + '_title').hide().empty().html($active.data('name')).fadeIn 'fast'
-  $.get $active.data('url'), (data) ->
-    $('#splittable_' + $active.data('side') + '_additions_container').hide().empty().append(data).fadeIn 'fast'
+loadProduct = (item) ->
+  $item = $(item)
+  console.log ".loadProduct id: " + $item.data('id') + ', side: ' + $item.data('side')
+  $('#splittable_' + $item.data('side') + '_title').hide().empty().html($item.data('name')).fadeIn 'fast'
+  $.get $item.data('url'), (data) ->
+    $('#splittable_' + $item.data('side') + '_additions_container').hide().empty().append(data).fadeIn 'fast'
+
+$(document).on 'slide.bs.carousel', '.splittable', (e)->
+  console.log ".splittable 'slid.bs.carousel' fired! current: " + $(this).find('.active').index() + ', next: ' + $(e.relatedTarget).index()
+  loadProduct $(this).find('.item')[$(e.relatedTarget).index()]
 
 #split
-$(document).on 'slid.bs.carousel', '.splittable', ->
-  loadProduct this
+#$(document).on 'slid.bs.carousel', '.splittable', ->
+#  $active = $(spliter).find('.active')
+#  loadProduct this
 
 $(document).on 'ajax:success', '.btn-group.splittable a', (e, data, status, xhr) ->
   console.log ".btn-group.splittable a 'ajax:success' fired! category: " + $(this).data('category') + ', splittable: ' + $(this).data('splittable')
@@ -120,7 +125,7 @@ $(document).on 'ajax:success', '.btn-group.splittable a', (e, data, status, xhr)
                                                                .append(xhr.responseText).fadeIn 'fast'
   Application.bind_carousel();
   $('.btn-group.splittable.' + $(this).data('splittable') + ' .loader').fadeOut 'fast'
-  loadProduct $('#splittable_' + $(this).data('splittable'))
+  loadProduct $('#splittable_' + $(this).data('splittable')).find('.active')
 
 $(document).on 'ajax:before', '.btn-group.splittable a', (e, data, status, xhr) ->
   console.log ".btn-group.splittable a 'ajax:before' fired! category: " + $(this).data('category') + ', splittable: ' + $(this).data('splittable')
