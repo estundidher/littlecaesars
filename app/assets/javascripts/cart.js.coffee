@@ -125,13 +125,13 @@ $(document).on 'ajax:success', '.btn-group.splitter a', (e, data, status, xhr) -
 
 $(document).on 'ajax:before', '.btn-group.splitter a', (e, data, status, xhr) ->
   console.log ".btn-group.splitter a 'ajax:before' fired! category: " + $(this).data('category') + ', splitter: ' + $(this).data('splittable')
-  $('.btn-group.splitter.' + $(this).data('splitter') + ' .loader').fadeIn 'fast'
+  $('.btn-group.splitter.' + $(this).data('splittable') + ' .loader').fadeIn 'fast'
   $dropdown = $('.btn-group.splitter.' + $(this).data('splittable'))
   $dropdown.find('.title').empty().html($(this).data('category'))
   $dropdown.removeClass 'open'
 
 $(document).on 'ajax:success', '.btn-group.splitter a', (e, data, status, xhr) ->
-  console.log ".btn-group.splitter a 'ajax:success' fired! category: " + $(this).data('category') + ', splitter: ' + $(this).data('splittable')
+  console.log ".btn-group.splitter a 'ajax:success' fired! category: " + $(this).data('category') + ', splittable: ' + $(this).data('splittable')
   $('#splitter_' + $(this).data('splittable') + '_container').hide().empty()
                                                                .append(xhr.responseText).fadeIn 'fast'
   Application.bind_carousel();
