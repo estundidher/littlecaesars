@@ -106,18 +106,13 @@ $(document).ready ->
 loadProduct = (item) ->
   $item = $(item)
   console.log ".loadProduct id: " + $item.data('id') + ', side: ' + $item.data('side')
-  $('#splittable_' + $item.data('side') + '_title').hide().empty().html($item.data('name')).fadeIn 'fast'
   $.get $item.data('url'), (data) ->
+    $('#splittable_' + $item.data('side') + '_title').hide().empty().html($item.data('name')).fadeIn 'fast'
     $('#splittable_' + $item.data('side') + '_additions_container').hide().empty().append(data).fadeIn 'fast'
 
 $(document).on 'slide.bs.carousel', '.splittable', (e)->
   console.log ".splittable 'slid.bs.carousel' fired! current: " + $(this).find('.active').index() + ', next: ' + $(e.relatedTarget).index()
   loadProduct $(this).find('.item')[$(e.relatedTarget).index()]
-
-#split
-#$(document).on 'slid.bs.carousel', '.splittable', ->
-#  $active = $(spliter).find('.active')
-#  loadProduct this
 
 $(document).on 'ajax:success', '.btn-group.splittable a', (e, data, status, xhr) ->
   console.log ".btn-group.splittable a 'ajax:success' fired! category: " + $(this).data('category') + ', splittable: ' + $(this).data('splittable')
