@@ -2,7 +2,7 @@ class CartController < ApplicationController
 
   before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index]
   before_action :set_cart_item, only: [:destroy]
-  before_action :set_product, only: [:modal, :calculate, :create, :index]
+  before_action :set_product, only: [:modal, :calculate, :create, :index, :items]
   before_action :set_category, only: [:splittable]
 
   # GET /cart/add/1
@@ -58,6 +58,11 @@ class CartController < ApplicationController
   def splittable
     @products = @category.products.shoppable_additionable
     render partial:'splittable', locals:{side:params[:side], category:@category, products:@products}, layout: nil
+  end
+
+  # GET /cart/:product_id/items
+  def items
+    render partial:'additions', locals:{product:@product}, layout: nil
   end
 
 private

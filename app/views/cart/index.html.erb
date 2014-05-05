@@ -8,12 +8,26 @@
 
 <%= form_for @cart_item, html: {role:'form', id:'cart_item_form', class:'form-horizontal'}, remote: true do |f| %>
 
-  <div class="container" style="margin-top: 10px; padding-top: 10px; padding-bottom: 10px; background-color: white;">
+  <div class="container" style="margin-top: 20px; padding-top: 15px; padding-bottom: 10px; background-color: white;">
 
     <div class="row">
 
       <div class="col-md-3 col-sm-3">
-       <%= render partial:'categories', locals:{align:'right', splittable:'left'} %>
+        <%= render partial:'categories', locals:{align:'right', splittable:'left'} %>
+        <h4> 1/2 <span id="splittable_left_title"> <%= @product.name %> </span> </h4>
+        <br>
+        <h5> <%= Product.human_attribute_name 'ingredients' %> </h5 >
+        <div id="splittable_left_additions_container">
+          <%= render partial: 'additions', locals:{product:@product} %>
+        </div>
+        <br><br>
+        <a href="javascript:void(0);">
+          <i class="glyphicon glyphicon-plus-sign"> </i> Additions
+        </a>
+        &nbsp;
+        <a href="javascript:void(0);">
+          <i class="glyphicon glyphicon-comment"> </i> Obs
+        </a>
       </div>
 
       <div class="col-md-4 col-sm-4">
@@ -27,6 +41,20 @@
 
       <div class="col-md-3 col-sm-3">
         <%= render partial:'categories', locals:{align:'left', splittable:'right'} %>
+        <h4> 1/2 <span id="splittable_right_title"> <%= @product.name %> </span> </h4>
+        <br>
+        <h5> <%= Product.human_attribute_name 'ingredients' %> </h5 >
+        <div id="splittable_right_additions_container">
+          <%= render partial: 'additions', locals:{product:@product} %>
+        </div>
+        <br><br>
+        <a href="javascript:void(0);">
+          <i class="glyphicon glyphicon-plus-sign"> </i> Additions
+        </a>
+        &nbsp;
+        <a href="javascript:void(0);">
+          <i class="glyphicon glyphicon-comment"> </i> Obs
+        </a>
       </div>
 
       <div class="col-md-2 col-sm-2">

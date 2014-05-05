@@ -53,6 +53,10 @@ $screen-sm-min:              $screen-sm !default;
   font-size: 12px;
 }
 
+.btn-group.splittable.left .dropdown-menu {
+  left: 103px;
+}
+
 .cart-modal .sizable .dropdown-menu > li > a {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -97,13 +101,20 @@ Additional Styles (required)
   left:-45px;
 }
 
-.cart-modal .addition {
-  margin-right: 5px;
+.addition {
   display: inline-block;
   margin-top: 10px;
 }
 
-.cart-modal .addition i {
+/*
+.addition {
+  margin-right: 5px;
+  display: inline-block;
+  margin-top: 10px;
+}
+*/
+
+.addition i {
   cursor: pointer;
 }
 

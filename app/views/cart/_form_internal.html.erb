@@ -9,7 +9,10 @@
   <%= f.hidden_field :price_id, value: product.prices.first.id, class:'cart_item_sizable_price_id' %>
 <% end %>
 <% if product.type.additionable %>
-  <%= render partial:'form_additionable', locals: {cart_item:cart_item, product:product} if product.type.additionable? %>
+  <h4> <%= Product.human_attribute_name 'ingredients' %> </h4>
+  <div id="cart_add_item_modal_additions_container">
+    <%= render partial:'additions', locals: {cart_item:cart_item, product:product} %>
+  </div>
 <% else %>
   <h4> <%= Product.human_attribute_name 'description' %> </h4>
   <%= product.description %>
