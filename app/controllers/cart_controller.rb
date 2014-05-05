@@ -51,6 +51,9 @@ class CartController < ApplicationController
       @category = @product.category
     end
     @products = @category.products.shoppable_additionable_splittable
+    if @product.nil?
+      @product = @products.first
+    end
     render layout:'generic'
   end
 

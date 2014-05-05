@@ -1,10 +1,12 @@
-<% product.items.each do |item| %>
-  <div class="addition">
-    <span class="label label-info">
-      <%= item.name %>
-      <a href="JavaScript:void(0);">
-        <i class="glyphicon glyphicon-remove white"></i>
-      </a>
-    </span>
-  </div>
+<% cache("#{product.to_param}_items_#{(product.updated_at || product.created_at).to_i}") do %>
+  <% product.items.each do |item| %>
+    <div class="addition">
+      <span class="label label-info">
+        <%= item.name %>
+        <a href="JavaScript:void(0);">
+          <i class="glyphicon glyphicon-remove white"></i>
+        </a>
+      </span>
+    </div>
+  <% end %>
 <% end %>
