@@ -41,7 +41,9 @@ class Product < ActiveRecord::Base
 
   has_and_belongs_to_many :items,
                           class_name: 'Product',
-                          association_foreign_key: :item_id
+                          association_foreign_key: :item_id,
+                          after_add: :force_touch,
+                          after_remove: :force_touch
 
   has_attached_file :photo,
                     styles: {large:'400x450>', medium:'300x300>', mini:'120x60>', thumb:'100x100>'},
@@ -92,6 +94,11 @@ class Product < ActiveRecord::Base
                        content_type: {content_type:['image/jpg', 'image/jpeg', 'image/gif', 'image/png']},
                        size: {in: 0..500.kilobytes},
                        presence: true, if: :splittable?
+
+  def force_touch record
+    self.touch
+  end
+
   def priceable?
     !self.try(:type).try(:sizable?)
   end

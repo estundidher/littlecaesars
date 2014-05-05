@@ -6,10 +6,10 @@ module ApplicationHelper
 
   def auditable model
     html = "<dt> #{t 'created_by'}</dt>"
-    html << "<dd> #{model.created_by.username} </dd>"
+    html << "<dd> #{model.created_by.username} - #{model.created_at} </dd>"
     html << "<dt> #{t 'updated_by'} </dt>"
     if model.updated_by
-        html << "<dd> #{model.updated_by.username} </dd>"
+        html << "<dd> #{model.updated_by.username} - #{model.updated_at} </dd>"
     else
         html << "<dd> -- </dd>"
     end
