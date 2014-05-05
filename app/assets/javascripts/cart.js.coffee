@@ -120,7 +120,6 @@ $(document).on 'ajax:success', '.btn-group.splittable a', (e, data, status, xhr)
                                                                .append(xhr.responseText).fadeIn 'fast'
   Application.bind_carousel();
   $('.btn-group.splittable.' + $(this).data('splittable') + ' .loader').fadeOut 'fast'
-  loadProduct $('#splittable_' + $(this).data('splittable')).find('.active')
 
 $(document).on 'ajax:before', '.btn-group.splittable a', (e, data, status, xhr) ->
   console.log ".btn-group.splittable a 'ajax:before' fired! category: " + $(this).data('category') + ', splittable: ' + $(this).data('splittable')
@@ -134,6 +133,7 @@ $(document).on 'ajax:success', '.btn-group.splittable a', (e, data, status, xhr)
   $('#splittable_' + $(this).data('splittable') + '_container').hide().empty()
                                                                .append(xhr.responseText).fadeIn 'fast'
   Application.bind_carousel();
+  loadProduct $('#splittable_' + $(this).data('splittable')).find('.active')
   $('.btn-group.splittable.' + $(this).data('splittable') + ' .loader').fadeOut 'fast'
 
 

@@ -24,12 +24,9 @@
 //= require meiomask
 //= require moment
 //= require bootstrap-datetimepicker
-//= require home
 //= require cart
-//= require isotope.pkgd.min
 
 $(document).on('ready page:load', function () {
-
   Application.bind_checkAll();
   Application.bind_dateTimePickers();
   Application.bind_moneyMask();
@@ -38,7 +35,6 @@ $(document).on('ready page:load', function () {
   Application.bind_scroolToTop();
   Application.bind_carousel();
   Application.bind_tabs();
-  Application.bind_isotope('.isotope_contenteiner', '.isotope_item');
 });
 
 var Application = {
@@ -57,16 +53,6 @@ var Application = {
 
   bind_moneyMask: function() {
     return $('.money_mask').setMask({mask:'99.99', type:'reverse', maxLength: 5});
-  },
-
-  bind_isotope: function(cointainer, itemClass) {
-
-    // init
-    $(cointainer).isotope({
-      // options
-      itemSelector: itemClass,
-      layoutMode: 'fitRows'
-    });
   },
 
   /* *************************************** */
@@ -143,29 +129,3 @@ var Cart = {
     });
   }
 };
-
-var Home = {
-
-  /* ******************************************** */
-  /*  JS for SLIDER REVOLUTION  */
-  /* ******************************************** */
-  bind_slider_revolution: function() {
-
-    $('.tp-banner').revolution({
-        delay:9000,
-        startheight:500,
-        hideThumbs:10,
-        navigationType:"bullet",
-        hideArrowsOnMobile:"on",
-        touchenabled:"on",
-        onHoverStop:"on",
-        navOffsetHorizontal:0,
-        navOffsetVertical:20,
-        stopAtSlide:-1,
-        stopAfterLoops:-1,
-        shadow:0,
-        fullWidth:"on",
-        fullScreen:"off"
-    });
-  }
-}
