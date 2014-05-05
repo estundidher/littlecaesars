@@ -3,7 +3,7 @@ class CartController < ApplicationController
   before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index]
   before_action :set_cart_item, only: [:destroy]
   before_action :set_product, only: [:modal, :calculate, :create, :index, :items]
-  before_action :set_category, only: [:splittable]
+  before_action :set_category, only: [:splitter]
 
   # GET /cart/add/1
   def modal
@@ -57,10 +57,10 @@ class CartController < ApplicationController
     render layout:'generic'
   end
 
-  # GET /cart/splittable/:side/:category_id
-  def splittable
+  # GET /cart/splitter/:side/:category_id
+  def splitter
     @products = @category.products.shoppable_additionable
-    render partial:'splittable', locals:{side:params[:side], category:@category, products:@products}, layout: nil
+    render partial:'splitter', locals:{side:params[:side], category:@category, products:@products}, layout: nil
   end
 
   # GET /cart/:product_id/items

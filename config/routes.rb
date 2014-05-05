@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   #cart page
   get 'cart(/:product_id)',                to: 'cart#index',      as: :cart
-  get 'cart/split/:side/:category_id',to: 'cart#splittable', as: :cart_splittable
+  get 'cart/splitter/:side/:category_id',  to: 'cart#splitter', as: :cart_splittable
 
   namespace :admin do
 

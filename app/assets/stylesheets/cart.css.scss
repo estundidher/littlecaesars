@@ -140,19 +140,19 @@ Additional Styles (required)
 .carousel.vertical .prev,
 .carousel.vertical .active.left   { top: -100%; }
 
-.splittable .carousel-control.left, .carousel-control.right {
+.splitter .carousel-control.left, .carousel-control.right {
   background-image:none !important;
 }
 
-.splittable.right .carousel-control.left {
+.splitter.right .carousel-control.left {
   top: 211px;
   left: 139px;
 }
 
-.splittable.left .carousel-control.left {
+.splitter.left .carousel-control.left {
   top: 211px;
 }
 
-.splittable.left .carousel-control.right {
+.splitter.left .carousel-control.right {
   left: 1px;
 }

@@ -14,10 +14,10 @@
 
       <div class="col-md-3 col-sm-3">
         <%= render partial:'categories', locals:{align:'right', splittable:'left'} %>
-        <h4> 1/2 <span id="splittable_left_title"> <%= @product.name %> </span> </h4>
+        <h4> 1/2 <span id="splitter_left_title"> <%= @product.name %> </span> </h4>
         <br>
         <h5> <%= Product.human_attribute_name 'ingredients' %> </h5 >
-        <div id="splittable_left_additions_container">
+        <div id="splitter_left_additions_container">
           <%= render partial: 'additions', locals:{product:@product} %>
         </div>
         <br><br>
@@ -31,20 +31,20 @@
       </div>
 
       <div class="col-md-4 col-sm-4">
-        <div id="splittable_left_container" class="col-md-6 col-sm-6" style="padding-right: 0px;">
-          <%= render partial:'splittable', locals:{side:'left', category:@category, products:@products, product:@product} %>
+        <div id="splitter_left_container" class="col-md-6 col-sm-6" style="padding-right: 0px;">
+          <%= render partial:'splitter', locals:{side:'left', category:@category, products:@products, product:@product} %>
         </div>
-        <div id="splittable_right_container" class="col-md-6 col-sm-6" style="padding-left: 0px;">
-          <%= render partial:'splittable', locals:{side:'right', category:@category, products:@products, product:@product} %>
+        <div id="splitter_right_container" class="col-md-6 col-sm-6" style="padding-left: 0px;">
+          <%= render partial:'splitter', locals:{side:'right', category:@category, products:@products, product:@product} %>
         </div>
       </div>
 
       <div class="col-md-3 col-sm-3">
         <%= render partial:'categories', locals:{align:'left', splittable:'right'} %>
-        <h4> 1/2 <span id="splittable_right_title"> <%= @product.name %> </span> </h4>
+        <h4> 1/2 <span id="splitter_right_title"> <%= @product.name %> </span> </h4>
         <br>
         <h5> <%= Product.human_attribute_name 'ingredients' %> </h5 >
-        <div id="splittable_right_additions_container">
+        <div id="splitter_right_additions_container">
           <%= render partial: 'additions', locals:{product:@product} %>
         </div>
         <br><br>

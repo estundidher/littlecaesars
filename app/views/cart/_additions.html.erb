@@ -1,4 +1,4 @@
-<% cache("#{product.to_param}_items_#{(product.updated_at || product.created_at).to_i}") do %>
+<% cache ['product_additions', product] do %>
   <% product.items.each do |item| %>
     <div class="addition">
       <span class="label label-info">
