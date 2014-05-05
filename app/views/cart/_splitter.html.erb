@@ -1,0 +1,32 @@
+<% cache cache_key_for_spliter(category, side) do %>
+  <div id="splitter_<%= side %>" class="carousel slide vertical splitter <%= side %>">
+    <div class="carousel-inner">
+      <% active_index = (defined?(@product) ? products.index(@product) : 0) %>
+      <% products.each_with_index do |splittable, index| %>
+        <% cache ["splittable_#{side}", splittable] do %>
+          <div class="item<%= ' active' if index == active_index %>" style="text-align: center;"
+            data-id="<%= splittable.id %>"
+            data-url="<%= cart_product_items_path(splittable) %>"
+            data-name="<%= splittable.name %>"
+            data-side="<%= side %>">
+            <% if splittable.photo.exists? %>
+              <% if side == 'right' %>
+                <%= image_tag splittable.photo_right.url(:large), class:'img-responsive', alt:splittable.name %>
+              <% else %>
+                <%= image_tag splittable.photo_left.url(:large), class:'img-responsive', alt:splittable.name %>
+              <% end %>
+            <% else %>
+              <img src="http://placehold.it/175x250/" alt="<%= splittable.name %>" class"img-responsive">
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <a class="left carousel-control" href="#splitter_<%= side %>" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-down"></span>
+    </a>
+    <a class="right carousel-control" href="#splitter_<%= side %>" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+  </div>
+<% end %>
