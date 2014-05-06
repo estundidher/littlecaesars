@@ -133,12 +133,14 @@ $(document).on 'ajax:success', '.btn-group.splitter a, .btn-group.slider a', (e,
 
 #chooser_mode
 $(document).on 'change', '.mode_chooser', (e) ->
+  $('.mode_chooser_form .loader').fadeIn 'fast'
   $(this).closest('form').submit()
 
 $(document).on 'ajax:success', '.mode_chooser_form', (e, data, status, xhr) ->
   $('#chooser_container').hide().empty()
                          .append(xhr.responseText).fadeIn 'fast'
   Application.bind_carousel();
+  $('.mode_chooser_form .loader').fadeOut 'fast'
 
 
 

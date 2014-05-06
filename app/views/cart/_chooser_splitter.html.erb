@@ -1,7 +1,7 @@
 <div class="chooser">
   <div class="col-md-3 col-sm-3" style="padding-right: 0px;">
     <%= render partial:'categories',
-        locals: {id:'splitter', splitter:'left', align:'right',
+        locals: {id:'splitter', splitter:'left', align:'right', label: '1/2',
                 categories:categories, category:category, product:product} %>
   </div>
 
@@ -20,7 +20,7 @@
 
   <div class="col-md-3 col-sm-3" style="padding-left: 0px;">
     <%= render partial:'categories',
-        locals:{id:'splitter', splitter:'right', align:'left',
+        locals:{id:'splitter', splitter:'right', align:'left', label: '1/2',
                 categories:categories, category:category, product:product} %>
   </div>
 </div>

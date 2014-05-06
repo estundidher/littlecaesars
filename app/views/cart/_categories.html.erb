@@ -26,7 +26,12 @@
     <% end %>
   </ul>
 </div>
-<h4 class="<%= splitter if defined?(splitter) %> product"> <%= product.name %> </h4>
+<h4>
+  <%= label if defined?(label) %>
+  <span class="<%= splitter if defined?(splitter) %> product">
+    <%= product.name %>
+  </span>
+</h4>
 <br>
 <h5> <%= Product.human_attribute_name 'ingredients' %> </h5 >
 <div class="<%= id %> <%= splitter if defined?(splitter) %> additions_container">

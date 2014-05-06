@@ -153,6 +153,10 @@ Additional Styles (required)
   left: 139px;
 }
 
+.splitter.right .carousel-control.right {
+  height: 20px;
+}
+
 .splitter.left .carousel-control.left {
   top: 211px;
 }
@@ -161,6 +165,7 @@ Additional Styles (required)
   left: 1px;
   height: 20px;
 }
+
 
 .slider .carousel-control.left {
   top: 223px;
