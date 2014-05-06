@@ -2,8 +2,8 @@ class CartController < ApplicationController
 
   before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index]
   before_action :set_cart_item, only: [:destroy]
-  before_action :set_product, only: [:modal, :calculate, :create, :index, :items]
-  before_action :set_category, only: [:splitter]
+  before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode]
+  before_action :set_category, only: [:splitter_side, :slider]
 
   # GET /cart/add/1
   def modal
@@ -54,18 +54,41 @@ class CartController < ApplicationController
     if @product.nil?
       @product = @products.first
     end
+    @sizes = Size.order :name
     render layout:'generic'
   end
 
   # GET /cart/splitter/:side/:category_id
-  def splitter
+  def splitter_side
     @products = @category.products.shoppable_additionable
-    render partial:'splitter', locals:{side:params[:side], category:@category, products:@products}, layout: nil
+    @categories = Category.with_shoppable_products
+    render partial:'chooser_splitter_side', locals:{side:params[:side], category:@category, categories:@categories, products:@products, product:@products.first}, layout: nil
+  end
+
+  # GET /cart/slider/:category_id
+  def slider
+    @products = @category.products.shoppable_additionable
+    render partial:'chooser_slider_internal', locals:{products:@products, product:@products.first, category:@category}, layout: nil
   end
 
   # GET /cart/:product_id/items
   def items
     render partial:'additions', locals:{product:@product}, layout: nil
+  end
+
+  # POST /cart/mode
+  def mode
+    @categories = Category.with_shoppable_products
+    if @product.nil?
+      @category = @categories.first
+    else
+      @category = @product.category
+    end
+    @products = @category.products.shoppable_additionable_splittable
+    if @product.nil?
+      @product = @products.first
+    end
+    render partial:"chooser_#{params[:mode]}", locals:{products:@products, product:@product, category:@category, categories:@categories}, layout: nil
   end
 
 private

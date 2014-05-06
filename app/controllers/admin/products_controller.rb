@@ -119,6 +119,7 @@ class Admin::ProductsController < Admin::BaseController
                                       :photo,
                                       :photo_left,
                                       :photo_right,
+                                      :photo_showcase,
                                       :price,
                                       :product_type_id,
                                       :category_id,

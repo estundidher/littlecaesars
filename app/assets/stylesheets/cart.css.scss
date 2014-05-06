@@ -140,8 +140,12 @@ Additional Styles (required)
 .carousel.vertical .prev,
 .carousel.vertical .active.left   { top: -100%; }
 
-.splitter .carousel-control.left, .carousel-control.right {
+.splitter .carousel-control.left, .splitter .carousel-control.right, .slider .carousel-control.left, .slider .carousel-control.right {
   background-image:none !important;
+}
+
+.splitter .item {
+  text-align: center;
 }
 
 .splitter.right .carousel-control.left {
@@ -155,4 +159,15 @@ Additional Styles (required)
 
 .splitter.left .carousel-control.right {
   left: 1px;
+  height: 20px;
+}
+
+.slider .carousel-control.left {
+  top: 223px;
+  left: -35px;
+}
+
+.slider .carousel-control.right {
+  left: -34px;
+  height: 20px;
 }

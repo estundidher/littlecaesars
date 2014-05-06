@@ -307,6 +307,7 @@ en:
         photo: Photo
         photo_left: Left Photo
         photo_right: Right Photo
+        photo_showcase: Full photo
         items: Items
         prices: Prices
       place:

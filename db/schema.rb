@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501142743) do
+ActiveRecord::Schema.define(version: 20140506064718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,13 +121,13 @@ ActiveRecord::Schema.define(version: 20140501142743) do
   add_index "product_types", ["name"], name: "index_product_types_on_name", unique: true, using: :btree
 
   create_table "products", force: true do |t|
-    t.boolean  "enabled",                                          default: true, null: false
-    t.string   "name",                                                            null: false
+    t.boolean  "enabled",                                             default: true, null: false
+    t.string   "name",                                                               null: false
     t.string   "description"
-    t.decimal  "price",                    precision: 4, scale: 2
-    t.integer  "product_type_id",                                                 null: false
-    t.integer  "category_id",                                                     null: false
-    t.integer  "created_by",                                                      null: false
+    t.decimal  "price",                       precision: 4, scale: 2
+    t.integer  "product_type_id",                                                    null: false
+    t.integer  "category_id",                                                        null: false
+    t.integer  "created_by",                                                         null: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -143,6 +143,10 @@ ActiveRecord::Schema.define(version: 20140501142743) do
     t.string   "photo_right_content_type"
     t.integer  "photo_right_file_size"
     t.datetime "photo_right_updated_at"
+    t.string   "photo_showcase_file_name"
+    t.string   "photo_showcase_content_type"
+    t.integer  "photo_showcase_file_size"
+    t.datetime "photo_showcase_updated_at"
   end
 
   add_index "products", ["name"], name: "index_products_on_name", unique: true, using: :btree

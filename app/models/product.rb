@@ -46,16 +46,16 @@ class Product < ActiveRecord::Base
                           after_remove: :force_touch
 
   has_attached_file :photo,
-                    styles: {large:'400x450>', medium:'300x300>', mini:'120x60>', thumb:'100x100>'},
-                    default_url: '/images/:style/missing.png'
+                    styles: {large:'400x450>', medium:'300x300>', mini:'120x60>', thumb:'100x100>'}
 
   has_attached_file :photo_left,
-                    styles: {large:'175x250>'},
-                    default_url: '/images/:style/missing.png'
+                    styles: {large:'175x250>'}
 
   has_attached_file :photo_right,
-                    styles: {large:'175x250>'},
-                    default_url: '/images/:style/missing.png'
+                    styles: {large:'175x250>'}
+
+  has_attached_file :photo_showcase,
+                    styles: {large:'350x250>', thumb: '120x90>'}
 
   belongs_to :type,
              class_name: 'ProductType',
@@ -95,8 +95,17 @@ class Product < ActiveRecord::Base
                        size: {in: 0..500.kilobytes},
                        presence: true, if: :splittable?
 
+  validates_attachment :photo_showcase,
+                       content_type: {content_type:['image/jpg', 'image/jpeg', 'image/gif', 'image/png']},
+                       size: {in: 0..500.kilobytes},
+                       presence: true, if: :shoppable?
+
   def force_touch record
     self.touch
+  end
+
+  def shoppable?
+    self.try(:type).try(:shoppable?)
   end
 
   def priceable?

@@ -23,8 +23,8 @@
             </div>
           </div>
         </div>
-        <% if product.type.sizable? %>
-          <%= render partial:'sizes', locals:{cart_item:cart_item, product:product} %>
+        <% if product.type.priceable? %>
+          <%= render partial:'prices', locals:{cart_item:cart_item, product:product} %>
         <% end %>
         <% if product.splittable? %>
           <%= render partial:'split', locals:{cart_item:cart_item, product:product} %>

@@ -1,0 +1,26 @@
+<div class="chooser">
+  <div class="col-md-3 col-sm-3" style="padding-right: 0px;">
+    <%= render partial:'categories',
+        locals: {id:'splitter', splitter:'left', align:'right',
+                categories:categories, category:category, product:product} %>
+  </div>
+
+  <div class="col-md-6 col-sm-6">
+    <div class="row">
+      <div id="splitter_left_container" class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1" style="padding-right: 0px;">
+        <%= render partial:'chooser_splitter_side',
+            locals:{side:'left', category:category, products:products, product:product} %>
+      </div>
+      <div id="splitter_right_container" class="col-md-5 col-sm-5" style="padding-left: 0px;">
+        <%= render partial:'chooser_splitter_side',
+            locals:{side:'right', category:category, products:products, product:product} %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 col-sm-3" style="padding-left: 0px;">
+    <%= render partial:'categories',
+        locals:{id:'splitter', splitter:'right', align:'left',
+                categories:categories, category:category, product:product} %>
+  </div>
+</div>

@@ -1,14 +1,13 @@
 <% cache cache_key_for_spliter(category, side) do %>
   <div id="splitter_<%= side %>" class="carousel slide vertical splitter <%= side %>">
     <div class="carousel-inner">
-      <% active_index = (defined?(@product) ? products.index(@product) : 0) %>
       <% products.each_with_index do |splittable, index| %>
         <% cache ["splittable_#{side}", splittable] do %>
-          <div class="item<%= ' active' if index == active_index %>" style="text-align: center;"
-            data-id="<%= splittable.id %>"
-            data-url="<%= cart_product_items_path(splittable) %>"
-            data-name="<%= splittable.name %>"
-            data-side="<%= side %>">
+          <div class="item"
+               data-id="<%= splittable.id %>"
+               data-url="<%= cart_product_items_path(splittable) %>"
+               data-name="<%= splittable.name %>"
+               data-target=".chooser .<%= side %>">
             <% if splittable.photo.exists? %>
               <% if side == 'right' %>
                 <%= image_tag splittable.photo_right.url(:large), class:'img-responsive', alt:splittable.name %>
@@ -30,3 +29,6 @@
     </a>
   </div>
 <% end %>
+<script type="text/javascript">
+  Cart.carousel_selectActive($('#splitter_<%= side %>'), <%= (defined?(@product) ? products.index(@product) : 0) %>)
+</script>

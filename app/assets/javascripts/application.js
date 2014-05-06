@@ -127,5 +127,10 @@ var Cart = {
     $.post($('#cart_add_item_calculate_url').val(), $('#cart_add_item_form').serialize(), function(data) {
       return $('.item-price').hide().empty().append(data).slideDown('fast')
     });
+  },
+
+  carousel_selectActive: function (splitter, index) {
+    item = $(splitter).find('.item')[index];
+    $(item).addClass('active');
   }
 };

@@ -25,6 +25,13 @@
     </div>
   <% end %>
 
+  <% if @product.shoppable? %>
+    <div class="form-group <%= tb_has_error @product, :photo_showcase %>">
+      <%= f.label :photo_showcase %>
+      <%= f.file_field :photo_showcase %>
+    </div>
+  <% end %>
+
   <div class="form-group <%= tb_has_error @product, :type %>">
     <%= f.label :type %>
     <%= f.collection_select :product_type_id,
