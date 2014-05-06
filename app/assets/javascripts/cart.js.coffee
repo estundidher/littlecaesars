@@ -107,6 +107,10 @@ $(document).ready ->
 loadProduct = (item) ->
   $item = $(item)
   console.log "loadProduct id: " + $item.data('id') + ', target: ' + $item.data('target')
+  id = $item.closest('.carousel').attr 'id'
+  if id == 'slider' || id.indexOf('left') > 0
+    $('.mode_chooser_form .product').val($item.data('id'))
+
   $.get $item.data('url'), (data) ->
     $($item.data('target') + '.product').hide().empty().html($item.data('name')).fadeIn 'fast'
     $($item.data('target') + '.additions_container').hide().empty().append(data).fadeIn 'fast'

@@ -14,7 +14,7 @@
         <div class="col-md-4 col-sm-4">
 
           <%= form_tag cart_mode_path, remote: true, class:'mode_chooser_form' do %>
-            <%= hidden_field_tag :product_id, @product.id if defined?(@product) %>
+            <%= hidden_field_tag :product_id, @product.id, class:'product' if defined?(@product) %>
             <div class="radio-inline">
               <%= label_tag :mode_slider do %>
                 <%= radio_button_tag :mode, :slider, true, class:'mode_chooser' %> 1 Flavour
