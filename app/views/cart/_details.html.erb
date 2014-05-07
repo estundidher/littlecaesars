@@ -1,0 +1,8 @@
+<h4 style="text-align: <%= align %>">
+  <%= label if defined?(label) %>
+  <span class="<%= splitter if defined?(splitter) %> product">
+    <%= product.name %>
+  </span>
+</h4>
+
+<%= image_tag product.photo, class:'img-responsive thumbnail' %>

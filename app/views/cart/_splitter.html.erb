@@ -1,0 +1,30 @@
+<div class="col-md-3 col-sm-3 left" style="padding-right: 0px;">
+  <%= render partial:'categories',
+      locals: {mode:'splitter', align:'left', categories:categories,
+               category:category, product:product} %>
+  <div class="details">
+    <%= render partial:'details', locals: {product:product, align:'left', label:'1/2'} %>
+  </div>
+</div>
+
+<div class="col-md-6 col-sm-6">
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1" style="padding-right: 0px;">
+      <%= render partial:'splitter_side',
+          locals:{side:'left', category:category, products:products, product:product} %>
+    </div>
+    <div class="col-md-5 col-sm-5" style="padding-left: 0px;">
+      <%= render partial:'splitter_side',
+          locals:{side:'right', category:category, products:products, product:product} %>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-3 col-sm-3 right" style="padding-left: 0px;">
+  <%= render partial:'categories',
+      locals:{mode:'splitter', align:'right', categories:categories,
+              category:category, product:product} %>
+  <div class="details">
+    <%= render partial:'details', locals: {product:product, align:'right', label:'1/2'} %>
+  </div>
+</div>

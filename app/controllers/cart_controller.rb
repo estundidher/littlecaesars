@@ -3,42 +3,42 @@ class CartController < ApplicationController
   before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index]
   before_action :set_cart_item, only: [:destroy]
   before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode]
-  before_action :set_category, only: [:splitter_side, :slider]
+  before_action :set_category, only: [:splitter, :slider]
 
   # GET /cart/add/1
   def modal
     @cart_item = @cart.new_item @product
-    render partial: 'add_modal', locals:{cart_item:@cart_item, product:@product}, layout: nil
+    render partial: 'cart/modal/modal', locals:{cart_item:@cart_item, product:@product}, layout: nil
   end
 
   # POST /cart/calculate
   def calculate
     @cart_item = @cart.new_item @product, cart_item_params
-    render partial:'form_price', locals:{cart_item:@cart_item}, layout: nil
+    render partial:'cart/modal/form_price', locals:{cart_item:@cart_item}, layout: nil
   end
 
   # POST /cart/add/1
   def create
     @cart_item = @cart.new_item @product, cart_item_params
     if @cart_item.save
-      render partial:'cart', locals:{cart:@cart_item.cart}, layout: nil
+      render partial:'cart/top/cart', locals:{cart:@cart_item.cart}, layout: nil
     else
-      render partial:'form', locals:{cart_item:@cart_item, product:@product}, layout:nil, status: :unprocessable_entity
+      render partial:'cart/modal/form', locals:{cart_item:@cart_item, product:@product}, layout:nil, status: :unprocessable_entity
     end
   end
 
   # DELETE /cart/1
   def destroy
     if @cart_item.destroy
-      render partial:'cart', locals:{cart:@cart_item.cart}, layout: nil
+      render partial:'cart/top/cart', locals:{cart:@cart_item.cart}, layout: nil
     else
-      render partial:'cart', locals:{cart:@cart_item.cart}, layout: nil, status: :unprocessable_entity
+      render partial:'cart/top/cart', locals:{cart:@cart_item.cart}, layout: nil, status: :unprocessable_entity
     end
   end
 
   # GET /cart/checkout
   def checkout
-    render partial:'checkout_modal', locals:{cart:@cart}, layout: nil
+    render partial:'cart/checkout/modal', locals:{cart:@cart}, layout: nil
   end
 
   # GET /cart
@@ -59,16 +59,16 @@ class CartController < ApplicationController
   end
 
   # GET /cart/splitter/:side/:category_id
-  def splitter_side
+  def splitter
     @products = @category.products.shoppable_additionable
     @categories = Category.with_shoppable_products
-    render partial:'chooser_splitter_side', locals:{side:params[:side], category:@category, categories:@categories, products:@products, product:@products.first}, layout: nil
+    render partial:'splitter_side', locals:{side:params[:side], category:@category, categories:@categories, products:@products, product:@products.first}, layout: nil
   end
 
   # GET /cart/slider/:category_id
   def slider
     @products = @category.products.shoppable_additionable
-    render partial:'chooser_slider_internal', locals:{products:@products, product:@products.first, category:@category}, layout: nil
+    render partial:'slider_internal', locals:{products:@products, product:@products.first, category:@category}, layout: nil
   end
 
   # GET /cart/:product_id/items
@@ -88,17 +88,17 @@ class CartController < ApplicationController
     if @product.nil?
       @product = @products.first
     end
-    render partial:"chooser_#{params[:mode]}", locals:{products:@products, product:@product, category:@category, categories:@categories}, layout: nil
+    render partial:"chooser", locals:{products:@products, product:@product, category:@category, categories:@categories, mode:params[:mode]}, layout: nil
   end
 
 private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_cart
-    if params[:id].nil?
+    if params[:cart_id].nil?
       @cart = Cart.find_or_create_by(customer: current_customer, status: Cart.statuses[:open])
     else
-      @cart = Cart.find(params[:id])
+      @cart = Cart.find(params[:cart_id])
     end
   end
 
@@ -109,6 +109,12 @@ private
   def set_product
     unless params[:product_id].nil?
       @product = Product.find params[:product_id]
+    end
+
+    unless cart_item_params.nil?
+      unless cart_item_params[:product_id].nil?
+        @product = Product.find cart_item_params[:product_id]
+      end
     end
   end
 

@@ -7,7 +7,7 @@
       </div>
       <div id="price_modal_form_container" class="modal-body" style="padding-top: 10px;">
         <div class="single-item">
-          <%= render partial:'form', locals:{cart_item:cart_item, product:product} %>
+          <%= render partial:'cart/modal/form', locals:{cart_item:cart_item, product:product} %>
         </div>
       </div>
       <div class="modal-footer" style="margin-top: 0px;">
@@ -23,12 +23,8 @@
             </div>
           </div>
         </div>
-        <% if product.type.priceable? %>
-          <%= render partial:'prices', locals:{cart_item:cart_item, product:product} %>
-        <% end %>
-        <% if product.splittable? %>
-          <%= render partial:'split', locals:{cart_item:cart_item, product:product} %>
-        <% end %>
+        <%= render partial:'cart/modal/prices', locals:{cart_item:cart_item, product:product} unless product.type.priceable? %>
+        <%= render partial:'cart/modal/split', locals:{cart_item:cart_item, product:product} if product.splittable? %>
         <button type="button" class="cart_add_item_save btn btn-primary">
           <i class='glyphicon glyphicon-shopping-cart'></i>
           <%= t 'links.add_simple' %>

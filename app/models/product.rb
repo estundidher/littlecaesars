@@ -140,6 +140,14 @@ class Product < ActiveRecord::Base
     self.sizes.map{|size| size.splittable} if self.sizable? and self.sizes.any?
   end
 
+  def photo_of side
+    if side == 'left'
+      self.photo_left
+    elsif side == 'right'
+      self.photo_right
+    end
+  end
+
   def to_param
     "#{id}-#{name.parameterize}"
   end

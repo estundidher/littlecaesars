@@ -16,7 +16,7 @@
                   <% end %>
                   <div class="caption"> <h6><%= topping.name %></h6> </div>
                   <p style="position: absolute; bottom: 0;">
-                  <a id="toppings_carousel_button_add" href="JavaScript:void(0);" data-id="<%= topping.id %>" data-name="<%= topping.name %>" data-price="<%= number_to_currency topping.price %>" class="btn btn-warning btn-sm" role="button" style="width: 109px;">
+                    <a id="toppings_carousel_button_add" href="JavaScript:void(0);" data-id="<%= topping.id %>" data-name="<%= topping.name %>" data-price="<%= number_to_currency topping.price %>" class="btn btn-warning btn-sm" role="button" style="width: 109px;">
                       <i class='glyphicon glyphicon-plus-sign'></i>
                       <%= number_to_currency topping.price %>
                     </a>

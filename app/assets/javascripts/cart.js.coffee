@@ -106,45 +106,49 @@ $(document).ready ->
 # splitter
 loadProduct = (item) ->
   $item = $(item)
-  console.log "loadProduct id: " + $item.data('id') + ', target: ' + $item.data('target')
-  id = $item.closest('.carousel').attr 'id'
-  if id == 'slider' || id.indexOf('left') > 0
+  console.log "loadProduct id: " + $item.data('id') + ', url: ' + $item.data('url') + ', target: ' + $item.data('target')
+  if $item.data('target') == 'left'
     $('.mode_chooser_form .product').val($item.data('id'))
 
   $.get $item.data('url'), (data) ->
-    $($item.data('target') + '.product').hide().empty().html($item.data('name')).fadeIn 'fast'
-    $($item.data('target') + '.additions_container').hide().empty().append(data).fadeIn 'fast'
+    $('.chooser .' + $item.data('target') + ' .product').hide().empty().html($item.data('name')).fadeIn 'fast'
+    $('.chooser .' + $item.data('target') + ' .thumbnail').hide().empty().attr('src', $item.data('photo')).fadeIn 'fast'
+    $('.chooser .' + $item.data('target') + ' .additions').hide().empty().append(data).fadeIn 'fast'
 
 $(document).on 'slide.bs.carousel', '.splitter, .slider', (e)->
-  console.log ".splitter 'slid.bs.carousel' fired! current: " + $(this).find('.active').index() + ', next: ' + $(e.relatedTarget).index()
+  console.log ".splitter, .slider 'slid.bs.carousel' fired! current: " + $(this).find('.active').index() + ', next: ' + $(e.relatedTarget).index()
   loadProduct $(this).find('.item')[$(e.relatedTarget).index()]
 
-$(document).on 'ajax:before', '.btn-group.splitter a, .btn-group.slider a', (e, data, status, xhr) ->
-  console.log ".btn-group.splitter a 'ajax:before' fired! category: " + $(this).data('category') + ', target: ' + $(this).data('target')
+$(document).on 'ajax:before', '.categories a', (e, data, status, xhr) ->
+  console.log ".categories a 'ajax:before' fired! category: " + $(this).data('category') + ', target: ' + $(this).data('target')
   $menu = $(this).closest('.btn-group')
   $menu.find('.loader').fadeIn 'fast'
   $menu.find('.category').empty().html($(this).data('category'))
   $menu.removeClass 'open'
 
-$(document).on 'ajax:success', '.btn-group.splitter a, .btn-group.slider a', (e, data, status, xhr) ->
-  console.log ".btn-group.splitter a 'ajax:success' fired! category: " + $(this).data('category') + ', target: ' + $(this).data('target')
-  $('#' + $(this).data('target') + '_container').hide().empty()
-                                                .append(xhr.responseText).fadeIn 'fast'
+$(document).on 'ajax:success', '.categories a', (e, data, status, xhr) ->
+  console.log ".categories a 'ajax:success' fired! category: " + $(this).data('category') + ', target: ' + $(this).data('target')
+  $('.chooser .carousel.' + $(this).data('target')).parent().hide().empty().append(xhr.responseText).fadeIn 'fast'
   Application.bind_carousel()
-  loadProduct $('#' + $(this).data('target')).find '.active'
+  loadProduct $('.chooser .carousel.' + $(this).data('target')).find '.active'
   $(this).closest('.btn-group').find('.loader').fadeOut 'fast'
-
 
 #chooser_mode
 $(document).on 'change', '.mode_chooser', (e) ->
+  console.log ".mode_chooser a 'change' fired!"
   $('.mode_chooser_form .loader').fadeIn 'fast'
   $(this).closest('form').submit()
 
 $(document).on 'ajax:success', '.mode_chooser_form', (e, data, status, xhr) ->
-  $('#chooser_container').hide().empty()
-                         .append(xhr.responseText).fadeIn 'fast'
+  console.log ".mode_chooser_form a 'ajax:success' fired!"
+  $('.chooser_container').hide().empty().append(xhr.responseText).fadeIn 'fast'
   Application.bind_carousel();
   $('.mode_chooser_form .loader').fadeOut 'fast'
+
+
+
+
+
 
 
 

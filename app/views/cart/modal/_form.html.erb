@@ -8,12 +8,12 @@
         <div class="col-md-12 col-sm-12">
           <div class="item-details">
             <div id="cart_add_item_modal_form_container">
-              <%= render partial:'form_internal', locals:{f:f, cart_item:cart_item, product:product} %>
+              <%= render partial:'cart/modal/form_internal', locals:{f:f, cart_item:cart_item, product:product} %>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <%= render partial:'additionables', locals:{product:product} if product.type.additionable? %>
+  <%= render partial:'cart/modal/additionables', locals:{product:product} if product.type.additionable? %>
 <% end %>

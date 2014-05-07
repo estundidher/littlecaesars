@@ -1,5 +1,5 @@
 <% content_for :page_title, 'Cart' %>
-<% content_for :page_description, 'Choose your pizza!' %>
+<% content_for :page_description, 'Cart your pizza!' %>
 <% content_for :page_keywords, 'Pizza' %>
 
 <% content_for :breadcrumb do %>
@@ -7,54 +7,23 @@
 <% end %>
 
 <div class="container" style="margin-top: 20px; padding-top: 15px; padding-bottom: 10px; background-color: white;">
-
   <div class="row">
     <div class="col-md-9 col-sm-9">
       <div class="row" style="padding-bottom: 10px;">
         <div class="col-md-4 col-sm-4">
-
-          <%= form_tag cart_mode_path, remote: true, class:'mode_chooser_form' do %>
-            <%= hidden_field_tag :product_id, @product.id, class:'product' if defined?(@product) %>
-            <div class="radio-inline">
-              <%= label_tag :mode_slider do %>
-                <%= radio_button_tag :mode, :slider, true, class:'mode_chooser' %> 1 Flavour
-              <% end %>
-            </div>
-            <div class="radio-inline">
-              <%= label_tag :mode_splitter do %>
-                <%= radio_button_tag :mode, :splitter, false, class:'mode_chooser' %> 2 Flavours
-              <% end %>
-            </div>
-
-            <%= image_tag 'loader.gif', class:'loader', style:'padding-left: 10px; margin-top: -15px; display:none;' %>
-          <% end %>
-
+          <%= render partial:'mode', locals:{product:@product} %>
           <div style="width: 204px">
-            <%= render partial: 'sizes', locals: {sizes:@sizes} %>
+            <%= render partial:'sizes', locals:{sizes:@sizes} %>
           </div>
         </div>
       </div>
-
-      <div class="row">
-        <div id="chooser_container">
-          <%= render partial:'chooser_slider',
-                locals: {categories:@categories, category:@category, product:@product, products:@products} %>
-        </div>
+      <div class="chooser chooser_container">
+        <%= render partial:'chooser',
+            locals:{categories:@categories, category:@category, product:@product, products:@products, mode: "slider"} %>
       </div>
     </div>
-
     <div class="col-md-3 col-sm-3">
-      <div class="panel panel-danger">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            Shopping Cart
-          </h3>
-        </div>
-        <div class="panel-body">
-          body
-        </div>
-        <div class="panel-footer">footer</div>
-      </div>
+      <%= render partial:'cart', locals:{sizes:@sizes} %>
     </div>
   </div>
 </div>

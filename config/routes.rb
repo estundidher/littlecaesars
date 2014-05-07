@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   #cart page
   get 'cart(/:product_id)',                to: 'cart#index',         as: :cart
-  get 'cart/splitter/:side/:category_id',  to: 'cart#splitter_side', as: :cart_splitter
+  get 'cart/splitter/:side/:category_id',  to: 'cart#splitter',      as: :cart_splitter
   get 'cart/slider/:category_id',          to: 'cart#slider',        as: :cart_slider
   post 'cart/mode',                        to: 'cart#mode',          as: :cart_mode
 

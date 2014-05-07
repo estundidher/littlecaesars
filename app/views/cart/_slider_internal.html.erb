@@ -1,13 +1,14 @@
 <% cache cache_key_for_slider(category) do %>
-  <div id="slider" class="carousel slide vertical slider">
+  <div id="slider" class="slider carousel slide vertical left">
     <div class="carousel-inner">
       <% products.each_with_index do |product, index| %>
         <% cache ['slider_item', product] do %>
           <div class="item"
                data-id="<%= product.id %>"
                data-url="<%= cart_product_items_path(product) %>"
+               data-photo="<%= product.photo.url(:large) %>"
                data-name="<%= product.name %>"
-               data-target=".chooser ">
+               data-target="left">
             <% if product.photo.exists? %>
               <%= image_tag product.photo_showcase.url(:large), class:'img-responsive', alt:product.name %>
             <% else %>
@@ -26,5 +27,5 @@
   </div>
 <% end %>
 <script type="text/javascript">
-  Cart.carousel_selectActive($('#slider'), <%= (defined?(product) ? products.index(product) : 0) %>)
+  Cart.carousel_selectActive($('.slide.left'), <%= (defined?(product) ? products.index(product) : 0) %>)
 </script>

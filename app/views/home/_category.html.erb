@@ -23,6 +23,7 @@
         <% end %>
         <!-- Buy now button -->
         <div class="visible-xs">
+          <br>
           <% if customer_signed_in? %>
             <% if product.type.additionable? %>
               <%= link_to t('links.add_to', model_name:Cart.model_name.human),

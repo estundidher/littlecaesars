@@ -1,0 +1,15 @@
+<div class="row">
+  <%= render partial:'slider',
+    locals: {categories:categories, category:category, product:product, products:products} if mode == "slider" %>
+  <%= render partial:'splitter',
+    locals: {categories:categories, category:category, product:product, products:products} if mode == "splitter" %>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-sm-6 left" style="padding-right: 0px;">
+    <%= render partial:'additions_internal', locals: {product:product} %>
+  </div>
+  <div class="col-md-6 col-sm-6 right" style="padding-left: 0px; text-align: right;">
+    <%= render partial:'additions_internal', locals: {product:product} if mode == "splitter" %>
+  </div>
+</div>

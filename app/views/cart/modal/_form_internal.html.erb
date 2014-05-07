@@ -2,7 +2,7 @@
 <%= f.hidden_field :cart_id, value: cart_item.cart.id %>
 <%= tb_show_errors_for cart_item %>
 <% if product.type.quantitable? %>
-  <%= render partial:'form_quantitable', locals: {f:f, cart_item:cart_item, product:product} %>
+  <%= render partial:'cart/modal/form_quantitable', locals: {f:f, cart_item:cart_item, product:product} %>
 <% end %>
 <% if product.type.sizable? %>
   <%= f.hidden_field :product_id, value: product.id %>

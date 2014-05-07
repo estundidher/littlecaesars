@@ -1,0 +1,18 @@
+<%= form_tag cart_mode_path, remote: true, class:'mode_chooser_form' do %>
+  <%= hidden_field_tag :product_id, product.id, class:'product' if defined?(product) %>
+  <div class="radio-inline">
+    <%= label_tag :mode_slider do %>
+      <%= radio_button_tag :mode, :slider,
+                           true, class:'mode_chooser',
+                           data:{url: cart_mode_path}  %> 1 Flavour
+    <% end %>
+  </div>
+  <div class="radio-inline">
+    <%= label_tag :mode_splitter do %>
+      <%= radio_button_tag :mode, :splitter,
+                           false, class:'mode_chooser',
+                           data:{url: cart_mode_path} %> 2 Flavours
+    <% end %>
+  </div>
+  <%= image_tag 'loader.gif', class:'loader', style:'padding-left: 10px; margin-top: -15px; display:none;' %>
+<% end %>

@@ -1,14 +1,11 @@
-<!-- Button Kart -->
-<div class="btn-cart-md">
-  <a class="cart-link" href="#">
-    <!-- Image -->
-    <%= image_tag "cart.png", class: 'img-responsive' %>
-    <!-- Heading -->
-    <h4>Shopping Cart</h4>
-    <span><%= cart.items.size %> items <%= number_to_currency cart.total %></span>
-    <div class="clearfix"></div>
-  </a>
-  <%= render partial: 'cart/list', locals:{cart:cart} %>
-  <div class="clearfix"></div>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Shopping Cart
+    </h3>
+  </div>
+  <div class="panel-body">
+    body
+  </div>
+  <div class="panel-footer">footer</div>
 </div>
-<div class="clearfix"></div>

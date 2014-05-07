@@ -1,19 +1,16 @@
 <% cache cache_key_for_spliter(category, side) do %>
-  <div id="splitter_<%= side %>" class="carousel slide vertical splitter <%= side %>">
+  <div id="splitter_<%= side %>" class="splitter carousel slide vertical <%= side %>">
     <div class="carousel-inner">
       <% products.each_with_index do |splittable, index| %>
-        <% cache ["splittable_#{side}", splittable] do %>
+        <% cache ["splitter_#{side}", splittable] do %>
           <div class="item"
                data-id="<%= splittable.id %>"
                data-url="<%= cart_product_items_path(splittable) %>"
+               data-photo="<%= splittable.photo.url(:large) %>"
                data-name="<%= splittable.name %>"
-               data-target=".chooser .<%= side %>">
+               data-target="<%= side %>">
             <% if splittable.photo.exists? %>
-              <% if side == 'right' %>
-                <%= image_tag splittable.photo_right.url(:large), class:'img-responsive', alt:splittable.name %>
-              <% else %>
-                <%= image_tag splittable.photo_left.url(:large), class:'img-responsive', alt:splittable.name %>
-              <% end %>
+              <%= image_tag splittable.photo_of(side).url(:large), class:'img-responsive', alt:splittable.name %>
             <% else %>
               <img src="http://placehold.it/175x250/" alt="<%= splittable.name %>" class"img-responsive">
             <% end %>
@@ -30,5 +27,5 @@
   </div>
 <% end %>
 <script type="text/javascript">
-  Cart.carousel_selectActive($('#splitter_<%= side %>'), <%= (defined?(@product) ? products.index(@product) : 0) %>)
+  Cart.carousel_selectActive($('.slide.<%= side %>'), <%= (defined?(@product) ? products.index(@product) : 0) %>)
 </script>

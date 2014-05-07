@@ -1,5 +1,6 @@
- <div class="btn-group <%= id %> <%= splitter if defined?(splitter) %>" style="width: 100%;">
-  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="width: 100%; text-align: <%= align %>;">
+ <div class="btn-group categories" style="width: 100%;">
+  <button type="button" class="btn btn-danger dropdown-toggle"
+          data-toggle="dropdown" style="width: 100%; text-align: <%= align %>;">
     <% if align == 'left' %>
       <span class="caret"></span>
     <% else %>
@@ -17,27 +18,12 @@
   <ul class="dropdown-menu" role="menu">
     <% categories.each do |category| %>
       <li>
-        <%= link_to category.name, cart_splitter_path(splitter, category), remote: true,
-            data: {target: "#{id}_#{splitter}", category: category.name} if defined?(splitter) %>
+        <%= link_to category.name, cart_splitter_path(align, category), remote: true,
+            data: {target: align, category: category.name} if mode == 'splitter' %>
 
         <%= link_to category.name, cart_slider_path(category), remote: true,
-            data: {target: "slider", category: category.name} unless defined?(splitter) %>
+            data: {target: align, category: category.name} if mode == 'slider' %>
       </li>
     <% end %>
   </ul>
 </div>
-<h4>
-  <%= label if defined?(label) %>
-  <span class="<%= splitter if defined?(splitter) %> product">
-    <%= product.name %>
-  </span>
-</h4>
-<br>
-<h5> <%= Product.human_attribute_name 'ingredients' %> </h5 >
-<div class="<%= id %> <%= splitter if defined?(splitter) %> additions_container">
-  <%= render partial:'additions', locals:{product:product} %>
-</div>
-<br>
-<a href="javascript:void(0);">
-  <i class="glyphicon glyphicon-plus-sign"> </i> Additions
-</a>
