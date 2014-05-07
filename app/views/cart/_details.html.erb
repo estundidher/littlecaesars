@@ -5,4 +5,14 @@
   </span>
 </h4>
 
-<%= image_tag product.photo, class:'img-responsive thumbnail' %>
+<div class="element">
+  <%= image_tag product.photo.url(:large), class:'img-responsive img-thumbnail' %>
+
+  <!-- Gallery Image Hover Effect -->
+  <span class="gallery-img-hover"></span>
+
+  <!-- Gallery Image Hover Icon -->
+  <%= link_to product.photo.url(:large), class:'gallery-img-link' do %>
+      <i class="fa fa-search-plus hover-icon icon-left"></i>
+  <% end %>
+</div>

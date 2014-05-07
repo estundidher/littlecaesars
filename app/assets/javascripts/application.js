@@ -35,6 +35,7 @@ $(document).on('ready page:load', function () {
   Application.bind_scroolToTop();
   Application.bind_carousel();
   Application.bind_tabs();
+  Application.bind_prettyPhoto();
 });
 
 var Application = {
@@ -118,6 +119,12 @@ var Application = {
     $('.nav-tabs a').click(function (e) {
        e.preventDefault();
        $(this).tab('show');
+    });
+  },
+
+  bind_prettyPhoto: function() {
+    $('.gallery-img-link').prettyPhoto({
+      overlay_gallery: false, social_tools: false
     });
   }
 };

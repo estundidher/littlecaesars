@@ -112,7 +112,8 @@ loadProduct = (item) ->
 
   $.get $item.data('url'), (data) ->
     $('.chooser .' + $item.data('target') + ' .product').hide().empty().html($item.data('name')).fadeIn 'fast'
-    $('.chooser .' + $item.data('target') + ' .thumbnail').hide().empty().attr('src', $item.data('photo')).fadeIn 'fast'
+    $('.chooser .' + $item.data('target') + ' .img-thumbnail').hide().attr('src', $item.data('photo')).fadeIn 'fast'
+    $('.chooser .' + $item.data('target') + ' .gallery-img-link').attr('href', $item.data('photo'))
     $('.chooser .' + $item.data('target') + ' .additions').hide().empty().append(data).fadeIn 'fast'
 
 $(document).on 'slide.bs.carousel', '.splitter, .slider', (e)->
@@ -131,6 +132,7 @@ $(document).on 'ajax:success', '.categories a', (e, data, status, xhr) ->
   $('.chooser .carousel.' + $(this).data('target')).parent().hide().empty().append(xhr.responseText).fadeIn 'fast'
   Application.bind_carousel()
   loadProduct $('.chooser .carousel.' + $(this).data('target')).find '.active'
+  Application.bind_prettyPhoto()
   $(this).closest('.btn-group').find('.loader').fadeOut 'fast'
 
 #chooser_mode
@@ -143,6 +145,7 @@ $(document).on 'ajax:success', '.mode_chooser_form', (e, data, status, xhr) ->
   console.log ".mode_chooser_form a 'ajax:success' fired!"
   $('.chooser_container').hide().empty().append(xhr.responseText).fadeIn 'fast'
   Application.bind_carousel();
+  Application.bind_prettyPhoto()
   $('.mode_chooser_form .loader').fadeOut 'fast'
 
 

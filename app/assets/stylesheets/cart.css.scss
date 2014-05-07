@@ -184,3 +184,53 @@ Additional Styles (required)
 .addition .label {
   font-size: 11px;
 }
+
+.chooser .element {
+  position: relative;
+  margin-bottom: 30px;
+  padding-bottom: 1px;
+  overflow: hidden;
+}
+
+.chooser .element .gallery-img-hover {
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  z-index: 20;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.15);
+  -webkit-transition: all 0.4s ease-in-out;
+     -moz-transition: all 0.4s ease-in-out;
+        -ms-transition: all 0.4s ease-in-out;
+       -o-transition: all 0.4s ease-in-out;
+          transition: all 0.4s ease-in-out;
+}
+
+.chooser .element:hover .gallery-img-hover { top: 0%; }
+.chooser .element a{ color: #fff; }
+.chooser .element i.hover-icon{
+  position: absolute;
+  top: 50%;
+  z-index: 25;
+  display: inline-block;
+  margin-top: -20px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 50px;
+  -webkit-transition: all 0.4s ease-in;
+     -moz-transition: all 0.4s ease-in;
+      -ms-transition: all 0.4s ease-in;
+       -o-transition: all 0.4s ease-in;
+          transition: all 0.4s ease-in;
+}
+
+.chooser .element i.icon-left { right: 100%; margin-right: 10px; }
+.chooser .element i.icon-right { left: 100%; margin-left: 10px; }
+.chooser .element:hover i.icon-left { right: 35%; }
+.chooser .element:hover i.icon-right { left: 50%; }
