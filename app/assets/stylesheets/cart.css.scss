@@ -44,7 +44,7 @@ $screen-sm-min:              $screen-sm !default;
   font-size: 13px;
 }
 
-.cart-modal .sizable .size-price-small {
+.cart-modal .sizable .price {
   font-size: 10px;
   margin-top: -5px;
 }
@@ -226,3 +226,9 @@ Additional Styles (required)
 .chooser .element i.icon-right { left: 100%; margin-left: 10px; }
 .chooser .element:hover i.icon-left { right: 35%; }
 .chooser .element:hover i.icon-right { left: 50%; }
+
+.mode_chooser_form .loader {
+  padding-left: 10px;
+  margin-top: -15px;
+  display:none;
+}

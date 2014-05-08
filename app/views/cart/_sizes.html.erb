@@ -1,20 +1,17 @@
 <div class="btn-group sizable" style="width: 100%;">
   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="width: 100%;">
     <i class='glyphicon glyphicon-cutlery'></i>&nbsp;
-    <span id="cart_add_item_modal_size_name">
-      <%= sizes.first.name %>
-    </span>
+    <%= hidden_field_tag :price_id, value: sizes.first.id, class:'price_id' %>
+    <span class="name"> <%= sizes.first.name %> </span>
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
     <% sizes.each do |size| %>
       <li>
-        <a href="JavaScript:void(0);" class="cart_add_item_modal_size"
-          data-id="<%= size.id %>"
-          data-name="<%= size.name %>"
-          data-splittable="<%= size.splittable %>">
+        <a href="JavaScript:void(0);" data-id="<%= size.id %>"
+          data-name="<%= size.name %>" data-splittable="<%= size.splittable %>">
           <%= size.name %>
-          <div class="size-price-small">(<%= size.description %>)</div>
+          <div class="price">(<%= size.description %>)</div>
         </a>
       </li>
     <% end %>

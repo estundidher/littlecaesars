@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.ui.core
 //= require jquery.ui.widget
@@ -23,6 +24,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require cart
+//= require turbolinks
 
 $(document).on('ready page:load', function () {
   Application.bind_checkAll();

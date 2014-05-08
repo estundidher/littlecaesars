@@ -88,7 +88,13 @@ class CartController < ApplicationController
     if @product.nil?
       @product = @products.first
     end
-    render partial:"chooser", locals:{products:@products, product:@product, category:@category, categories:@categories, mode:params[:mode]}, layout: nil
+    render partial:'chooser', locals:{products:@products, product:@product, category:@category, categories:@categories, mode:params[:mode]}, layout: nil
+  end
+
+  # GET /cart/:mode/sizes
+  def sizes
+    sizes = params[:mode] == 'splitter' ? Size.where(splittable:true).order(:name) : Size.order(:name)
+    render partial:'sizes', locals:{sizes:sizes}, layout: nil
   end
 
 private
