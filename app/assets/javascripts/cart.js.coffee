@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).ready ->
+$(document).on 'ready page:load', ->
 
   $(document).on 'click', '.cart_add_item_modal_size', (e) ->
     console.log 'cart_add_item_modal_size. clicked! id : ' + $(this).data('id')
@@ -21,11 +21,15 @@ $(document).ready ->
   $(document).on 'click', '.addition .label i', (e) ->
     console.log ".addition .label i 'click' fired! id : " + $(this).closest('.addition').data 'id'
     if $(this).parent().hasClass 'label-info'
+      console.log ".addition .label i 'click' fired! hasClass 'label-info'.."
       $(this).parent().removeClass('label-info').addClass 'label-default'
       $(this).removeClass('glyphicon-remove').removeClass('white').addClass 'glyphicon-plus-sign'
+      console.log ".addition .label i 'click' fired! class changed to: " + $(this).attr('class')
     else
+      console.log ".addition .label i 'click' fired! hasn't class 'label-info'.."
       $(this).parent().removeClass('label-default').addClass 'label-info'
       $(this).removeClass('glyphicon-plus-sign').addClass 'glyphicon-remove white'
+      console.log ".addition .label i 'click' fired! class changed to: " + $(this).attr('class')
 
   $(document).on 'ajax:success', '.add_to_cart', (e, data, status, xhr) ->
     console.log "add_to_cart 'ajax:success' fired!"

@@ -19,7 +19,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 4.1.1'
 gem 'meiomask-rails', '~> 1.1.12'
-gem 'jquery-turbolinks'
 
 # http://eonasdan.github.io/bootstrap-datetimepicker/
 gem 'momentjs-rails', '~> 2.5.0'
@@ -34,7 +33,8 @@ gem 'kaminari'
 gem 'devise'
 
 #Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+#gem 'turbolinks'
+#gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'

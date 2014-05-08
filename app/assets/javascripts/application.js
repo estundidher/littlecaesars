@@ -11,14 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.ui.core
 //= require jquery.ui.widget
 //= require jquery.ui.mouse
 //= require jquery.ui.position
 //= require jquery.ui.autocomplete
-//= require turbolinks
 //= require bootstrap/bootstrap
 //= require theme/theme
 //= require meiomask
