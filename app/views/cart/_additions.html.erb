@@ -1,11 +1,9 @@
 <% cache ['product_additions', product] do %>
   <% product.items.each do |item| %>
-    <div class="addition">
-      <span class="label label-info">
+    <div class="addition" data-id="<%= item.id %>">
+      <span class="label label-info" >
         <%= item.name %>
-        <a href="JavaScript:void(0);">
-          <i class="glyphicon glyphicon-remove white"></i>
-        </a>
+        <i class="glyphicon glyphicon-remove white"></i>
       </span>
     </div>
   <% end %>

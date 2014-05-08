@@ -18,19 +18,20 @@ $(document).ready ->
   $(document).on 'change', '.cart_add_item_modal_quantity', (e) ->
     Cart.calculate_price()
 
-  $(document).on 'click', '.addition .label a', (e) ->
-    if $(this).parent().hasClass('label-info')
-      $(this).parent().removeClass('label-info').addClass('label-default')
-      $(this).find('i').removeClass('glyphicon-remove').removeClass('white').addClass('glyphicon-plus-sign')
+  $(document).on 'click', '.addition .label i', (e) ->
+    console.log ".addition .label i 'click' fired! id : " + $(this).closest('.addition').data 'id'
+    if $(this).parent().hasClass 'label-info'
+      $(this).parent().removeClass('label-info').addClass 'label-default'
+      $(this).removeClass('glyphicon-remove').removeClass('white').addClass 'glyphicon-plus-sign'
     else
-      $(this).parent().removeClass('label-default').addClass('label-info')
-      $(this).find('i').removeClass('glyphicon-plus-sign').addClass('glyphicon-remove white')
+      $(this).parent().removeClass('label-default').addClass 'label-info'
+      $(this).removeClass('glyphicon-plus-sign').addClass 'glyphicon-remove white'
 
   $(document).on 'ajax:success', '.add_to_cart', (e, data, status, xhr) ->
     console.log "add_to_cart 'ajax:success' fired!"
     $('#modal_container').empty().append xhr.responseText
-    Application.bind_carousel();
-    Application.bind_tabs();
+    Application.bind_carousel()
+    Application.bind_tabs()
     $('#cart_add_item_modal').modal 'show'
 
   $(document).on 'click', '.cart_add_item_save', (e) ->
@@ -45,7 +46,7 @@ $(document).ready ->
     console.log "cart_add_item_form ajax:success fired!"
     $("#cart_add_item_modal").modal 'hide'
     $("#cart_container").hide().empty().append(xhr.responseText).show()
-    Application.bind_cart();
+    Application.bind_cart()
 
   $(document).on 'ajax:error', '#cart_add_item_form', (e, xhr, status, error) ->
     console.log "cart_add_item_form ajax:error fired!"
@@ -59,16 +60,16 @@ $(document).ready ->
 
   $(document).on 'ajax:before', '.cart_item_remove', (event, xhr, settings) ->
     console.log "cart_item_remove ajax:before fired!"
-    Application.cart_toggle('fast');
+    Application.cart_toggle('fast')
 
   $(document).on 'ajax:success', '.cart_item_remove', (e, data, status, xhr) ->
     console.log "cart_item_remove ajax:success fired!"
     $("#cart_container").hide().empty().append(xhr.responseText).show()
-    Application.bind_cart();
+    Application.bind_cart()
 
   $(document).on 'ajax:error', '.cart_item_remove', (e, xhr, status, error) ->
     $("#cart_container").hide().empty().append(xhr.responseText).show()
-    Application.bind_cart();
+    Application.bind_cart()
 
 #checkout
 
