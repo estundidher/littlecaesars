@@ -21,7 +21,7 @@ class CartController < ApplicationController
   def create
     @cart_item = @cart.new_item @product, cart_item_params
     if @cart_item.save
-      render partial:'cart/top/cart', locals:{cart:@cart_item.cart}, layout: nil
+      render partial:'cart/button/cart', locals:{cart:@cart_item.cart}, layout: nil
     else
       render partial:'cart/modal/form', locals:{cart_item:@cart_item, product:@product}, layout:nil, status: :unprocessable_entity
     end
@@ -30,9 +30,9 @@ class CartController < ApplicationController
   # DELETE /cart/1
   def destroy
     if @cart_item.destroy
-      render partial:'cart/top/cart', locals:{cart:@cart_item.cart}, layout: nil
+      render partial:'cart/button/cart', locals:{cart:@cart_item.cart}, layout: nil
     else
-      render partial:'cart/top/cart', locals:{cart:@cart_item.cart}, layout: nil, status: :unprocessable_entity
+      render partial:'cart/button/cart', locals:{cart:@cart_item.cart}, layout: nil, status: :unprocessable_entity
     end
   end
 

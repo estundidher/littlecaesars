@@ -23,14 +23,16 @@
 //= require meiomask
 //= require moment
 //= require bootstrap-datetimepicker
+//= require modal
 //= require cart
+//= require cart_modal
+//= require cart_button
 //= require turbolinks
 
 $(document).on('ready page:load', function () {
   Application.bind_checkAll();
   Application.bind_dateTimePickers();
   Application.bind_moneyMask();
-  Application.bind_cart();
   Application.bind_tooltip();
   Application.bind_scroolToTop();
   Application.bind_carousel();
@@ -54,30 +56,6 @@ var Application = {
 
   bind_moneyMask: function() {
     return $('.money_mask').setMask({mask:'99.99', type:'reverse', maxLength: 5});
-  },
-
-  /* *************************************** */
-  /* Cart Button Drop Down */
-  /* *************************************** */
-  bind_cart: function() {
-    $('.btn-cart-md .cart-link').click(function(e) {
-        e.preventDefault();
-        Application.cart_toggle();
-    });
-  },
-
-  /* *************************************** */
-  /* Cart Toggle */
-  /* *************************************** */
-  cart_toggle: function(speed) {
-    var $dd_menu = $('.btn-cart-md .cart-dropdown');
-    if ($dd_menu.hasClass('open')) {
-        $dd_menu.fadeOut(speed);
-        $dd_menu.removeClass('open');
-    } else {
-        $dd_menu.fadeIn(speed);
-        $dd_menu.addClass('open');
-    }
   },
 
   /* *************************************** */
@@ -126,18 +104,5 @@ var Application = {
     $('.gallery-img-link').prettyPhoto({
       overlay_gallery: false, social_tools: false
     });
-  }
-};
-
-var Cart = {
-  calculate_price: function() {
-    $.post($('#cart_add_item_calculate_url').val(), $('#cart_add_item_form').serialize(), function(data) {
-      return $('.item-price').hide().empty().append(data).slideDown('fast')
-    });
-  },
-
-  carousel_selectActive: function (splitter, index) {
-    item = $(splitter).find('.item')[index];
-    $(item).addClass('active');
   }
 };

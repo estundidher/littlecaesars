@@ -28,9 +28,9 @@
         </div>
         <div class="col-md-2 col-sm-2">
           <% if customer_signed_in? %>
-            <div id="cart_container">
+            <div class="cart-button">
               <% @cart = Cart.find_or_create_by customer: current_customer, status: Cart.statuses[:open] %>
-              <%= render partial: '/cart/top/cart', locals:{cart:@cart} %>
+              <%= render partial: '/cart/button/cart', locals:{cart:@cart} %>
             </div>
           <% else %>
             <ul class="nav navbar-nav navbar-right">

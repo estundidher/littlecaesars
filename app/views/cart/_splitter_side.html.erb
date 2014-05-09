@@ -1,5 +1,5 @@
-<% cache cache_key_for_spliter(category, side) do %>
-  <div id="splitter_<%= side %>" class="splitter carousel slide vertical <%= side %>">
+<div id="splitter_<%= side %>" class="splitter carousel slide vertical <%= side %>" data-active-index="<%= (defined?(@product) ? products.index(@product) : 0) %>">
+  <% cache cache_key_for_spliter(category, side) do %>
     <div class="carousel-inner">
       <% products.each_with_index do |splittable, index| %>
         <% cache ["splitter_#{side}", splittable] do %>
@@ -24,8 +24,5 @@
     <a class="right carousel-control" href="#splitter_<%= side %>" data-slide="next">
       <span class="glyphicon glyphicon-chevron-up"></span>
     </a>
-  </div>
-<% end %>
-<script type="text/javascript">
-  Cart.carousel_selectActive($('.slide.<%= side %>'), <%= (defined?(@product) ? products.index(@product) : 0) %>)
-</script>
+  <% end %>
+</div>

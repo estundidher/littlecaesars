@@ -7,7 +7,7 @@
       <%= image_tag 'loader_danger.gif', class:'loader', style:'display:none' %>
     <% end %>
     &nbsp;
-    <span class="category"><%= category.name %></span>
+    <span class="name"><%= category.name %></span>
     &nbsp;
     <% if align == 'right' %>
       <span class="caret"></span>
@@ -19,10 +19,10 @@
     <% categories.each do |category| %>
       <li>
         <%= link_to category.name, cart_splitter_path(align, category), remote: true,
-            data: {target: align, category: category.name} if mode == 'splitter' %>
+            data: {target: align, name: category.name} if mode == 'splitter' %>
 
         <%= link_to category.name, cart_slider_path(category), remote: true,
-            data: {target: align, category: category.name} if mode == 'slider' %>
+            data: {target: align, name: category.name} if mode == 'slider' %>
       </li>
     <% end %>
   </ul>

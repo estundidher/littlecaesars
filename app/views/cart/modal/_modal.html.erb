@@ -1,4 +1,4 @@
-<div id="cart_add_item_modal" class="modal fade cart-modal" role="dialog" aria-hidden="true">
+<div class="modal fade cart-modal" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -25,7 +25,7 @@
         </div>
         <%= render partial:'cart/modal/prices', locals:{cart_item:cart_item, product:product} unless product.type.priceable? %>
         <%= render partial:'cart/modal/split', locals:{cart_item:cart_item, product:product} if product.splittable? %>
-        <button type="button" class="cart_add_item_save btn btn-primary">
+        <button type="button" class="btn btn-primary save">
           <i class='glyphicon glyphicon-shopping-cart'></i>
           <%= t 'links.add_simple' %>
         </button>

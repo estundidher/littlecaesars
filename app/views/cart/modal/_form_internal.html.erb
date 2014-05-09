@@ -1,4 +1,3 @@
-<input type="hidden" id="cart_add_item_calculate_url" value="<%= cart_item_calculate_path %>">
 <%= f.hidden_field :cart_id, value: cart_item.cart.id %>
 <%= tb_show_errors_for cart_item %>
 <% if product.type.quantitable? %>

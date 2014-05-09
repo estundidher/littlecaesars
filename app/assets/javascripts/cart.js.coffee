@@ -2,157 +2,124 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'ready page:load', ->
+window.Caesars or= {}
 
-#modal
+class Caesars.Cart
 
-  $('#modal_container').on 'change', '.cart_add_item_modal_quantity', (e) ->
-    Cart.calculate_price()
+  constructor: ->
+    @$container = $('.container')
+    @$chooser = $('.chooser')
+    @$mode_chooser = $('.mode_chooser')
+    @$mode_chooser_form = $('.mode_chooser_form')
+    @carousel_activate_item '.carousel.slide.vertical'
+    @bind_carousel()
+    @bind_pretty_photo()
+    @bind()
 
-  $('.add_to_cart').on 'ajax:success', (e, data, status, xhr) ->
-    console.log "add_to_cart 'ajax:success' fired!"
-    $('#modal_container').empty().append xhr.responseText
-    Application.bind_carousel()
-    Application.bind_tabs()
-    $('#cart_add_item_modal').modal 'show'
+  bind: ->
+    @$chooser.on 'slide.bs.carousel', '.carousel.slide.vertical', @show_product
+    @$chooser.on 'ajax:before', '.categories .dropdown-menu a', @choose_category_before
+    @$chooser.on 'ajax:success', '.categories .dropdown-menu a', @choose_category_success
+    @$container.on 'click', '.sizable .dropdown-menu a', @choose_size
+    @$chooser.on 'click', '.addition .label i', @choose_addition
+    @$mode_chooser.change @choose_mode
+    @$mode_chooser_form.on 'ajax:success', @choose_mode_success
 
-  $('#modal_container').on 'click', '.cart_add_item_save', (e) ->
-    console.log "cart_add_item_save 'click' fired!"
-    $('#cart_add_item_form').submit()
+  carousel_activate_item: (splitter) ->
+    console.log 'cart: carousel_activate_item fired! index: ' + $(splitter).data('active-index')
+    item = $(splitter).find('.item')[$(splitter).data('active-index')];
+    $(item).addClass 'active'
 
-  $('#modal_container').on 'ajax:success', '#cart_add_item_modal', (e, data, status, xhr) ->
-    console.log "cart_add_item_modal 'ajax:success' fired!"
-    $('#cart_add_item_modal').modal 'hide'
-
-  $('#modal_container').on 'ajax:success', '#cart_add_item_form', (e, data, status, xhr) ->
-    console.log "cart_add_item_form ajax:success fired!"
-    $("#cart_add_item_modal").modal 'hide'
-    $("#cart_container").hide().empty().append(xhr.responseText).show()
-    Application.bind_cart()
-
-  $('#modal_container').on 'ajax:error', '#cart_add_item_form', (e, xhr, status, error) ->
-    console.log "cart_add_item_form ajax:error fired!"
-    $("#cart_add_item_modal_form_container").hide().empty().append(xhr.responseText).fadeIn 'fast'
-
-  $('#modal_container').on 'hidden.bs.modal', '#cart_add_item_modal', (e) ->
-    console.log "#cart_add_item_modal 'hidden.bs.modal' fired!"
-    $('#modal_container').empty()
-
-#top/cart
-
-  $('#cart_container').on 'ajax:before', '.cart_item_remove', (event, xhr, settings) ->
-    console.log "cart_item_remove ajax:before fired!"
-    Application.cart_toggle('fast')
-
-  $('#cart_container').on 'ajax:success', '.cart_item_remove', (e, data, status, xhr) ->
-    console.log "cart_item_remove ajax:success fired!"
-    $("#cart_container").hide().empty().append(xhr.responseText).show()
-    Application.bind_cart()
-
-  $('#cart_container').on 'ajax:error', '.cart_item_remove', (e, xhr, status, error) ->
-    $("#cart_container").hide().empty().append(xhr.responseText).show()
-    Application.bind_cart()
-
-#checkout
-
-  $('modal_container').on 'ajax:success', '.cart_add_item_checkout', (e, data, status, xhr) ->
-    console.log "cart_add_item_checkout 'ajax:success' fired!"
-    $('#modal_container').empty().append xhr.responseText
-    $('#checkout_modal').modal 'show'
-
-  $('modal_container').on 'hidden.bs.modal', '#checkout_modal', (e) ->
-    console.log "#checkout_modal 'hidden.bs.modal' fired!"
-    $('#modal_container').empty()
-
-#additions
-
-  $('.chooser').on 'click', '.addition .label i', ->
-    console.log ".addition .label i 'click' fired! id : " + $(this).closest('.addition').data 'id'
-    if $(this).parent().hasClass 'label-info'
-      $(this).parent().removeClass('label-info').addClass 'label-default'
-      $(this).removeClass('glyphicon-remove').removeClass('white').addClass 'glyphicon-plus-sign'
-    else
-      $(this).parent().removeClass('label-default').addClass 'label-info'
-      $(this).removeClass('glyphicon-plus-sign').addClass 'glyphicon-remove white'
-
-  $('modal_container').on 'change', '.cart_add_item_modal_size', (e) ->
-    Cart.calculate_price()
-
-  $('modal_container').on 'click', '#toppings_carousel_button_add', (e) ->
-    $remove = $('<i>', {'class': 'glyphicon glyphicon-remove white'})
-    $remove.on 'click', ->
-      $div = $(this).parent().parent()
-      $div.fadeOut 'fast', ->
-        $div.remove()
-        Cart.calculate_price()
-    $addition = $('<div>', {'class': 'addition'}).hide().append(
-      $('<span>', {'class': 'label label-warning'})
-        .append($('<input>', {type: 'hidden', name:'cart_item_sizable_additionable[addition_ids][]', value: $(this).data("id")}))
-        .append($(this).data("name"))
-        .append(' (' + $(this).data("price") + ') ')
-        .append($remove)).prepend(' ')
-    $('#cart_add_item_modal_additions_container').append $addition
-    $addition.fadeIn 'fast', ->
-      Cart.calculate_price()
-
-# slider
-
-  loadProduct = (item) ->
+  load_product: (item) ->
     $item = $(item)
-    console.log "loadProduct id: " + $item.data('id') + ', url: ' + $item.data('url') + ', target: ' + $item.data('target')
+    console.log "cart: load_product id: " + $item.data('id') + ', url: ' + $item.data('url') + ', target: ' + $item.data('target')
     if $item.data('target') == 'left'
-      $('.mode_chooser_form .product').val $item.data('id')
+      $('.mode_chooser_form .product').val $item.data 'id'
 
     $.get $item.data('url'), (data) ->
       $('.chooser .' + $item.data('target') + ' .product').hide().empty().html($item.data('name')).fadeIn 'fast'
       $('.chooser .' + $item.data('target') + ' .img-thumbnail').hide().attr('src', $item.data('photo')).fadeIn 'fast'
-      $('.chooser .' + $item.data('target') + ' .gallery-img-link').attr('href', $item.data('photo'))
+      $('.chooser .' + $item.data('target') + ' .gallery-img-link').attr 'href', $item.data 'photo'
       $('.chooser .' + $item.data('target') + ' .additions').hide().empty().append(data).fadeIn 'fast'
 
-  $('.chooser').on 'slide.bs.carousel', '.carousel.splitter, .carousel.slider', (e) ->
-    console.log ".splitter, .slider 'slid.bs.carousel' fired! current: " + $(this).find('.active').index() + ', next: ' + $(e.relatedTarget).index()
-    loadProduct $(this).find('.item')[$(e.relatedTarget).index()]
+  show_product: (e) =>
+    console.log "cart: .carousel.splitter, .carousel.slider 'slid.bs.carousel' fired! current: " + $(e.target).find('.active').index() + ', next: ' + $(e.relatedTarget).index()
+    @load_product $(e.target).find('.item')[$(e.relatedTarget).index()]
 
-  $('.chooser').on 'ajax:before', '.categories a', (e, data, status, xhr) ->
-    console.log ".categories a 'ajax:before' fired! category: " + $(this).data('category') + ', target: ' + $(this).data('target')
-    $menu = $(this).closest('.btn-group')
+  choose_category_before: (e, data, status, xhr) =>
+    console.log "cart: .categories a 'ajax:before' fired! category: " + $(e.target).data('name') + ', target: ' + $(e.target).data('target')
+    $menu = $(e.target).closest('.btn-group')
     $menu.find('.loader').fadeIn 'fast'
-    $menu.find('.category').empty().html($(this).data('category'))
+    $menu.find('.name').empty().html($(e.target).data('name'))
     $menu.removeClass 'open'
 
-  $('.chooser').on 'ajax:success', '.categories a', (e, data, status, xhr) ->
-    console.log ".categories a 'ajax:success' fired! category: " + $(this).data('category') + ', target: ' + $(this).data('target')
-    $('.chooser .carousel.' + $(this).data('target')).parent().hide().empty().append(xhr.responseText).fadeIn 'fast'
-    Application.bind_carousel()
-    loadProduct $('.chooser .carousel.' + $(this).data('target')).find '.active'
-    Application.bind_prettyPhoto()
-    $(this).closest('.btn-group').find('.loader').fadeOut 'fast'
+  choose_category_success: (e, data, status, xhr) =>
+    console.log "cart: .categories a 'ajax:success' fired! category: " + $(e.target).data('category') + ', target: ' + $(e.target).data('target')
+    $('.chooser .carousel.' + $(e.target).data('target')).parent().hide().empty().append(xhr.responseText).fadeIn 'fast'
+    @carousel_activate_item '.chooser .carousel.' + $(e.target).data 'target'
+    @load_product $('.chooser .carousel.' + $(e.target).data('target')).find '.active'
+    $(e.target).closest('.btn-group').find('.loader').fadeOut 'fast'
 
-#size chooser
+  choose_size: (e) =>
+    console.log 'cart: .sizable a clicked! id : ' + $(e.target).data('id') + ', name: ' + $(e.target).data('name')
+    $(e.target).closest('.sizable .price_id').find('.price_id').val $(e.target).data 'id'
+    $(e.target).closest('.sizable').find('.name').html $(e.target).data 'name'
 
-  $('.container').on 'click', '.sizable .dropdown-menu a', (e) ->
-    console.log '.sizable a clicked! id : ' + $(this).data('id') + ', name: ' + $(this).data('name')
-    $(this).closest('.sizable .price_id').find('.price_id').val $(this).data 'id'
-    $(this).closest('.sizable').find('.name').html $(this).data 'name'
-
-#mode chooser
-
-  $('.mode_chooser').change (e) ->
-    console.log ".mode_chooser a 'change' fired!"
+  choose_mode: (e) =>
+    console.log "cart: .mode_chooser a 'change' fired!"
     $('.mode_chooser_form .loader').fadeIn 'fast'
-    $(this).closest('form').submit()
-    $.get $(this).data('url'), (data) ->
+    $(e.target).closest('form').submit()
+    $.get $(e.target).data('url'), (data) ->
       $('#sizes_container').hide().empty().append(data).fadeIn 'fast'
 
-  $('.mode_chooser_form').on 'ajax:success', (e, data, status, xhr) ->
-    console.log ".mode_chooser_form a 'ajax:success' fired!"
-    $('.chooser_container').hide().empty().append(xhr.responseText).fadeIn 'fast'
-    Application.bind_carousel();
-    Application.bind_prettyPhoto()
+  choose_mode_success: (e, data, status, xhr) =>
+    console.log "cart: .mode_chooser_form a 'ajax:success' fired!"
+    $('.chooser').hide().empty().append(xhr.responseText).fadeIn 'fast'
+    @carousel_activate_item carousel for carousel in $('.carousel.slide.vertical')
     $('.mode_chooser_form .loader').fadeOut 'fast'
+    @bind_pretty_photo()
+    @bind_carousel()
 
+  choose_addition: (e) =>
+    console.log "cart: .addition .label i 'click' fired! id : " + $(e.target).closest('.addition').data 'id'
+    if $(e.target).parent().hasClass 'label-info'
+      $(e.target).parent().removeClass('label-info').addClass 'label-default'
+      $(e.target).removeClass('glyphicon-remove').removeClass('white').addClass 'glyphicon-plus-sign'
+    else
+      $(e.target).parent().removeClass('label-default').addClass 'label-info'
+      $(e.target).removeClass('glyphicon-plus-sign').addClass 'glyphicon-remove white'
 
+#  $('modal_container').on 'click', '#toppings_carousel_button_add', (e) ->
+#    $remove = $('<i>', {'class': 'glyphicon glyphicon-remove white'})
+#    $remove.on 'click', ->
+#      $div = $(this).parent().parent()
+#      $div.fadeOut 'fast', ->
+#        $div.remove()
+#        Cart.calculate_price()
+#    $addition = $('<div>', {'class': 'addition'}).hide().append(
+#      $('<span>', {'class': 'label label-warning'})
+#        .append($('<input>', {type: 'hidden', name:'cart_item_sizable_additionable[addition_ids][]', value: $(this).data("id")}))
+#        .append($(this).data("name"))
+#        .append(' (' + $(this).data("price") + ') ')
+#        .append($remove)).prepend(' ')
+#    $('#cart_add_item_modal_additions_container').append $addition
+#    $addition.fadeIn 'fast', ->
+#      Cart.calculate_price()
 
+  bind_carousel: ->
+    console.log "cart: bind_carousel fired!"
+    $('.chooser .carousel.slide.vertical').carousel({
+      interval: false
+    })
 
+  bind_pretty_photo: ->
+    console.log "cart: bind_pretty_photo fired!"
+    $('.chooser .gallery-img-link').prettyPhoto({
+      overlay_gallery: false, social_tools: false
+    })
 
+create_cart = ->
+  window.Caesars.cart = new Caesars.Cart()
 
+$(document).on 'page:load', create_cart
+$(document).ready create_cart
