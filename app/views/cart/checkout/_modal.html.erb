@@ -1,0 +1,58 @@
+<!-- Shopping cart Modal -->
+<div class="modal fade checkout" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Shopping Cart</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Items table -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th> <%= Product.human_attribute_name 'name' %> </th>
+              <th style="text-align: center;"> <%= Product.human_attribute_name 'quantity' %> </th>
+              <th> <%= Product.human_attribute_name 'price' %> </th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th style="text-align: center;"> <%= Cart.human_attribute_name 'total' %> </th>
+              <th> <%= number_to_currency cart.total %> </th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% cart.items.each do |cart_item| %>
+              <tr>
+                <td>
+                  <%= cart_item.name %>
+                  <% if cart_item.sizable? %>
+                    <br> <small> &nbsp&nbsp&nbsp<%= number_to_currency cart_item.price.value %> <%= cart_item.size.name %> </small>
+                  <% end %>
+                  <% if cart_item.additionable? %>
+                    <% cart_item.additions.each do |addition| %>
+                      <br> <small>
+                        + <%= number_to_currency addition.price %> <%= addition.name %>
+                      </small>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td style="text-align: center;"> <%= cart_item.quantity %> </td>
+                <td> <%= number_to_currency cart_item.total %> </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
+        <button type="button" class="btn btn-info">
+          <%= Cart.human_attribute_name 'checkout' %>
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Model End -->

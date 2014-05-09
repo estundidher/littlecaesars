@@ -1,0 +1,13 @@
+<div class="btn-cart-md"> <!-- Button Kart -->
+  <a class="cart-link" href="#">
+    <!-- Image -->
+    <%= image_tag "cart.png", class: 'img-responsive' %>
+    <!-- Heading -->
+    <h4>Shopping Cart</h4>
+    <span><%= cart.items.size %> items <%= number_to_currency cart.total %></span>
+    <div class="clearfix"></div>
+  </a>
+  <%= render partial: 'cart/button/list', locals:{cart:cart} %>
+  <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
