@@ -50,5 +50,4 @@ class Caesars.CartButton
 create_cart_button = ->
   window.Caesars.cart_button = new Caesars.CartButton()
 
-$(document).on 'page:load', create_cart_button
-$(document).ready create_cart_button
+$(document).on 'ready page:load', create_cart_button

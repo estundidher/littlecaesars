@@ -11,9 +11,9 @@ class Caesars.Cart
     @$chooser = $('.chooser')
     @$mode_chooser = $('.mode_chooser')
     @$mode_chooser_form = $('.mode_chooser_form')
-    @carousel_activate_item '.carousel.slide.vertical'
     @bind_carousel()
     @bind_pretty_photo()
+    @carousel_activate_item '.carousel.slide.vertical'
     @bind()
 
   bind: ->
@@ -27,8 +27,9 @@ class Caesars.Cart
 
   carousel_activate_item: (splitter) ->
     console.log 'cart: carousel_activate_item fired! index: ' + $(splitter).data('active-index')
-    item = $(splitter).find('.item')[$(splitter).data('active-index')];
-    $(item).addClass 'active'
+    if splitter != null && splitter != undefined
+      item = $(splitter).find('.item')[$(splitter).data('active-index')];
+      $(item).addClass 'active'
 
   load_product: (item) ->
     $item = $(item)
@@ -56,6 +57,7 @@ class Caesars.Cart
   choose_category_success: (e, data, status, xhr) =>
     console.log "cart: .categories a 'ajax:success' fired! category: " + $(e.target).data('category') + ', target: ' + $(e.target).data('target')
     $('.chooser .carousel.' + $(e.target).data('target')).parent().hide().empty().append(xhr.responseText).fadeIn 'fast'
+    @bind_carousel $('.chooser .carousel.' + $(e.target).data('target'))
     @carousel_activate_item '.chooser .carousel.' + $(e.target).data 'target'
     @load_product $('.chooser .carousel.' + $(e.target).data('target')).find '.active'
     $(e.target).closest('.btn-group').find('.loader').fadeOut 'fast'
@@ -106,9 +108,15 @@ class Caesars.Cart
 #    $addition.fadeIn 'fast', ->
 #      Cart.calculate_price()
 
-  bind_carousel: ->
-    console.log "cart: bind_carousel fired!"
-    $('.chooser .carousel.slide.vertical').carousel({
+  bind_carousel: (carousel) ->
+    if carousel
+      console.log "cart: bind_carousel '" + $(carousel).attr('class') + "' fired!"
+      $carousel = $(carousel)
+    else
+      console.log "cart: bind_carousel fired!"
+      $carousel = $('.chooser .carousel.slide.vertical')
+
+    $carousel.carousel({
       interval: false
     })
 
@@ -121,5 +129,4 @@ class Caesars.Cart
 create_cart = ->
   window.Caesars.cart = new Caesars.Cart()
 
-$(document).on 'page:load', create_cart
-$(document).ready create_cart
+$(document).on 'ready page:load', create_cart

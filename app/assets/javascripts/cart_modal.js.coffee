@@ -49,5 +49,4 @@ class Caesars.CartModal
 create_cart_modal = ->
   window.Caesars.cart_modal = new Caesars.CartModal()
 
-$(document).on 'page:load', create_cart_modal
-$(document).ready create_cart_modal
+$(document).on 'ready page:load', create_cart_modal
