@@ -51,7 +51,7 @@ class CartController < ApplicationController
     else
       @category = @product.category
     end
-    @products = @category.products.shoppable_additionable_splittable
+    @products = @category.products.shoppable_additionable
     if @product.nil?
       @product = @products.first
     end
@@ -75,6 +75,12 @@ class CartController < ApplicationController
   # GET /cart/:product_id/items
   def items
     render partial:'additions', locals:{product:@product}, layout: nil
+  end
+
+  # GET /cart/additionables
+  def additionables
+    @products = Product.not_additionable_nor_shoppable
+    render partial:'additionables', locals:{products:@products}, layout: nil
   end
 
   # POST /cart/mode

@@ -6,11 +6,11 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6 col-sm-6 left" style="padding-right: 0px;">
+  <div class="col-md-6 col-sm-6 left additions" style="padding-right: 0px;">
     <%= render partial:'additions_internal', locals: {product:product} %>
   </div>
   <% if mode == 'splitter' %>
-    <div class="col-md-6 col-sm-6 right" style="padding-left: 0px; text-align: right;">
+    <div class="col-md-6 col-sm-6 right additions" style="padding-left: 0px; text-align: right;">
       <%= render partial:'additions_internal', locals: {product:product} %>
     </div>
   <% end %>

@@ -1,9 +1,10 @@
 <h5> <%= Product.human_attribute_name 'ingredients' %> </h5 >
-<div class="additions">
+<div class="selected">
   <%= render partial:'additions', locals:{product:@product} %>
 </div>
 <br>
-<a href="JavaScript:void(0);" class="btn btn-warning btn-sm" role="button">
+
+<%= link_to cart_additionables_path, remote: true, class:'btn btn-warning btn-sm', role:'button' do %>
   <i class='glyphicon glyphicon-plus-sign'></i>
   Additions
-</a>
+<% end %>

@@ -27,9 +27,10 @@ Rails.application.routes.draw do
 
   #cart page
   get 'cart(/:product_id)',                 to: 'cart#index',         as: :cart
+  post 'cart/mode',                         to: 'cart#mode',          as: :cart_mode
+  get '/cart/additionables',                to: 'cart#additionables', as: :cart_additionables
   get 'cart/splitter/:category_id(/:side)(/:size_id)', to: 'cart#splitter',      as: :cart_splitter
   get 'cart/slider/:category_id(/:size_id)',           to: 'cart#slider',        as: :cart_slider
-  post 'cart/mode',                         to: 'cart#mode',          as: :cart_mode
 
   namespace :admin do
 
