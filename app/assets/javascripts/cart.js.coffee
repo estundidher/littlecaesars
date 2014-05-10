@@ -7,6 +7,7 @@ window.Caesars or= {}
 class Caesars.Cart
 
   constructor: ->
+    @$modal_container = $('#modal_container')
     @$container = $('.container')
     @$chooser = $('.chooser')
     @$mode_chooser = $('.mode_chooser')
@@ -48,10 +49,11 @@ class Caesars.Cart
     @load_product $(e.target).find('.item')[$(e.relatedTarget).index()]
 
   choose_category_before: (e, data, status, xhr) =>
+    $(this).data('params', {size_id: $('#size_id').val()})
     console.log "cart: .categories a 'ajax:before' fired! category: " + $(e.target).data('name') + ', target: ' + $(e.target).data('target')
     $menu = $(e.target).closest('.btn-group')
     $menu.find('.loader').fadeIn 'fast'
-    $menu.find('.name').empty().html($(e.target).data('name'))
+    $menu.find('.name').empty().html $(e.target).data('name')
     $menu.removeClass 'open'
 
   choose_category_success: (e, data, status, xhr) =>
@@ -62,17 +64,40 @@ class Caesars.Cart
     @load_product $('.chooser .carousel.' + $(e.target).data('target')).find '.active'
     $(e.target).closest('.btn-group').find('.loader').fadeOut 'fast'
 
+  choose_size_before: (e, data, status, xhr) =>
+    console.log "cart: .sizable a 'ajax:before' fired! category: " + $(e.target).data('name') + ', target: ' + $(e.target).data('target')
+    $menu = $(e.target).closest('.btn-group')
+    $menu.find('.loader').fadeIn 'fast'
+    $menu.find('.name').empty().html $(e.target).data('name')
+    $menu.removeClass 'open'
+
+  choose_size_success: (e, data, status, xhr) =>
+    console.log "cart: .sizable a 'ajax:success' fired! category: " + $(e.target).data('category') + ', target: ' + $(e.target).data('target')
+    $('.chooser .carousel.' + $(e.target).data('target')).parent().hide().empty().append(xhr.responseText).fadeIn 'fast'
+    @bind_carousel $('.chooser .carousel.' + $(e.target).data('target'))
+    @carousel_activate_item '.chooser .carousel.' + $(e.target).data 'target'
+    @load_product $('.chooser .carousel.' + $(e.target).data('target')).find '.active'
+    $(e.target).closest('.btn-group').find('.loader').fadeOut 'fast'
+
   choose_size: (e) =>
-    console.log 'cart: .sizable a clicked! id : ' + $(e.target).data('id') + ', name: ' + $(e.target).data('name')
-    $(e.target).closest('.sizable .price_id').find('.price_id').val $(e.target).data 'id'
+    console.log 'cart: .sizable a clicked! id : ' + $(e.target).data('id') + ', name: ' + $(e.target).data('name') + ", splittable: '" + $(e.target).data('splittable') + "'"
     $(e.target).closest('.sizable').find('.name').html $(e.target).data 'name'
+    $(e.target).closest('.sizable').find('.name').html $(e.target).data 'name'
+    if $(e.target).data('id')?
+      $('.mode_chooser_form #size_id').val($(e.target).data('id'))
+      if $(e.target).data('splittable') is true
+        console.log 'cart: .sizable a clicked! Is splittable. enabeling mode splitter..'
+        $('.mode_chooser_form .splitter').prop('disabled', false)
+      else
+        $('.mode_chooser_form .splitter').prop('disabled', true)
+        $('.mode_chooser_form .slider').prop('checked', true)
+
+      $('.mode_chooser_form .slider').trigger('change');
 
   choose_mode: (e) =>
     console.log "cart: .mode_chooser a 'change' fired!"
     $('.mode_chooser_form .loader').fadeIn 'fast'
     $(e.target).closest('form').submit()
-    $.get $(e.target).data('url'), (data) ->
-      $('#sizes_container').hide().empty().append(data).fadeIn 'fast'
 
   choose_mode_success: (e, data, status, xhr) =>
     console.log "cart: .mode_chooser_form a 'ajax:success' fired!"
@@ -81,6 +106,12 @@ class Caesars.Cart
     $('.mode_chooser_form .loader').fadeOut 'fast'
     @bind_pretty_photo()
     @bind_carousel()
+
+  is_splitter: ->
+    $('.carousel.slide.vertical').length == 2
+
+  is_slider: ->
+    $('.carousel.slide.vertical').length == 1
 
   choose_addition: (e) =>
     console.log "cart: .addition .label i 'click' fired! id : " + $(e.target).closest('.addition').data 'id'

@@ -4,6 +4,7 @@ class CartController < ApplicationController
   before_action :set_cart_item, only: [:destroy]
   before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode]
   before_action :set_category, only: [:splitter, :slider]
+  before_action :set_size, only: [:splitter, :slider, :mode]
 
   # GET /cart/add/1
   def modal
@@ -60,15 +61,15 @@ class CartController < ApplicationController
 
   # GET /cart/splitter/:side/:category_id
   def splitter
-    @products = @category.products.shoppable_additionable
+    @products = @category.products.shoppable_additionable_splittable @size, nil
     @categories = Category.with_shoppable_products
-    render partial:'splitter_side', locals:{side:params[:side], category:@category, categories:@categories, products:@products, product:@products.first}, layout: nil
+    render partial:'splitter_side', locals:{side:params[:side], size:@size, category:@category, categories:@categories, products:@products, product:@products.first}, layout: nil
   end
 
   # GET /cart/slider/:category_id
   def slider
-    @products = @category.products.shoppable_additionable
-    render partial:'slider_internal', locals:{products:@products, product:@products.first, category:@category}, layout: nil
+    @products = @category.products.shoppable_additionable @size, nil
+    render partial:'slider_internal', locals:{products:@products, size:@size, product:@products.first, category:@category}, layout: nil
   end
 
   # GET /cart/:product_id/items
@@ -84,17 +85,20 @@ class CartController < ApplicationController
     else
       @category = @product.category
     end
-    @products = @category.products.shoppable_additionable_splittable
-    if @product.nil?
+    if params[:mode] == 'slider'
+      @products = @category.products.shoppable_additionable @size, nil
+    elsif params[:mode] == 'splitter'
+      @products = @category.products.shoppable_additionable_splittable @size, nil
+    end
+    if @product.nil? || @products.exclude?(@product)
       @product = @products.first
     end
-    render partial:'chooser', locals:{products:@products, product:@product, category:@category, categories:@categories, mode:params[:mode]}, layout: nil
-  end
-
-  # GET /cart/:mode/sizes
-  def sizes
-    sizes = params[:mode] == 'splitter' ? Size.where(splittable:true).order(:name) : Size.order(:name)
-    render partial:'sizes', locals:{sizes:sizes}, layout: nil
+    render partial:'chooser', locals:{mode:params[:mode],
+                                      category:@category,
+                                      size:@size,
+                                      product:@product,
+                                      categories:@categories,
+                                      products:@products}, layout: nil
   end
 
 private
@@ -116,7 +120,6 @@ private
     unless params[:product_id].nil?
       @product = Product.find params[:product_id]
     end
-
     unless cart_item_params.nil?
       unless cart_item_params[:product_id].nil?
         @product = Product.find cart_item_params[:product_id]
@@ -127,6 +130,14 @@ private
   def set_category
     unless params[:category_id].nil?
       @category = Category.find params[:category_id]
+    end
+  end
+
+  def set_size
+    unless params[:size_id].nil?
+      if params[:size_id] != ""
+        @size = Size.find params[:size_id]
+      end
     end
   end
 

@@ -1,8 +1,8 @@
 <div class="row">
   <%= render partial:'slider',
-    locals: {categories:categories, category:category, product:product, products:products} if mode == 'slider' %>
+    locals: {categories:categories, category:category, size:size, product:product, products:products} if mode == 'slider' %>
   <%= render partial:'splitter',
-    locals: {categories:categories, category:category, product:product, products:products} if mode == 'splitter' %>
+    locals: {categories:categories, category:category, size:size, product:product, products:products} if mode == 'splitter' %>
 </div>
 
 <div class="row">

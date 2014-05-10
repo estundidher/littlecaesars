@@ -1,4 +1,4 @@
- <div class="btn-group categories" style="width: 100%;">
+<div class="btn-group categories" style="width: 100%;">
   <button type="button" class="btn btn-danger dropdown-toggle"
           data-toggle="dropdown" style="width: 100%; text-align: <%= align %>;">
     <% if align == 'left' %>
@@ -18,10 +18,10 @@
   <ul class="dropdown-menu" role="menu">
     <% categories.each do |category| %>
       <li>
-        <%= link_to category.name, cart_splitter_path(align, category), remote: true,
+        <%= link_to category.name, cart_splitter_path(category, align, size), remote: true,
             data: {target: align, name: category.name} if mode == 'splitter' %>
 
-        <%= link_to category.name, cart_slider_path(category), remote: true,
+        <%= link_to category.name, cart_slider_path(category, size), remote: true,
             data: {target: align, name: category.name} if mode == 'slider' %>
       </li>
     <% end %>

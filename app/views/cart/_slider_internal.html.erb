@@ -1,5 +1,12 @@
-<div id="slider" class="slider carousel slide vertical left" data-active-index="<%= (defined?(product) ? products.index(product) : 0) %>">
-  <% cache cache_key_for_slider(category) do %>
+<% page_index = 0 %>
+<%
+  if defined?(product) && products.include?(product)
+    page_index = products.index(product)
+  end
+%>
+<div id="slider" class="slider carousel slide vertical left"
+     data-active-index="<%= page_index %>">
+  <% cache cache_key_for_slider(category, (defined?(size) ? size : nil)) do %>
     <div class="carousel-inner">
       <% products.each_with_index do |product, index| %>
         <% cache ['slider_item', product] do %>

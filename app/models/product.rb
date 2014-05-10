@@ -14,26 +14,35 @@ class Product < ActiveRecord::Base
          .order(:name)
   }
 
-  scope :shoppable, -> (limit = nil) {
+  scope :shoppable, -> (additionable=false, splittable=false, size=nil, limit=nil) {
 
-    where(enabled:true).joins(:type)
-                       .where(product_types: {shoppable:true})
-                       .order(:name).limit(limit)
+    query = where(enabled:true).joins(:type).where(product_types: {shoppable:true})
+
+    if splittable || size
+      query = query.joins(:sizes)
+    end
+
+    if additionable
+      query = query.where(product_types: {additionable:true})
+    end
+
+    if splittable
+      query = query.where(sizes: {splittable:true})
+    end
+
+    if size
+      query = query.where(sizes: {id:size})
+    end
+
+    query.order(:name).limit(limit)
   }
 
-  scope :shoppable_additionable, -> (limit = nil) {
-
-    where(enabled:true).joins(:type)
-                       .where(product_types: {shoppable:true, additionable:true})
-                       .order(:name).limit(limit)
+  scope :shoppable_additionable, -> (size = nil, limit = nil) {
+    shoppable true, false, size, limit
   }
 
-  scope :shoppable_additionable_splittable, -> (limit = nil) {
-
-    where(enabled:true).joins(:type, :sizes)
-                       .where(product_types: {shoppable:true, additionable:true})
-                       .where(sizes: {splittable:true})
-                       .order(:name).limit(limit)
+  scope :shoppable_additionable_splittable, -> (size = nil, limit = nil) {
+    shoppable true, true, size, limit
   }
 
   has_many :prices, dependent: :destroy

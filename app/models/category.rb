@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
 
     joins(:products => :type)
          .where(products:{enabled:true}, product_types: {shoppable:true})
-         .order(:name).uniq
+         .order(:updated_at).uniq
   }
 
   has_many :products
