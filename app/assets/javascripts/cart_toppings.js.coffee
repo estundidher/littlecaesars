@@ -40,7 +40,7 @@ class Caesars.CartToppings
 
   add_success: (e, data, status, xhr) =>
     console.log "toppings modal: .available .btn.add 'ajax:success' fired! "
-    $('.toppings-modal .added form').append(xhr.responseText).find('.col-md-2').last().hide().fadeIn 'fast'
+    $('.toppings-modal .added form').append(xhr.responseText).find('.col-md-2').last().hide().fadeIn('slow')
     @calculate_price()
     $spin = $('.available .fa-spin:visible')
     if $spin?
@@ -68,7 +68,7 @@ class Caesars.CartToppings
   remove: (e) =>
     console.log "toppings modal: remove_topping fired! id: " + $(e.target).data('id')
     if $(e.target).data('id')?
-      $(e.target).closest('.col-md-2').fadeOut 'fast', ->
+      $(e.target).closest('.col-md-2').fadeOut 'slow', ->
         $(e.target).closest('.col-md-2').remove()
       $('.toppings-modal .modal-footer .warning').empty()
       @calculate_price()
