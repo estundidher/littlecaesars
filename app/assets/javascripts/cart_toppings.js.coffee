@@ -62,7 +62,8 @@ class Caesars.CartToppings
     $.post $('.toppings-modal .added form').data('add-url'), $('.toppings-modal .added form').serialize(), (data) =>
       $('#modal_container .toppings-modal').modal 'hide'
       $('.additions .topping').remove()
-      $('.additions.' + $('.toppings-modal .added form #side').val() + ' .selected').hide().append(data).fadeIn 'fast'
+      $('.additions.' + $('.toppings-modal .added form #side').val() + ' .selected').append(data)
+      $('.additions.' + $('.toppings-modal .added form #side').val() + ' .selected .topping').hide().fadeIn('slow')
 
   remove: (e) =>
     console.log "toppings modal: remove_topping fired! id: " + $(e.target).data('id')
