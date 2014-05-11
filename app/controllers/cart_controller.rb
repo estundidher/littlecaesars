@@ -2,7 +2,7 @@ class CartController < ApplicationController
 
   before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index]
   before_action :set_cart_item, only: [:destroy]
-  before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode, :add_additionable]
+  before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode, :add_topping]
   before_action :set_category, only: [:splitter, :slider]
   before_action :set_size, only: [:splitter, :slider, :mode]
 
@@ -77,16 +77,39 @@ class CartController < ApplicationController
     render partial:'additions', locals:{product:@product}, layout: nil
   end
 
-  # GET /cart/toppings
+  # GET /cart/mode/side/toppings
   def toppings
     @products = Product.not_additionable_nor_shoppable
-    render partial:'cart/toppings/modal', locals:{products:@products}, layout: nil
+    render partial:'cart/toppings/modal', locals:{products:@products, mode:params[:mode], side:params[:side]}, layout: nil
   end
 
-  # POST /cart/toppings/add/product_id
+  # POST /cart/toppings/add
   def add_topping
-    products = Product.where(id:params[:product_ids]).order :name
-    render partial:'cart/toppings/added', locals:{products:products}, layout: nil
+
+    products_ids = params[:product_ids]
+
+    max = {"slider"=>6, "splitter"=>4}
+
+    if products_ids.nil? || products_ids.size < max[params[:mode]]
+
+      unless products_ids.nil?
+        if products_ids.select{|id| id.to_i == @product.id}.size == 2
+          render nothing: true, status: :unprocessable_entity
+          return
+        end
+      end
+
+      render partial:'cart/toppings/topping', locals:{topping:@product}, layout: nil
+    else
+      render plain:'You have reached the maximum number of ingredients', status: :unprocessable_entity
+    end
+  end
+
+  # POST /cart/toppings
+  def add_toppings
+    products_ids = params[:product_ids]
+    products = products_ids.nil? ? nil : products_ids.collect{|id| Product.find(id)}
+    render partial:'cart/toppings/tags', locals:{products:products, label:'warning'}, layout: nil
   end
 
   # POST /cart/toppings/calculate

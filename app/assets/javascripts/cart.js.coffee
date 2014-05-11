@@ -23,6 +23,7 @@ class Caesars.Cart
     @$chooser.on 'ajax:success', '.categories .dropdown-menu a', @change_category_success
     @$container.on 'click', '.sizable .dropdown-menu a', @change_size
     @$chooser.on 'click', '.addition .label i', @click_addition
+    @$chooser.on 'click', '.addition .label-warning i', @remove_topping
     @$mode_chooser.change @change_mode
     @$mode_chooser_form.on 'ajax:success', @change_mode_success
 
@@ -124,6 +125,11 @@ class Caesars.Cart
     else
       $(e.target).parent().removeClass('label-default').addClass 'label-info'
       $(e.target).removeClass('glyphicon-plus-sign').addClass 'glyphicon-remove white'
+
+  remove_topping: (e) =>
+    console.log "cart: .addition .label-danger i 'click' fired! id : " + $(e.target).closest('.addition').data 'id'
+    $(e.target).parent().fadeOut 'fast', ->
+      $(e.target).parent().remove()
 
   bind_carousel: (carousel) ->
     if carousel

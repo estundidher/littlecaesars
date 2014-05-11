@@ -240,14 +240,6 @@ Additional Styles (required)
   width: 5%
 }
 
-.toppings-modal span.price {
-  font-size: 20px;
-  font-family: 'Open Sans Condensed', sans-serif;
-  line-height: 26px;
-  font-weight: 700;
-  color: #f75353;
-}
-
 .toppings-modal .modal-header {
   padding-bottom: 0px; padding-top: 0px;
 }
@@ -265,6 +257,14 @@ Additional Styles (required)
   padding-bottom: 5px;
 }
 
+.toppings-modal .thumbnail {
+  margin-bottom: 5px;
+}
+
+.toppings-modal .btn.add, .btn.remove {
+  width: 109px;
+}
+
 .toppings-modal .modal-footer {
   margin-top: 0px;
   padding-bottom: 5px;
@@ -273,12 +273,26 @@ Additional Styles (required)
 
 .toppings-modal .modal-footer .total {
   padding-top: 4px;
+  padding-right: 10px;
+  padding-right: 10px;
 }
 
-.toppings-modal .thumbnail {
-  margin-bottom: 5px;
+.toppings-modal .modal-footer .price {
+  font-size: 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  line-height: 26px;
+  font-weight: 700;
+  color: #f75353;
+  text-align: left;
+  padding-left: 0px;
 }
 
-.toppings-modal .btn.add, .btn.remove {
-  width: 109px;
+.toppings-modal .modal-footer .warning {
+  font-weight: 700;
+  color: #f75353;
+  padding-top: 6px;
+}
+
+.toppings-modal .modal-footer .button {
+  padding-left: 0px;
 }

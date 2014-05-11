@@ -1,0 +1,13 @@
+<% if defined?(products) %>
+  <% unless products.nil?  %>
+    <% products.each do |product| %>
+      <div class="addition" data-id="<%= product.id %>">
+        <%= hidden_field_tag :product_id, product.id %>
+        <span class="label label-<%= label %>" >
+          <%= product.name %>
+          <i class="glyphicon glyphicon-remove white"></i>
+        </span>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

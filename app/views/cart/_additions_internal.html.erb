@@ -2,9 +2,10 @@
 <div class="selected">
   <%= render partial:'additions', locals:{product:@product} %>
 </div>
+
 <br>
 
-<%= link_to cart_toppings_path, remote: true, class:'btn btn-warning btn-sm', role:'button' do %>
+<%= link_to cart_toppings_path(mode, side), remote: true, class:'btn btn-warning btn-sm', role:'button' do %>
   <i class='glyphicon glyphicon-plus-sign'></i>
   Additions
 <% end %>

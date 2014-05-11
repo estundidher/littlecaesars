@@ -14,8 +14,10 @@ class Caesars.CartToppings
   bind: ->
     @$chooser.on 'ajax:success', '.additions .btn', @open
     @$modal_container.on 'click', '.toppings-modal .available .btn.add', @add
-    @$modal_container.on 'click', '.toppings-modal .added .btn.remove', @remove
     @$modal_container.on 'ajax:success', '.toppings-modal .added form', @add_success
+    @$modal_container.on 'ajax:error', '.toppings-modal .added form', @add_error
+    @$modal_container.on 'click', '.toppings-modal .added .btn.remove', @remove
+    @$modal_container.on 'click', '.toppings-modal .modal-footer .btn.save', @add_to_cart
 
   open: (e, data, status, xhr) =>
     @$modal_container.empty().append xhr.responseText
@@ -28,33 +30,46 @@ class Caesars.CartToppings
       $('.toppings-modal .price').hide().empty().append(data).slideDown 'fast'
 
   add: (e) =>
-    console.log "cart: add_topping fired! id: " + $(e.target).data('id')
+    console.log "toppings modal: .available .btn.add fired. id: " + $(e.target).data 'id'
     if $(e.target).data('id')?
       $(e.target).addClass 'disabled'
       $(e.target).find('.glyphicon-plus-sign').hide()
       $(e.target).find('.fa-spin').fadeIn 'fast'
-      $('.toppings-modal .added form').prepend $('<input>', {type: 'hidden', name:'product_ids[]', value: $(e.target).data('id') })
-      $('.toppings-modal .added form').submit()
-
-  remove: (e) =>
-    console.log "cart: remove_topping fired! id: " + $(e.target).data('id')
-    if $(e.target).data('id')?
-      $(e.target).addClass 'disabled'
-      $(e.target).find('.glyphicon-minus-sign').hide()
-      $(e.target).find('.fa-spin').fadeIn 'fast'
-      $(e.target).closest('.col-md-2').find('input[type=hidden]').remove()
+      $('.toppings-modal .added form #product_id').val $(e.target).data('id')
       $('.toppings-modal .added form').submit()
 
   add_success: (e, data, status, xhr) =>
-    console.log "cart: .toppings-modal .added form 'ajax:success' fired! for: " + e.target
-    $('.toppings-modal .added').hide().empty().append(xhr.responseText).fadeIn 'fast'
-    @bind_carousel $('.toppings-modal .added .carousel')
+    console.log "toppings modal: .available .btn.add 'ajax:success' fired! "
+    $('.toppings-modal .added form').append(xhr.responseText).find('.col-md-2').last().hide().fadeIn 'fast'
     @calculate_price()
+    $spin = $('.available .fa-spin:visible')
+    if $spin?
+      $spin.parent().removeClass 'disabled'
+      $spin.parent().find('.glyphicon-plus-sign').fadeIn 'slow'
+      $spin.hide()
+
+  add_error: (e, xhr, status, error) =>
+    console.log "toppings modal: .available .btn.add 'ajax:error' fired! "
+    $('.toppings-modal .modal-footer .warning').hide().empty().append(xhr.responseText).fadeIn 'fast'
     $spin = $('.available .fa-spin:visible')
     if $spin?
       $spin.parent().removeClass 'disabled'
       $spin.parent().find('.glyphicon-plus-sign').fadeIn 'fast'
       $spin.hide()
+
+  add_to_cart: (e) =>
+    console.log "toppings modal: .modal-footer .btn.save fired!"
+    $.post $('.toppings-modal .added form').data('add-url'), $('.toppings-modal .added form').serialize(), (data) =>
+      $('#modal_container .toppings-modal').modal 'hide'
+      $('.additions.' + $('.toppings-modal .added form #side').val() + ' .selected').hide().append(data).fadeIn 'fast'
+
+  remove: (e) =>
+    console.log "toppings modal: remove_topping fired! id: " + $(e.target).data('id')
+    if $(e.target).data('id')?
+      $(e.target).closest('.col-md-2').fadeOut 'fast', ->
+        $(e.target).closest('.col-md-2').remove()
+      $('.toppings-modal .modal-footer .warning').empty()
+      @calculate_price()
 
   is_splitter: ->
     $('.carousel.slide.vertical').length == 2
@@ -64,10 +79,10 @@ class Caesars.CartToppings
 
   bind_carousel: (carousel) ->
     if carousel
-      console.log "cart: bind_carousel '" + $(carousel).attr('class') + "' fired!"
+      console.log "toppings modal: bind_carousel '" + $(carousel).attr('class') + "' fired!"
       $carousel = $(carousel)
     else
-      console.log "cart: bind_carousel fired!"
+      console.log "toppings modal: bind_carousel fired!"
       $carousel = $('.chooser .carousel.slide.vertical')
 
     $carousel.carousel({
