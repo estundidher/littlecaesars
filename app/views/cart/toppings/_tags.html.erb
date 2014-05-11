@@ -1,9 +1,13 @@
 <% if defined?(products) %>
   <% unless products.nil?  %>
     <% products.each do |product| %>
-      <div class="addition" data-id="<%= product.id %>">
-        <%= hidden_field_tag :product_id, product.id %>
-        <span class="label label-<%= label %>" >
+      <div class="addition <%= 'topping' if type == 'toppings' %>" data-id="<%= product.id %>">
+        <% if type == 'toppings' %>
+          <%= hidden_field_tag 'topping_ids[]', product.id %>
+        <% else %>
+          <%= hidden_field_tag 'product_ids[]', product.id %>
+        <% end %>
+        <span class="label label-<%= type == 'toppings' ? 'warning' : 'info' %>" >
           <%= product.name %>
           <i class="glyphicon glyphicon-remove white"></i>
         </span>

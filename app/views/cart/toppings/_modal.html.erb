@@ -10,7 +10,7 @@
           <%= render partial:'cart/toppings/available', locals:{all_products:products} %>
           <h4> Toppings added </h4>
           <div class="row added">
-            <%= render partial:'cart/toppings/added', locals:{toppings:nil, mode:mode, side:side} %>
+            <%= render partial:'cart/toppings/added', locals:{toppings:toppings, mode:mode, side:side} %>
           </div>
         </div>
       </div>

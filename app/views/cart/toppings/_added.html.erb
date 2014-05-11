@@ -5,7 +5,7 @@
   <%= hidden_field_tag :side, side %>
   <% if toppings %>
     <% toppings.each do |topping| %>
-      <%= render partial:'topping', locals:{topping:topping} %>
+      <%= render partial:'cart/toppings/topping', locals:{topping:topping} %>
     <% end %>
   <% end %>
 <% end %>

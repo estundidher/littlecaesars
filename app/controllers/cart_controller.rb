@@ -5,6 +5,7 @@ class CartController < ApplicationController
   before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode, :add_topping]
   before_action :set_category, only: [:splitter, :slider]
   before_action :set_size, only: [:splitter, :slider, :mode]
+  before_action :set_toppings, only: [:toppings, :add_toppings, :toppings_calculate, :add_topping]
 
   # GET /cart/add/1
   def modal
@@ -24,7 +25,8 @@ class CartController < ApplicationController
     if @cart_item.save
       render partial:'cart/button/cart', locals:{cart:@cart_item.cart}, layout: nil
     else
-      render partial:'cart/modal/form', locals:{cart_item:@cart_item, product:@product}, layout:nil, status: :unprocessable_entity
+      render partial:'cart/modal/form', locals:{cart_item:@cart_item, product:@product},
+                                                layout:nil, status: :unprocessable_entity
     end
   end
 
@@ -33,7 +35,8 @@ class CartController < ApplicationController
     if @cart_item.destroy
       render partial:'cart/button/cart', locals:{cart:@cart_item.cart}, layout: nil
     else
-      render partial:'cart/button/cart', locals:{cart:@cart_item.cart}, layout: nil, status: :unprocessable_entity
+      render partial:'cart/button/cart', locals:{cart:@cart_item.cart},
+                                         layout: nil, status: :unprocessable_entity
     end
   end
 
@@ -63,13 +66,21 @@ class CartController < ApplicationController
   def splitter
     @products = @category.products.shoppable_additionable_splittable @size, nil
     @categories = Category.with_shoppable_products
-    render partial:'splitter_side', locals:{side:params[:side], size:@size, category:@category, categories:@categories, products:@products, product:@products.first}, layout: nil
+    render partial:'splitter_side', locals:{side:params[:side],
+                                            size:@size,
+                                            category:@category,
+                                            categories:@categories,
+                                            products:@products,
+                                            product:@products.first}, layout: nil
   end
 
   # GET /cart/slider/:category_id
   def slider
     @products = @category.products.shoppable_additionable @size, nil
-    render partial:'slider_internal', locals:{products:@products, size:@size, product:@products.first, category:@category}, layout: nil
+    render partial:'slider_internal', locals:{products:@products,
+                                              size:@size,
+                                              product:@products.first,
+                                              category:@category}, layout: nil
   end
 
   # GET /cart/:product_id/items
@@ -77,44 +88,43 @@ class CartController < ApplicationController
     render partial:'additions', locals:{product:@product}, layout: nil
   end
 
-  # GET /cart/mode/side/toppings
+  # POST /cart/toppings/open
   def toppings
     @products = Product.not_additionable_nor_shoppable
-    render partial:'cart/toppings/modal', locals:{products:@products, mode:params[:mode], side:params[:side]}, layout: nil
+    render partial:'cart/toppings/modal', locals:{products:@products,
+                                                  toppings:@toppings,
+                                                  mode:params[:mode],
+                                                  side:params[:side]}, layout: nil
   end
 
   # POST /cart/toppings/add
   def add_topping
 
-    products_ids = params[:product_ids]
+    max_toppings = {"slider"=>6, "splitter"=>4}
+    max_of_the_same_topping = 2
 
-    max = {"slider"=>6, "splitter"=>4}
-
-    if products_ids.nil? || products_ids.size < max[params[:mode]]
-
-      unless products_ids.nil?
-        if products_ids.select{|id| id.to_i == @product.id}.size == 2
-          render nothing: true, status: :unprocessable_entity
-          return
-        end
+    unless @toppings.nil?
+      if @toppings.select{|topping| topping.id == @product.id}.size == max_of_the_same_topping
+        render nothing: true, status: :unprocessable_entity
+        #render plain:'You already have chosen this Flavour!', status: :unprocessable_entity
+        return
       end
-
-      render partial:'cart/toppings/topping', locals:{topping:@product}, layout: nil
-    else
-      render plain:'You have reached the maximum number of ingredients', status: :unprocessable_entity
+      if @toppings.size == max_toppings[params[:mode]]
+        render plain:'You have reached the maximum number of ingredients', status: :unprocessable_entity
+        return
+      end
     end
+    render partial:'cart/toppings/topping', locals:{topping:@product}, layout: nil
   end
 
   # POST /cart/toppings
   def add_toppings
-    products_ids = params[:product_ids]
-    products = products_ids.nil? ? nil : products_ids.collect{|id| Product.find(id)}
-    render partial:'cart/toppings/tags', locals:{products:products, label:'warning'}, layout: nil
+    render partial:'cart/toppings/tags', locals:{products:@toppings, type:'toppings'}, layout: nil
   end
 
   # POST /cart/toppings/calculate
   def toppings_calculate
-    total = Product.find(params[:product_ids]).sum(&:price)
+    total = @toppings.sum(&:price)
     render partial:'cart/price', locals:{value:total}, layout: nil
   end
 
@@ -150,6 +160,12 @@ private
       @cart = Cart.find_or_create_by(customer: current_customer, status: Cart.statuses[:open])
     else
       @cart = Cart.find(params[:cart_id])
+    end
+  end
+
+  def set_toppings
+    unless params[:topping_ids].nil?
+      @toppings = params[:topping_ids].collect{|id| Product.find(id)}
     end
   end
 

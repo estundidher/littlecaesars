@@ -12,7 +12,7 @@ class Caesars.CartToppings
     @bind()
 
   bind: ->
-    @$chooser.on 'ajax:success', '.additions .btn', @open
+    @$chooser.on 'ajax:success', '.additions form', @open
     @$modal_container.on 'click', '.toppings-modal .available .btn.add', @add
     @$modal_container.on 'ajax:success', '.toppings-modal .added form', @add_success
     @$modal_container.on 'ajax:error', '.toppings-modal .added form', @add_error
@@ -61,6 +61,7 @@ class Caesars.CartToppings
     console.log "toppings modal: .modal-footer .btn.save fired!"
     $.post $('.toppings-modal .added form').data('add-url'), $('.toppings-modal .added form').serialize(), (data) =>
       $('#modal_container .toppings-modal').modal 'hide'
+      $('.additions .topping').remove()
       $('.additions.' + $('.toppings-modal .added form #side').val() + ' .selected').hide().append(data).fadeIn 'fast'
 
   remove: (e) =>

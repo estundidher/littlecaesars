@@ -1,3 +1,4 @@
 <% cache ['product_additions', product] do %>
-  <%= render partial:'/cart/toppings/tags', locals:{products:product.items, label:'info'} %>
+  <%= render partial:'/cart/toppings/tags',
+      locals:{products:product.items, type:'ingredients'} %>
 <% end %>

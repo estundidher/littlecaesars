@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   post '/cart/toppings/calculate',   to: 'cart#toppings_calculate', as: :cart_calulate_toppings
   post '/cart/toppings/add/',        to: 'cart#add_topping', as: :cart_add_topping
   post '/cart/toppings',             to: 'cart#add_toppings', as: :cart_add_toppings
-  get '/cart/:mode/:side/toppings',  to: 'cart#toppings',    as: :cart_toppings
+  post '/cart/toppings/open',        to: 'cart#toppings',    as: :cart_toppings
 
   #cart page
   get 'cart(/:product_id)',                            to: 'cart#index',       as: :cart

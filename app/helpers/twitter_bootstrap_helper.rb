@@ -31,6 +31,12 @@ module TwitterBootstrapHelper
 		end
 	end
 
+	def tb_submit_generic message = nil, className = 'btn btn-primary btn-sm', icon = 'ok'
+		button_tag(type: 'submit', class: className) do
+		 "<i class='glyphicon glyphicon-#{icon}'></i> ".html_safe + message ||= t("links.search")
+		end
+	end
+
 	def tb_button_back path, message = nil
 		link_to "<i class='glyphicon glyphicon-arrow-left'></i> ".html_safe + message ||= t('.links.back'),
       			path, class: 'btn btn-default btn-sm', role: 'button'

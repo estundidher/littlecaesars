@@ -1,6 +1,6 @@
 <% cache ['topping_added', topping] do %>
   <div class="col-md-2 col-sm-2">
-    <%= hidden_field_tag 'product_ids[]', topping.id %>
+    <%= hidden_field_tag 'topping_ids[]', topping.id %>
     <div class="thumbnail">
       <% if topping.photo.exists? %>
         <%= image_tag topping.photo.url(:mini), class: 'img-responsive' %>
