@@ -27,6 +27,7 @@
 //= require cart
 //= require cart_modal
 //= require cart_button
+//= require cart_toppings
 //= require turbolinks
 
 $(document).on('ready page:load', function () {

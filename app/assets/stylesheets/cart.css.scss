@@ -24,7 +24,7 @@ $screen-sm-min:              $screen-sm !default;
   border: 1px solid #ecdd94;
 }
 
-.cart-modal span.item-price, span.size-price {
+.cart-modal span.price, span.size-price {
   font-size: 20px;
   font-family: 'Open Sans Condensed', sans-serif;
   line-height: 26px;
@@ -132,7 +132,7 @@ Additional Styles (required)
 .carousel.vertical .prev,
 .carousel.vertical .active.left   { top: -100%; }
 
-.splitter .carousel-control.left, .splitter .carousel-control.right, .slider .carousel-control.left, .slider .carousel-control.right {
+.splitter .carousel-control, .slider .carousel-control {
   background-image:none !important;
 }
 
@@ -227,8 +227,58 @@ Additional Styles (required)
 .chooser .element:hover i.icon-left { right: 35%; }
 .chooser .element:hover i.icon-right { left: 50%; }
 
-.mode_chooser_form .loader {
-  padding-left: 10px;
-  margin-top: -15px;
-  display:none;
+.mode_chooser_form .fa-spin {
+  margin-left: 10px;
+  vertical-align: super;
+}
+
+.toppings-modal .carousel-control {
+  background-image:none !important;
+}
+
+.toppings-modal .carousel-control {
+  width: 5%
+}
+
+.toppings-modal span.price {
+  font-size: 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  line-height: 26px;
+  font-weight: 700;
+  color: #f75353;
+}
+
+.toppings-modal .modal-header {
+  padding-bottom: 0px; padding-top: 0px;
+}
+
+.toppings-modal .modal-body {
+  padding-top: 10px;
+}
+
+.toppings-modal .modal-body {
+  padding-top: 10px;
+}
+
+.toppings-modal .single-item h4 {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 5px;
+}
+
+.toppings-modal .modal-footer {
+  margin-top: 0px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.toppings-modal .modal-footer .total {
+  padding-top: 4px;
+}
+
+.toppings-modal .thumbnail {
+  margin-bottom: 5px;
+}
+
+.toppings-modal .btn.add, .btn.remove {
+  width: 109px;
 }

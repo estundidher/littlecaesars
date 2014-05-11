@@ -20,4 +20,10 @@ module CartHelper
     key += "#{count}-#{max_updated_at}"
   end
 
+  def cache_key_for_toppings_available
+    count          = Product.not_additionable_nor_shoppable.count
+    max_updated_at = Product.not_additionable_nor_shoppable.maximum(:updated_at).try(:utc).try(:to_s, :number)
+    "toppings/available/#{count}-#{max_updated_at}"
+  end
+
 end

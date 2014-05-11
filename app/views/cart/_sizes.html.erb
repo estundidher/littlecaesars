@@ -4,6 +4,7 @@
     <%= hidden_field_tag :price_id, class:'price_id' %>
     <span class="name"> Choose the Size </span>
     <span class="caret"></span>
+    <i class="fa fa-spinner fa-spin" style="display:none;"></i>
   </button>
   <ul class="dropdown-menu" role="menu">
     <% sizes.each do |size| %>

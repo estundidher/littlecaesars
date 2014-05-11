@@ -6,10 +6,11 @@
       <%= radio_button_tag :mode, :slider, true, {class:'mode_chooser slider'} %> 1 Flavour
     <% end %>
   </div>
-  <div class="radio-inline">
-    <%= label_tag :mode_splitter do %>
-      <%= radio_button_tag :mode, :splitter, false, {class:'mode_chooser splitter', disabled:true} %> 2 Flavours
+  <div class="radio-inline mode_spliter">
+    <%= label_tag :mode_splitter, title:"Only available on #{Size.where(splittable:true).map { |size| size.name }.join(',')} size!" do %>
+      <%= radio_button_tag :mode, :splitter, false,
+      {class:'mode_chooser splitter', disabled:true} %> 2 Flavours
     <% end %>
   </div>
-  <%= image_tag 'loader.gif', class:'loader' %>
+  <i class="fa fa-spinner fa-spin" style="display:none;"></i>
 <% end %>

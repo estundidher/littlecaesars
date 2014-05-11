@@ -2,7 +2,7 @@ class CartController < ApplicationController
 
   before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index]
   before_action :set_cart_item, only: [:destroy]
-  before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode]
+  before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode, :add_additionable]
   before_action :set_category, only: [:splitter, :slider]
   before_action :set_size, only: [:splitter, :slider, :mode]
 
@@ -15,7 +15,7 @@ class CartController < ApplicationController
   # POST /cart/calculate
   def calculate
     @cart_item = @cart.new_item @product, cart_item_params
-    render partial:'cart/modal/form_price', locals:{cart_item:@cart_item}, layout: nil
+    render partial:'cart/price', locals:{value:@cart_item.total}, layout: nil
   end
 
   # POST /cart/add/1
@@ -77,10 +77,22 @@ class CartController < ApplicationController
     render partial:'additions', locals:{product:@product}, layout: nil
   end
 
-  # GET /cart/additionables
-  def additionables
+  # GET /cart/toppings
+  def toppings
     @products = Product.not_additionable_nor_shoppable
-    render partial:'additionables', locals:{products:@products}, layout: nil
+    render partial:'cart/toppings/modal', locals:{products:@products}, layout: nil
+  end
+
+  # POST /cart/toppings/add/product_id
+  def add_topping
+    products = Product.where(id:params[:product_ids]).order :name
+    render partial:'cart/toppings/added', locals:{products:products}, layout: nil
+  end
+
+  # POST /cart/toppings/calculate
+  def toppings_calculate
+    total = Product.find(params[:product_ids]).sum(&:price)
+    render partial:'cart/price', locals:{value:total}, layout: nil
   end
 
   # POST /cart/mode

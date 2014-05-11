@@ -25,12 +25,16 @@ Rails.application.routes.draw do
   get 'cart/:id/checkout',           to: 'cart#checkout', as: :cart_checkout
   get '/cart/:product_id/items',     to: 'cart#items',    as: :cart_product_items
 
+  #cart toppings
+  post '/cart/toppings/calculate',   to: 'cart#toppings_calculate', as: :cart_toppings_calulate
+  post '/cart/toppings/add',         to: 'cart#add_topping', as: :cart_toppings_add
+  get '/cart/toppings',              to: 'cart#toppings',    as: :cart_toppings
+
   #cart page
-  get 'cart(/:product_id)',                 to: 'cart#index',         as: :cart
-  post 'cart/mode',                         to: 'cart#mode',          as: :cart_mode
-  get '/cart/additionables',                to: 'cart#additionables', as: :cart_additionables
-  get 'cart/splitter/:category_id(/:side)(/:size_id)', to: 'cart#splitter',      as: :cart_splitter
-  get 'cart/slider/:category_id(/:size_id)',           to: 'cart#slider',        as: :cart_slider
+  get 'cart(/:product_id)',                            to: 'cart#index',       as: :cart
+  post 'cart/mode',                                    to: 'cart#mode',        as: :cart_mode
+  get 'cart/splitter/:category_id(/:side)(/:size_id)', to: 'cart#splitter',    as: :cart_splitter
+  get 'cart/slider/:category_id(/:size_id)',           to: 'cart#slider',      as: :cart_slider
 
   namespace :admin do
 

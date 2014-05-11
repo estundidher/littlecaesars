@@ -4,7 +4,7 @@
     <% if align == 'left' %>
       <span class="caret"></span>
     <% else %>
-      <%= image_tag 'loader_danger.gif', class:'loader', style:'display:none' %>
+      <i class="fa fa-spinner fa-spin" style="display:none;"></i>
     <% end %>
     &nbsp;
     <span class="name"><%= category.name %></span>
@@ -12,7 +12,7 @@
     <% if align == 'right' %>
       <span class="caret"></span>
     <% else %>
-      <%= image_tag 'loader_danger.gif', class:'loader', style:'display:none' %>
+      <i class="fa fa-spinner fa-spin" style="display:none;"></i>
     <% end %>
   </button>
   <ul class="dropdown-menu" role="menu">
