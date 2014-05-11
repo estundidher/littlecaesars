@@ -27,13 +27,13 @@ module TwitterBootstrapHelper
 
 	def tb_submit_search message = nil, className = 'btn btn-primary btn-sm'
 		button_tag(type: 'submit', class: className) do
-		 "<i class='glyphicon glyphicon-search'></i> ".html_safe + message ||= t("links.search")
+		 "<i class='fa fa-spinner fa-spin' style='display:none;'></i><i class='glyphicon glyphicon-search'></i> ".html_safe + message ||= t("links.search")
 		end
 	end
 
 	def tb_submit_generic message = nil, className = 'btn btn-primary btn-sm', icon = 'ok'
 		button_tag(type: 'submit', class: className) do
-		 "<i class='glyphicon glyphicon-#{icon}'></i> ".html_safe + message ||= t("links.search")
+		 "<i class='fa fa-spinner fa-spin' style='display:none;'></i><i class='glyphicon glyphicon-#{icon}'></i> ".html_safe + message ||= t("links.search")
 		end
 	end
 

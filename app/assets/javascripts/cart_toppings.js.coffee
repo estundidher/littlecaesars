@@ -12,6 +12,7 @@ class Caesars.CartToppings
     @bind()
 
   bind: ->
+    @$chooser.on 'ajax:before', '.additions form', @before_open
     @$chooser.on 'ajax:success', '.additions form', @open
     @$modal_container.on 'click', '.toppings-modal .available .btn.add', @add
     @$modal_container.on 'ajax:success', '.toppings-modal .added form', @add_success
@@ -19,13 +20,27 @@ class Caesars.CartToppings
     @$modal_container.on 'click', '.toppings-modal .added .btn.remove', @remove
     @$modal_container.on 'click', '.toppings-modal .modal-footer .btn.save', @add_to_cart
 
+  before_open: (e, data, status, xhr) =>
+    console.log 'toppings modal: before_open fired!'
+    $button = $(e.target).find('.btn')
+    if $button?
+      $button.addClass 'disabled'
+      $button.find('.fa-spin').fadeIn 'fast'
+      $button.find('.glyphicon-plus-sign').hide()
+
   open: (e, data, status, xhr) =>
+    console.log 'toppings modal: open fired!'
     @$modal_container.empty().append xhr.responseText
     $('#modal_container .toppings-modal').modal 'show'
     @bind_carousel $('.toppings-modal .carousel')
+    $button = $(e.target).find('.btn')
+    if $button?
+      $button.removeClass 'disabled'
+      $button.find('.fa-spin').hide()
+      $button.find('.glyphicon-plus-sign').fadeIn 'slow'
 
   calculate_price: (e) ->
-    console.log 'cart.modal: calculate_price fired!'
+    console.log 'toppings modal: calculate_price fired!'
     $.post $('.toppings-modal .added form').data('calculate-url'), $('.toppings-modal .added form').serialize(), (data) =>
       $('.toppings-modal .price').hide().empty().append(data).slideDown 'fast'
 
@@ -61,7 +76,7 @@ class Caesars.CartToppings
     console.log "toppings modal: .modal-footer .btn.save fired!"
     $.post $('.toppings-modal .added form').data('add-url'), $('.toppings-modal .added form').serialize(), (data) =>
       $('#modal_container .toppings-modal').modal 'hide'
-      $('.additions .topping').remove()
+      $('.additions.' + $('.toppings-modal .added form #side').val() + ' .topping').remove()
       $('.additions.' + $('.toppings-modal .added form #side').val() + ' .selected').append(data)
       $('.additions.' + $('.toppings-modal .added form #side').val() + ' .selected .topping').hide().fadeIn('slow')
 
