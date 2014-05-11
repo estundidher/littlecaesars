@@ -129,7 +129,8 @@ class Caesars.Cart
   remove_topping: (e) =>
     console.log "cart: .addition .label-danger i 'click' fired! id : " + $(e.target).closest('.addition').data 'id'
     $(e.target).parent().fadeOut 'fast', ->
-      $(e.target).parent().remove()
+      console.log 'removing topping..'
+      $(e.target).closest('.topping').remove()
 
   bind_carousel: (carousel) ->
     if carousel
