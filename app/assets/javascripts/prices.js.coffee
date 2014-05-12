@@ -13,8 +13,8 @@ class Caesars.Price
     @bind()
 
   bind: ->
-    @$prices.on 'ajax:error', '.price .remove', @remove_error
     @$prices.on 'ajax:success', '.price .remove', @remove_success
+    @$prices.on 'ajax:error', '.price .remove', @remove_error
     @$prices.on 'ajax:success', '.add', @open
     @$prices.on 'ajax:success', '.price .edit', @edit
     @$modal_container.on 'click', '.price-modal .btn.save', @save
