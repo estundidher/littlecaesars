@@ -24,7 +24,7 @@ class Caesars.Product
     @$container.on 'change', '.product-reloadable', @load_items
 
   load_items: (e, data, status, xhr) =>
-    console.log 'product price: load items success fired!'
+    console.log 'product: load items success fired!'
     $('#product_options_container').hide().empty()
     $.get($(this).data('path'), {id:$(this).val()}).done (data) ->
       $('#product_options_container').html(data).fadeIn 'fast'
