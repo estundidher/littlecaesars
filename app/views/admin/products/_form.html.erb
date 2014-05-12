@@ -37,7 +37,7 @@
     <%= f.collection_select :product_type_id,
         ProductType.order(:name), :id, :name,
         {prompt: true, selected: @product.product_type_id},
-        {class: 'form-control product_reloadable', data: {path:admin_products_reload_options_path}} %>
+        {class: 'form-control product-reloadable', data: {path:admin_products_reload_options_path}} %>
   </div>
 
   <div class="form-group <%= tb_has_error @product, :category %>">
