@@ -58,7 +58,7 @@ class CartController < ApplicationController
     if @product.nil?
       @product = @products.first
     end
-    @sizes = Size.order :name
+    @sizes = Size.order :created_at
     render layout:'generic'
   end
 
@@ -105,8 +105,7 @@ class CartController < ApplicationController
 
     unless @toppings.nil?
       if @toppings.select{|topping| topping.id == @product.id}.size == max_of_the_same_topping
-        render nothing: true, status: :unprocessable_entity
-        #render plain:'You already have chosen this Flavour!', status: :unprocessable_entity
+        render plain:'Only 2 of the same ingredient is permitted.', status: :unprocessable_entity
         return
       end
       if @toppings.size == max_toppings[params[:mode]]
