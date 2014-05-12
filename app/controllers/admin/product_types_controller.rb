@@ -58,10 +58,20 @@ class Admin::ProductTypesController < Admin::BaseController
   # DELETE /product_types/1
   # DELETE /product_types/1.json
   def destroy
-    @product_type.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_product_types_url }
-      format.json { head :no_content }
+    begin
+      @product_type.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_product_types_url }
+        format.json { head :no_content }
+      end
+    rescue ActiveRecord::InvalidForeignKey => e
+      flash[:error] = t 'errors.messages.delete_fail.being_used', model:@product_type.name
+      flash[:error_details] = e
+      redirect_to [:admin, @product_type]
+    rescue ActiveRecord::StatementInvalid => e
+      flash[:error] = t 'errors.messages.ops'
+      flash[:error_details] = e
+      redirect_to [:admin, @product_type]
     end
   end
 

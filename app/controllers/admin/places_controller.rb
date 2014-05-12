@@ -57,10 +57,20 @@ class Admin::PlacesController < Admin::BaseController
   # DELETE /places/1
   # DELETE /places/1.json
   def destroy
-    @place.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_places_url }
-      format.json { head :no_content }
+    begin
+      @place.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_places_url }
+        format.json { head :no_content }
+      end
+    rescue ActiveRecord::InvalidForeignKey => e
+      flash[:error] = t 'errors.messages.delete_fail.being_used', model:@place.name
+      flash[:error_details] = e
+      redirect_to [:admin, @place]
+    rescue ActiveRecord::StatementInvalid => e
+      flash[:error] = t 'errors.messages.ops'
+      flash[:error_details] = e
+      redirect_to [:admin, @place]
     end
   end
 

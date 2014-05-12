@@ -17,7 +17,7 @@ class Admin::PricesController < Admin::BaseController
   # POST /prices
   def create
     @price = Price.new(price_params)
-    if @price.save!
+    if @price.save
       render partial: 'list', locals: {product:@price.product}, layout: nil
     else
       render partial: 'form', locals: {price:@price}, layout: nil, status: :unprocessable_entity
@@ -37,8 +37,20 @@ class Admin::PricesController < Admin::BaseController
   # DELETE /prices/1
   # DELETE /prices/1.json
   def destroy
-    @price.destroy!
-    render partial: 'list', layout: nil, locals: {product:@price.product}
+    begin
+      @price.destroy!
+      render partial: 'list', layout: nil, locals: {product:@price.product}
+    rescue ActiveRecord::InvalidForeignKey => e
+      render partial:'layouts/flash_message',
+              locals: {type:'error', message: t('errors.messages.delete_fail.being_used', model:'this price'), details: e},
+              layout: nil, status: :unprocessable_entity
+      return
+    rescue ActiveRecord::StatementInvalid => e
+      render partial:'layouts/flash_message',
+              locals: {type:'error', message: t('errors.messages.ops'), details: e},
+              layout: nil, status: :unprocessable_entity
+      return
+    end
   end
 
   private

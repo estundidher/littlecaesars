@@ -57,10 +57,20 @@ class Admin::UsersController < Admin::BaseController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+    begin
+      @user.destroy
+      respond_to do |format|
+        format.html { redirect_to users_url }
+        format.json { head :no_content }
+      end
+    rescue ActiveRecord::InvalidForeignKey => e
+      flash[:error] = t 'errors.messages.delete_fail.being_used', model:@user.name
+      flash[:error_details] = e
+      redirect_to [:admin, @user]
+    rescue ActiveRecord::StatementInvalid => e
+      flash[:error] = t 'errors.messages.ops'
+      flash[:error_details] = e
+      redirect_to [:admin, @user]
     end
   end
 

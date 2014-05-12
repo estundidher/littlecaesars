@@ -5,7 +5,7 @@
 <% content_for :content do %>
   <%= render partial: 'admin/navigation' %>
   <div class="container">
-    <%= render partial: 'layouts/flash_messages', flash: flash %>
+    <div class="messages"> <%= render partial: 'layouts/flash_messages', flash: flash %> </div>
     <%= yield %>
   </div>
 <% end %>

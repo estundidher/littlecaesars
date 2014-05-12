@@ -1,5 +1,15 @@
 class ApplicationController < ActionController::Base
 
+  rescue_from Exception, :with => :render_error
+
+  def render_error
+    respond_to do |type|
+      type.html { render :template => "errors/error_404", :status => 404 }
+      type.all  { render :nothing => true, :status => 404 }
+    end
+    true
+  end
+
   def after_sign_in_path_for(resource)
     case resource
       when Customer then root_path

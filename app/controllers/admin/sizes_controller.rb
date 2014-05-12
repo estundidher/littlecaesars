@@ -58,10 +58,20 @@ class Admin::SizesController < Admin::BaseController
   # DELETE /sizes/1
   # DELETE /sizes/1.json
   def destroy
-    @size.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_sizes_url }
-      format.json { head :no_content }
+    begin
+      @size.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_sizes_url }
+        format.json { head :no_content }
+      end
+    rescue ActiveRecord::InvalidForeignKey => e
+      flash[:error] = t 'errors.messages.delete_fail.being_used', model:@size.name
+      flash[:error_details] = e
+      redirect_to [:admin, @size]
+    rescue ActiveRecord::StatementInvalid => e
+      flash[:error] = t 'errors.messages.ops'
+      flash[:error_details] = e
+      redirect_to [:admin, @size]
     end
   end
 

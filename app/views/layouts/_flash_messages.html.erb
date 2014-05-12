@@ -1,6 +1,10 @@
 <% flash.each do |type, message| %>
-  <div class="alert <%= tb_class_for(type) %> fade in">
-    <button class="close" data-dismiss="alert">×</button>
-    <%= message %>
-  </div>
+  <% unless type.include? 'details' %>
+    <% details = nil
+      if flash.key? "#{type}_details"
+        details = flash["#{type}_details"]
+      end
+    %>
+    <%= render partial:'layouts/flash_message', locals:{type:type, message:message, details:details} %>
+  <% end %>
 <% end %>

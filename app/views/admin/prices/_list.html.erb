@@ -16,9 +16,8 @@
         <td colspan="4">
           <center>
             <%= link_to t('links.add', model_name:Price.model_name.human),
-                        admin_price_new_path(product.id),
-                        remote: true,
-                        class:'add_price' %>
+                        admin_price_new_path(product.id), remote: true,
+                        class:'add' %>
           </center>
         </td>
       </tr>

@@ -29,7 +29,7 @@
 <% if @product.type.sizable? %>
 <div class="form-group">
   <%= label @product, :prices %>
-  <div id="products_prices_list_container" style="width: 400px;">
+  <div class="product prices">
     <%= render "/admin/prices/list", product:@product %>
   </div>
 </div>

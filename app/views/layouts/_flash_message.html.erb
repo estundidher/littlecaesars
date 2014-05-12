@@ -1,0 +1,12 @@
+<div class="alert <%= tb_class_for(type) %> fade in">
+  <button class="close" data-dismiss="alert">×</button>
+  <%= message %>
+  <% if defined?(details) %>
+    <a href="JavaScript:void(0);" class="alert-link"><small>More..</small></a>
+    <div class="details" style="display:none;">
+      <small>
+        <%= details %>
+      </small>
+    </div>
+  <% end %>
+</div>

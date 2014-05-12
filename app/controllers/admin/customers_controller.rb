@@ -58,10 +58,20 @@ class Admin::CustomersController < Admin::BaseController
   # DELETE /customers/1
   # DELETE /customers/1.json
   def destroy
-    @customer.destroy
-    respond_to do |format|
-      format.html { redirect_to customers_url }
-      format.json { head :no_content }
+    begin
+      @customer.destroy
+      respond_to do |format|
+        format.html { redirect_to customers_url }
+        format.json { head :no_content }
+      end
+    rescue ActiveRecord::InvalidForeignKey => e
+      flash[:error] = t 'errors.messages.delete_fail.being_used', model:@customer.name
+      flash[:error_details] = e
+      redirect_to [:admin, @customer]
+    rescue ActiveRecord::StatementInvalid => e
+      flash[:error] = t 'errors.messages.ops'
+      flash[:error_details] = e
+      redirect_to [:admin, @customer]
     end
   end
 
