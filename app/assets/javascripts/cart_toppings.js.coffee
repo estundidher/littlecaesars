@@ -106,23 +106,6 @@ class Caesars.CartToppings
       interval: false
     })
 
-#  $('modal_container').on 'click', '#toppings_carousel_button_add', (e) ->
-#    $remove = $('<i>', {'class': 'glyphicon glyphicon-remove white'})
-#    $remove.on 'click', ->
-#      $div = $(this).parent().parent()
-#      $div.fadeOut 'fast', ->
-#        $div.remove()
-#        Cart.calculate_price()
-#    $addition = $('<div>', {'class': 'addition'}).hide().append(
-#      $('<span>', {'class': 'label label-warning'})
-#        .append($('<input>', {type: 'hidden', name:'cart_item_sizable_additionable[addition_ids][]', value: $(this).data("id")}))
-#        .append($(this).data("name"))
-#        .append(' (' + $(this).data("price") + ') ')
-#        .append($remove)).prepend(' ')
-#    $('#cart_add_item_modal_additions_container').append $addition
-#    $addition.fadeIn 'fast', ->
-#      Cart.calculate_price()
-
 create_cart_toppings = ->
   window.Caesars.cart_toppings = new Caesars.CartToppings()
 
