@@ -1,4 +1,5 @@
 <div class="row">
+  <% puts "#{'*'*50}> chooser product: #{product}" %>
   <%= render partial:'slider',
     locals: {categories:categories, category:category, size:size, product:product, products:products} if mode == 'slider' %>
   <%= render partial:'splitter',
