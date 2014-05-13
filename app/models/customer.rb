@@ -13,12 +13,15 @@ class Customer < ActiveRecord::Base
             uniqueness: {case_sensitive: false}
 
   validates :name,
-            presence: true
+            presence: true,
+            format: {with:/\A[a-zA-Z]+\z/}
 
   validates :surname,
-            presence: true
+            presence: true,
+            format: {with:/\A[a-zA-Z]+\z/}
 
   validates :mobile,
+            #numericality: {only_integer: true},
             presence: true
 
   def self.current
