@@ -46,7 +46,7 @@ class Caesars.Cart
       $('.chooser .' + $item.data('target') + ' .product').hide().empty().html($item.data('name')).fadeIn 'fast'
       $('.chooser .' + $item.data('target') + ' .img-thumbnail').hide().attr('src', $item.data('photo')).fadeIn 'fast'
       $('.chooser .' + $item.data('target') + ' .gallery-img-link').attr 'href', $item.data 'photo'
-      $('.chooser .' + $item.data('target') + '.additions .selected').hide().empty().append(data).fadeIn 'fast'
+      $('.chooser .' + $item.data('target') + '.ingredients .selected').hide().empty().append(data).fadeIn 'fast'
 
   show_product: (e) =>
     console.log "cart: .carousel.splitter, .carousel.slider 'slid.bs.carousel' fired! current: " + $(e.target).find('.active').index() + ', next: ' + $(e.relatedTarget).index()

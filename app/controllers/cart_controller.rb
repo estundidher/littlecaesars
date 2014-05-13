@@ -2,10 +2,11 @@ class CartController < ApplicationController
 
   before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index]
   before_action :set_cart_item, only: [:destroy]
-  before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode, :add_topping]
+  before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode, :add_topping, :toppings]
   before_action :set_category, only: [:splitter, :slider]
   before_action :set_size, only: [:splitter, :slider, :mode]
   before_action :set_toppings, only: [:toppings, :add_toppings, :toppings_calculate, :add_topping]
+  before_action :set_topping, only: [:add_topping]
 
   # GET /cart/add/1
   def modal
@@ -85,15 +86,18 @@ class CartController < ApplicationController
 
   # GET /cart/:product_id/items
   def items
-    render partial:'additions', locals:{product:@product}, layout: nil
+    render partial:'cart/ingredients_tags', locals:{product:@product}, layout: nil
   end
 
   # POST /cart/toppings/open
   def toppings
     @products = Product.not_additionable_nor_shoppable
+    value = @toppings.nil? ? 0.0 : @toppings.sum(&:price)
     render partial:'cart/toppings/modal', locals:{products:@products,
                                                   toppings:@toppings,
+                                                  product:@product,
                                                   mode:params[:mode],
+                                                  value: value,
                                                   side:params[:side]}, layout: nil
   end
 
@@ -101,10 +105,10 @@ class CartController < ApplicationController
   def add_topping
 
     max_toppings = {"slider"=>6, "splitter"=>4}
-    max_of_the_same_topping = 2
+    max_of_the_same_toppings = 2
 
     unless @toppings.nil?
-      if @toppings.select{|topping| topping.id == @product.id}.size == max_of_the_same_topping
+      if (@toppings+@product.items).select{|topping| topping.id == @topping.id}.size == max_of_the_same_toppings
         render plain:'Only 2 of the same ingredient is permitted.', status: :unprocessable_entity
         return
       end
@@ -113,7 +117,7 @@ class CartController < ApplicationController
         return
       end
     end
-    render partial:'cart/toppings/topping', locals:{topping:@product}, layout: nil
+    render partial:'cart/toppings/topping', locals:{topping:@topping}, layout: nil
   end
 
   # POST /cart/toppings
@@ -123,7 +127,7 @@ class CartController < ApplicationController
 
   # POST /cart/toppings/calculate
   def toppings_calculate
-    total = @toppings.sum(&:price)
+    total = @toppings.nil? ? 0.0 : @toppings.sum(&:price)
     render partial:'cart/price', locals:{value:total}, layout: nil
   end
 
@@ -162,16 +166,6 @@ private
     end
   end
 
-  def set_toppings
-    unless params[:topping_ids].nil?
-      @toppings = params[:topping_ids].collect{|id| Product.find(id)}
-    end
-  end
-
-  def set_cart_item
-    @cart_item = CartItem.find(params[:id])
-  end
-
   def set_product
     unless params[:product_id].nil?
       @product = Product.find params[:product_id]
@@ -181,6 +175,22 @@ private
         @product = Product.find cart_item_params[:product_id]
       end
     end
+  end
+
+  def set_toppings
+    unless params[:topping_ids].nil?
+      @toppings = params[:topping_ids].collect{|id| Product.find(id)}
+    end
+  end
+
+  def set_topping
+    unless params[:topping_id].nil?
+      @topping = Product.find params[:topping_id]
+    end
+  end
+
+  def set_cart_item
+    @cart_item = CartItem.find(params[:id])
   end
 
   def set_category

@@ -12,8 +12,8 @@ class Caesars.CartToppings
     @bind()
 
   bind: ->
-    @$chooser.on 'ajax:before', '.additions form', @before_open
-    @$chooser.on 'ajax:success', '.additions form', @open
+    @$chooser.on 'ajax:before', '.ingredients form', @before_open
+    @$chooser.on 'ajax:success', '.ingredients form', @open
     @$modal_container.on 'click', '.toppings-modal .available .btn.add', @add
     @$modal_container.on 'ajax:success', '.toppings-modal .added form', @add_success
     @$modal_container.on 'ajax:error', '.toppings-modal .added form', @add_error
@@ -50,7 +50,8 @@ class Caesars.CartToppings
       $(e.target).addClass 'disabled'
       $(e.target).find('.glyphicon-plus-sign').hide()
       $(e.target).find('.fa-spin').fadeIn 'fast'
-      $('.toppings-modal .added form #product_id').val $(e.target).data('id')
+      $('.toppings-modal .modal-footer .warning').empty()
+      $('.toppings-modal .added form #topping_id').val $(e.target).data('id')
       $('.toppings-modal .added form').submit()
 
   add_success: (e, data, status, xhr) =>
@@ -76,15 +77,17 @@ class Caesars.CartToppings
     console.log "toppings modal: .modal-footer .btn.save fired!"
     $.post $('.toppings-modal .added form').data('add-url'), $('.toppings-modal .added form').serialize(), (data) =>
       $('#modal_container .toppings-modal').modal 'hide'
-      $('.additions.' + $('.toppings-modal .added form #side').val() + ' .topping').remove()
-      $('.additions.' + $('.toppings-modal .added form #side').val() + ' .selected').append(data)
-      $('.additions.' + $('.toppings-modal .added form #side').val() + ' .selected .topping').hide().fadeIn('slow')
+      $('.ingredients.' + $('.toppings-modal .added form #side').val() + ' .topping').remove()
+      $('.ingredients.' + $('.toppings-modal .added form #side').val() + ' .selected').append(data)
+      $('.ingredients.' + $('.toppings-modal .added form #side').val() + ' .selected .topping').hide().fadeIn('slow')
 
   remove: (e) =>
     console.log "toppings modal: remove_topping fired! id: " + $(e.target).data('id')
     if $(e.target).data('id')?
-      $(e.target).closest('.col-md-2').fadeOut 'slow', ->
-        $(e.target).closest('.col-md-2').remove()
+      $item = $(e.target).closest('.col-md-2')
+      $item.find('input:hidden').remove()
+      $item.fadeOut 'slow', ->
+        $item.remove()
       $('.toppings-modal .modal-footer .warning').empty()
       @calculate_price()
 

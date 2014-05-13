@@ -1,6 +1,7 @@
 <%= form_tag cart_add_topping_path, remote: true,
     data:{calculate_url:cart_calulate_toppings_path, add_url:cart_add_toppings_path} do %>
-  <%= hidden_field_tag :product_id %>
+  <%= hidden_field_tag :product_id, product.id %>
+  <%= hidden_field_tag :topping_id %>
   <%= hidden_field_tag :mode, mode %>
   <%= hidden_field_tag :side, side %>
   <% if toppings %>
