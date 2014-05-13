@@ -10,8 +10,7 @@ class Customer < ActiveRecord::Base
          :authentication_keys => [:email]
 
   validates :email,
-            uniqueness: {case_sensitive: false},
-            presence: true
+            uniqueness: {case_sensitive: false}
 
   validates :name,
             presence: true
