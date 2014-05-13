@@ -1,5 +1,6 @@
-<% page_index = 0 %>
+<% if products.any? %>
 <%
+  page_index = 0
   if defined?(product) && products.include?(product)
     page_index = products.index(product)
   end
@@ -33,3 +34,6 @@
     </a>
   <% end %>
 </div>
+<% else %>
+  <img src="http://placehold.it/175x250/" class"img-responsive">
+<% end %>

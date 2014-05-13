@@ -3,7 +3,6 @@
       locals: {mode:'splitter', align:'left', size:size, categories:categories,
                category:category, product:product} %>
   <div class="details">
-    <% puts "#{'*'*50}> splitter product: #{product}" %>
     <%= render partial:'details', locals: {product:product, align:'left', label:'1/2'} %>
   </div>
 </div>

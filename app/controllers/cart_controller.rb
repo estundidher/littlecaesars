@@ -147,7 +147,6 @@ class CartController < ApplicationController
     if @product.nil? || @products.exclude?(@product)
       @product = @products.first
     end
-    puts "#{'*'*50}> controller product: #{@product}"
     render partial:'chooser', locals:{mode:params[:mode],
                                       category:@category,
                                       size:@size,
