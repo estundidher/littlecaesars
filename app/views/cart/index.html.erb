@@ -6,20 +6,36 @@
   <%= tb_breadcrumb 'Cart' %>
 <% end %>
 
-<div class="container" style="margin-top: 20px; padding-top: 15px; padding-bottom: 10px; background-color: white;">
+<div class="container cart" style="margin-top: 20px; padding-top: 15px; padding-bottom: 10px; background-color: white;">
   <div class="row">
     <div class="col-md-9 col-sm-9">
       <div class="row" style="padding-bottom: 10px;">
         <div class="col-md-4 col-sm-4">
           <%= render partial:'mode', locals:{product:@product} %>
-          <div style="width: 204px" id="sizes_container">
+          <div id="sizes_container" style="width: 204px">
             <%= render partial:'sizes', locals:{sizes:@sizes} %>
           </div>
         </div>
+        <div class="col-md-2 col-sm-2 col-md-offset-4 col-sm-offset-4 total" style="padding-right: 0px;">
+          <span class="price">
+            $ 15,22
+          </span>
+        </div>
+        <div class="col-md-2 col-sm-2" style="text-align: right;">
+          <a href="#" class="btn btn-danger btn-lg" role="button">
+            Add to
+            <i class="glyphicon glyphicon-shopping-cart"></i>
+          </a>
+        </div>
       </div>
       <div class="chooser">
-        <%= render partial:'chooser',
-            locals:{categories:@categories, category:@category, size: nil, product:@product, products:@products, mode: 'slider'} %>
+        <%= render partial:'chooser', locals:{cart_item: @cart_item,
+                                             categories: @categories,
+                                               category: @category,
+                                                   size: nil,
+                                                product: @product,
+                                               products: @products,
+                                                   mode: CartController::MODE_ONE_FLAVOUR} %>
       </div>
     </div>
     <div class="col-md-3 col-sm-3">

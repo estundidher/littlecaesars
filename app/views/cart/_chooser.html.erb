@@ -1,18 +1,37 @@
 <div class="row">
-  <% puts "#{'*'*50}> chooser product: #{product}" %>
-  <%= render partial:'slider',
-    locals: {categories:categories, category:category, size:size, product:product, products:products} if mode == 'slider' %>
-  <%= render partial:'splitter',
-    locals: {categories:categories, category:category, size:size, product:product, products:products} if mode == 'splitter' %>
+  <%= render partial:'one_flavour', locals: {categories:categories, category:category,
+                                            size:size,
+                                            product:product,
+                                            products:products} if mode == CartController::MODE_ONE_FLAVOUR %>
+
+  <%= render partial:'two_flavours', locals: {categories:categories,
+                                              category:category,
+                                              size:size,
+                                              product:product,
+                                              products:products} if mode == CartController::MODE_TWO_FLAVOURS %>
 </div>
 
-<div class="row">
-  <div class="col-md-6 col-sm-6 ingredients left" style="padding-right: 0px;">
-    <%= render partial:'ingredients', locals: {product:product, mode:mode, side:'left', product:product} %>
+<%= form_for cart_item, remote: true do |f| %>
+  <%= f.hidden_field :cart_id, value: cart_item.cart.id %>
+  <div class="row ingredients">
+    <div class="col-md-6 col-sm-6 left" style="padding-right: 0px;">
+      <%= render partial:'cart/ingredients', locals: {cart_item:cart_item, product:product, mode:mode, side:'left'} %>
+    </div>
+    <% if mode == CartController::MODE_TWO_FLAVOURS %>
+      <div class="col-md-6 col-sm-6 right" style="padding-left: 0px; text-align: right;">
+        <%= render partial:'cart/ingredients', locals: {cart_item:cart_item, product:product, mode:mode, side:'right'} %>
+      </div>
+    <% end %>
   </div>
-  <% if mode == 'splitter' %>
-    <div class="col-md-6 col-sm-6 ingredients right" style="padding-left: 0px; text-align: right;">
-      <%= render partial:'ingredients', locals: {product:product, mode:mode, side:'right', product:product} %>
+<% end %>
+
+<div class="row toppings">
+  <div class="col-md-6 col-sm-6 left" style="padding-right: 0px;">
+    <%= render partial:'cart/toppings/add', locals: {cart_item:cart_item, product:product, mode:mode, side:'left'} %>
+  </div>
+  <% if mode == CartController::MODE_TWO_FLAVOURS %>
+    <div class="col-md-6 col-sm-6 right" style="padding-left: 0px; text-align: right;">
+      <%= render partial:'cart/toppings/add', locals: {cart_item:cart_item, product:product, mode:mode, side:'right'} %>
     </div>
   <% end %>
 </div>

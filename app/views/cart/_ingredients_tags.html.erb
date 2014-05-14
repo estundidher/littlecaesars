@@ -1,4 +1,4 @@
-<% cache ['product_additions', @product] do %>
+<% cache cache_key_for_product_ingredients(cart_item, product) do %>
   <%= render partial:'/cart/toppings/tags',
-      locals:{products:@product.items, type:'ingredients'} %>
+      locals:{cart_item:cart_item, products:product.items, type:'ingredients'} %>
 <% end %>

@@ -1,11 +1,17 @@
 class Category < ActiveRecord::Base
   include Auditable
 
-  scope :with_shoppable_products, -> {
+  scope :with_shoppable_products, -> (size = nil) {
 
-    joins(:products => :type)
+    query = joins(:products => :type)
          .where(products:{enabled:true}, product_types: {shoppable:true})
-         .order(:updated_at).uniq
+
+    if size
+      query = query.joins(:products => :sizes)
+      query = query.where(sizes: {id:size})
+    end
+
+    query.order(:updated_at).uniq
   }
 
   has_many :products

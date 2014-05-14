@@ -16,14 +16,15 @@ Rails.application.routes.draw do
   get 'about',                to: 'home#about',    as: :about
 
   #cart
-  get 'cart/add/:product_id',        to: 'cart#modal',    as: :cart_new_item
-  post 'cart/add',                   to: 'cart#create',   as: :cart_item_sizables
-  post 'cart/add',                   to: 'cart#create',   as: :cart_item_quantitables
-  post 'cart/add',                   to: 'cart#create',   as: :cart_item_sizable_additionables
-  post 'cart/calculate',             to: 'cart#calculate',as: :cart_item_calculate
-  delete 'cart/:id',                 to: 'cart#destroy',  as: :cart_remove_item
-  get 'cart/:id/checkout',           to: 'cart#checkout', as: :cart_checkout
-  get '/cart/:product_id/items',     to: 'cart#items',    as: :cart_product_items
+  get 'cart/add/:product_id',                to: 'cart#modal',      as: :cart_new_item
+  post 'cart/add',                           to: 'cart#create',     as: :cart_item_sizables
+  post 'cart/add',                           to: 'cart#create',     as: :cart_item_quantitables
+  post 'cart/add',                           to: 'cart#create',     as: :cart_item_sizable_additionables
+  post 'cart/add',                           to: 'cart#create',     as: :cart_item_splittables
+  post 'cart/calculate',                     to: 'cart#calculate',  as: :cart_item_calculate
+  delete 'cart/:id',                         to: 'cart#destroy',    as: :cart_remove_item
+  get 'cart/:id/checkout',                   to: 'cart#checkout',   as: :cart_checkout
+  get '/cart/:mode/:product_id/ingredients', to: 'cart#ingredients',as: :cart_product_items
 
   #cart toppings
   post '/cart/toppings/calculate',   to: 'cart#toppings_calculate', as: :cart_calulate_toppings
@@ -32,10 +33,9 @@ Rails.application.routes.draw do
   post '/cart/toppings/open',        to: 'cart#toppings',    as: :cart_toppings
 
   #cart page
-  get 'cart(/:product_id)',                            to: 'cart#index',       as: :cart
-  post 'cart/mode',                                    to: 'cart#mode',        as: :cart_mode
-  get 'cart/splitter/:category_id(/:side)(/:size_id)', to: 'cart#splitter',    as: :cart_splitter
-  get 'cart/slider/:category_id(/:size_id)',           to: 'cart#slider',      as: :cart_slider
+  get 'cart(/:product_id)',                               to: 'cart#index',    as: :cart
+  post 'cart/mode',                                       to: 'cart#mode',     as: :cart_mode
+  get 'cart/:mode/:side/:category_id(/:size_id)',       to: 'cart#carousel', as: :cart_carousel
 
   namespace :admin do
 

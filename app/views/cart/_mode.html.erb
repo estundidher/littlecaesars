@@ -1,15 +1,14 @@
-<%= form_tag cart_mode_path, remote: true, class:'mode_chooser_form' do %>
+<%= form_tag cart_mode_path, remote: true, class:'mode-chooser' do %>
   <%= hidden_field_tag :product_id, product.id, class:'product' if defined?(product) %>
   <%= hidden_field_tag :size_id, 0, class:'size' %>
-  <div class="radio-inline">
+  <div class="radio-inline one-flavour">
     <%= label_tag :mode_slider do %>
-      <%= radio_button_tag :mode, :slider, true, {class:'mode_chooser slider'} %> 1 Flavour
+      <%= radio_button_tag :mode, CartController::MODE_ONE_FLAVOUR, true %> 1 Flavour
     <% end %>
   </div>
-  <div class="radio-inline mode_spliter">
+  <div class="radio-inline two-flavours">
     <%= label_tag :mode_splitter, title:"Only available on #{Size.where(splittable:true).map { |size| size.name }.join(',')} size!" do %>
-      <%= radio_button_tag :mode, :splitter, false,
-      {class:'mode_chooser splitter', disabled:true} %> 2 Flavours
+      <%= radio_button_tag :mode, CartController::MODE_TWO_FLAVOURS, false, {disabled:true} %> 2 Flavours
     <% end %>
   </div>
   <i class="fa fa-spinner fa-spin" style="display:none;"></i>

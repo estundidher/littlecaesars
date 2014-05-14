@@ -8,49 +8,72 @@ class Caesars.Cart
 
   constructor: ->
     @$modal_container = $('#modal_container')
-    @$container = $('.container')
-    @$chooser = $('.chooser')
-    @$mode_chooser = $('.mode_chooser')
-    @$mode_chooser_form = $('.mode_chooser_form')
+    @$cart = $('.cart')
+    @$mode_chooser = @$cart.find('.mode-chooser')
+    @$mode_options = @$mode_chooser.find('input:radio')
+    @$mode_one_flavour = @$mode_chooser.find('.one-flavour input:radio')
+    @$mode_two_flavours = @$mode_chooser.find('.two-flavours input:radio')
+    @$mode_spinner = @$mode_chooser.find('.fa-spin')
     @bind_carousel()
     @bind_pretty_photo()
     @carousel_activate_item '.carousel.slide.vertical'
     @bind()
 
   bind: ->
-    @$chooser.on 'slide.bs.carousel', '.carousel.slide.vertical', @show_product
-    @$chooser.on 'ajax:before', '.categories .dropdown-menu a', @change_category_before
-    @$chooser.on 'ajax:success', '.categories .dropdown-menu a', @change_category_success
-    @$container.on 'click', '.sizable .dropdown-menu a', @change_size
-    @$chooser.on 'click', '.addition .label i', @click_addition
-    @$chooser.on 'click', '.addition .label-warning i', @remove_topping
-    @$mode_chooser.change @change_mode
-    @$mode_chooser_form.on 'ajax:success', @change_mode_success
+    @$cart.on 'slide.bs.carousel', '.carousel.slide.vertical', @change_product
+    @$cart.on 'ajax:before', '.categories .dropdown-menu a', @change_category_before
+    @$cart.on 'ajax:success', '.categories .dropdown-menu a', @change_category_success
+    @$cart.on 'click', '.sizable .dropdown-menu a', @change_size
+    @$cart.on 'click', '.ingredient .label i', @click_ingredient
+    @$cart.on 'click', '.ingredient .label-warning i', @remove_topping
+    @$mode_options.change @change_mode
+    @$mode_chooser.on 'ajax:success', @change_mode_success
 
-  carousel_activate_item: (splitter) ->
-    console.log 'cart: carousel_activate_item fired! index: ' + $(splitter).data('active-index')
-    if splitter?
-      item = $(splitter).find('.item')[$(splitter).data('active-index')];
+  carousel_activate_item: (carousel) ->
+    console.log 'cart: carousel_activate_item fired! index: ' + $(carousel).data('active-index')
+    if carousel?
+      item = $(carousel).find('.item')[$(carousel).data('active-index')];
       $(item).addClass 'active'
 
-    if $(splitter).hasClass('left')
-      $('.mode_chooser_form .product').val $(item).data 'id'
+    if $(carousel).hasClass('left')
+      @$mode_chooser.find('.product').val $(item).data 'id'
 
-  load_product: (item) ->
+  load_product: (item, target) ->
     $item = $(item)
-    console.log "cart: load_product id: " + $item.data('id') + ', url: ' + $item.data('url') + ', target: ' + $item.data('target')
-    if $item.data('target') == 'left'
-      $('.mode_chooser_form .product').val $item.data 'id'
+    $details = @$cart.find('.' + target + ' .details')
 
-    $.get $item.data('url'), (data) ->
-      $('.chooser .' + $item.data('target') + ' .product').hide().empty().html($item.data('name')).fadeIn 'fast'
-      $('.chooser .' + $item.data('target') + ' .img-thumbnail').hide().attr('src', $item.data('photo')).fadeIn 'fast'
-      $('.chooser .' + $item.data('target') + ' .gallery-img-link').attr 'href', $item.data 'photo'
-      $('.chooser .' + $item.data('target') + '.ingredients .selected').hide().empty().append(data).fadeIn 'fast'
+    console.log "cart: load_product item: '" + item + "', target: '" + target + "' on " + $details.attr('class')
 
-  show_product: (e) =>
-    console.log "cart: .carousel.splitter, .carousel.slider 'slid.bs.carousel' fired! current: " + $(e.target).find('.active').index() + ', next: ' + $(e.relatedTarget).index()
-    @load_product $(e.target).find('.item')[$(e.relatedTarget).index()]
+    if $item.data('id')?
+      console.log "cart: load_product id: " + $item.data('id') + ', url: ' + $item.data('url') + ', target: ' + target
+      if target == 'left'
+        @$mode_chooser.find('.product').val $item.data 'id'
+
+      $.get $item.data('url'), (data) ->
+        $details.find('.product').hide().empty().html($item.data('name')).fadeIn 'fast'
+        $details.find('.img-thumbnail').hide().attr('src', $item.data('photo')).fadeIn 'fast'
+        $details.find('.gallery-img-link').attr 'href', $item.data 'photo'
+
+        $('.cart .ingredients .' + target + ' .tags').hide().empty().append(data).fadeIn 'fast'
+
+        if !$('.cart .ingredients .' + target).is(':visible')
+          $('.cart .ingredients .' + target).fadeIn 'fast'
+
+        if !$('.cart .toppings .' + target).is(':visible')
+          $('.cart .toppings .' + target).fadeIn 'fast'
+    else
+      console.log 'cart: load_product id: null. Cleaning up ' + $details.attr('class') + '..'
+      $details.find('.product').hide().empty().html('No result').fadeIn 'fast'
+      $details.find('.img-thumbnail').hide().attr('src', 'http://placehold.it/204x230/').fadeIn 'fast'
+      $details.find('.gallery-img-link').hide()
+      @$cart.find('.ingredients .' + target + ' .tags').hide().empty()
+      @$cart.find('.ingredients .' + target).fadeOut 'fast'
+      @$cart.find('.toppings .' + target).fadeOut 'fast'
+
+  change_product: (e) =>
+    console.log "cart: .cart .carousel.slide.vertical, 'slid.bs.carousel' fired! current: " + $(e.target).find('.active').index() + ', next: ' + $(e.relatedTarget).index()
+    item = $(e.target).find('.item')[$(e.relatedTarget).index()]
+    @load_product item, $(item).data('target')
 
   change_category_before: (e, data, status, xhr) =>
     $(this).data('params', {size_id: $('#size_id').val()})
@@ -62,63 +85,45 @@ class Caesars.Cart
 
   change_category_success: (e, data, status, xhr) =>
     console.log "cart: .categories a 'ajax:success' fired! category: " + $(e.target).data('category') + ', target: ' + $(e.target).data('target')
-    $('.chooser .carousel.' + $(e.target).data('target')).parent().hide().empty().append(xhr.responseText).fadeIn 'fast'
-    @bind_carousel $('.chooser .carousel.' + $(e.target).data('target'))
-    @carousel_activate_item '.chooser .carousel.' + $(e.target).data 'target'
-    @load_product $('.chooser .carousel.' + $(e.target).data('target')).find '.active'
-    $(e.target).closest('.btn-group').find('.fa-spin').fadeOut 'fast'
 
-  change_size_before: (e, data, status, xhr) =>
-    console.log "cart: .sizable a 'ajax:before' fired! category: " + $(e.target).data('name') + ', target: ' + $(e.target).data('target')
-    $menu = $(e.target).closest('.btn-group')
-    $menu.find('.fa-spin').fadeIn 'fast'
-    $menu.find('.name').empty().html $(e.target).data('name')
-    $menu.removeClass 'open'
+    $carousel_container = @$cart.find('.slider .' + $(e.target).data('target'))
+    $carousel_container.hide().empty().append(xhr.responseText).fadeIn 'fast'
+    $carousel = $carousel_container.find('.carousel')
 
-  change_size_success: (e, data, status, xhr) =>
-    console.log "cart: .sizable a 'ajax:success' fired! category: " + $(e.target).data('category') + ', target: ' + $(e.target).data('target')
-    $('.chooser .carousel.' + $(e.target).data('target')).parent().hide().empty().append(xhr.responseText).fadeIn 'fast'
-    @bind_carousel $('.chooser .carousel.' + $(e.target).data('target'))
-    @carousel_activate_item '.chooser .carousel.' + $(e.target).data 'target'
-    @load_product $('.chooser .carousel.' + $(e.target).data('target')).find '.active'
+    @bind_carousel $carousel
+    @carousel_activate_item $carousel
+    @load_product($carousel.find('.active'), $(e.target).data('target'))
     $(e.target).closest('.btn-group').find('.fa-spin').fadeOut 'fast'
 
   change_size: (e) =>
     console.log 'cart: .sizable a clicked! id : ' + $(e.target).data('id') + ', name: ' + $(e.target).data('name') + ", splittable: '" + $(e.target).data('splittable') + "'"
     $(e.target).closest('.sizable').find('.name').html $(e.target).data 'name'
-    $(e.target).closest('.sizable').find('.name').html $(e.target).data 'name'
     if $(e.target).data('id')?
-      $('.mode_chooser_form #size_id').val($(e.target).data('id'))
+      @$mode_chooser.find('#size_id').val($(e.target).data('id'))
       if $(e.target).data('splittable') is true
-        console.log 'cart: .sizable a clicked! Is splittable. enabeling mode splitter..'
-        $('.mode_chooser_form .splitter').prop('disabled', false)
+        console.log 'cart: .sizable a clicked! Enabeling two_flavours mode..'
+        @$mode_two_flavours.prop('disabled', false)
       else
-        $('.mode_chooser_form .splitter').prop('disabled', true)
-        $('.mode_chooser_form .slider').prop('checked', true)
+        @$mode_two_flavours.prop('disabled', true)
+        @$mode_one_flavour.prop('checked', true)
 
-      $('.mode_chooser_form .slider').trigger('change');
+      @$mode_one_flavour.trigger('change');
 
   change_mode: (e) =>
     console.log "cart: .mode_chooser a 'change' fired!"
-    $('.mode_chooser_form .fa-spin').fadeIn 'fast'
+    @$mode_spinner.fadeIn 'fast'
     $(e.target).closest('form').submit()
 
   change_mode_success: (e, data, status, xhr) =>
-    console.log "cart: .mode_chooser_form a 'ajax:success' fired!"
+    console.log "cart: .mode-chooser a 'ajax:success' fired!"
     $('.chooser').hide().empty().append(xhr.responseText).fadeIn 'fast'
     @carousel_activate_item carousel for carousel in $('.carousel.slide.vertical')
-    $('.mode_chooser_form .fa-spin').fadeOut 'fast'
+    @$mode_spinner.fadeOut 'fast'
     @bind_pretty_photo()
     @bind_carousel()
 
-  is_splitter: ->
-    $('.carousel.slide.vertical').length == 2
-
-  is_slider: ->
-    $('.carousel.slide.vertical').length == 1
-
-  click_addition: (e) =>
-    console.log "cart: .addition .label i 'click' fired! id : " + $(e.target).closest('.addition').data 'id'
+  click_ingredient: (e) =>
+    console.log "cart: .ingredient .label i 'click' fired! id : " + $(e.target).closest('.ingredient').data 'id'
     if $(e.target).parent().hasClass 'label-info'
       $(e.target).parent().removeClass('label-info').addClass 'label-default'
       $(e.target).removeClass('glyphicon-remove').removeClass('white').addClass 'glyphicon-plus-sign'
@@ -127,9 +132,9 @@ class Caesars.Cart
       $(e.target).removeClass('glyphicon-plus-sign').addClass 'glyphicon-remove white'
 
   remove_topping: (e) =>
-    console.log "cart: .addition .label-danger i 'click' fired! id : " + $(e.target).closest('.addition').data 'id'
+    console.log "cart: .ingredient .label-danger i 'click' fired! id : " + $(e.target).closest('.ingredient').data 'id'
     $(e.target).parent().fadeOut 'fast', ->
-      console.log 'removing topping..'
+      console.log 'removing topping ' + $(e.target).closest('.ingredient').data 'id'
       $(e.target).closest('.topping').remove()
 
   bind_carousel: (carousel) ->
@@ -138,7 +143,7 @@ class Caesars.Cart
       $carousel = $(carousel)
     else
       console.log "cart: bind_carousel fired!"
-      $carousel = $('.chooser .carousel.slide.vertical')
+      $carousel = @$cart.find('.carousel.slide.vertical')
 
     $carousel.carousel({
       interval: false
@@ -146,7 +151,8 @@ class Caesars.Cart
 
   bind_pretty_photo: ->
     console.log "cart: bind_pretty_photo fired!"
-    $('.chooser .gallery-img-link').prettyPhoto({
+    $prettyLink = @$cart.find('.gallery-img-link')
+    $prettyLink.prettyPhoto({
       overlay_gallery: false, social_tools: false
     })
 

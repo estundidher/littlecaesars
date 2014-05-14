@@ -18,11 +18,8 @@
   <ul class="dropdown-menu" role="menu">
     <% categories.each do |category| %>
       <li>
-        <%= link_to category.name, cart_splitter_path(category, align, size), remote: true,
-            data: {target: align, name: category.name} if mode == 'splitter' %>
-
-        <%= link_to category.name, cart_slider_path(category, size), remote: true,
-            data: {target: align, name: category.name} if mode == 'slider' %>
+        <%= link_to category.name, cart_carousel_path(mode, align, category, size), remote: true,
+            data: {target: align, name: category.name} %>
       </li>
     <% end %>
   </ul>

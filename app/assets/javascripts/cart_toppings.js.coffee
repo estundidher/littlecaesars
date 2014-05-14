@@ -7,33 +7,37 @@ window.Caesars or= {}
 class Caesars.CartToppings
 
   constructor: ->
-    @$chooser = $('.chooser')
+    @$cart = $('.cart')
     @$modal_container = $('#modal_container')
     @bind()
 
   bind: ->
-    @$chooser.on 'ajax:before', '.ingredients form', @before_open
-    @$chooser.on 'ajax:success', '.ingredients form', @open
+    @$cart.on 'ajax:before', '.toppings form', @open_before
+    @$cart.on 'ajax:success', '.toppings form', @open_success
     @$modal_container.on 'click', '.toppings-modal .available .btn.add', @add
     @$modal_container.on 'ajax:success', '.toppings-modal .added form', @add_success
     @$modal_container.on 'ajax:error', '.toppings-modal .added form', @add_error
     @$modal_container.on 'click', '.toppings-modal .added .btn.remove', @remove
     @$modal_container.on 'click', '.toppings-modal .modal-footer .btn.save', @add_to_cart
 
-  before_open: (e, data, status, xhr) =>
+  open_before: (e, data, status, xhr) =>
     console.log 'toppings modal: before_open fired!'
-    $button = $(e.target).find('.btn')
+    $form = $(e.target)
+    $button = $form.find('.btn')
     if $button?
+      $form.append($('.cart .ingredients .' + $form.find('#side').val() + ' .tags .additionable').clone())
       $button.addClass 'disabled'
       $button.find('.fa-spin').fadeIn 'fast'
       $button.find('.glyphicon-plus-sign').hide()
 
-  open: (e, data, status, xhr) =>
+  open_success: (e, data, status, xhr) =>
     console.log 'toppings modal: open fired!'
+    $form = $(e.target)
+    $form.find('.additionable').remove()
     @$modal_container.empty().append xhr.responseText
     $('#modal_container .toppings-modal').modal 'show'
     @bind_carousel $('.toppings-modal .carousel')
-    $button = $(e.target).find('.btn')
+    $button = $form.find('.btn')
     if $button?
       $button.removeClass 'disabled'
       $button.find('.fa-spin').hide()
@@ -77,9 +81,10 @@ class Caesars.CartToppings
     console.log "toppings modal: .modal-footer .btn.save fired!"
     $.post $('.toppings-modal .added form').data('add-url'), $('.toppings-modal .added form').serialize(), (data) =>
       $('#modal_container .toppings-modal').modal 'hide'
-      $('.ingredients.' + $('.toppings-modal .added form #side').val() + ' .topping').remove()
-      $('.ingredients.' + $('.toppings-modal .added form #side').val() + ' .selected').append(data)
-      $('.ingredients.' + $('.toppings-modal .added form #side').val() + ' .selected .topping').hide().fadeIn('slow')
+      $ingredients = $('.cart .ingredients .' + $('.toppings-modal .added form #side').val())
+      $ingredients.find('.tags .topping').remove()
+      $ingredients.find('.tags').append data
+      $ingredients.find('.tags .topping').hide().fadeIn 'slow'
 
   remove: (e) =>
     console.log "toppings modal: remove_topping fired! id: " + $(e.target).data('id')
@@ -103,7 +108,7 @@ class Caesars.CartToppings
       $carousel = $(carousel)
     else
       console.log "toppings modal: bind_carousel fired!"
-      $carousel = $('.chooser .carousel.slide.vertical')
+      $carousel = $('.cart .carousel.slide.vertical')
 
     $carousel.carousel({
       interval: false

@@ -1,10 +1,19 @@
 class CartController < ApplicationController
 
-  before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index]
+  MODE_ONE_FLAVOUR = 'one-flavour'
+  MODE_TWO_FLAVOURS = 'two-flavours'
+
+  MAX_TOPPINGS = {MODE_ONE_FLAVOUR=>6, MODE_TWO_FLAVOURS=>4}
+  MAX_OF_THE_SAME_TOPPING = 2
+
+  #devise configuration
+  before_action :authenticate_customer!
+
+  before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index, :toppings, :mode]
   before_action :set_cart_item, only: [:destroy]
-  before_action :set_product, only: [:modal, :calculate, :create, :index, :items, :mode, :add_topping, :toppings]
-  before_action :set_category, only: [:splitter, :slider]
-  before_action :set_size, only: [:splitter, :slider, :mode]
+  before_action :set_product, only: [:modal, :calculate, :create, :index, :ingredients, :mode, :add_topping, :toppings]
+  before_action :set_category, only: [:carousel]
+  before_action :set_size, only: [:carousel, :mode]
   before_action :set_toppings, only: [:toppings, :add_toppings, :toppings_calculate, :add_topping]
   before_action :set_topping, only: [:add_topping]
 
@@ -63,39 +72,31 @@ class CartController < ApplicationController
     render layout:'generic'
   end
 
-  # GET /cart/splitter/:side/:category_id
-  def splitter
-    @products = @category.products.shoppable_additionable_splittable @size, nil
-    @categories = Category.with_shoppable_products
-    render partial:'splitter_side', locals:{side:params[:side],
-                                            size:@size,
-                                            category:@category,
-                                            categories:@categories,
-                                            products:@products,
-                                            product:@products.first}, layout: nil
-  end
-
-  # GET /cart/slider/:category_id
-  def slider
-    @products = @category.products.shoppable_additionable @size, nil
-    render partial:'slider_internal', locals:{products:@products,
-                                              size:@size,
-                                              product:@products.first,
-                                              category:@category}, layout: nil
-  end
-
-  # GET /cart/:product_id/items
-  def items
-    render partial:'cart/ingredients_tags', locals:{product:@product}, layout: nil
+  # GET /cart/:product_id/mode/ingredients
+  def ingredients
+    render partial:'cart/ingredients_tags', locals:{product:@product,
+                                                    cart_item:new_cart_item(params[:mode])}, layout: nil
   end
 
   # POST /cart/toppings/open
   def toppings
+
+    if params.has_key?(:cart_item_splittable)
+      unless params[:cart_item_splittable][:topping_ids].nil?
+        @toppings = params[:cart_item_splittable][:topping_ids].collect{|id| Product.find(id)}
+      end
+    elsif params.has_key?(:cart_item_sizable_additionable)
+      unless params[:cart_item_sizable_additionable][:topping_ids].nil?
+        @toppings = params[:cart_item_sizable_additionable][:topping_ids].collect{|id| Product.find(id)}
+      end
+    end
+
     @products = Product.not_additionable_nor_shoppable
     value = @toppings.nil? ? 0.0 : @toppings.sum(&:price)
     render partial:'cart/toppings/modal', locals:{products:@products,
                                                   toppings:@toppings,
                                                   product:@product,
+                                                  cart_item:new_cart_item(params[:mode]),
                                                   mode:params[:mode],
                                                   value: value,
                                                   side:params[:side]}, layout: nil
@@ -104,15 +105,12 @@ class CartController < ApplicationController
   # POST /cart/toppings/add
   def add_topping
 
-    max_toppings = {"slider"=>6, "splitter"=>4}
-    max_of_the_same_toppings = 2
-
     unless @toppings.nil?
-      if (@toppings+@product.items).select{|topping| topping.id == @topping.id}.size == max_of_the_same_toppings
+      if (@toppings+@product.items).select{|topping| topping.id == @topping.id}.size == MAX_OF_THE_SAME_TOPPING
         render plain:'Only 2 of the same ingredient is permitted.', status: :unprocessable_entity
         return
       end
-      if @toppings.size == max_toppings[params[:mode]]
+      if @toppings.size == MAX_TOPPINGS[params[:mode]]
         render plain:'You have reached the maximum number of ingredients', status: :unprocessable_entity
         return
       end
@@ -122,7 +120,9 @@ class CartController < ApplicationController
 
   # POST /cart/toppings
   def add_toppings
-    render partial:'cart/toppings/tags', locals:{products:@toppings, type:'toppings'}, layout: nil
+    render partial:'cart/toppings/tags', locals:{products:@toppings,
+                                                 cart_item:new_cart_item(params[:mode]),
+                                                 type:'toppings'}, layout: nil
   end
 
   # POST /cart/toppings/calculate
@@ -133,29 +133,51 @@ class CartController < ApplicationController
 
   # POST /cart/mode
   def mode
-    @categories = Category.with_shoppable_products
+    @categories = Category.with_shoppable_products @size
     if @product.nil?
       @category = @categories.first
     else
       @category = @product.category
     end
-    if params[:mode] == 'slider'
+    if params[:mode] == 'one-flavour'
       @products = @category.products.shoppable_additionable @size, nil
-    elsif params[:mode] == 'splitter'
+    elsif params[:mode] == 'two-flavours'
       @products = @category.products.shoppable_additionable_splittable @size, nil
     end
-    if @product.nil? || @products.exclude?(@product)
-      @product = @products.first
+    unless @products.nil?
+      if @product.nil? || @products.exclude?(@product)
+        @product = @products.first
+      end
     end
-    render partial:'chooser', locals:{mode:params[:mode],
-                                      category:@category,
-                                      size:@size,
-                                      product:@product,
-                                      categories:@categories,
-                                      products:@products}, layout: nil
+    render partial:'cart/chooser', locals:{mode:params[:mode],
+                                          cart_item:new_cart_item(params[:mode]),
+                                          category:@category,
+                                          size:@size,
+                                          product:@product,
+                                          categories:@categories,
+                                          products:@products}, layout: nil
+  end
+
+  # GET /cart/:mode/:category_id/:side/:size
+  def carousel
+    @products = @category.products.shoppable_additionable @size, nil
+    render partial:'cart/carousel', locals:{products:@products,
+                                            size:@size,
+                                            side:(params[:side] || 'left'),
+                                            mode:params[:mode],
+                                            product:@products.first,
+                                            category:@category}, layout: nil
   end
 
 private
+
+  def new_cart_item mode
+    if mode == MODE_ONE_FLAVOUR
+      CartItemSizableAdditionable.new cart:@cart
+    elsif mode == MODE_TWO_FLAVOURS
+      CartItemSplittable.new cart:@cart
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_cart
@@ -231,6 +253,13 @@ private
                                                              :cart_id,
                                                              :notes,
                                                              :addition_ids => []
+    elsif params.has_key?(:cart_item_splittable)
+
+      params.require(:cart_item_splittable).permit :product_id,
+                                                   :price_id,
+                                                   :cart_id,
+                                                   :notes,
+                                                   :topping_ids => []
     end
   end
 end
