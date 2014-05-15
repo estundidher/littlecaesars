@@ -1,6 +1,7 @@
 <%= form_tag cart_mode_path, remote: true, class:'mode-chooser' do %>
+  <%= hidden_field_tag :category_id, category.id, class:'category' %>
+  <%= hidden_field_tag :size_id, nil, class:'size' %>
   <%= hidden_field_tag :product_id, product.id, class:'product' if defined?(product) %>
-  <%= hidden_field_tag :size_id, 0, class:'size' %>
   <div class="radio-inline one-flavour">
     <%= label_tag :mode_slider do %>
       <%= radio_button_tag :mode, CartController::MODE_ONE_FLAVOUR, true %> 1 Flavour

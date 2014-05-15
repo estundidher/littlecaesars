@@ -18,8 +18,9 @@ class Admin::ProductsController < Admin::BaseController
       query = query.where(product_type_id:@product.product_type_id)
     end
 
-    if @product.category_id?
-      query = query.where(category_id:@product.category_id)
+    unless params[:category_id].nil? or params[:category_id].empty?
+      query = query.joins(:categories)
+                   .where(categories: {id:params[:category_id].to_i})
     end
 
     respond_to do |format|
@@ -126,7 +127,7 @@ class Admin::ProductsController < Admin::BaseController
                                       :photo_showcase,
                                       :price,
                                       :product_type_id,
-                                      :category_id,
-                                      :item_ids => []
+                                      :item_ids => [],
+                                      :category_ids => []
     end
 end

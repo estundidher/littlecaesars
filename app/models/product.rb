@@ -10,7 +10,8 @@ class Product < ActiveRecord::Base
     end
 
     unless categories.nil? || categories.empty?
-      query = query.where(category: categories)
+      query = query.joins(:categories)
+                   .where(categories: {id:categories})
     end
 
     query.joins(:type)
@@ -58,6 +59,10 @@ class Product < ActiveRecord::Base
                           after_add: :force_touch,
                           after_remove: :force_touch
 
+  has_and_belongs_to_many :categories,
+                          after_add: :force_touch,
+                          after_remove: :force_touch
+
   has_attached_file :photo,
                     styles: {large:'400x450>', medium:'300x300>', mini:'120x60>', topping:'110x90>', thumb:'100x100>'}
 
@@ -74,13 +79,12 @@ class Product < ActiveRecord::Base
              class_name: 'ProductType',
              foreign_key: 'product_type_id'
 
-  belongs_to :category
-
   validates :type,
             presence: true
 
-  validates :category,
-            presence: true
+  validates :categories,
+            presence: true,
+            length: {minimum: 1}
 
   validates :name,
             presence: true,
@@ -125,6 +129,14 @@ class Product < ActiveRecord::Base
     self.try(:type).try(:sizable?)
   end
 
+  def categories_friendly limit = nil
+    if limit
+      self.categories.map(&:name).join(', ').truncate(limit)
+    else
+      self.categories.map(&:name).join(', ')
+    end
+  end
+
   def items_friendly limit = nil
     if limit
       self.items.map(&:name).join(', ').truncate(limit)
@@ -144,6 +156,8 @@ class Product < ActiveRecord::Base
       end
     end
   end
+
+
 
   def splittable?
     self.sizes.map{|size| size.splittable} if self.sizable? and self.sizes.any?

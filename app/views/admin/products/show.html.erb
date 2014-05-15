@@ -8,7 +8,7 @@
   <dt><%= Product.human_attribute_name 'type' %></dt>
   <dd><%= @product.type.name %></dd>
   <dt><%= Product.human_attribute_name 'category' %></dt>
-  <dd><%= @product.category.name %></dd>
+  <dd> <%= @product.categories_friendly || '--' %> </dd>
   <dt><%= Product.human_attribute_name 'name' %></dt>
   <dd><%= @product.name %></dd>
   <% if @product.description? %>

@@ -12,7 +12,7 @@ class CartController < ApplicationController
   before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index, :toppings, :mode]
   before_action :set_cart_item, only: [:destroy]
   before_action :set_product, only: [:modal, :calculate, :create, :index, :ingredients, :mode, :add_topping, :toppings]
-  before_action :set_category, only: [:carousel]
+  before_action :set_category, only: [:carousel, :mode]
   before_action :set_size, only: [:carousel, :mode]
   before_action :set_toppings, only: [:toppings, :add_toppings, :toppings_calculate, :add_topping]
   before_action :set_topping, only: [:add_topping]
@@ -62,13 +62,13 @@ class CartController < ApplicationController
     if @product.nil?
       @category = @categories.first
     else
-      @category = @product.category
+      @category = @product.categories.first
     end
     @products = @category.products.shoppable_additionable
     if @product.nil?
       @product = @products.first
     end
-    @sizes = Size.order :created_at
+    @sizes = @products.map{|p| p.sizes}.flatten.uniq
     render layout:'generic'
   end
 
@@ -91,7 +91,7 @@ class CartController < ApplicationController
       end
     end
 
-    @products = Product.not_additionable_nor_shoppable nil, @product.category.items
+    @products = Product.not_additionable_nor_shoppable nil, @product.categories.map{|c| c.items}.flatten.uniq
     value = @toppings.nil? ? 0.0 : @toppings.sum(&:price)
     render partial:'cart/toppings/modal', locals:{products:@products,
                                                   toppings:@toppings,
@@ -133,12 +133,7 @@ class CartController < ApplicationController
 
   # POST /cart/mode
   def mode
-    @categories = Category.with_shoppable_products @size
-    if @product.nil?
-      @category = @categories.first
-    else
-      @category = @product.category
-    end
+    @categories = Category.with_shoppable_products
     if params[:mode] == MODE_ONE_FLAVOUR
       @products = @category.products.shoppable_additionable @size, nil
     elsif params[:mode] == MODE_TWO_FLAVOURS
@@ -149,10 +144,12 @@ class CartController < ApplicationController
         @product = @products.first
       end
     end
+    @sizes = @products.map{|p| p.sizes}.flatten.uniq
     render partial:'cart/chooser', locals:{mode:params[:mode],
                                           cart_item:new_cart_item(params[:mode]),
                                           category:@category,
                                           size:@size,
+                                          sizes:@sizes,
                                           product:@product,
                                           categories:@categories,
                                           products:@products}, layout: nil
@@ -222,10 +219,8 @@ private
   end
 
   def set_size
-    unless params[:size_id].nil?
-      if params[:size_id] != ""
-        @size = Size.find params[:size_id]
-      end
+    unless params[:size_id].nil? or params[:size_id].empty?
+      @size = Size.find params[:size_id]
     end
   end
 

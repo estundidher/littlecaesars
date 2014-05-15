@@ -1,12 +1,15 @@
 <div class="row">
-  <%= render partial:'one_flavour', locals: {categories:categories, category:category,
+  <%= render partial:'one_flavour', locals: {categories:categories,
+                                            category:category,
                                             size:size,
+                                            sizes:sizes,
                                             product:product,
                                             products:products} if mode == CartController::MODE_ONE_FLAVOUR %>
 
   <%= render partial:'two_flavours', locals: {categories:categories,
                                               category:category,
                                               size:size,
+                                              sizes:sizes,
                                               product:product,
                                               products:products} if mode == CartController::MODE_TWO_FLAVOURS %>
 </div>

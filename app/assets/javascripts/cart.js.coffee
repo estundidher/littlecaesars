@@ -21,8 +21,11 @@ class Caesars.Cart
 
   bind: ->
     @$cart.on 'slide.bs.carousel', '.carousel.slide.vertical', @change_product
+    @$cart.on 'click', '.categories .dropdown-menu a.left', @change_category
+
     @$cart.on 'ajax:before', '.categories .dropdown-menu a', @change_category_before
     @$cart.on 'ajax:success', '.categories .dropdown-menu a', @change_category_success
+
     @$cart.on 'click', '.sizable .dropdown-menu a', @change_size
     @$cart.on 'click', '.ingredient .label i', @click_ingredient
     @$cart.on 'click', '.ingredient .label-warning i', @remove_topping
@@ -75,6 +78,12 @@ class Caesars.Cart
     console.log "cart: .cart .carousel.slide.vertical, 'slid.bs.carousel' fired! current: " + $(e.target).find('.active').index() + ', next: ' + $(e.relatedTarget).index()
     item = $(e.target).find('.item')[$(e.relatedTarget).index()]
     @load_product item, $(item).data('target')
+
+  change_category: (e) =>
+    console.log 'cart: .categories a clicked! id : ' + $(e.target).data('id')
+    if $(e.target).data('id')?
+      @$mode_chooser.find('.category').val($(e.target).data('id'))
+      @$mode_one_flavour.trigger('change');
 
   change_category_before: (e, data, status, xhr) =>
     $(this).data('params', {size_id: $('#size_id').val()})

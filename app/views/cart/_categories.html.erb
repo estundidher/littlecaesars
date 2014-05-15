@@ -18,14 +18,20 @@
   <ul class="dropdown-menu" role="menu">
     <% categories.each do |category| %>
       <li>
-        <%= link_to category.name, cart_carousel_path(mode, align, category, size), remote: true,
+        <% if align == 'left' %>
+           <a href="JavaScript:void(0);" data-id="<%= category.id %>" class="left">
+            <%= category.name %>
+          </a>
+        <% else %>
+           <%= link_to category.name, cart_carousel_path(mode, align, category, size), remote: true,
             data: {target: align, name: category.name} %>
+        <% end %>
       </li>
     <% end %>
   </ul>
 </div>
 <% if align == 'left' %>
   <div class="sizes">
-    <%= render partial:'sizes', locals:{sizes:@sizes} %>
+    <%= render partial:'sizes', locals:{sizes:sizes, size:size} %>
   </div>
 <% end %>

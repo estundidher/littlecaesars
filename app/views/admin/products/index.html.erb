@@ -1,28 +1,28 @@
 <%= tb_breadcrumb Product.model_name.human.pluralize %>
-<%= form_for @product, url:admin_products_path, method: 'get', role: 'form' do |f| %>
+<%= form_tag admin_products_path, method: 'get', role: 'form' do %>
   <div class="row">
     <div class="col-md-2 col-sm-2">
       <div class="form-group">
-        <%= f.label :name, Product.human_attribute_name('name') %>
-        <%= f.text_field :name, class: 'form-control', placeholder: 'Product Name' %>
+        <%= label :product, :name, Product.human_attribute_name('name') %>
+        <%= text_field :product, :name, class: 'form-control', placeholder: 'Product Name' %>
       </div>
     </div>
     <div class="col-md-2 col-sm-2">
       <div class="form-group">
-        <%= f.label :produt_type_id, Product.human_attribute_name('type') %>
-        <%= f.collection_select :product_type_id,
-                                ProductType.order(:name), :id, :name,
-                                {include_blank: t('helpers.select.all')},
-                                {class: 'form-control'} %>
+        <%= label :produt_type_id, Product.human_attribute_name('type') %>
+        <%= collection_select :product,
+                              :product_type_id,
+                              ProductType.order(:name), :id, :name,
+                              {include_blank: t('helpers.select.all')},
+                              {class: 'form-control'} %>
       </div>
     </div>
     <div class="col-md-2 col-sm-2">
       <div class="form-group">
-        <%= f.label :category_id, Product.human_attribute_name('category') %>
-        <%= f.collection_select :category_id,
-                                Category.order(:name), :id, :name,
-                                {include_blank: t('helpers.select.all')},
-                                {class: 'form-control'} %>
+        <%= label :category_id, Product.human_attribute_name('category') %>
+        <%= select_tag :category_id,
+            options_from_collection_for_select(Category.order(:name), :id, :name, params[:category_id]),
+            {include_blank: t('helpers.select.all'), class: 'form-control'} %>
       </div>
     </div>
   </div>

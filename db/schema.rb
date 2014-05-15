@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515095044) do
+ActiveRecord::Schema.define(version: 20140515121245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,11 @@ ActiveRecord::Schema.define(version: 20140515095044) do
   create_table "categories_categories", id: false, force: true do |t|
     t.integer "category_id", null: false
     t.integer "item_id",     null: false
+  end
+
+  create_table "categories_products", id: false, force: true do |t|
+    t.integer "category_id", null: false
+    t.integer "product_id",  null: false
   end
 
   create_table "customers", force: true do |t|
@@ -132,7 +137,6 @@ ActiveRecord::Schema.define(version: 20140515095044) do
     t.string   "description"
     t.decimal  "price",                       precision: 4, scale: 2
     t.integer  "product_type_id",                                                    null: false
-    t.integer  "category_id",                                                        null: false
     t.integer  "created_by",                                                         null: false
     t.integer  "updated_by"
     t.datetime "created_at"
@@ -221,6 +225,9 @@ ActiveRecord::Schema.define(version: 20140515095044) do
   add_foreign_key "categories_categories", "categories", name: "categories_categories_category_id_fk"
   add_foreign_key "categories_categories", "categories", name: "categories_categories_item_id_fk", column: "item_id"
 
+  add_foreign_key "categories_products", "categories", name: "categories_products_category_id_fk"
+  add_foreign_key "categories_products", "products", name: "categories_products_product_id_fk"
+
   add_foreign_key "opening_hours", "places", name: "opening_hours_place_id_fk"
   add_foreign_key "opening_hours", "users", name: "opening_hours_created_by_fk", column: "created_by"
   add_foreign_key "opening_hours", "users", name: "opening_hours_updated_by_fk", column: "updated_by"
@@ -234,7 +241,6 @@ ActiveRecord::Schema.define(version: 20140515095044) do
   add_foreign_key "product_types", "users", name: "product_types_created_by_fk", column: "created_by"
   add_foreign_key "product_types", "users", name: "product_types_updated_by_fk", column: "updated_by"
 
-  add_foreign_key "products", "categories", name: "products_category_id_fk"
   add_foreign_key "products", "product_types", name: "products_product_type_id_fk"
   add_foreign_key "products", "users", name: "products_created_by_fk", column: "created_by"
   add_foreign_key "products", "users", name: "products_updated_by_fk", column: "updated_by"

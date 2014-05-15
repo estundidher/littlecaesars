@@ -26,6 +26,9 @@ class Category < ActiveRecord::Base
                           association_foreign_key: :item_id,
                           after_add: :force_touch,
                           after_remove: :force_touch
+
+  has_and_belongs_to_many :products
+
   def to_param
     "#{id}-#{name.parameterize}"
   end
