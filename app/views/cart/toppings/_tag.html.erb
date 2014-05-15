@@ -1,0 +1,12 @@
+<div class="ingredient<%= ' topping' if type == 'toppings' %>" data-id="<%= product.id %>">
+  <% if type == 'toppings' %>
+    <% #model_name_from_record_or_class(cart_item).param_key %>
+    <%= hidden_field_tag 'topping_ids[]', product.id, class:'additionable' %>
+  <% else %>
+    <%= hidden_field_tag 'product_ids[]', product.id, class:'additionable' %>
+  <% end %>
+  <span class="label label-<%= type == 'toppings' ? 'warning' : 'info' %>" >
+    <%= product.name %>
+    <i class="glyphicon glyphicon-remove white"></i>
+  </span>
+</div>
