@@ -24,3 +24,8 @@
     <% end %>
   </ul>
 </div>
+<% if align == 'left' %>
+  <div class="sizes">
+    <%= render partial:'sizes', locals:{sizes:@sizes} %>
+  </div>
+<% end %>

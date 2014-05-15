@@ -9,6 +9,8 @@
   <dd><%= @product_type.sizable %></dd>
   <dt><%= ProductType.human_attribute_name 'additionable' %></dt>
   <dd><%= @product_type.additionable %></dd>
+  <dt><%= ProductType.human_attribute_name 'itemable' %></dt>
+  <dd><%= @product_type.itemable %></dd>
   <%= auditable @product_type %>
 </dl>
 

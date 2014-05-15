@@ -1,7 +1,5 @@
 <%= tb_breadcrumb Product.model_name.human.pluralize %>
-
 <%= form_for @product, url:admin_products_path, method: 'get', role: 'form' do |f| %>
-
   <div class="row">
     <div class="col-md-2 col-sm-2">
       <div class="form-group">
@@ -9,7 +7,6 @@
         <%= f.text_field :name, class: 'form-control', placeholder: 'Product Name' %>
       </div>
     </div>
-
     <div class="col-md-2 col-sm-2">
       <div class="form-group">
         <%= f.label :produt_type_id, Product.human_attribute_name('type') %>
@@ -19,7 +16,6 @@
                                 {class: 'form-control'} %>
       </div>
     </div>
-
     <div class="col-md-2 col-sm-2">
       <div class="form-group">
         <%= f.label :category_id, Product.human_attribute_name('category') %>

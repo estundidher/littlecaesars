@@ -25,6 +25,12 @@
     <% end %>
   </div>
 
+  <div class="checkbox <%= tb_has_error @product_type, :itemable %>">
+    <%= f.label :itemable do %>
+      <%= f.check_box :itemable %> <%= ProductType.human_attribute_name 'itemable' %>
+    <% end %>
+  </div>
+
   <%= tb_submit @product_type %>
   <%= tb_button_back admin_product_types_path %>
 <% end %>

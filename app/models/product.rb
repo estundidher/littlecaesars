@@ -1,12 +1,17 @@
 class Product < ActiveRecord::Base
-  include Auditable
+  include Auditable, Touchable
 
-  scope :not_additionable_nor_shoppable, -> (except = nil) {
+  scope :not_additionable_nor_shoppable, -> (except = nil, categories = nil) {
 
     query = where(enabled:true)
 
     if except
       query = query.where.not(id:except)
+    end
+
+    unless categories.nil? || categories.empty?
+      query = query.where(category: categories)
+      puts "#{'*'*100}> categories -> #{categories.map {|c|c.id}}"
     end
 
     query.joins(:type)
@@ -108,12 +113,6 @@ class Product < ActiveRecord::Base
                        content_type: {content_type:['image/jpg', 'image/jpeg', 'image/gif', 'image/png']},
                        size: {in: 0..500.kilobytes},
                        presence: true, if: :shoppable?
-
-  def force_touch record
-    unless self.new_record?
-      self.touch
-    end
-  end
 
   def shoppable?
     self.try(:type).try(:shoppable?)

@@ -293,14 +293,16 @@ en:
         splittable: Allow Split
       category:
         name: Name
+        items: Allow toppings from the Categories
       price:
         size: Size
         value: Price
       product_type:
         name: Name
         sizable: Has different sizes?
-        additionable: Has and allow add items?
+        additionable: Allow add items?
         shoppable: Shoppable
+        itemable: Have items?
       product:
         enabled: Enabled
         name: Name

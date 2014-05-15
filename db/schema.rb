@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506064718) do
+ActiveRecord::Schema.define(version: 20140515095044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,11 @@ ActiveRecord::Schema.define(version: 20140506064718) do
   end
 
   add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
+
+  create_table "categories_categories", id: false, force: true do |t|
+    t.integer "category_id", null: false
+    t.integer "item_id",     null: false
+  end
 
   create_table "customers", force: true do |t|
     t.string   "email",                              null: false
@@ -116,6 +121,7 @@ ActiveRecord::Schema.define(version: 20140506064718) do
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "itemable",     default: false, null: false
   end
 
   add_index "product_types", ["name"], name: "index_product_types_on_name", unique: true, using: :btree
@@ -211,6 +217,9 @@ ActiveRecord::Schema.define(version: 20140506064718) do
 
   add_foreign_key "categories", "users", name: "categories_created_by_fk", column: "created_by"
   add_foreign_key "categories", "users", name: "categories_updated_by_fk", column: "updated_by"
+
+  add_foreign_key "categories_categories", "categories", name: "categories_categories_category_id_fk"
+  add_foreign_key "categories_categories", "categories", name: "categories_categories_item_id_fk", column: "item_id"
 
   add_foreign_key "opening_hours", "places", name: "opening_hours_place_id_fk"
   add_foreign_key "opening_hours", "users", name: "opening_hours_created_by_fk", column: "created_by"

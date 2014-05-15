@@ -1,8 +1,10 @@
 <% if defined?(product) && !product.nil? %>
-  <%= form_tag cart_toppings_path, remote: true do %>
-    <%= hidden_field_tag :product_id, product.id %>
-    <%= hidden_field_tag :mode, mode %>
-    <%= hidden_field_tag :side, side %>
-    <%= tb_submit_generic 'Toppings', 'btn btn-warning btn-sm', 'plus-sign' %>
+  <% if product.type.additionable? %>
+    <%= form_tag cart_toppings_path, remote: true do %>
+      <%= hidden_field_tag :product_id, product.id %>
+      <%= hidden_field_tag :mode, mode %>
+      <%= hidden_field_tag :side, side %>
+      <%= tb_submit_generic 'Toppings', 'btn btn-warning btn-sm', 'plus-sign' %>
+    <% end %>
   <% end %>
 <% end %>

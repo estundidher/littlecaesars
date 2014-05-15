@@ -98,6 +98,7 @@ class Admin::ProductTypesController < Admin::BaseController
       params.require(:product_type).permit :name,
                                            :shoppable,
                                            :sizable,
-                                           :additionable
+                                           :additionable,
+                                           :itemable
     end
 end

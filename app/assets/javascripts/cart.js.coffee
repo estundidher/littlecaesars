@@ -48,6 +48,7 @@ class Caesars.Cart
       console.log "cart: load_product id: " + $item.data('id') + ', url: ' + $item.data('url') + ', target: ' + target
       if target == 'left'
         @$mode_chooser.find('.product').val $item.data 'id'
+        @$cart.find('.toppings form #product_id').val $item.data 'id'
 
       $.get $item.data('url'), (data) ->
         $details.find('.product').hide().empty().html($item.data('name')).fadeIn 'fast'

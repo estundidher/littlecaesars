@@ -26,11 +26,17 @@
 <% end %>
 
 <div class="row toppings">
-  <div class="col-md-6 col-sm-6 left" style="padding-right: 0px;">
+  <div class="col-md-5 col-sm-5 left" style="padding-right: 0px;">
     <%= render partial:'cart/toppings/add', locals: {cart_item:cart_item, product:product, mode:mode, side:'left'} %>
   </div>
+  <div class="col-md-2 col-sm-2 left" style="padding-right: 0px;">
+    <a href="#" class="btn btn-danger btn-lg" role="button">
+      Add to
+      <i class="glyphicon glyphicon-shopping-cart"></i>
+    </a>
+  </div>
   <% if mode == CartController::MODE_TWO_FLAVOURS %>
-    <div class="col-md-6 col-sm-6 right" style="padding-left: 0px; text-align: right;">
+    <div class="col-md-5 col-sm-5 right" style="padding-left: 0px; text-align: right;">
       <%= render partial:'cart/toppings/add', locals: {cart_item:cart_item, product:product, mode:mode, side:'right'} %>
     </div>
   <% end %>

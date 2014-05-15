@@ -1,4 +1,4 @@
-<% if product.type.additionable %>
+<% if product.type.itemable %>
   <div class="form-group <%= tb_has_error product, :items %>">
     <%= label :product, :items %>
     <% items = Product.not_additionable_nor_shoppable %>

@@ -15,7 +15,7 @@
     <dt><%= Product.human_attribute_name 'description' %></dt>
     <dd><%= @product.description %></dd>
   <% end %>
-  <% if @product.type.additionable? %>
+  <% if @product.type.itemable? %>
     <dt><%= Product.human_attribute_name 'ingredients' %></dt>
     <dd> <%= @product.items_friendly %> </dd>
   <% end %>

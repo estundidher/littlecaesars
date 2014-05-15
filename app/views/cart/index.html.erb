@@ -12,20 +12,11 @@
       <div class="row" style="padding-bottom: 10px;">
         <div class="col-md-4 col-sm-4">
           <%= render partial:'mode', locals:{product:@product} %>
-          <div id="sizes_container" style="width: 204px">
-            <%= render partial:'sizes', locals:{sizes:@sizes} %>
-          </div>
         </div>
-        <div class="col-md-2 col-sm-2 col-md-offset-4 col-sm-offset-4 total" style="padding-right: 0px;">
+        <div class="col-md-4 col-sm-4 total">
           <span class="price">
             $ 15,22
           </span>
-        </div>
-        <div class="col-md-2 col-sm-2" style="text-align: right;">
-          <a href="#" class="btn btn-danger btn-lg" role="button">
-            Add to
-            <i class="glyphicon glyphicon-shopping-cart"></i>
-          </a>
         </div>
       </div>
       <div class="chooser">

@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  include Auditable
+  include Auditable, Touchable
 
   scope :with_shoppable_products, -> (size = nil) {
 
@@ -21,6 +21,11 @@ class Category < ActiveRecord::Base
             length: {maximum: 30},
             uniqueness: true
 
+  has_and_belongs_to_many :items,
+                          class_name: 'Category',
+                          association_foreign_key: :item_id,
+                          after_add: :force_touch,
+                          after_remove: :force_touch
   def to_param
     "#{id}-#{name.parameterize}"
   end

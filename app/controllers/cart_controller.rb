@@ -91,14 +91,15 @@ class CartController < ApplicationController
       end
     end
 
-    @products = Product.not_additionable_nor_shoppable
+    @products = Product.not_additionable_nor_shoppable nil, @product.category.items
+    puts "#{'*'*200}> products -> #{@products.size()}"
     value = @toppings.nil? ? 0.0 : @toppings.sum(&:price)
     render partial:'cart/toppings/modal', locals:{products:@products,
                                                   toppings:@toppings,
                                                   product:@product,
                                                   cart_item:new_cart_item(params[:mode]),
                                                   mode:params[:mode],
-                                                  value: value,
+                                                  value:value,
                                                   side:params[:side]}, layout: nil
   end
 
