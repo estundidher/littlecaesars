@@ -300,9 +300,9 @@ en:
       product_type:
         name: Name
         sizable: Has different sizes?
-        additionable: Allow add items?
+        additionable: Allow add toppings?
         shoppable: Shoppable
-        itemable: Have items?
+        itemable: Have ingredients?
       product:
         enabled: Enabled
         name: Name

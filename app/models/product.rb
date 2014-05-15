@@ -11,7 +11,6 @@ class Product < ActiveRecord::Base
 
     unless categories.nil? || categories.empty?
       query = query.where(category: categories)
-      puts "#{'*'*100}> categories -> #{categories.map {|c|c.id}}"
     end
 
     query.joins(:type)
