@@ -60,7 +60,7 @@ class Caesars.CartToppings
 
   add_success: (e, data, status, xhr) =>
     console.log "toppings modal: .available .btn.add 'ajax:success' fired! "
-    $('.toppings-modal .added form .tags').append(xhr.responseText).find('.col-md-2').last().hide().fadeIn('slow')
+    $('.toppings-modal .added form .tags').append(xhr.responseText).append(' ').find('.col-md-2').last().hide().fadeIn('slow')
     @calculate_price()
     $spin = $('.available .fa-spin:visible')
     if $spin?

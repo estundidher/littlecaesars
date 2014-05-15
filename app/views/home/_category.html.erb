@@ -18,7 +18,7 @@
           <% product.prices.each do |price| %>
             <%= render partial: 'shopping_price', locals: {name: price.size.name, value: price.value} %>
           <% end %>
-        <% elsif product.type.quantitable? %>
+        <% else %>
           <%= render partial: 'shopping_price', locals: {name: 'Price', value: product.price} %>
         <% end %>
         <!-- Buy now button -->
