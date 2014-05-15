@@ -110,7 +110,9 @@ class Product < ActiveRecord::Base
                        presence: true, if: :shoppable?
 
   def force_touch record
-    self.touch
+    unless self.new_record?
+      self.touch
+    end
   end
 
   def shoppable?

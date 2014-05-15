@@ -10,20 +10,24 @@
             <div class="row text-center">
               <% Kaminari.paginate_array(products).page(page_iternal).per(5).each_with_index do |topping, index| %>
                 <div class="col-md-2 col-sm-2 <%= 'col-md-offset-1 col-sm-offset-1' if index == 0 %>">
-                  <div class="thumbnail">
-                    <% if topping.photo.exists? %>
-                      <%= image_tag topping.photo.url(:topping), class: 'img-responsive' %>
-                    <% else %>
-                      <img src="http://placehold.it/110x90/" alt="Slide1" class"img-responsive">
-                    <% end %>
-                    <h6><%= topping.name %></h6>
-                    <a href="JavaScript:void(0);" class="btn btn-warning btn-xs add"
-                       role="button" data-id="<%= topping.id %>">
-                      <i class="fa fa-spinner fa-spin" style="display:none;"></i>
-                      <i class='glyphicon glyphicon-plus-sign'></i>
-                      <%= number_to_currency topping.price %>
-                    </a>
-                  </div>
+
+                  <% cache ['topping_thumbail', topping] do %>
+                    <div class="thumbnail">
+                      <% if topping.photo.exists? %>
+                        <%= image_tag topping.photo.url(:topping), class: 'img-responsive' %>
+                      <% else %>
+                        <img src="http://placehold.it/110x90/" alt="Slide1" class"img-responsive">
+                      <% end %>
+                      <h6><%= topping.name %></h6>
+                      <a href="JavaScript:void(0);" class="btn btn-warning btn-xs add"
+                         role="button" data-id="<%= topping.id %>">
+                        <i class="fa fa-spinner fa-spin" style="display:none;"></i>
+                        <i class='glyphicon glyphicon-plus-sign'></i>
+                        <%= number_to_currency topping.price %>
+                      </a>
+                    </div>
+                  <% end %>
+
                 </div>
               <% end %>
             </div>

@@ -4,9 +4,9 @@
   <%= hidden_field_tag :topping_id %>
   <%= hidden_field_tag :mode, mode %>
   <%= hidden_field_tag :side, side %>
-  <% if toppings %>
-    <% toppings.each do |topping| %>
-      <%= render partial:'cart/toppings/topping', locals:{topping:topping} %>
+  <div class="tags">
+    <% if toppings %>
+      <%= render partial:'cart/toppings/tags', locals:{products:toppings, type:'toppings'} %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>

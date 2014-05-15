@@ -17,7 +17,7 @@ class Caesars.CartToppings
     @$modal_container.on 'click', '.toppings-modal .available .btn.add', @add
     @$modal_container.on 'ajax:success', '.toppings-modal .added form', @add_success
     @$modal_container.on 'ajax:error', '.toppings-modal .added form', @add_error
-    @$modal_container.on 'click', '.toppings-modal .added .btn.remove', @remove
+    @$modal_container.on 'click', '.toppings-modal .added .glyphicon-remove', @remove
     @$modal_container.on 'click', '.toppings-modal .modal-footer .btn.save', @add_to_cart
 
   open_before: (e, data, status, xhr) =>
@@ -60,7 +60,7 @@ class Caesars.CartToppings
 
   add_success: (e, data, status, xhr) =>
     console.log "toppings modal: .available .btn.add 'ajax:success' fired! "
-    $('.toppings-modal .added form').append(xhr.responseText).find('.col-md-2').last().hide().fadeIn('slow')
+    $('.toppings-modal .added form .tags').append(xhr.responseText).find('.col-md-2').last().hide().fadeIn('slow')
     @calculate_price()
     $spin = $('.available .fa-spin:visible')
     if $spin?
@@ -87,10 +87,10 @@ class Caesars.CartToppings
       $ingredients.find('.tags .topping').hide().fadeIn 'slow'
 
   remove: (e) =>
-    console.log "toppings modal: remove_topping fired! id: " + $(e.target).data('id')
-    if $(e.target).data('id')?
-      $item = $(e.target).closest('.col-md-2')
-      $item.find('input:hidden').remove()
+    $item = $(e.target).closest('.ingredient')
+    console.log "toppings modal: remove_topping fired! id: " + $item.data('id')
+    if $item.data('id')?
+      $item.find('.additionable').remove()
       $item.fadeOut 'slow', ->
         $item.remove()
       $('.toppings-modal .modal-footer .warning').empty()

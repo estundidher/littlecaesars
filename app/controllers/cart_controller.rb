@@ -115,7 +115,7 @@ class CartController < ApplicationController
         return
       end
     end
-    render partial:'cart/toppings/topping', locals:{topping:@topping}, layout: nil
+    render partial:'cart/toppings/tag', locals:{product:@topping, type:'toppings'}, layout: nil
   end
 
   # POST /cart/toppings

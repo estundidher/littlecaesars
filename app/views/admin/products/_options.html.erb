@@ -10,7 +10,9 @@
       '--'
     <% end %>
   </div>
-<% else %>
+<% end %>
+
+<% unless product.type.sizable? %>
   <div class="form-group <%= tb_has_error product, :price %>">
     <%= label :product, :price %>
     <%= text_field :product,
