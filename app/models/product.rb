@@ -55,7 +55,7 @@ class Product < ActiveRecord::Base
                           after_remove: :force_touch
 
   has_attached_file :photo,
-                    styles: {large:'400x450>', medium:'300x300>', mini:'120x60>', thumb:'100x100>'}
+                    styles: {large:'400x450>', medium:'300x300>', mini:'120x60>', topping:'110x90>', thumb:'100x100>'}
 
   has_attached_file :photo_left,
                     styles: {large:'175x250>'}

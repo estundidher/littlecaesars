@@ -139,9 +139,9 @@ class CartController < ApplicationController
     else
       @category = @product.category
     end
-    if params[:mode] == 'one-flavour'
+    if params[:mode] == MODE_ONE_FLAVOUR
       @products = @category.products.shoppable_additionable @size, nil
-    elsif params[:mode] == 'two-flavours'
+    elsif params[:mode] == MODE_TWO_FLAVOURS
       @products = @category.products.shoppable_additionable_splittable @size, nil
     end
     unless @products.nil?

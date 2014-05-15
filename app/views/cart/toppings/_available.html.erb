@@ -12,9 +12,9 @@
                 <div class="col-md-2 col-sm-2 <%= 'col-md-offset-1 col-sm-offset-1' if index == 0 %>">
                   <div class="thumbnail">
                     <% if topping.photo.exists? %>
-                      <%= image_tag topping.photo.url(:mini), class: 'img-responsive' %>
+                      <%= image_tag topping.photo.url(:topping), class: 'img-responsive' %>
                     <% else %>
-                      <img src="http://placehold.it/120x60/" alt="Slide1" class"img-responsive">
+                      <img src="http://placehold.it/110x90/" alt="Slide1" class"img-responsive">
                     <% end %>
                     <h6><%= topping.name %></h6>
                     <a href="JavaScript:void(0);" class="btn btn-warning btn-xs add"
