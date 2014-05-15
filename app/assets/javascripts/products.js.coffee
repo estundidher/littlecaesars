@@ -23,10 +23,10 @@ class Caesars.Product
     @$modal_container.on 'ajax:error', '.price-modal form', @save_error
     @$container.on 'change', '.product-reloadable', @load_items
 
-  load_items: (e, data, status, xhr) =>
-    console.log 'product: load items success fired!'
+  load_items: (e) =>
+    console.log 'product: load items fired!'
     $('#product_options_container').hide().empty()
-    $.get($(this).data('path'), {id:$(this).val()}).done (data) ->
+    $.get($(e.target).data('path'), {id:$(e.target).val()}).done (data) ->
       $('#product_options_container').html(data).fadeIn 'fast'
 
   remove_success: (e, data, status, xhr) =>
