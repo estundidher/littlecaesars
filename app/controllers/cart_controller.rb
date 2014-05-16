@@ -1,9 +1,7 @@
 class CartController < ApplicationController
 
-  MODE_ONE_FLAVOUR = 'one-flavour'
-  MODE_TWO_FLAVOURS = 'two-flavours'
-
-  MAX_TOPPINGS = {MODE_ONE_FLAVOUR=>6, MODE_TWO_FLAVOURS=>4}
+  CART_MODE = {:one_flavour=>'one-flavour', :two_flavours=>'two-flavours'}
+  MAX_TOPPINGS = {:one_flavour=>6, :two_flavours=>4}
   MAX_OF_THE_SAME_TOPPING = 2
 
   #devise configuration
@@ -111,7 +109,7 @@ class CartController < ApplicationController
         render plain:'Only ' + MAX_OF_THE_SAME_TOPPING + ' of the same ingredient is permitted.', status: :unprocessable_entity
         return
       end
-      if @toppings.size == (MODE_ONE_FLAVOUR ? @product.type.max_additions : @product.type.max_additions_per_half)
+      if @toppings.size == (CART_MODE[:one_flavour] ? @product.type.max_additions : @product.type.max_additions_per_half)
         render plain:'You have reached the maximum number of ingredients', status: :unprocessable_entity
         return
       end
@@ -135,9 +133,9 @@ class CartController < ApplicationController
   # POST /cart/mode
   def mode
     @categories = Category.with_shoppable_products
-    if params[:mode] == MODE_ONE_FLAVOUR
+    if params[:mode] == CART_MODE[:one_flavour]
       @products = @category.products.shoppable_additionable @size, nil
-    elsif params[:mode] == MODE_TWO_FLAVOURS
+    elsif params[:mode] == CART_MODE[:two_flavours]
       @products = @category.products.shoppable_additionable_splittable @size, nil
     end
     unless @products.nil?
@@ -170,9 +168,9 @@ class CartController < ApplicationController
 private
 
   def new_cart_item mode
-    if mode == MODE_ONE_FLAVOUR
+    if mode == CART_MODE[:one_flavour]
       CartItemSizableAdditionable.new cart:@cart
-    elsif mode == MODE_TWO_FLAVOURS
+    elsif mode == CART_MODE[:two_flavours]
       CartItemSplittable.new cart:@cart
     end
   end
