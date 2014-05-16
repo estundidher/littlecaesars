@@ -30,7 +30,7 @@
     <% end %>
   </ul>
 </div>
-<% if align == 'left' %>
+<% if product.sizable? and align == 'left' %>
   <div class="sizes">
     <%= render partial:'sizes', locals:{sizes:sizes, size:size} %>
   </div>

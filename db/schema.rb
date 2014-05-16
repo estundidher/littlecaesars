@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515121245) do
+ActiveRecord::Schema.define(version: 20140516064432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,15 +118,17 @@ ActiveRecord::Schema.define(version: 20140515121245) do
   end
 
   create_table "product_types", force: true do |t|
-    t.boolean  "shoppable",    default: false, null: false
-    t.string   "name",                         null: false
-    t.boolean  "sizable",                      null: false
-    t.boolean  "additionable",                 null: false
-    t.integer  "created_by",                   null: false
+    t.boolean  "shoppable",              default: false, null: false
+    t.string   "name",                                   null: false
+    t.boolean  "sizable",                                null: false
+    t.boolean  "additionable",                           null: false
+    t.integer  "created_by",                             null: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "itemable",     default: false, null: false
+    t.boolean  "itemable",               default: false, null: false
+    t.integer  "max_additions"
+    t.integer  "max_additions_per_half"
   end
 
   add_index "product_types", ["name"], name: "index_product_types_on_name", unique: true, using: :btree

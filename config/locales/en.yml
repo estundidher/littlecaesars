@@ -303,6 +303,8 @@ en:
         additionable: Allow add toppings?
         shoppable: Shoppable
         itemable: Have ingredients?
+        max_additions: Maximum of toppings (if allow toppings)
+        max_additions_per_half: Maximum of toppings per half (if allow toppings & size is splittable)
       product:
         enabled: Enabled
         name: Name

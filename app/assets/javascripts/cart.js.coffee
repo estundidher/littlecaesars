@@ -82,11 +82,12 @@ class Caesars.Cart
   change_category: (e) =>
     console.log 'cart: .categories a clicked! id : ' + $(e.target).data('id')
     if $(e.target).data('id')?
+      @$mode_chooser.find('.size').val('')
+      @disable_two_flavours()
       @$mode_chooser.find('.category').val($(e.target).data('id'))
       @$mode_one_flavour.trigger('change');
 
   change_category_before: (e, data, status, xhr) =>
-    $(this).data('params', {size_id: $('#size_id').val()})
     console.log "cart: .categories a 'ajax:before' fired! category: " + $(e.target).data('name') + ', target: ' + $(e.target).data('target')
     $menu = $(e.target).closest('.btn-group')
     $menu.find('.fa-spin').fadeIn 'fast'
@@ -109,15 +110,18 @@ class Caesars.Cart
     console.log 'cart: .sizable a clicked! id : ' + $(e.target).data('id') + ', name: ' + $(e.target).data('name') + ", splittable: '" + $(e.target).data('splittable') + "'"
     $(e.target).closest('.sizable').find('.name').html $(e.target).data 'name'
     if $(e.target).data('id')?
-      @$mode_chooser.find('#size_id').val($(e.target).data('id'))
+      @$mode_chooser.find('.size').val($(e.target).data('id'))
       if $(e.target).data('splittable') is true
         console.log 'cart: .sizable a clicked! Enabeling two_flavours mode..'
         @$mode_two_flavours.prop('disabled', false)
       else
-        @$mode_two_flavours.prop('disabled', true)
-        @$mode_one_flavour.prop('checked', true)
+        @disable_two_flavours()
 
       @$mode_one_flavour.trigger('change');
+
+  disable_two_flavours: ->
+    @$mode_two_flavours.prop('disabled', true)
+    @$mode_one_flavour.prop('checked', true)
 
   change_mode: (e) =>
     console.log "cart: .mode_chooser a 'change' fired!"

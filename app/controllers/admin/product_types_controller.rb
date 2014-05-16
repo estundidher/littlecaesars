@@ -99,6 +99,8 @@ class Admin::ProductTypesController < Admin::BaseController
                                            :shoppable,
                                            :sizable,
                                            :additionable,
-                                           :itemable
+                                           :itemable,
+                                           :max_additions,
+                                           :max_additions_per_half
     end
 end

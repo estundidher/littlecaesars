@@ -9,9 +9,16 @@
   <dd><%= @product_type.sizable %></dd>
   <dt><%= ProductType.human_attribute_name 'additionable' %></dt>
   <dd><%= @product_type.additionable %></dd>
+  <% if @product_type.additionable? %>
+    <dt><%= ProductType.human_attribute_name 'max_additions' %></dt>
+    <dd><%= @product_type.max_additions || '0' %></dd>
+    <dt><%= ProductType.human_attribute_name 'max_additions_per_half' %></dt>
+    <dd><%= @product_type.max_additions_per_half || '0' %></dd>
+  <% end %>
   <dt><%= ProductType.human_attribute_name 'itemable' %></dt>
   <dd><%= @product_type.itemable %></dd>
   <%= auditable @product_type %>
+
 </dl>
 
 <%= tb_button_edit edit_admin_product_type_path(@product_type) %>

@@ -91,9 +91,7 @@ class CartController < ApplicationController
       end
     end
 
-    #puts "#{'@'*100}> categories #{@product.categories_of_toppings_available}"
     @products = Product.not_additionable_nor_shoppable nil, @product.categories_of_toppings_available
-    #uts "#{'@'*100}> products #{@products.count}"
 
     value = @toppings.nil? ? 0.0 : @toppings.sum(&:price)
     render partial:'cart/toppings/modal', locals:{products:@products,
@@ -110,10 +108,10 @@ class CartController < ApplicationController
 
     unless @toppings.nil?
       if (@toppings+@product.items).select{|topping| topping.id == @topping.id}.size == MAX_OF_THE_SAME_TOPPING
-        render plain:'Only 2 of the same ingredient is permitted.', status: :unprocessable_entity
+        render plain:'Only ' + MAX_OF_THE_SAME_TOPPING + ' of the same ingredient is permitted.', status: :unprocessable_entity
         return
       end
-      if @toppings.size == MAX_TOPPINGS[params[:mode]]
+      if @toppings.size == (MODE_ONE_FLAVOUR ? @product.type.max_additions : @product.type.max_additions_per_half)
         render plain:'You have reached the maximum number of ingredients', status: :unprocessable_entity
         return
       end

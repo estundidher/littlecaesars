@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   #cart page
   get 'cart(/:product_id)',                               to: 'cart#index',    as: :cart
   post 'cart/mode',                                       to: 'cart#mode',     as: :cart_mode
-  get 'cart/:mode/:side/:category_id(/:size_id)',       to: 'cart#carousel', as: :cart_carousel
+  get 'cart/:mode/:side/:category_id(/:size_id)',         to: 'cart#carousel', as: :cart_carousel
 
   namespace :admin do
 
