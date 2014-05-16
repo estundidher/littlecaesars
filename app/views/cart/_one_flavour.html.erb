@@ -15,12 +15,12 @@
 <div class="col-md-6 col-sm-6 slider">
   <div class="row">
     <div class="col-md-12 col-md-offset-1 col-sm-12 col-sm-offset-1 left">
-      <%= render partial:'carousel', locals:{mode:CartController::MODE_ONE_FLAVOUR,
-                                             side:'left',
-                                             product:product,
-                                             products:products,
-                                             size:size,
-                                             category:category} %>
+      <%= render partial:'cart/carousel', locals:{mode:CartController::MODE_ONE_FLAVOUR,
+                                                 side:'left',
+                                                 product:product,
+                                                 products:products,
+                                                 size:size,
+                                                 category:category} %>
     </div>
   </div>
 </div>

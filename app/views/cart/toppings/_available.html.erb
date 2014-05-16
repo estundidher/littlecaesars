@@ -1,4 +1,4 @@
-<% cache cache_key_for_toppings_available do %>
+<% cache cache_key_for_toppings_available(product.categories_of_toppings_available, all_products) do %>
   <div id="available_carousel" class="carousel slide available">
     <div class="carousel-inner">
       <% pages = (all_products.page(1).per(15).total_pages) %>

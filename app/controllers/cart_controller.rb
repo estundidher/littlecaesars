@@ -91,7 +91,10 @@ class CartController < ApplicationController
       end
     end
 
-    @products = Product.not_additionable_nor_shoppable nil, @product.categories.map{|c| c.items}.flatten.uniq
+    #puts "#{'@'*100}> categories #{@product.categories_of_toppings_available}"
+    @products = Product.not_additionable_nor_shoppable nil, @product.categories_of_toppings_available
+    #uts "#{'@'*100}> products #{@products.count}"
+
     value = @toppings.nil? ? 0.0 : @toppings.sum(&:price)
     render partial:'cart/toppings/modal', locals:{products:@products,
                                                   toppings:@toppings,

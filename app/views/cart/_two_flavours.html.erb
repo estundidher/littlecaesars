@@ -16,20 +16,20 @@
 <div class="col-md-6 col-sm-6 slider">
   <div class="row">
     <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 left" style="padding-right: 0px;">
-      <%= render partial:'carousel', locals:{mode:CartController::MODE_TWO_FLAVOURS,
-                                             side:'left',
-                                             category:category,
-                                             size:size,
-                                             products:products,
-                                             product:product} %>
+      <%= render partial:'cart/carousel', locals:{mode:CartController::MODE_TWO_FLAVOURS,
+                                                   side:'left',
+                                                   category:category,
+                                                   size:size,
+                                                   products:products,
+                                                   product:product} %>
     </div>
     <div class="col-md-5 col-sm-5 right" style="padding-left: 0px;">
-      <%= render partial:'carousel', locals:{mode:CartController::MODE_TWO_FLAVOURS,
-                                             side:'right',
-                                             category:category,
-                                             size:size,
-                                             products:products,
-                                             product:product} %>
+      <%= render partial:'cart/carousel', locals:{mode:CartController::MODE_TWO_FLAVOURS,
+                                                 side:'right',
+                                                 category:category,
+                                                 size:size,
+                                                 products:products,
+                                                 product:product} %>
     </div>
   </div>
 </div>

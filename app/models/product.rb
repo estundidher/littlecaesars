@@ -39,7 +39,7 @@ class Product < ActiveRecord::Base
       query = query.where(sizes: {id:size})
     end
 
-    query.order(:name).limit(limit)
+    query.order(:created_at).limit(limit)
   }
 
   scope :shoppable_additionable, -> (size = nil, limit = nil) {
@@ -157,7 +157,9 @@ class Product < ActiveRecord::Base
     end
   end
 
-
+  def categories_of_toppings_available
+    categories.map{|c| c.items}.flatten.uniq
+  end
 
   def splittable?
     self.sizes.map{|size| size.splittable} if self.sizable? and self.sizes.any?

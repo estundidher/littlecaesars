@@ -11,7 +11,7 @@ class Category < ActiveRecord::Base
       query = query.where(sizes: {id:size})
     end
 
-    query.order(:updated_at).uniq
+    query.order(:created_at).uniq
   }
 
   has_many :products

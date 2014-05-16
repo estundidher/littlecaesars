@@ -13,10 +13,14 @@ module CartHelper
     key += "#{count}-#{max_updated_at}"
   end
 
-  def cache_key_for_toppings_available
-    count          = Product.not_additionable_nor_shoppable.count
-    max_updated_at = Product.not_additionable_nor_shoppable.maximum(:updated_at).try(:utc).try(:to_s, :number)
-    "toppings/available/#{count}-#{max_updated_at}"
+  #"toppings/12+23+33/available/#{count}-#{max_updated_at}"
+  def cache_key_for_toppings_available categories, products
+    key = "toppings/"
+    key = categories.map {|c| c.id }.join('+')
+
+    count          = products.size
+    max_updated_at = products.maximum(:updated_at).try(:utc).try(:to_s, :number)
+    "#{key}/available/#{count}-#{max_updated_at}"
   end
 
   def cache_key_for_product_ingredients cart_item, product
