@@ -106,7 +106,7 @@ class CartController < ApplicationController
 
     unless @toppings.nil?
       if (@toppings+@product.items).select{|topping| topping.id == @topping.id}.size == MAX_OF_THE_SAME_TOPPING
-        render plain:'Only ' + MAX_OF_THE_SAME_TOPPING + ' of the same ingredient is permitted.', status: :unprocessable_entity
+        render plain:"Only #{MAX_OF_THE_SAME_TOPPING} of the same ingredient is permitted.", status: :unprocessable_entity
         return
       end
       if @toppings.size == (CART_MODE[:one_flavour] ? @product.type.max_additions : @product.type.max_additions_per_half)
