@@ -7,7 +7,13 @@ class CartItemSizableAdditionable < CartItem
 
   has_and_belongs_to_many :additions,
                           class_name: 'Product',
-                          foreign_key: :cart_item_id
+                          foreign_key: :cart_item_id,
+                          joing_table: 'cart_item_products'
+
+  has_and_belongs_to_many :subtractions,
+                          class_name: 'Product',
+                          foreign_key: :cart_item_id,
+                          joing_table: 'cart_item_subtractions'
 
   validate :product_sizable?,
            :product_additionable?

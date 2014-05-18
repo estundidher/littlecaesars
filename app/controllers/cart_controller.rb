@@ -1,7 +1,6 @@
 class CartController < ApplicationController
 
   CART_MODE = {:one_flavour=>'one-flavour', :two_flavours=>'two-flavours'}
-  MAX_TOPPINGS = {:one_flavour=>6, :two_flavours=>4}
   MAX_OF_THE_SAME_TOPPING = 2
 
   #devise configuration
@@ -67,6 +66,8 @@ class CartController < ApplicationController
       @product = @products.first
     end
     @sizes = @products.map{|p| p.sizes}.flatten.uniq
+    @size = @sizes.first
+    @cart_item.price = @product.price_of(@size)
     render layout:'generic'
   end
 
@@ -78,17 +79,6 @@ class CartController < ApplicationController
 
   # POST /cart/toppings/open
   def toppings
-
-    if params.has_key?(:cart_item_splittable)
-      unless params[:cart_item_splittable][:topping_ids].nil?
-        @toppings = params[:cart_item_splittable][:topping_ids].collect{|id| Product.find(id)}
-      end
-    elsif params.has_key?(:cart_item_sizable_additionable)
-      unless params[:cart_item_sizable_additionable][:topping_ids].nil?
-        @toppings = params[:cart_item_sizable_additionable][:topping_ids].collect{|id| Product.find(id)}
-      end
-    end
-
     @products = Product.not_additionable_nor_shoppable nil, @product.categories_of_toppings_available
 
     value = @toppings.nil? ? 0.0 : @toppings.sum(&:price)
@@ -109,7 +99,7 @@ class CartController < ApplicationController
         render plain:"Only #{MAX_OF_THE_SAME_TOPPING} of the same ingredient is permitted.", status: :unprocessable_entity
         return
       end
-      if @toppings.size == (CART_MODE[:one_flavour] ? @product.type.max_additions : @product.type.max_additions_per_half)
+      if @toppings.size == max_additions(@product, params[:mode])
         render plain:'You have reached the maximum number of ingredients', status: :unprocessable_entity
         return
       end
@@ -117,11 +107,19 @@ class CartController < ApplicationController
     render partial:'cart/toppings/tag', locals:{product:@topping, type:'toppings'}, layout: nil
   end
 
+  def max_additions product, mode
+    if mode == CART_MODE[:one_flavour]
+      product.type.max_additions
+    else
+      product.type.max_additions_per_half
+    end
+  end
+
   # POST /cart/toppings
   def add_toppings
     render partial:'cart/toppings/tags', locals:{products:@toppings,
                                                  cart_item:new_cart_item(params[:mode]),
-                                                 type:'toppings'}, layout: nil
+                                                 type:'additions'}, layout: nil
   end
 
   # POST /cart/toppings/calculate
@@ -132,7 +130,7 @@ class CartController < ApplicationController
 
   # POST /cart/mode
   def mode
-    @categories = Category.with_shoppable_products
+    @categories = Category.with_shoppable_products @size
     if params[:mode] == CART_MODE[:one_flavour]
       @products = @category.products.shoppable_additionable @size, nil
     elsif params[:mode] == CART_MODE[:two_flavours]
@@ -144,8 +142,10 @@ class CartController < ApplicationController
       end
     end
     @sizes = @products.map{|p| p.sizes}.flatten.uniq
+    cart_item = new_cart_item(params[:mode])
+    cart_item.price = @product.price_of(@size)
     render partial:'cart/chooser', locals:{mode:params[:mode],
-                                          cart_item:new_cart_item(params[:mode]),
+                                          cart_item:cart_item,
                                           category:@category,
                                           size:@size,
                                           sizes:@sizes,
@@ -196,6 +196,15 @@ private
   end
 
   def set_toppings
+    if params.has_key?(:cart_item_splittable)
+      unless params[:cart_item_splittable][:addition_ids].nil?
+        @toppings = params[:cart_item_splittable][:addition_ids].collect{|id| Product.find(id)}
+      end
+    elsif params.has_key?(:cart_item_sizable_additionable)
+      unless params[:cart_item_sizable_additionable][:addition_ids].nil?
+        @toppings = params[:cart_item_sizable_additionable][:addition_ids].collect{|id| Product.find(id)}
+      end
+    end
     unless params[:topping_ids].nil?
       @toppings = params[:topping_ids].collect{|id| Product.find(id)}
     end
@@ -242,11 +251,11 @@ private
 
     elsif params.has_key?(:cart_item_sizable_additionable)
 
-      params.require(:cart_item_sizable_additionable).permit :product_id,
-                                                             :price_id,
+      params.require(:cart_item_sizable_additionable).permit :price_id,
                                                              :cart_id,
                                                              :notes,
-                                                             :addition_ids => []
+                                                             :addition_ids => [],
+                                                             :subtraction_ids => []
     elsif params.has_key?(:cart_item_splittable)
 
       params.require(:cart_item_splittable).permit :product_id,

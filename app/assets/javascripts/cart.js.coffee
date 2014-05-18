@@ -9,11 +9,13 @@ class Caesars.Cart
   constructor: ->
     @$modal_container = $('#modal_container')
     @$cart = $('.cart')
-    @$mode_chooser = @$cart.find('.mode-chooser')
-    @$mode_options = @$mode_chooser.find('input:radio')
-    @$mode_one_flavour = @$mode_chooser.find('.one-flavour input:radio')
-    @$mode_two_flavours = @$mode_chooser.find('.two-flavours input:radio')
-    @$mode_spinner = @$mode_chooser.find('.fa-spin')
+    @$form = @$cart.find('.cart-item-form')
+    @$mode_form = @$cart.find('.mode form')
+    @$mode_options = @$mode_form.find('input:radio')
+    @$mode_one_flavour = @$mode_form.find('.one-flavour input:radio')
+    @$mode_two_flavours = @$mode_form.find('.two-flavours input:radio')
+    @$mode_spinner = @$mode_form.find('.fa-spin')
+    @price = $('.cart .price .value')
     @bind_carousel()
     @bind_pretty_photo()
     @carousel_activate_item '.carousel.slide.vertical'
@@ -22,15 +24,13 @@ class Caesars.Cart
   bind: ->
     @$cart.on 'slide.bs.carousel', '.carousel.slide.vertical', @change_product
     @$cart.on 'click', '.categories .dropdown-menu a.left', @change_category
-
     @$cart.on 'ajax:before', '.categories .dropdown-menu a', @change_category_before
     @$cart.on 'ajax:success', '.categories .dropdown-menu a', @change_category_success
-
     @$cart.on 'click', '.sizable .dropdown-menu a', @change_size
     @$cart.on 'click', '.ingredient .label i', @click_ingredient
     @$cart.on 'click', '.ingredient .label-warning i', @remove_topping
     @$mode_options.change @change_mode
-    @$mode_chooser.on 'ajax:success', @change_mode_success
+    @$mode_form.on 'ajax:success', @change_mode_success
 
   carousel_activate_item: (carousel) ->
     console.log 'cart: carousel_activate_item fired! index: ' + $(carousel).data('active-index')
@@ -39,7 +39,21 @@ class Caesars.Cart
       $(item).addClass 'active'
 
     if $(carousel).hasClass('left')
-      @$mode_chooser.find('.product').val $(item).data 'id'
+      @$mode_form.find('.product').val $(item).data 'id'
+
+  is_price_defined: ->
+    @$form.find('.left .price').val().trim() != ''
+
+  calculate_price: (target) ->
+    if @is_price_defined() is true
+      console.log 'cart: calculate_price fired!'
+      $.post(
+        @$cart.find('.cart-item-form').data('calculate'),
+        @$cart.find('.cart-item-form').serialize())
+      .done (response) =>
+        @price.hide().empty().append(response).slideDown 'fast'
+      .fail (jqHXR, textStatus) =>
+        alert('error')
 
   load_product: (item, target) ->
     $item = $(item)
@@ -48,23 +62,22 @@ class Caesars.Cart
     console.log "cart: load_product item: '" + item + "', target: '" + target + "' on " + $details.attr('class')
 
     if $item.data('id')?
-      console.log "cart: load_product id: " + $item.data('id') + ', url: ' + $item.data('url') + ', target: ' + target
+      console.log "cart: load_product id: " + $item.data('id') + ', url: ' + $item.data('url') + ', target: ' + target + ', price-id: ' + $item.data('price-id')
       if target == 'left'
-        @$mode_chooser.find('.product').val $item.data 'id'
-        @$cart.find('.toppings form #product_id').val $item.data 'id'
+        @$mode_form.find('.product').val $item.data 'id'
 
-      $.get $item.data('url'), (data) ->
+      $('.cart .cart-item-form .' + target + ' .product').val($item.data('id'))
+      $('.cart .cart-item-form .' + target + ' .price').val($item.data('price-id'))
+
+      $.get($item.data('url'))
+      .done (response) =>
         $details.find('.product').hide().empty().html($item.data('name')).fadeIn 'fast'
         $details.find('.img-thumbnail').hide().attr('src', $item.data('photo')).fadeIn 'fast'
         $details.find('.gallery-img-link').attr 'href', $item.data 'photo'
-
-        $('.cart .ingredients .' + target + ' .tags').hide().empty().append(data).fadeIn 'fast'
-
-        if !$('.cart .ingredients .' + target).is(':visible')
-          $('.cart .ingredients .' + target).fadeIn 'fast'
-
-        if !$('.cart .toppings .' + target).is(':visible')
-          $('.cart .toppings .' + target).fadeIn 'fast'
+        $('.cart .ingredients .' + target + ' .tags').hide().empty().append(response).fadeIn 'fast', ->
+          window.Caesars.cart.calculate_price()
+      .fail (jqHXR, textStatus) =>
+        alert('error')
     else
       console.log 'cart: load_product id: null. Cleaning up ' + $details.attr('class') + '..'
       $details.find('.product').hide().empty().html('No result').fadeIn 'fast'
@@ -82,9 +95,9 @@ class Caesars.Cart
   change_category: (e) =>
     console.log 'cart: .categories a clicked! id : ' + $(e.target).data('id')
     if $(e.target).data('id')?
-      @$mode_chooser.find('.size').val('')
+      @$mode_form.find('.size').val('')
       @disable_two_flavours()
-      @$mode_chooser.find('.category').val($(e.target).data('id'))
+      @$mode_form.find('.category').val($(e.target).data('id'))
       @$mode_one_flavour.trigger('change');
 
   change_category_before: (e, data, status, xhr) =>
@@ -110,7 +123,8 @@ class Caesars.Cart
     console.log 'cart: .sizable a clicked! id : ' + $(e.target).data('id') + ', name: ' + $(e.target).data('name') + ", splittable: '" + $(e.target).data('splittable') + "'"
     $(e.target).closest('.sizable').find('.name').html $(e.target).data 'name'
     if $(e.target).data('id')?
-      @$mode_chooser.find('.size').val($(e.target).data('id'))
+      @$mode_form.find('.size').val($(e.target).data('id'))
+      @$form.find('.size').val($(e.target).data('id'))
       if $(e.target).data('splittable') is true
         console.log 'cart: .sizable a clicked! Enabeling two_flavours mode..'
         @$mode_two_flavours.prop('disabled', false)
@@ -124,17 +138,18 @@ class Caesars.Cart
     @$mode_one_flavour.prop('checked', true)
 
   change_mode: (e) =>
-    console.log "cart: .mode_chooser a 'change' fired!"
+    console.log "cart: .mode_form a 'change' fired!"
     @$mode_spinner.fadeIn 'fast'
     $(e.target).closest('form').submit()
 
   change_mode_success: (e, data, status, xhr) =>
-    console.log "cart: .mode-chooser a 'ajax:success' fired!"
+    console.log "cart: .mode form a 'ajax:success' fired!"
     $('.chooser').hide().empty().append(xhr.responseText).fadeIn 'fast'
     @carousel_activate_item carousel for carousel in $('.carousel.slide.vertical')
     @$mode_spinner.fadeOut 'fast'
     @bind_pretty_photo()
     @bind_carousel()
+    @calculate_price()
 
   click_ingredient: (e) =>
     console.log "cart: .ingredient .label i 'click' fired! id : " + $(e.target).closest('.ingredient').data 'id'
@@ -150,6 +165,7 @@ class Caesars.Cart
     $(e.target).parent().fadeOut 'fast', ->
       console.log 'removing topping ' + $(e.target).closest('.ingredient').data 'id'
       $(e.target).closest('.topping').remove()
+      window.Caesars.cart.calculate_price()
 
   bind_carousel: (carousel) ->
     if carousel

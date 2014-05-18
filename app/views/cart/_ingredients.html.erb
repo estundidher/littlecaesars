@@ -1,6 +1,5 @@
 <% if defined?(product) && !product.nil? %>
   <h5> <%= Product.human_attribute_name 'ingredients' %> </h5 >
-  <%= hidden_field model_name_from_record_or_class(cart_item).param_key, :product_id, value:product.id %>
   <div class="tags">
     <%= render partial:'/cart/ingredients_tags', locals:{product:product, cart_item:cart_item} %>
   </div>

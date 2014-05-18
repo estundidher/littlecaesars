@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516064432) do
+ActiveRecord::Schema.define(version: 20140517070211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(version: 20140516064432) do
   end
 
   create_table "cart_items_products", id: false, force: true do |t|
+    t.integer "cart_item_id", null: false
+    t.integer "product_id"
+  end
+
+  create_table "cart_items_subtractions", id: false, force: true do |t|
     t.integer "cart_item_id", null: false
     t.integer "product_id"
   end
@@ -218,6 +223,9 @@ ActiveRecord::Schema.define(version: 20140516064432) do
 
   add_foreign_key "cart_items_products", "cart_items", name: "cart_items_products_cart_item_id_fk"
   add_foreign_key "cart_items_products", "products", name: "cart_items_products_product_id_fk"
+
+  add_foreign_key "cart_items_subtractions", "cart_items", name: "cart_items_subtractions_cart_item_id_fk"
+  add_foreign_key "cart_items_subtractions", "products", name: "cart_items_subtractions_product_id_fk"
 
   add_foreign_key "carts", "customers", name: "carts_customer_id_fk"
 

@@ -6,16 +6,16 @@
   <%= tb_breadcrumb 'Cart' %>
 <% end %>
 
-<div class="container cart" style="margin-top: 20px; padding-top: 15px; padding-bottom: 10px; background-color: white;">
+<div class="container cart">
   <div class="row">
     <div class="col-md-9 col-sm-9">
       <div class="row" style="padding-bottom: 10px;">
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-4 col-sm-4 mode">
           <%= render partial:'mode', locals:{product:@product, category: @category} %>
         </div>
-        <div class="col-md-4 col-sm-4 total">
-          <span class="price">
-            $ 15,22
+        <div class="col-md-4 col-sm-4 price">
+          <span class="value">
+            <%= number_to_currency @product.price_of(@size).value %>
           </span>
         </div>
       </div>
@@ -23,7 +23,7 @@
         <%= render partial:'chooser', locals:{cart_item: @cart_item,
                                              categories: @categories,
                                                category: @category,
-                                                   size: nil,
+                                                   size: @size,
                                                   sizes: @sizes,
                                                 product: @product,
                                                products: @products,

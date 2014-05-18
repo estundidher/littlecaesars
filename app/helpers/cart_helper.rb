@@ -13,6 +13,17 @@ module CartHelper
     key += "#{count}-#{max_updated_at}"
   end
 
+  def cache_key_cart_carousel_item mode, size = nil, side = nil
+    key = "cart/#{mode}/"
+    if size
+      key += "#{size.to_param}/"
+    end
+    if side
+      key += "#{side}/"
+    end
+    return key
+  end
+
   #"toppings/12+23+33/available/#{count}-#{max_updated_at}"
   def cache_key_for_toppings_available categories, products
     key = "toppings/"

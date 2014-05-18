@@ -129,6 +129,10 @@ class Product < ActiveRecord::Base
     self.try(:type).try(:sizable?)
   end
 
+  def price_of size
+    self.prices.find{|p| p.size == size}
+  end
+
   def categories_friendly limit = nil
     if limit
       self.categories.map(&:name).join(', ').truncate(limit)

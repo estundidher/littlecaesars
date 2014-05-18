@@ -79,12 +79,18 @@ class Caesars.CartToppings
 
   add_to_cart: (e) =>
     console.log "toppings modal: .modal-footer .btn.save fired!"
-    $.post $('.toppings-modal .added form').data('add-url'), $('.toppings-modal .added form').serialize(), (data) =>
-      $('#modal_container .toppings-modal').modal 'hide'
+    $.post(
+      $('.toppings-modal .added form').data('add-url'),
+      $('.toppings-modal .added form').serialize())
+    .done (response) =>
+      @$modal_container.find('.toppings-modal').modal 'hide'
       $ingredients = $('.cart .ingredients .' + $('.toppings-modal .added form #side').val())
       $ingredients.find('.tags .topping').remove()
-      $ingredients.find('.tags').append data
-      $ingredients.find('.tags .topping').hide().fadeIn 'slow'
+      $ingredients.find('.tags').append response
+      $ingredients.find('.tags .topping').hide().fadeIn 'slow', ->
+        window.Caesars.cart.calculate_price()
+    .fail (jqHXR, textStatus) =>
+      alert('error')
 
   remove: (e) =>
     $item = $(e.target).closest('.ingredient')

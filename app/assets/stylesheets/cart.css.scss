@@ -32,16 +32,16 @@ $screen-sm-min:              $screen-sm !default;
   color: #f75353;
 }
 
+.cart-modal .sizable span.size-price {
+  font-size: 13px;
+}
+
 .cart-modal .btn-group {
   margin-right: 5px;
 }
 
 .cart-modal .splittable .dropdown-menu {
   left: -60px;
-}
-
-.cart-modal .sizable span.size-price {
-  font-size: 13px;
 }
 
 .cart-modal .sizable .price {
@@ -106,22 +106,11 @@ $screen-sm-min:              $screen-sm !default;
  * cart
 */
 
-.cart .toppings {
-  padding-top: 10px;
-}
-
-.tags .ingredient {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 9px;
-}
-
-.tags .ingredient i {
-  cursor: pointer;
-}
-
-.tags .ingredient .label {
-  font-size: 11px;
+.cart {
+  margin-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  background-color: white;
 }
 
 .cart .two-flavours .carousel-control, .one-flavour .carousel-control {
@@ -216,12 +205,17 @@ $screen-sm-min:              $screen-sm !default;
   vertical-align: super;
 }
 
-.cart .total {
-  text-align: center;
-  padding-top: 10px;
+.cart .sizable .size {
+  font-size: 12px;
 }
 
-.cart .total .price {
+.cart .price {
+  text-align: center;
+  padding-top: 10px;
+  min-height: 40px;
+}
+
+.cart .price .value {
   font-size: 30px;
   font-family: 'Open Sans Condensed', sans-serif;
   line-height: 26px;
@@ -229,6 +223,24 @@ $screen-sm-min:              $screen-sm !default;
   color: #f75353;
   text-align: left;
   padding-left: 0px;
+}
+
+.cart .toppings {
+  padding-top: 10px;
+}
+
+.tags .ingredient {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 9px;
+}
+
+.tags .ingredient i {
+  cursor: pointer;
+}
+
+.tags .ingredient .label {
+  font-size: 11px;
 }
 
 .cart .sizes {

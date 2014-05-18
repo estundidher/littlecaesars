@@ -1,7 +1,8 @@
-<% if defined?(products) %>
-  <% unless products.nil?  %>
-    <% products.each do |product| %>
-      <%= render partial:'cart/toppings/tag', locals:{product:product, type:type} %>
-    <% end %>
+<% if products %>
+  <% products.each do |product| %>
+    <%= render partial:'cart/toppings/tag',
+        locals:{product: product,
+                   type: type,
+              cart_item: defined?(cart_item) ? cart_item : nil} %>
   <% end %>
 <% end %>
