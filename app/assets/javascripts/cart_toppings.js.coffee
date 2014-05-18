@@ -28,7 +28,7 @@ class Caesars.CartToppings
       $form.append($('.cart .ingredients .' + $form.find('#side').val() + ' .tags .additionable').clone())
       $button.addClass 'disabled'
       $button.find('.fa-spin').fadeIn 'fast'
-      $button.find('.glyphicon-plus-sign').hide()
+      $button.find('.glyphicon').hide()
 
   open_success: (e, data, status, xhr) =>
     console.log 'toppings modal: open fired!'

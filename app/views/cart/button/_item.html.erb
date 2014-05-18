@@ -22,6 +22,11 @@
         </li>
       <% end %>
       <% if cart_item.additionable? %>
+        <% cart_item.subtractions.each do |subtraction| %>
+          <li>
+            - <%= number_to_currency 0.0 %> <%= subtraction.name %>
+          </li>
+        <% end %>
         <% cart_item.additions.each do |addition| %>
           <li>
             + <%= number_to_currency addition.price %> <%= addition.name %>

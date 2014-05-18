@@ -1,12 +1,14 @@
 <div class="ingredient<%= ' topping' if type == 'additions' %>" data-id="<%= product.id %>">
   <% if type == 'toppings' %>
     <% field_name = 'topping_ids[]' %>
+    <%= hidden_field_tag field_name, product.id, class:'additionable' %>
   <% elsif type == 'additions' %>
     <% field_name = "#{model_name_from_record_or_class(cart_item).param_key}[addition_ids][]" %>
+    <%= hidden_field_tag field_name, product.id, class:'additionable' %>
   <% else %>
     <% field_name = "#{model_name_from_record_or_class(cart_item).param_key}[subtraction_ids][]" %>
+    <%= hidden_field_tag field_name, product.id, class:'additionable', disabled:'disabled' %>
   <% end %>
-  <%= hidden_field_tag field_name, product.id, class:'additionable' %>
   <span class="label label-<%= type == 'toppings' || type == 'additions' ? 'warning' : 'info' %>" >
     <%= product.name %>
     <i class="glyphicon glyphicon-remove white"></i>

@@ -5,15 +5,17 @@ class CartItemSizableAdditionable < CartItem
   validates :price,
             presence: true
 
-  has_and_belongs_to_many :additions,
-                          class_name: 'Product',
-                          foreign_key: :cart_item_id,
-                          joing_table: 'cart_item_products'
-
   has_and_belongs_to_many :subtractions,
+                          join_table: :cart_items_subtractions,
                           class_name: 'Product',
                           foreign_key: :cart_item_id,
-                          joing_table: 'cart_item_subtractions'
+                          validate:false
+
+  has_and_belongs_to_many :additions,
+                          join_table: :cart_items_products,
+                          class_name: 'Product',
+                          foreign_key: :cart_item_id,
+                          validate:false
 
   validate :product_sizable?,
            :product_additionable?

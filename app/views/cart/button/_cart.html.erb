@@ -4,7 +4,9 @@
     <%= image_tag "cart.png", class: 'img-responsive' %>
     <!-- Heading -->
     <h4>Shopping Cart</h4>
-    <span><%= cart.items.size %> items <%= number_to_currency cart.total %></span>
+    <span class="price">
+      <%= render partial:'cart/button/price', locals:{cart:cart} %>
+    </span>
     <div class="clearfix"></div>
   </a>
   <%= render partial: 'cart/button/list', locals:{cart:cart} %>

@@ -1,6 +1,6 @@
 <ul class="cart-dropdown" role="menu">
   <% cart.items.each do |item| %>
-    <%= render partial:'cart/button/cart_item', locals:{cart_item:item} %>
+    <%= render partial:'cart/button/item', locals:{cart_item:item} %>
   <% end %>
   <li>
     <!-- Cart items for shopping list -->

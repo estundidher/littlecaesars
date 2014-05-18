@@ -44,10 +44,11 @@
   <div class="col-md-5 col-sm-5 left" style="padding-right: 0px;">
     <%= render partial:'cart/toppings/add', locals: {cart_item:cart_item, product:product, mode:mode, side:'left'} %>
   </div>
-  <div class="col-md-2 col-sm-2 left" style="padding-right: 0px;">
-    <a href="#" class="btn btn-danger btn-lg" role="button">
+  <div class="col-md-2 col-sm-2" style="padding-right: 0px;">
+    <a href="JavaScript:void(0);" class="btn btn-danger btn-lg add" role="button">
       Add to
       <i class="glyphicon glyphicon-shopping-cart"></i>
+      <i class="fa fa-spinner fa-spin" style="display:none;"></i>
     </a>
   </div>
   <% if mode == CartController::CART_MODE[:two_flavours] %>

@@ -10,6 +10,7 @@ class Caesars.Cart
     @$modal_container = $('#modal_container')
     @$cart = $('.cart')
     @$form = @$cart.find('.cart-item-form')
+    @$cart_panel = @$cart.find('.cart-panel')
     @$mode_form = @$cart.find('.mode form')
     @$mode_options = @$mode_form.find('input:radio')
     @$mode_one_flavour = @$mode_form.find('.one-flavour input:radio')
@@ -27,10 +28,29 @@ class Caesars.Cart
     @$cart.on 'ajax:before', '.categories .dropdown-menu a', @change_category_before
     @$cart.on 'ajax:success', '.categories .dropdown-menu a', @change_category_success
     @$cart.on 'click', '.sizable .dropdown-menu a', @change_size
-    @$cart.on 'click', '.ingredient .label i', @click_ingredient
+    @$cart.on 'click', '.ingredient .label i', @ingredient_click
     @$cart.on 'click', '.ingredient .label-warning i', @remove_topping
+
+    @$cart.on 'click', '.btn.add', @add_click
+    @$cart.on 'ajax:success', '.cart-item-form', @add_success
+    @$cart.on 'ajax:error', '.cart-item-form', @add_error
+
+    @$cart.on 'ajax:success', '.cart-panel .cart-dropdown .cart-item .remove', @remove_success
+    @$cart.on 'ajax:error', '.cart-panel .cart-dropdown .cart-item .remove', @remove_error
+
     @$mode_options.change @change_mode
     @$mode_form.on 'ajax:success', @change_mode_success
+
+  remove_success: (e, data, status, xhr) =>
+    console.log 'cart.button.remove ajax:success fired!'
+    $('.btn-cart-md .cart-link .price').hide().empty().append(xhr.responseText).show()
+    $(e.target).closest('.cart-item').slideUp 'slow', ->
+      $(e.target).closest('.cart-item').remove()
+
+  remove_error: (e, xhr, status, error) =>
+    console.log 'cart.button.error ajax:before fired! Error: ' + error
+    $('.btn-cart-md .cart-link .price').hide().empty().append(xhr.responseText).show()
+    alert 'error'
 
   carousel_activate_item: (carousel) ->
     console.log 'cart: carousel_activate_item fired! index: ' + $(carousel).data('active-index')
@@ -44,6 +64,13 @@ class Caesars.Cart
   is_price_defined: ->
     @$form.find('.left .price').val().trim() != ''
 
+  reload_price: ->
+    $.get($('.cart-panel').data('reload-price-url'))
+    .done (response) =>
+      $('.btn-cart-md .cart-link .price').hide().empty().append(response).show()
+    .fail (jqHXR, textStatus) =>
+      alert 'ops..'
+
   calculate_price: (target) ->
     if @is_price_defined() is true
       console.log 'cart: calculate_price fired!'
@@ -53,7 +80,7 @@ class Caesars.Cart
       .done (response) =>
         @price.hide().empty().append(response).slideDown 'fast'
       .fail (jqHXR, textStatus) =>
-        alert('error')
+        alert 'ops..'
 
   load_product: (item, target) ->
     $item = $(item)
@@ -68,16 +95,16 @@ class Caesars.Cart
 
       $('.cart .cart-item-form .' + target + ' .product').val($item.data('id'))
       $('.cart .cart-item-form .' + target + ' .price').val($item.data('price-id'))
+      @price.hide().empty().append($item.data('price-value')).slideDown 'fast'
 
       $.get($item.data('url'))
       .done (response) =>
         $details.find('.product').hide().empty().html($item.data('name')).fadeIn 'fast'
         $details.find('.img-thumbnail').hide().attr('src', $item.data('photo')).fadeIn 'fast'
         $details.find('.gallery-img-link').attr 'href', $item.data 'photo'
-        $('.cart .ingredients .' + target + ' .tags').hide().empty().append(response).fadeIn 'fast', ->
-          window.Caesars.cart.calculate_price()
+        $('.cart .ingredients .' + target + ' .tags').hide().empty().append(response).fadeIn 'fast'
       .fail (jqHXR, textStatus) =>
-        alert('error')
+        alert 'ops..'
     else
       console.log 'cart: load_product id: null. Cleaning up ' + $details.attr('class') + '..'
       $details.find('.product').hide().empty().html('No result').fadeIn 'fast'
@@ -152,13 +179,15 @@ class Caesars.Cart
     @bind_carousel()
     @calculate_price()
 
-  click_ingredient: (e) =>
+  ingredient_click: (e) =>
     console.log "cart: .ingredient .label i 'click' fired! id : " + $(e.target).closest('.ingredient').data 'id'
     if $(e.target).parent().hasClass 'label-info'
       $(e.target).parent().removeClass('label-info').addClass 'label-default'
+      $(e.target).closest('.ingredient').find('.additionable').prop('disabled', false)
       $(e.target).removeClass('glyphicon-remove').removeClass('white').addClass 'glyphicon-plus-sign'
     else
       $(e.target).parent().removeClass('label-default').addClass 'label-info'
+      $(e.target).closest('.ingredient').find('.additionable').prop('disabled', true)
       $(e.target).removeClass('glyphicon-plus-sign').addClass 'glyphicon-remove white'
 
   remove_topping: (e) =>
@@ -167,6 +196,28 @@ class Caesars.Cart
       console.log 'removing topping ' + $(e.target).closest('.ingredient').data 'id'
       $(e.target).closest('.topping').remove()
       window.Caesars.cart.calculate_price()
+
+  add_click: (e) =>
+    console.log 'cart: add clicked fired!'
+    $button = $('.cart .btn.add')
+    $button.addClass 'disabled'
+    $button.find('.fa-spin').fadeIn 'fast'
+    $button.find('.glyphicon').hide()
+    $('.cart .cart-item-form').submit()
+
+  add_success: (e, data, status, xhr) =>
+    console.log 'cart: add success fired!'
+    $('.cart-button .cart-dropdown li').last().before(xhr.responseText).prev().hide().slideDown 'slow'
+    $('.cart .cart-dropdown li').last().before(xhr.responseText).prev().hide().slideDown 'slow'
+    @reload_price()
+    $button = $('.cart .btn.add')
+    $button.removeClass 'disabled'
+    $button.find('.fa-spin').fadeOut 'fast', ->
+      $button.find('.glyphicon').show()
+
+  add_error: (e, xhr, status, error) =>
+    console.log 'cart: add error fired!'
+    $('.cart .cart-panel').after xhr.responseText
 
   bind_carousel: (carousel) ->
     if carousel

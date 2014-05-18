@@ -1,11 +1,32 @@
-<div class="panel panel-danger">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      Shopping Cart
-    </h3>
+<div class="cart-panel" data-reload-price-url="<%= cart_price_path %>">
+  <div class="cart-panel-body">
+    <ul class="cart-dropdown" role="menu">
+      <li>
+        <div class="cart-heading">
+          <div class="btn-cart-md"> <!-- Button Kart -->
+            <a class="cart-link" href="#">
+              <%= image_tag "cart.png", class: 'img-responsive' %>
+              <h4>Shopping Cart</h4>
+              <span class="price">
+                <%= render partial:'cart/button/price', locals:{cart:@cart} %>
+              </span>
+              <div class="clearfix"></div>
+            </a>
+          </div>
+        </div>
+      </li>
+      <% @cart.items.each do |item| %>
+        <%= render partial:'cart/button/item', locals:{cart_item:item} %>
+      <% end %>
+      <li>
+        <!-- Cart items for shopping list -->
+        <div class="cart-item">
+          <%= link_to cart_checkout_path(@cart.id), remote: true, role: 'button',
+              class: 'btn btn-danger checkout' do %>
+            Checkout
+          <% end %>
+        </div>
+      </li>
+    </ul>
   </div>
-  <div class="panel-body">
-    body
-  </div>
-  <div class="panel-footer">footer</div>
 </div>

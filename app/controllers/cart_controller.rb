@@ -6,7 +6,7 @@ class CartController < ApplicationController
   #devise configuration
   before_action :authenticate_customer!
 
-  before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index, :toppings, :mode]
+  before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index, :toppings, :mode, :price]
   before_action :set_cart_item, only: [:destroy]
   before_action :set_product, only: [:modal, :calculate, :create, :index, :ingredients, :mode, :add_topping, :toppings]
   before_action :set_category, only: [:carousel, :mode]
@@ -26,24 +26,29 @@ class CartController < ApplicationController
     render partial:'cart/price', locals:{value:@cart_item.total}, layout: nil
   end
 
+  # POST /cart/price
+  def price
+    render partial:'cart/button/price', locals:{cart:@cart}, layout: nil
+  end
+
   # POST /cart/add/1
   def create
     @cart_item = @cart.new_item @product, cart_item_params
     if @cart_item.save
-      render partial:'cart/button/cart', locals:{cart:@cart_item.cart}, layout: nil
+      render partial:'cart/button/item', locals:{cart_item:@cart_item}, layout: nil
     else
-      render partial:'cart/modal/form', locals:{cart_item:@cart_item, product:@product},
-                                                layout:nil, status: :unprocessable_entity
+      render partial:'layouts/form_errors', locals:{model:@cart_item},
+                                            layout:nil, status: :unprocessable_entity
     end
   end
 
   # DELETE /cart/1
   def destroy
     if @cart_item.destroy
-      render partial:'cart/button/cart', locals:{cart:@cart_item.cart}, layout: nil
+      render partial:'cart/button/price', locals:{cart:@cart_item.cart}, layout: nil
     else
-      render partial:'cart/button/cart', locals:{cart:@cart_item.cart},
-                                         layout: nil, status: :unprocessable_entity
+      render partial:'cart/button/price', locals:{cart:@cart_item.cart},
+                                          layout: nil, status: :unprocessable_entity
     end
   end
 
