@@ -142,11 +142,11 @@ class CartController < ApplicationController
       end
     end
     @sizes = @products.map{|p| p.sizes}.flatten.uniq
-    if @size.nil?
-      @size = @sizes.first
-    end
+    @size = @sizes.first if @size.nil?
+
     cart_item = new_cart_item(params[:mode])
-    cart_item.price = @product.price_of(@size)
+    cart_item.price = @product.price_of(@size) if params[:mode] == CART_MODE[:one_flavour]
+
     render partial:'cart/chooser', locals:{mode:params[:mode],
                                           cart_item:cart_item,
                                           category:@category,

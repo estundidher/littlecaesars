@@ -20,7 +20,11 @@
   <%= form_for cart_item, remote: true, html:{class:'cart-item-form'}, data:{calculate:cart_item_calculate_path} do |f| %>
     <%= f.hidden_field :cart_id, value:cart_item.cart.id %>
     <div class="col-md-6 col-sm-6 left" style="padding-right: 0px;">
-      <%= f.hidden_field :price_id, value:cart_item.price.id, class:'price' %>
+      <% if mode == CartController::CART_MODE[:one_flavour] %>
+        <%= f.hidden_field :price_id, value:cart_item.price.id, class:'price' %>
+      <% else %>
+        <%= f.hidden_field :price_id, value:nil, class:'price' %>
+      <% end %>
       <%= hidden_field_tag :product_id, product.id, class:'product' %>
       <%= render partial:'cart/ingredients', locals: {cart_item:cart_item, product:product, mode:mode, side:'left'} %>
     </div>
