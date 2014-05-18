@@ -142,6 +142,9 @@ class CartController < ApplicationController
       end
     end
     @sizes = @products.map{|p| p.sizes}.flatten.uniq
+    if @size.nil?
+      @size = @sizes.first
+    end
     cart_item = new_cart_item(params[:mode])
     cart_item.price = @product.price_of(@size)
     render partial:'cart/chooser', locals:{mode:params[:mode],
@@ -185,7 +188,7 @@ private
   end
 
   def set_product
-    unless params[:product_id].nil?
+    unless params[:product_id].nil? or params[:product_id].empty?
       @product = Product.find params[:product_id]
     end
     unless cart_item_params.nil?

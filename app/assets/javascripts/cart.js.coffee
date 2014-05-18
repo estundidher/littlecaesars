@@ -96,6 +96,7 @@ class Caesars.Cart
     console.log 'cart: .categories a clicked! id : ' + $(e.target).data('id')
     if $(e.target).data('id')?
       @$mode_form.find('.size').val('')
+      @$mode_form.find('.product').val('')
       @disable_two_flavours()
       @$mode_form.find('.category').val($(e.target).data('id'))
       @$mode_one_flavour.trigger('change');
