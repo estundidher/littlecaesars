@@ -1,8 +1,7 @@
 class CartItemAdditionable < CartItem
+  include Additionable
 
   belongs_to :product
-
-  has_many :additions
 
   validates :product,
             presence: true
@@ -17,5 +16,25 @@ class CartItemAdditionable < CartItem
 
   def additionable?
     true
+  end
+
+  def quantitable?
+    false
+  end
+
+  def product_price
+    self.product.price
+  end
+
+  def sizable?
+    false
+  end
+
+  def name
+    self.product.name
+  end
+
+  def photo
+    self.product.photo
   end
 end

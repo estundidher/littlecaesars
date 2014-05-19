@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   post 'cart/add',                           to: 'cart#create',     as: :cart_item_quantitables
   post 'cart/add',                           to: 'cart#create',     as: :cart_item_sizable_additionables
   post 'cart/add',                           to: 'cart#create',     as: :cart_item_splittables
+  post 'cart/add',                           to: 'cart#create',     as: :cart_item_additionables
   post 'cart/calculate',                     to: 'cart#calculate',  as: :cart_item_calculate
   delete 'cart/:id',                         to: 'cart#destroy',    as: :cart_remove_item
   get 'cart/:id/checkout',                   to: 'cart#checkout',   as: :cart_checkout

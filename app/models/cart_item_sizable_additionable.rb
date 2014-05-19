@@ -1,21 +1,10 @@
 class CartItemSizableAdditionable < CartItem
+  include Additionable
 
   belongs_to :price
 
   validates :price,
             presence: true
-
-  has_and_belongs_to_many :subtractions,
-                          join_table: :cart_items_subtractions,
-                          class_name: 'Product',
-                          foreign_key: :cart_item_id,
-                          validate:false
-
-  has_and_belongs_to_many :additions,
-                          join_table: :cart_items_products,
-                          class_name: 'Product',
-                          foreign_key: :cart_item_id,
-                          validate:false
 
   validate :product_sizable?,
            :product_additionable?
@@ -40,12 +29,8 @@ class CartItemSizableAdditionable < CartItem
     true
   end
 
-  def total
-    if self.additions
-      self.price.value + self.additions.inject(0) {|sum, addition| sum + addition.price}
-    else
-      self.price.value
-    end
+  def product_price
+    self.price.value
   end
 
   def name

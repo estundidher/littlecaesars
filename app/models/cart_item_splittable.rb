@@ -22,4 +22,12 @@ class CartItemSplittable < CartItem
     end
   end
 
+  def total
+    self.first_half.total + self.second_half.total
+  end
+
+  def sizable?
+    true
+  end
+
 end

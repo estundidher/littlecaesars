@@ -8,7 +8,25 @@ class Cart < ActiveRecord::Base
            dependent: :destroy,
            class_name: 'CartItem'
 
-  def new_item product, params = nil
+  def new_item product, half_product, size, params
+
+    puts "#{'@'*100}> product: #{product}"
+    puts "#{'@'*100}> half_product: #{half_product}"
+
+    if params.nil?
+      item = CartItemSplittable.new cart:self,
+                                    first_half:self.new_item(product, size, params),
+                                    second_half:self.new_item(half_product, size, params)
+    else
+      item = CartItemSplittable.new params
+    end
+    if item.price.nil?
+      item.price = product.price_of(size)
+    end
+    item
+  end
+
+  def new_item product, size, params
 
     if product.type.sizable? && product.type.additionable?
       if params.nil?
@@ -17,7 +35,7 @@ class Cart < ActiveRecord::Base
         item = CartItemSizableAdditionable.new params
       end
       if item.price.nil?
-        item.price = product.prices.first
+        item.price = product.price_of(size)
       end
       item
     elsif product.type.sizable?
@@ -27,9 +45,15 @@ class Cart < ActiveRecord::Base
         item = CartItemSizable.new params
       end
       if item.price.nil?
-        item.price = product.prices.first
+        item.price = product.price_of(size)
       end
       item
+    elsif product.type.additionable?
+      if params.nil?
+        CartItemAdditionable.new cart:self, product: product
+      else
+        CartItemAdditionable.new params
+      end
     elsif product.type.quantitable?
       if params.nil?
         CartItemQuantitable.new cart:self, product: product
@@ -37,6 +61,7 @@ class Cart < ActiveRecord::Base
         CartItemQuantitable.new params
       end
     end
+
   end
 
   def total

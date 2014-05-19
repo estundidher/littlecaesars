@@ -6,9 +6,9 @@ class CartController < ApplicationController
   #devise configuration
   before_action :authenticate_customer!
 
-  before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index, :toppings, :mode, :price]
+  before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index, :toppings, :mode, :price, :ingredients, :add_toppings]
   before_action :set_cart_item, only: [:destroy]
-  before_action :set_product, only: [:modal, :calculate, :create, :index, :ingredients, :mode, :add_topping, :toppings]
+  before_action :set_product, only: [:modal, :calculate, :create, :index, :ingredients, :mode, :add_topping, :toppings, :add_toppings]
   before_action :set_category, only: [:carousel, :mode]
   before_action :set_size, only: [:carousel, :mode]
   before_action :set_toppings, only: [:toppings, :add_toppings, :toppings_calculate, :add_topping]
@@ -16,13 +16,13 @@ class CartController < ApplicationController
 
   # GET /cart/add/1
   def modal
-    @cart_item = @cart.new_item @product
+    @cart_item = @cart.new_item(@product, nil, nil)
     render partial: 'cart/modal/modal', locals:{cart_item:@cart_item, product:@product}, layout: nil
   end
 
   # POST /cart/calculate
   def calculate
-    @cart_item = @cart.new_item @product, cart_item_params
+    @cart_item = @cart.new_item(@product, nil, cart_item_params)
     render partial:'cart/price', locals:{value:@cart_item.total}, layout: nil
   end
 
@@ -33,7 +33,7 @@ class CartController < ApplicationController
 
   # POST /cart/add/1
   def create
-    @cart_item = @cart.new_item @product, cart_item_params
+    @cart_item = @cart.new_item(@product, nil, cart_item_params)
     if @cart_item.save
       render partial:'cart/button/item', locals:{cart_item:@cart_item}, layout: nil
     else
@@ -59,7 +59,6 @@ class CartController < ApplicationController
 
   # GET /cart
   def index
-    @cart_item = CartItemSizableAdditionable.new cart:@cart
     @categories = Category.with_shoppable_products
     if @product.nil?
       @category = @categories.first
@@ -72,14 +71,16 @@ class CartController < ApplicationController
     end
     @sizes = @products.map{|p| p.sizes}.flatten.uniq
     @size = @sizes.first
-    @cart_item.price = @product.price_of(@size)
+    @cart_item = @cart.new_item(@product, @size, nil)
     render layout:'generic'
   end
 
   # GET /cart/:product_id/mode/ingredients
   def ingredients
+
+    cart_item = @cart.new_item(@product, nil, cart_item_params)
     render partial:'cart/ingredients_tags', locals:{product:@product,
-                                                    cart_item:new_cart_item(params[:mode])}, layout: nil
+                                                    cart_item:cart_item}, layout: nil
   end
 
   # POST /cart/toppings/open
@@ -87,10 +88,13 @@ class CartController < ApplicationController
     @products = Product.not_additionable_nor_shoppable nil, @product.categories_of_toppings_available
 
     value = @toppings.nil? ? 0.0 : @toppings.sum(&:price)
+
+    cart_item = @cart.new_item(@product, nil, cart_item_params)
+
     render partial:'cart/toppings/modal', locals:{products:@products,
                                                   toppings:@toppings,
                                                   product:@product,
-                                                  cart_item:new_cart_item(params[:mode]),
+                                                  cart_item:cart_item,
                                                   mode:params[:mode],
                                                   value:value,
                                                   side:params[:side]}, layout: nil
@@ -122,8 +126,11 @@ class CartController < ApplicationController
 
   # POST /cart/toppings
   def add_toppings
+
+    cart_item = @cart.new_item(@product, nil, cart_item_params)
+
     render partial:'cart/toppings/tags', locals:{products:@toppings,
-                                                 cart_item:new_cart_item(params[:mode]),
+                                                 cart_item:cart_item,
                                                  type:'additions'}, layout: nil
   end
 
@@ -149,8 +156,7 @@ class CartController < ApplicationController
     @sizes = @products.map{|p| p.sizes}.flatten.uniq
     @size = @sizes.first if @size.nil?
 
-    cart_item = new_cart_item(params[:mode])
-    cart_item.price = @product.price_of(@size) if params[:mode] == CART_MODE[:one_flavour]
+    cart_item = @cart.new_item(@product, @size, cart_item_params)
 
     render partial:'cart/chooser', locals:{mode:params[:mode],
                                           cart_item:cart_item,
@@ -174,14 +180,6 @@ class CartController < ApplicationController
   end
 
 private
-
-  def new_cart_item mode
-    if mode == CART_MODE[:one_flavour]
-      CartItemSizableAdditionable.new cart:@cart
-    elsif mode == CART_MODE[:two_flavours]
-      CartItemSplittable.new cart:@cart
-    end
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_cart
@@ -256,6 +254,14 @@ private
                                                     :quantity,
                                                     :cart_id,
                                                     :notes
+
+    elsif params.has_key?(:cart_item_additionable)
+
+      params.require(:cart_item_additionable).permit :cart_id,
+                                                     :notes,
+                                                     :product_id,
+                                                     :addition_ids => [],
+                                                     :subtraction_ids => []
 
     elsif params.has_key?(:cart_item_sizable_additionable)
 
