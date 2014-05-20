@@ -24,6 +24,10 @@ class CartItemQuantitable < CartItem
     true
   end
 
+  def product_price
+    self.product.price
+  end
+
   def total
     self.product.price * (self.quantity || 1)
   end

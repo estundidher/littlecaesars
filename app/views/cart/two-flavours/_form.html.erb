@@ -4,19 +4,22 @@
     <%= f.fields_for :first_half do |first_half_form| %>
       <%= first_half_form.hidden_field :price_id, value:cart_item.first_half.price.id, class:'price' %>
     <% end %>
-
-    <%= render partial:'cart/ingredients', locals: {cart_item:cart_item,
-                                                    product:product,
-                                                    side:'left'} %>
+    <div class="ingredients_container">
+      <%= render partial:'cart/ingredients', locals: {cart_item:cart_item,
+                                                      product:product,
+                                                      side:'left'} %>
+    </div>
   </div>
 
   <div class="col-md-6 col-sm-6 right" style="padding-left: 0px; text-align: right;">
     <%= f.fields_for :second_half do |second_half_form| %>
       <%= second_half_form.hidden_field :price_id, value:cart_item.second_half.price.id, class:'price' %>
     <% end %>
-    <%= render partial:'cart/ingredients', locals: {cart_item:cart_item,
-                                                    product:cart_item.second_half.price.product,
-                                                    side:'right'} %>
+    <div class="ingredients_container">
+      <%= render partial:'cart/ingredients', locals: {cart_item:cart_item,
+                                                      product:cart_item.second_half.price.product,
+                                                      side:'right'} %>
+    </div>
   </div>
 
 <% end %>

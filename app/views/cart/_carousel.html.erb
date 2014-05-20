@@ -17,8 +17,8 @@
                  data-url="<%= cart_product_items_path(mode, product, side) %>"
                  data-photo="<%= product.photo.url(:large) %>"
                  data-name="<%= product.name %>"
-                 data-price-id="<%= product.price_of(size).id %>"
-                 data-price-value="<%= number_to_currency product.price_of(size).value %>"
+                 data-price-id="<%= product.price_of(size).id if product.type.sizable? %>"
+                 data-price-value="<%= number_to_currency (product.type.sizable? ? product.price_of(size).value : product.price) %>"
                  data-target="<%= side %>">
               <% if photo_of(product, mode, side).exists? %>
                 <%= image_tag photo_of(product, mode, side).url(:large), class:'img-responsive', alt:product.name %>

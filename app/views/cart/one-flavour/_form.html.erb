@@ -10,7 +10,9 @@
 
   <%= hidden_field_tag :product_id, product.id, class:'product' %>
 
-  <%= render partial:'cart/ingredients', locals: {cart_item:cart_item,
-                                                  product:product,
-                                                  side:'left'} %>
+  <div class="ingredients_container">
+    <%= render partial:'cart/ingredients', locals: {cart_item:cart_item,
+                                                    product:product,
+                                                    side:'left'} %>
+  </div>
 </div>

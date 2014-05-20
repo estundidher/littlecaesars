@@ -65,7 +65,7 @@ class CartController < ApplicationController
     else
       @category = @product.categories.first
     end
-    @products = @category.products.shoppable_additionable
+    @products = @category.products.shoppable
     if @product.nil?
       @product = @products.first
     end
@@ -77,9 +77,9 @@ class CartController < ApplicationController
 
   # GET /cart/:product_id/mode/ingredients
   def ingredients
-    render partial:'cart/ingredients_tags', locals:{product:@product,
-                                                    side:params[:side],
-                                                    cart_item:@cart_item}, layout: nil
+    render partial:'cart/ingredients', locals:{product:@product,
+                                              side:params[:side],
+                                              cart_item:@cart_item}, layout: nil
   end
 
   # POST /cart/toppings/open
@@ -144,15 +144,18 @@ class CartController < ApplicationController
   def mode
     @categories = Category.with_shoppable_products
     if params[:mode] == CART_MODE[:one_flavour]
-      @products = @category.products.shoppable_additionable @size, nil
+      @products = @category.products.shoppable nil, nil, @size, nil
     elsif params[:mode] == CART_MODE[:two_flavours]
-      @products = @category.products.shoppable_additionable_splittable @size, nil
+      @products = @category.products.shoppable_splittable @size, nil
     end
     unless @products.nil?
       if @product.nil? || @products.exclude?(@product)
         @product = @products.first
       end
     end
+
+    #puts "#{'#'*100}> mode: #{params[:mode]}, @products: #{@products.size()}, @product: #{@product}"
+
     @sizes = @products.map{|p| p.sizes}.flatten.uniq
     @size = @sizes.first if @size.nil?
 
@@ -170,7 +173,7 @@ class CartController < ApplicationController
 
   # GET /cart/:mode/:category_id/:side/:size
   def carousel
-    @products = @category.products.shoppable_additionable @size, nil
+    @products = @category.products.shoppable nil, nil, @size, nil
     render partial:'cart/carousel', locals:{products:@products,
                                             size:@size,
                                             side:(params[:side] || 'left'),

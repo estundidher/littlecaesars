@@ -23,8 +23,8 @@ class Product < ActiveRecord::Base
     shoppable true, false, size, limit
   }
 
-  scope :shoppable_additionable_splittable, -> (size = nil, limit = nil) {
-    shoppable true, true, size, limit
+  scope :shoppable_splittable, -> (size = nil, limit = nil) {
+    shoppable true, false, size, limit
   }
 
   scope :shoppable, -> (additionable=false, splittable=false, size=nil, limit=nil) {

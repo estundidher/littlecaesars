@@ -21,6 +21,10 @@ class CartItemSizable < CartItem
     false
   end
 
+  def quantitable?
+    false
+  end
+
   def sizable?
     true
   end

@@ -101,7 +101,7 @@ class Caesars.Cart
         $details.find('.product').hide().empty().html($item.data('name')).fadeIn 'fast'
         $details.find('.img-thumbnail').hide().attr('src', $item.data('photo')).fadeIn 'fast'
         $details.find('.gallery-img-link').attr 'href', $item.data 'photo'
-        $('.cart .ingredients .' + target + ' .tags').hide().empty().append(response).fadeIn 'fast'
+        $('.cart .ingredients .' + target + ' .ingredients_container').hide().empty().append(response).fadeIn 'fast'
         if @is_two_flavours_mode() is true
           @calculate_price()
         else

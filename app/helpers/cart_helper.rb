@@ -1,8 +1,8 @@
 module CartHelper
 
   def cache_key_cart_carousel mode, category, size = nil, side = nil
-    count          = Product.shoppable_additionable(size).count
-    max_updated_at = Product.shoppable_additionable(size).maximum(:updated_at).try(:utc).try(:to_s, :number)
+    count          = Product.shoppable(nil, nil, size, nil).count
+    max_updated_at = Product.shoppable(nil, nil, size, nil).maximum(:updated_at).try(:utc).try(:to_s, :number)
     key = "cart/carousel/#{mode}/#{category.to_param}/"
     if size
       key += "#{size.to_param}/"
