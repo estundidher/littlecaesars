@@ -31,7 +31,7 @@ class Caesars.CartModal
   calculate_price: (e) =>
     console.log 'cart.modal: calculate_price fired!'
     $.post $(e.target).data('url'), $('.cart-modal .cart_item_form').serialize(), (data) =>
-      $('.cart-modal .item-price').hide().empty().append(data).slideDown 'fast'
+      $('.cart-modal .price').hide().empty().append(data).slideDown 'fast'
 
   save: (e) =>
     console.log 'cart.modal: moda_save fired!'
@@ -40,11 +40,12 @@ class Caesars.CartModal
   save_success: (e, data, status, xhr) =>
     console.log 'cart.modal: moda_save_sucess fired!'
     $('#modal_container .cart-modal').modal 'hide'
-    $('.cart-button').hide().empty().append(xhr.responseText).show()
+    $('.cart-button .cart-dropdown li').last().before(xhr.responseText).prev().hide().slideDown 'slow'
+    window.Caesars.cart.reload_price()
 
   save_error: (e, xhr, status, error) =>
     console.log 'cart.modal: moda_save_error fired!'
-    $('#modal_container .cart-modal .cart_item_form_container').hide().empty().append(xhr.responseText).fadeIn 'fast'
+    alert error
 
 create_cart_modal = ->
   window.Caesars.cart_modal = new Caesars.CartModal()

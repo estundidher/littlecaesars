@@ -212,6 +212,7 @@ private
     else
       @cart_item = CartItem.find(params[:id])
     end
+    #puts "#{'#'*100}> @cart_item: #{@cart_item}"
   end
 
   def set_cart

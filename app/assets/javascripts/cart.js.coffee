@@ -35,7 +35,7 @@ class Caesars.Cart
     alert 'error: ' + error
 
   reload_price: ->
-    $.get($('.cart-panel').data('reload-price-url'))
+    $.get($('.btn-cart-md').data('reload-price-url'))
     .done (response) =>
       $('.btn-cart-md .cart-link .price').hide().empty().append(response).show()
     .fail (jqHXR, textStatus) =>
