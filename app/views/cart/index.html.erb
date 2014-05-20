@@ -6,9 +6,9 @@
   <%= tb_breadcrumb 'Cart' %>
 <% end %>
 
-<div class="container cart">
+<div class="container cart-container">
   <div class="row">
-    <div class="col-md-9 col-sm-9">
+    <div class="col-md-9 col-sm-9 cart-item">
       <div class="row" style="padding-bottom: 10px;">
         <div class="col-md-4 col-sm-4 mode">
           <%= render partial:'mode', locals:{product:@product, category: @category} %>
@@ -30,7 +30,7 @@
                                                    mode: CartController::CART_MODE[:one_flavour]} %>
       </div>
     </div>
-    <div class="col-md-3 col-sm-3">
+    <div class="col-md-3 col-sm-3 cart">
       <%= render partial:'cart', locals:{sizes:@sizes} %>
     </div>
   </div>

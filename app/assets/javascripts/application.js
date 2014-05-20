@@ -25,6 +25,7 @@
 //= require bootstrap-datetimepicker
 //= require modal
 //= require cart
+//= require cart_item
 //= require cart_modal
 //= require cart_button
 //= require cart_toppings

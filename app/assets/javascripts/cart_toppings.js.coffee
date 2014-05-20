@@ -7,13 +7,13 @@ window.Caesars or= {}
 class Caesars.CartToppings
 
   constructor: ->
-    @$cart = $('.cart')
+    @$cart_item = $('.cart-item')
     @$modal_container = $('#modal_container')
     @bind()
 
   bind: ->
-    @$cart.on 'ajax:before', '.toppings form', @open_before
-    @$cart.on 'ajax:success', '.toppings form', @open_success
+    @$cart_item.on 'ajax:before', '.toppings form', @open_before
+    @$cart_item.on 'ajax:success', '.toppings form', @open_success
     @$modal_container.on 'click', '.toppings-modal .available .btn.add', @add
     @$modal_container.on 'ajax:success', '.toppings-modal .added form', @add_success
     @$modal_container.on 'ajax:error', '.toppings-modal .added form', @add_error
@@ -25,7 +25,7 @@ class Caesars.CartToppings
     $form = $(e.target)
     $button = $form.find('.btn')
     if $button?
-      $form.append($('.cart .ingredients .' + $form.find('#side').val() + ' .tags .additionable').clone())
+      $form.append($('.cart-item .ingredients .' + $form.find('#side').val() + ' .tags .additionable').clone())
       $button.addClass 'disabled'
       $button.find('.fa-spin').fadeIn 'fast'
       $button.find('.glyphicon').hide()
@@ -84,12 +84,12 @@ class Caesars.CartToppings
       $('.toppings-modal .added form').serialize())
     .done (response) =>
       @$modal_container.find('.toppings-modal').modal 'hide'
-      $ingredients = $('.cart .ingredients .' + $('.toppings-modal .added form #side').val())
+      $ingredients = $('.cart-item .ingredients .' + $('.toppings-modal .added form #side').val())
       $ingredients.find('.tags .topping').remove()
       $ingredients.find('.tags').append response
       $ingredients.find('.tags .topping').hide().fadeIn 'slow', ->
         console.log "toppings modal: .modal-footer .btn.save finished!"
-        window.Caesars.cart.calculate_price()
+        window.Caesars.cart_item.calculate_price()
     .fail (jqHXR, textStatus) =>
       alert('error')
 
@@ -109,7 +109,7 @@ class Caesars.CartToppings
       $carousel = $(carousel)
     else
       console.log "toppings modal: bind_carousel fired!"
-      $carousel = $('.cart .carousel.slide.vertical')
+      $carousel = $('.cart-item .carousel.slide.vertical')
 
     $carousel.carousel({
       interval: false

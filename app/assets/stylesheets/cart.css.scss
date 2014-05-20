@@ -103,61 +103,60 @@ $screen-sm-min:              $screen-sm !default;
 }
 
 /*
- * cart
+ * cart-item
 */
-
-.cart {
+.cart-container {
   margin-top: 20px;
   padding-top: 15px;
   padding-bottom: 10px;
   background-color: white;
 }
 
-.cart .two-flavours .carousel-control, .one-flavour .carousel-control {
+.cart-item .two-flavours .carousel-control, .one-flavour .carousel-control {
   background-image:none !important;
 }
 
-.cart .two_flavours .item {
+.cart-item .two_flavours .item {
   text-align: center;
 }
 
-.cart .two-flavours.right .carousel-control.down {
+.cart-item .two-flavours.right .carousel-control.down {
   top: 211px;
   left: 139px;
 }
 
-.cart .two-flavours.right .carousel-control.up {
+.cart-item .two-flavours.right .carousel-control.up {
   height: 20px;
   left: 143px;
 }
 
-.cart .two-flavours.left .carousel-control.down {
+.cart-item .two-flavours.left .carousel-control.down {
   top: 211px;
 }
 
-.cart .two-flavours.left .carousel-control.up {
+.cart-item .two-flavours.left .carousel-control.up {
   left: 1px;
   height: 20px;
 }
 
-.cart .one-flavour .carousel-control.down {
+.cart-item .one-flavour .carousel-control.down {
   top: 223px;
   left: -35px;
 }
 
-.cart .one-flavour .carousel-control.up {
+.cart-item .one-flavour .carousel-control.up {
   left: -34px;
   height: 20px;
 }
 
-.cart .chooser .element {
+.cart-item .chooser .element {
   position: relative;
   margin-bottom: 30px;
   padding-bottom: 1px;
   overflow: hidden;
 }
 
-.cart .chooser .element .gallery-img-hover {
+.cart-item .chooser .element .gallery-img-hover {
   position: absolute;
   top: 100%;
   left: 0%;
@@ -173,9 +172,9 @@ $screen-sm-min:              $screen-sm !default;
           transition: all 0.4s ease-in-out;
 }
 
-.cart .chooser .element:hover .gallery-img-hover { top: 0%; }
-.cart .chooser .element a{ color: #fff; }
-.cart .chooser .element i.hover-icon{
+.cart-item .chooser .element:hover .gallery-img-hover { top: 0%; }
+.cart-item .chooser .element a{ color: #fff; }
+.cart-item .chooser .element i.hover-icon{
   position: absolute;
   top: 50%;
   z-index: 25;
@@ -195,27 +194,27 @@ $screen-sm-min:              $screen-sm !default;
           transition: all 0.4s ease-in;
 }
 
-.cart .chooser .element i.icon-left { right: 100%; margin-right: 10px; }
-.cart .chooser .element i.icon-right { left: 100%; margin-left: 10px; }
-.cart .chooser .element:hover i.icon-left { right: 35%; }
-.cart .chooser .element:hover i.icon-right { left: 50%; }
+.cart-item .chooser .element i.icon-left { right: 100%; margin-right: 10px; }
+.cart-item .chooser .element i.icon-right { left: 100%; margin-left: 10px; }
+.cart-item .chooser .element:hover i.icon-left { right: 35%; }
+.cart-item .chooser .element:hover i.icon-right { left: 50%; }
 
-.cart .mode .fa-spin {
+.cart-item .mode .fa-spin {
   margin-left: 10px;
   vertical-align: super;
 }
 
-.cart .sizable .size {
+.cart-item .sizable .size {
   font-size: 12px;
 }
 
-.cart div.price {
+.cart-item div.price {
   text-align: center;
   padding-top: 10px;
   min-height: 40px;
 }
 
-.cart .price .value {
+.cart-item .price .value {
   font-size: 30px;
   font-family: 'Open Sans Condensed', sans-serif;
   line-height: 26px;
@@ -225,37 +224,18 @@ $screen-sm-min:              $screen-sm !default;
   padding-left: 0px;
 }
 
-.cart .btn.add {
+.cart-item .btn.add {
   width: 106px;
   text-align: left;
 }
 
-.cart .toppings {
-  padding-top: 10px;
-}
-
-.tags .ingredient {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 9px;
-}
-
-.tags .ingredient i {
-  cursor: pointer;
-}
-
-.tags .ingredient .label {
-  font-size: 11px;
-}
-
-.cart .sizes {
+.cart-item .sizes {
   padding-top: 5px;
 }
 
 /*
- * cart-panel
+ * cart
 */
-
 .cart .cart-panel .btn-cart-md {
   float: none !important;
   margin-left: 40px;
@@ -447,4 +427,23 @@ $screen-sm-min:              $screen-sm !default;
 
 .toppings-modal .modal-footer .button {
   padding-left: 0px;
+}
+
+
+.cart-item .toppings, .toppings-modal .toppings {
+  padding-top: 10px;
+}
+
+.cart-item .ingredient, .toppings-modal .ingredient {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 9px;
+}
+
+.cart-item .tags .ingredient i, .toppings-modal .tags .ingredient i {
+  cursor: pointer;
+}
+
+.cart-item .tags .ingredient .label, .toppings-modal .tags .ingredient .label {
+  font-size: 11px;
 }

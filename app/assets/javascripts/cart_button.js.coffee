@@ -13,7 +13,6 @@ class Caesars.CartButton
 
   bind: ->
     @$cart_button.on 'click', '.btn-cart-md .cart-link', @toggle
-    @$cart_button.on 'ajax:before', '.cart-dropdown .cart-item .remove', @remove_before
     @$cart_button.on 'ajax:success', '.cart-dropdown .cart-item .remove', @remove_success
     @$cart_button.on 'ajax:error', '.cart-dropdown .cart-item .remove', @remove_error
     @$cart_button.on 'ajax:success', '.cart-dropdown .checkout', @checkout
@@ -28,18 +27,21 @@ class Caesars.CartButton
       $dd_menu.fadeIn speed
       $dd_menu.addClass 'open'
 
-  remove_before: (e, xhr, settings) =>
-    console.log 'cart.button.remove ajax:before fired!'
-    @toggle e, 'fast'
-
   remove_success: (e, data, status, xhr) =>
     console.log 'cart.button.remove ajax:success fired!'
-    $('.cart-button').hide().empty().append(xhr.responseText).show()
+    $('.btn-cart-md .cart-link .price').hide().empty().append(xhr.responseText).show()
+
+    $cart_item = $('.cart .cart-item-' + $(e.target).closest('.cart-item').data('id'))
+    if $cart_item?
+      $cart_item.slideUp 'slow', ->
+        $cart_item.remove()
+
+    $(e.target).closest('.cart-item').slideUp 'slow', ->
+      $(e.target).closest('.cart-item').remove()
 
   remove_error: (e, xhr, status, error) =>
     console.log 'cart.button.error ajax:before fired! Error: ' + error
-    $('.cart-button').hide().empty().append(xhr.responseText).show()
-    @toggle e, 'fast'
+    alert 'error: ' + error
 
   checkout: (e, data, status, xhr) =>
     console.log "cart.button.checkout fired!"
