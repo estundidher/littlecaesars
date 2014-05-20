@@ -373,12 +373,12 @@ $screen-sm-min:              $screen-sm !default;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.25);
 }
 .cart .cart-panel .cart-dropdown .cart-item span { display: block; margin-left: 70px }
-.cart .cart-panel .cart-dropdown .cart-item span.cart-title { font-size: 15px; }
+.cart .cart-panel .cart-dropdown .cart-item span.cart-title { font-size: 12px; }
 .cart .cart-panel .cart-dropdown .cart-item span.cart-title small { font-size: 10px; }
 .cart .cart-panel .cart-dropdown .cart-item span.cart-price { display:inline-block; font-weight: 700; }
 
 .cart .cart-panel .cart-dropdown .cart-item span.cart-title ul {list-style: none;}
-.cart .cart-panel .cart-dropdown .cart-item span.cart-title ul li {font-size: 11px; margin-left: -43px;}
+.cart .cart-panel .cart-dropdown .cart-item span.cart-title ul li {font-size: 10px; margin-left: -43px;}
 
 /*
  * toppings-modal

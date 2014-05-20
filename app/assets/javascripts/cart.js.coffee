@@ -181,7 +181,11 @@ class Caesars.Cart
     @$mode_spinner.fadeOut 'fast'
     @bind_pretty_photo()
     @bind_carousel()
-    @calculate_price()
+    if @is_two_flavours_mode() is true
+      @calculate_price()
+    else
+      $item = $('.cart .carousel .item.active')
+      @price.hide().empty().append($item.data('price-value')).slideDown 'fast'
 
   ingredient_click: (e) =>
     console.log "cart: .ingredient .label i 'click' fired! id : " + $(e.target).closest('.ingredient').data 'id'
