@@ -1,4 +1,4 @@
-<div class="ingredient<%= ' topping' if type == 'additions' %>" data-id="<%= product.id %>">
+<div class="ingredient" data-id="<%= product.id %>">
   <%= fields_for cart_item do |f| %>
 
     <% if cart_item.instance_of?(CartItemSplittable) %>
