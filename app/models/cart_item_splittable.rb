@@ -34,6 +34,22 @@ class CartItemSplittable < CartItem
     [self.first_half.product_price, self.second_half.product_price].max
   end
 
+  def highest_half
+    if self.first_half.product_price > self.second_half.product_price
+      self.first_half
+    else
+      self.second_half
+    end
+  end
+
+  def lowest_half
+    if self.first_half.product_price < self.second_half.product_price
+      self.first_half
+    else
+      self.second_half
+    end
+  end
+
   def total
     product_price + (self.first_half.total_of_additions + self.second_half.total_of_additions)
   end

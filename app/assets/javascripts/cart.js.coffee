@@ -71,7 +71,7 @@ class Caesars.Cart
   is_price_defined: ->
     @$cart.find('.cart-item-form .left .price').val().trim() != ''
 
-  calculate_price: (target) ->
+  calculate_price: ->
     console.log 'cart: calculate_price fired!'
     if @is_price_defined() is true
       $.post(
@@ -95,7 +95,6 @@ class Caesars.Cart
 
       $('.cart .cart-item-form .' + target + ' .product').val($item.data('id'))
       $('.cart .cart-item-form .' + target + ' .price').val($item.data('price-id'))
-      @price.hide().empty().append($item.data('price-value')).slideDown 'fast'
 
       $.get($item.data('url'))
       .done (response) =>
@@ -103,6 +102,11 @@ class Caesars.Cart
         $details.find('.img-thumbnail').hide().attr('src', $item.data('photo')).fadeIn 'fast'
         $details.find('.gallery-img-link').attr 'href', $item.data 'photo'
         $('.cart .ingredients .' + target + ' .tags').hide().empty().append(response).fadeIn 'fast'
+        if @is_two_flavours_mode() is true
+          @calculate_price()
+        else
+          @price.hide().empty().append($item.data('price-value')).slideDown 'fast'
+
       .fail (jqHXR, textStatus) =>
         alert 'ops..'
     else
@@ -237,6 +241,12 @@ class Caesars.Cart
     $prettyLink.prettyPhoto({
       overlay_gallery: false, social_tools: false
     })
+
+  is_two_flavours_mode: ->
+    $('.carousel.slide.vertical').length == 2
+
+  is_one_flavours_mode: ->
+    $('.carousel.slide.vertical').length == 1
 
 create_cart = ->
   window.Caesars.cart = new Caesars.Cart()

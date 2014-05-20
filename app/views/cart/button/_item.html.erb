@@ -11,13 +11,10 @@
     <!-- Title for purchase item -->
     <span class="cart-title">
       <% if cart_item.instance_of?(CartItemSplittable) %>
-        1/2 <%= cart_item.first_half.name %>
-        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item.first_half} %>
-        1/2 <%= cart_item.second_half.name %>
-        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item.second_half} %>
+        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item.highest_half, label: '1/2', size:true} %>
+        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item.lowest_half, label: '1/2', size:false} %>
       <% else %>
-        <%= cart_item.name %>
-        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item} %>
+        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item, label: nil, size:true} %>
       <% end %>
     </span>
     <!-- Cart item price -->

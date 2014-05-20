@@ -103,12 +103,6 @@ class Caesars.CartToppings
       $('.toppings-modal .modal-footer .warning').empty()
       @calculate_price()
 
-  is_splitter: ->
-    $('.carousel.slide.vertical').length == 2
-
-  is_slider: ->
-    $('.carousel.slide.vertical').length == 1
-
   bind_carousel: (carousel) ->
     if carousel
       console.log "toppings modal: bind_carousel '" + $(carousel).attr('class') + "' fired!"
