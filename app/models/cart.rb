@@ -8,22 +8,19 @@ class Cart < ActiveRecord::Base
            dependent: :destroy,
            class_name: 'CartItem'
 
-  def new_item product, half_product, size, params
-
-    puts "#{'@'*100}> product: #{product}"
-    puts "#{'@'*100}> half_product: #{half_product}"
+  def new_splittable_item first_half, second_half, size, params
 
     if params.nil?
-      item = CartItemSplittable.new cart:self,
-                                    first_half:self.new_item(product, size, params),
-                                    second_half:self.new_item(half_product, size, params)
+      item = CartItemSplittable.new cart:self
+      item.build_first_half
+      item.first_half = self.new_item(first_half, size, params)
+
+      item.build_second_half
+      item.second_half = self.new_item(second_half, size, params)
+      return item
     else
-      item = CartItemSplittable.new params
+      CartItemSplittable.new params
     end
-    if item.price.nil?
-      item.price = product.price_of(size)
-    end
-    item
   end
 
   def new_item product, size, params

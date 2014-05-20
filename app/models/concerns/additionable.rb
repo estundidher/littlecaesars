@@ -16,9 +16,13 @@ module Additionable
                           validate:false
   end
 
+  def total_of_additions
+    self.additions.inject(0) {|sum, addition| sum + addition.price}
+  end
+
   def total
     if self.additions
-      self.product_price + self.additions.inject(0) {|sum, addition| sum + addition.price}
+      self.product_price + self.total_of_additions
     else
       self.product_price
     end

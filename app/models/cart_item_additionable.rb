@@ -37,4 +37,12 @@ class CartItemAdditionable < CartItem
   def photo
     self.product.photo
   end
+
+  def size
+    nil
+  end
+
+  def quantity
+    1
+  end
 end

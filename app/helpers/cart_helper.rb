@@ -34,10 +34,10 @@ module CartHelper
     "#{key}/available/#{count}-#{max_updated_at}"
   end
 
-  def cache_key_for_product_ingredients cart_item, product
+  def cache_key_for_product_ingredients cart_item, product, side
     count          = Product.not_additionable_nor_shoppable.count
     max_updated_at = Product.not_additionable_nor_shoppable.maximum(:updated_at).try(:utc).try(:to_s, :number)
-    "#{model_name_from_record_or_class(cart_item).param_key}/#{product.to_param}/ingredients/#{count}-#{max_updated_at}"
+    "#{model_name_from_record_or_class(cart_item).param_key}/#{product.to_param}/#{side}ingredients/#{count}-#{max_updated_at}"
   end
 
   def photo_of item, mode, side

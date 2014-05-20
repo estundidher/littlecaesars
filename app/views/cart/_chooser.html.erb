@@ -1,47 +1,23 @@
 <div class="row">
 
-  <%= render partial:'one_flavour', locals: {categories:categories,
-                                            category:category,
-                                            size:size,
-                                            sizes:sizes,
-                                            product:product,
-                                            products:products} if mode == CartController::CART_MODE[:one_flavour] %>
-
-  <%= render partial:'two_flavours', locals: {categories:categories,
-                                              category:category,
-                                              size:size,
-                                              sizes:sizes,
-                                              product:product,
-                                              products:products} if mode == CartController::CART_MODE[:two_flavours] %>
+  <%= render partial:"cart/#{mode}/mode", locals: {categories:categories,
+                                                    category:category,
+                                                    size:size,
+                                                    sizes:sizes,
+                                                    product:product,
+                                                    products:products} %>
 </div>
 
 <div class="row ingredients">
 
-  <%= form_for cart_item, remote: true, html:{class:'cart-item-form'}, data:{calculate:cart_item_calculate_path} do |f| %>
-    <%= f.hidden_field :cart_id, value:cart_item.cart.id %>
-    <div class="col-md-6 col-sm-6 left" style="padding-right: 0px;">
-      <% if mode == CartController::CART_MODE[:one_flavour] %>
-        <% if cart_item.sizable? %>
-          <%= f.hidden_field :price_id, value:cart_item.price.id, class:'price' %>
-        <% elsif cart_item.additionable? %>
-          <%= f.hidden_field :product_id, value:product.id, class:'product' %>
-        <% end %>
-      <% else %>
-        <%= f.hidden_field :price_id, value:nil, class:'price' %>
-      <% end %>
-      <%= hidden_field_tag :product_id, product.id, class:'product' %>
-      <%= render partial:'cart/ingredients', locals: {cart_item:cart_item, product:product, mode:mode, side:'left'} %>
-    </div>
-
-    <% if mode == CartController::CART_MODE[:two_flavours] %>
-      <div class="col-md-6 col-sm-6 right" style="padding-left: 0px; text-align: right;">
-        <%= hidden_field model_name_from_record_or_class(cart_item).param_key, :product_id, value:product.id %>
-        <%= render partial:'cart/ingredients', locals: {cart_item:cart_item, product:product, mode:mode, side:'right'} %>
-      </div>
-    <% end %>
-
-  <% end %>
-
+  <%= render partial:'cart/form', locals: {mode:mode,
+                                            cart_item:cart_item,
+                                            categories:categories,
+                                            category:category,
+                                            size:size,
+                                            sizes:sizes,
+                                            product:product,
+                                            products:products} %>
 </div>
 
 <div class="row toppings">

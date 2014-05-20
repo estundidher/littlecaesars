@@ -88,6 +88,7 @@ class Caesars.CartToppings
       $ingredients.find('.tags .topping').remove()
       $ingredients.find('.tags').append response
       $ingredients.find('.tags .topping').hide().fadeIn 'slow', ->
+        console.log "toppings modal: .modal-footer .btn.save finished!"
         window.Caesars.cart.calculate_price()
     .fail (jqHXR, textStatus) =>
       alert('error')

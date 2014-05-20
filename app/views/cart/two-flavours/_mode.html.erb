@@ -38,7 +38,7 @@
   <%= render partial:'categories', locals:{mode:CartController::CART_MODE[:two_flavours],
                                           align:'right',
                                           size:size,
-                                          categories:categories,
+                                          categories:Category.with_shoppable_products(size),
                                           category:category,
                                           product:product} %>
   <div class="details">

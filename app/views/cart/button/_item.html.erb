@@ -10,30 +10,15 @@
     <%= image_tag cart_item.photo.url(:medium), class: 'img-responsive img-rounded' %>
     <!-- Title for purchase item -->
     <span class="cart-title">
-      <%= cart_item.name %>
-      <ul>
-      <% if cart_item.sizable? %>
-        <li>
-          &nbsp<%= number_to_currency cart_item.price.value %> <%= cart_item.size.name %>
-        </li>
-      <% elsif cart_item.quantitable? %>
-        <li>
-          &nbsp<%= number_to_currency cart_item.product.price %> x <%= cart_item.quantity %> units
-        </li>
+      <% if cart_item.instance_of?(CartItemSplittable) %>
+        1/2 <%= cart_item.first_half.name %>
+        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item.first_half} %>
+        1/2 <%= cart_item.second_half.name %>
+        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item.second_half} %>
+      <% else %>
+        <%= cart_item.name %>
+        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item} %>
       <% end %>
-      <% if cart_item.additionable? %>
-        <% cart_item.subtractions.each do |subtraction| %>
-          <li>
-            - <%= number_to_currency 0.0 %> <%= subtraction.name %>
-          </li>
-        <% end %>
-        <% cart_item.additions.each do |addition| %>
-          <li>
-            + <%= number_to_currency addition.price %> <%= addition.name %>
-          </li>
-        <% end %>
-      <% end %>
-      </ul>
     </span>
     <!-- Cart item price -->
     <span class="cart-price pull-right red"> <%= number_to_currency cart_item.total %> </span>

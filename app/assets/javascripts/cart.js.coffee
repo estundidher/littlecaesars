@@ -61,9 +61,6 @@ class Caesars.Cart
     if $(carousel).hasClass('left')
       @$mode_form.find('.product').val $(item).data 'id'
 
-  is_price_defined: ->
-    @$form.find('.left .price').val().trim() != ''
-
   reload_price: ->
     $.get($('.cart-panel').data('reload-price-url'))
     .done (response) =>
@@ -71,9 +68,12 @@ class Caesars.Cart
     .fail (jqHXR, textStatus) =>
       alert 'ops..'
 
+  is_price_defined: ->
+    @$cart.find('.cart-item-form .left .price').val().trim() != ''
+
   calculate_price: (target) ->
+    console.log 'cart: calculate_price fired!'
     if @is_price_defined() is true
-      console.log 'cart: calculate_price fired!'
       $.post(
         @$cart.find('.cart-item-form').data('calculate'),
         @$cart.find('.cart-item-form').serialize())

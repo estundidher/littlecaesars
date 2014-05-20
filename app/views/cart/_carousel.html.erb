@@ -14,7 +14,7 @@
           <% cache [cache_key_cart_carousel_item(mode, size, side), product] do %>
             <div class="item"
                  data-id="<%= product.id %>"
-                 data-url="<%= cart_product_items_path(mode, product) %>"
+                 data-url="<%= cart_product_items_path(mode, product, side) %>"
                  data-photo="<%= product.photo.url(:large) %>"
                  data-name="<%= product.name %>"
                  data-price-id="<%= product.price_of(size).id %>"
