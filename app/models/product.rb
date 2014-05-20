@@ -19,6 +19,14 @@ class Product < ActiveRecord::Base
          .order(:name)
   }
 
+  scope :shoppable_additionable, -> (size = nil, limit = nil) {
+    shoppable true, false, size, limit
+  }
+
+  scope :shoppable_additionable_splittable, -> (size = nil, limit = nil) {
+    shoppable true, true, size, limit
+  }
+
   scope :shoppable, -> (additionable=false, splittable=false, size=nil, limit=nil) {
 
     query = where(enabled:true).joins(:type).where(product_types: {shoppable:true})
@@ -40,14 +48,6 @@ class Product < ActiveRecord::Base
     end
 
     query.order(:created_at).limit(limit)
-  }
-
-  scope :shoppable_additionable, -> (size = nil, limit = nil) {
-    shoppable true, false, size, limit
-  }
-
-  scope :shoppable_additionable_splittable, -> (size = nil, limit = nil) {
-    shoppable true, true, size, limit
   }
 
   has_many :prices, dependent: :destroy
