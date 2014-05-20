@@ -43,7 +43,7 @@ class Caesars.Cart
 
   add_click: (e) =>
     console.log 'cart: add clicked fired!'
-    $button = $('.cart .btn.add')
+    $button = $('.cart-item .btn.add')
     $button.addClass 'disabled'
     $button.find('.fa-spin').fadeIn 'fast'
     $button.find('.glyphicon').hide()
@@ -54,7 +54,7 @@ class Caesars.Cart
     $('.cart-button .cart-dropdown li').last().before(xhr.responseText).prev().hide().slideDown 'slow'
     $('.cart .cart-dropdown li').last().before(xhr.responseText).prev().hide().slideDown 'slow'
     @reload_price()
-    $button = $('.cart .btn.add')
+    $button = $('.cart-item .btn.add')
     $button.removeClass 'disabled'
     $button.find('.fa-spin').fadeOut 'fast', ->
       $button.find('.glyphicon').show()
