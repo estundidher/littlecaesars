@@ -44,6 +44,13 @@ $(document).on('ready page:load', function () {
 
 var Application = {
 
+  bind_tabs: function() {
+    $('.nav-pills a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
+  },
+
   bind_dateTimePickers: function() {
    return $('.datetimepicker_timer').datetimepicker({
         pickDate: false

@@ -10,30 +10,42 @@
   <div class="container">
     <!-- Gallery elements with pretty photo -->
     <div class="gallery-content">
-      <% Category.with_shoppable_products.each do |category| %>
-        <%= link_to category_path(category), {title: category.name} do %>
-          <h3><%= category.name %></h3>
-        <% end %>
-        <div class="row">
 
-          <% category.products.shoppable.each do |product| %>
-            <div class="col-md-3 col-sm-4">
-              <!-- Separate gallery element -->
-              <div class="element">
-                <!-- Image -->
-                <%= image_tag product.photo.url(:large),
-                    class: 'img-responsive img-thumbnail', alt: product.describe %>
-                <!-- Gallery Image Hover Effect -->
-                <span class="gallery-img-hover"></span>
-                <!-- Gallery Image Hover Icon -->
-                <%= link_to product.photo.url(:large), class:'gallery-img-link' do %>
-                  <i class="fa fa-search-plus hover-icon icon-left unique"></i>
-                <% end %>
-              </div>
+      <ul class="nav nav-pills">
+        <% Category.with_shoppable_products.each_with_index do |category, index| %>
+          <li class="<%= 'active' if index == 0 %>">
+            <a href="#<%= category.to_param %>" data-toggle="pill"><%= category.name %></a>
+          </li>
+        <% end %>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <% Category.with_shoppable_products.each_with_index do |category, index| %>
+          <div class="tab-pane fade<%= ' in active' if index == 0 %>" id="<%= category.to_param %>">
+            <br>
+            <div class="row">
+              <% category.products.shoppable.each do |product| %>
+                <div class="col-md-3 col-sm-4">
+                  <!-- Separate gallery element -->
+                  <div class="element">
+                    <!-- Image -->
+                    <%= image_tag product.photo.url(:large),
+                        class: 'img-responsive img-thumbnail', alt: product.describe %>
+                    <!-- Gallery Image Hover Effect -->
+                    <span class="gallery-img-hover"></span>
+                    <!-- Gallery Image Hover Icon -->
+                    <%= link_to product.photo.url(:large), class:'gallery-img-link' do %>
+                      <i class="fa fa-search-plus hover-icon icon-left unique"></i>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
             </div>
-          <% end %>
-        </div>
-      <% end %>
+          </div>
+        <% end %>
+      </div>
+
     </div><!-- Separate gallery element --><!--/ End Gallery content class -->
   </div>
 </div>
