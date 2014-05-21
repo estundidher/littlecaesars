@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'shopping/product/:id', to: 'home#product',  as: :product
   get 'pick_up',              to: 'home#pick_up',  as: :pick_up
   get 'about',                to: 'home#about',    as: :about
+  get 'menu',                 to: 'home#menu',     as: :menu
 
   #cart
   get 'cart/add/:product_id',                to: 'cart#modal',      as: :cart_new_item

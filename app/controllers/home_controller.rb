@@ -26,6 +26,9 @@ class HomeController < ApplicationController
   def about
   end
 
+  def menu
+  end
+
 private
     # Use callbacks to share common setup or constraints between actions.
   def set_product

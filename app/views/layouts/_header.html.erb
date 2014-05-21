@@ -91,45 +91,21 @@
                   <ul class="dropdown-menu dropdown-md">
                     <li>
                       <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                          <!-- Menu Item -->
-                          <div class="menu-item">
-                            <!-- Heading -->
-                            <h3>Vegetarian</h3>
-                            <!-- Image -->
-                            <%= image_tag "dish/dish1.jpg", class: 'img-responsive' %>
-                            <!-- Paragraph -->
-                            <p>Sea nut perspicacity under omni piste natures mirror of there with consequent.</p>
-                            <!-- Button -->
-                            <a href="menu.html" class="btn btn-danger btn-xs">View Menu</a>
+
+                        <% Category.with_shoppable_products.each do |category| %>
+                          <div class="col-md-2 col-sm-2">
+                            <!-- Menu Item -->
+                            <div class="menu-item">
+                              <!-- Heading -->
+                              <h3><%= category.name %></h3>
+                              <!-- Image -->
+                              <%= image_tag "dish/dish1.jpg", class: 'img-responsive' %>
+                              <!-- Button -->
+                              <%= link_to 'View Menu', menu_path, class:'btn btn-danger btn-xs' %>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                          <!-- Menu Item -->
-                          <div class="menu-item">
-                            <!-- Heading -->
-                            <h3>Non-Vegetarian</h3>
-                            <!-- Image -->
-                            <%= image_tag "dish/dish2.jpg", class: 'img-responsive' %>
-                            <!-- Paragraph -->
-                            <p>Sea nut perspicacity under omni piste natures mirror as precode consequent.</p>
-                            <!-- Button -->
-                            <a href="menu.html" class="btn btn-danger btn-xs">View Menu</a>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <!-- Menu Item -->
-                          <div class="menu-item">
-                            <!-- Heading -->
-                            <h3>Special Menu</h3>
-                            <!-- Image -->
-                            <%= image_tag "dish/dish3.jpg", class: 'img-responsive' %>
-                            <!-- Paragraph -->
-                            <p>Sea nut perspicacity under omni piste natures mirror consequent.</p>
-                            <!-- Button -->
-                            <a href="menu.html" class="btn btn-danger btn-xs">View Menu</a>
-                          </div>
-                        </div>
+                        <% end %>
+
                       </div>
                     </li>
                   </ul>
