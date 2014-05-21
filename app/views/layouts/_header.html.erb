@@ -46,7 +46,7 @@
 
     <div class="row">
 
-      <div class="col-md-4 col-sm-5">
+      <div class="col-md-3 col-sm-3">
         <!-- Link -->
         <%= link_to root_path do %>
           <!-- Logo area -->
@@ -61,19 +61,10 @@
         <% end %>
       </div>
 
-      <div class="col-md-8 col-sm-7">
+      <div class="col-md-9 col-sm-9" style="padding-right: 0px;">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-right" role="navigation">
           <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -91,7 +82,6 @@
                   <ul class="dropdown-menu dropdown-md">
                     <li>
                       <div class="row">
-
                         <% Category.with_shoppable_products.each do |category| %>
                           <div class="col-md-2 col-sm-2">
                             <!-- Menu Item -->
@@ -105,7 +95,6 @@
                             </div>
                           </div>
                         <% end %>
-
                       </div>
                     </li>
                   </ul>
@@ -113,9 +102,11 @@
                 <li class="dropdown visible-xs">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="menu.html">Vegetarian</a></li>
-                    <li><a href="menu.html">Non Vegetarian</a></li>
-                    <li><a href="menu.html">Special Menu</a></li>
+                    <% Category.with_shoppable_products.each do |category| %>
+                      <li>
+                        <%= link_to category.name, menu_path %>
+                      </li>
+                    <% end %>
                   </ul>
                 </li>
                 <li>
@@ -129,8 +120,23 @@
                   <% end %>
                 </li>
                 <li>
+                  <a href="http://theoandco.net/" target="_blank">
+                    <%= image_tag "nav-menu/nav6.jpg", class: 'img-responsive' %> Theo & Co
+                  </a>
+                </li>
+                <li>
+                  <a href="http://pizzaperfector.com/" target="_blank">
+                    <%= image_tag "nav-menu/nav10.jpg", class: 'img-responsive' %> Pizza Perfector
+                  </a>
+                </li>
+                <li>
                   <%= link_to about_path do %>
-                    <%= image_tag "nav-menu/nav6.jpg", class: 'img-responsive' %> About
+                    <%= image_tag "nav-menu/nav11.jpg", class: 'img-responsive' %> About
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to contact_path do %>
+                    <%= image_tag "nav-menu/nav12.jpg", class: 'img-responsive' %> Contact Us
                   <% end %>
                 </li>
               </ul>
