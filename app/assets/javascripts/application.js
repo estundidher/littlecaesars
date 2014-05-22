@@ -29,6 +29,7 @@
 //= require cart_modal
 //= require cart_button
 //= require cart_toppings
+//= require menu
 //= require turbolinks
 
 $(document).on('ready page:load', function () {
@@ -39,7 +40,6 @@ $(document).on('ready page:load', function () {
   Application.bind_scroolToTop();
   Application.bind_carousel();
   Application.bind_tabs();
-  Application.bind_prettyPhoto();
 });
 
 var Application = {

@@ -336,12 +336,36 @@ table { background: #fff; }
  */
 
 .header .navbar-default .navbar-nav > li ul.dropdown-md {
-    width: 900px;
+    width: 600px;
     padding: 15px;
     padding-bottom: 0px;
 }
 
-.header .navbar-default .navbar-nav > li ul.dropdown-md .menu-item {    margin-bottom: 15px; }
+
+
+/*
+ HACK ******************************************************************************************************************
+ */
+
+
+.header .navbar-default .navbar-nav > li ul.dropdown-md.categories {
+    width: 820px !important;
+}
+
+.dropdown-menu.categories:after,
+.dropdown-menu.categories:before {
+    left: 380px;
+}
+
+@media (min-width: 768px) {
+  .navbar-right .dropdown-menu.categories {
+    left: -350px !important;
+    right: 0;
+  }
+}
+
+
+.header .navbar-default .navbar-nav > li ul.dropdown-md .menu-item { margin-bottom: 15px; }
 
 .header .navbar-default .navbar-nav > li ul.dropdown-md h3 {
     margin: 0;
@@ -1058,18 +1082,34 @@ table { background: #fff; }
 .gallery-content .element:hover i.icon-right { left: 50%; }
 
 /*
- * PrettyPhoto
- */
-
-div.ppt { display:none !important; }
-
-/*
  * Inner pages CSS
  */
 
 .banner {
     background: image-url('banner.jpg') center center repeat-x;
     text-align: center;
+}
+
+$banner_url: 'http://caesars-prod.s3.amazonaws.com/assets/banner/';
+
+.banner.about {
+    background: url($banner_url + 'about.jpg') center center repeat-x;
+}
+
+.banner.menu {
+    background: url($banner_url + 'menu.jpg') center center repeat-x;
+}
+
+.banner.order_online {
+    background: url($banner_url + 'order_online.jpg') center center repeat-x;
+}
+
+.banner.pick_up {
+    background: url($banner_url + 'pick_up.jpg') center center repeat-x;
+}
+
+.banner.contact {
+    background: url($banner_url + 'contact.jpg') center center repeat-x;
 }
 
 .banner img { margin: 0 auto; margin-bottom: 10px; }
@@ -2223,16 +2263,9 @@ div.ppt { display:none !important; }
     .inner-page .blog .sidebar-widget{ margin-top: 30px; margin-bottom: 0; }
 }
 
-@media (min-width: 768px) {
-  .navbar-right .dropdown-menu {
-    left: -500px !important;
-    right: 0;
-  }
-  .navbar-right .dropdown-menu-left {
-    left: 0;
-    right: auto;
-  }
+@media (max-width: 1200px){
 }
 
-@media (max-width: 1200px){
+.gallery-content .nav-pills > li, .shopping-content .nav-pills > li {
+  width: 14%;
 }

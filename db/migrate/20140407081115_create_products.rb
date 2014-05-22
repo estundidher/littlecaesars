@@ -15,7 +15,7 @@ class CreateProducts < ActiveRecord::Migration
     end
 
     add_index :products, :name, unique: true
-    add_foreign_key :products, :users, column: 'created_by'
-    add_foreign_key :products, :users, column: 'updated_by'
+    add_foreign_key :products, :users, column: :created_by
+    add_foreign_key :products, :users, column: :updated_by
   end
 end

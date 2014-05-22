@@ -84,22 +84,24 @@
                     <%= image_tag "nav-menu/nav2.jpg", class: 'img-responsive' %> Menu
                     <b class="caret"></b>
                   </a>
-                  <ul class="dropdown-menu dropdown-md">
+                  <ul class="dropdown-menu dropdown-md categories">
                     <li>
                       <div class="row">
-                        <% Category.with_shoppable_products.each do |category| %>
-                          <div class="col-md-2 col-sm-2">
-                            <!-- Menu Item -->
-                            <div class="menu-item">
-                              <!-- Heading -->
-                              <h3><%= category.name %></h3>
-                              <!-- Image -->
-                              <%= image_tag "dish/dish1.jpg", class: 'img-responsive' %>
-                              <!-- Button -->
-                              <%= link_to 'View Menu', menu_path, class:'btn btn-danger btn-xs' %>
+                        <div class="col-md-12 col-sm-12">
+                          <% Category.with_shoppable_products.each do |category| %>
+                            <div style="width: 100px; display:inline-block;margin-right: 10px;">
+                              <!-- Menu Item -->
+                              <div class="menu-item">
+                                <!-- Heading -->
+                                <h3><%= category.name %></h3>
+                                <!-- Image -->
+                                <%= image_tag "dish/dish1.jpg", class: 'img-responsive' %>
+                                <!-- Button -->
+                                <%= link_to 'View Menu', menu_path(category), class:'btn btn-danger btn-xs' %>
+                              </div>
                             </div>
-                          </div>
-                        <% end %>
+                          <% end %>
+                        </div>
                       </div>
                     </li>
                   </ul>
@@ -115,7 +117,7 @@
                   </ul>
                 </li>
                 <li>
-                  <%= link_to shopping_path do %>
+                  <%= link_to order_online_path do %>
                     <%= image_tag 'nav-menu/nav3.jpg', class: 'img-responsive' %> Order Online
                   <% end %>
                 </li>

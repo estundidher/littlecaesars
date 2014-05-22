@@ -8,13 +8,13 @@ Rails.application.routes.draw do
   root 'home#index'
 
   #home
-  get 'order_online/:id',     to: 'home#category', as: :category
-  get 'order_online',         to: 'home#shopping', as: :shopping
-  get 'contact',              to: 'home#contact',  as: :contact
+  get 'order_online/:id',     to: 'home#category',     as: :category
+  get 'order_online',         to: 'home#order_online', as: :order_online
+  get 'contact',              to: 'home#contact',      as: :contact
   get 'order_online/product/:id', to: 'home#product',  as: :product
-  get 'pick_up',              to: 'home#pick_up',  as: :pick_up
-  get 'about',                to: 'home#about',    as: :about
-  get 'menu',                 to: 'home#menu',     as: :menu
+  get 'pick_up',              to: 'home#pick_up',      as: :pick_up
+  get 'about',                to: 'home#about',        as: :about
+  get 'menu(/:active)',       to: 'home#menu',         as: :menu
 
   #cart
   get 'cart/add/:product_id',                to: 'cart#modal',      as: :cart_new_item
@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     resources :places
     resources :users
     resources :customers
+    resources :chefs
 
     #products
     get 'products/options', to: 'products#options', as: :products_reload_options

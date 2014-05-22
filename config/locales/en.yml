@@ -278,6 +278,7 @@ en:
       opening_hour: Opening Hours
       shift: Shift
       user: User
+      chef: Chef
       customer: Customer
       cart: Cart
       cart_item: Cart Item
@@ -342,6 +343,15 @@ en:
         email: Email
         password: Password
         confirm: Confirm
+      chef:
+        name: Name
+        position: Position
+        facebook: Facebook
+        twitter: Twitter
+        plus: Google Plus
+        pinterest: Pinterest
+        avatar: Avatar
+        background: Background
       cart:
         customer: Customer
         status: Status

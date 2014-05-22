@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519143103) do
+ActiveRecord::Schema.define(version: 20140522090702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,25 @@ ActiveRecord::Schema.define(version: 20140519143103) do
   create_table "categories_products", id: false, force: true do |t|
     t.integer "category_id", null: false
     t.integer "product_id",  null: false
+  end
+
+  create_table "chefs", force: true do |t|
+    t.string   "name",                    null: false
+    t.string   "position",                null: false
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "pinterest"
+    t.string   "plus"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "background_file_name"
+    t.string   "background_content_type"
+    t.integer  "background_file_size"
+    t.datetime "background_updated_at"
+    t.integer  "created_by",              null: false
+    t.integer  "updated_by"
   end
 
   create_table "customers", force: true do |t|
@@ -237,6 +256,9 @@ ActiveRecord::Schema.define(version: 20140519143103) do
 
   add_foreign_key "categories_products", "categories", name: "categories_products_category_id_fk"
   add_foreign_key "categories_products", "products", name: "categories_products_product_id_fk"
+
+  add_foreign_key "chefs", "users", name: "chefs_created_by_fk", column: "created_by"
+  add_foreign_key "chefs", "users", name: "chefs_updated_by_fk", column: "updated_by"
 
   add_foreign_key "opening_hours", "places", name: "opening_hours_place_id_fk"
   add_foreign_key "opening_hours", "users", name: "opening_hours_created_by_fk", column: "created_by"

@@ -1,3 +1,4 @@
+<% content_for :banner, 'about' %>
 <% content_for :page_title, 'About' %>
 <% content_for :page_description, 'In 1996 Little Caesars Pizzeria, in Mundaring, Western Australia was born. Run as a family business by Theo Kalogeracos and his wife Elizabeth, the restaurant is a huge success.' %>
 <% content_for :page_keywords, 'Pizza' %>
@@ -18,6 +19,13 @@
             <!-- About Company Image -->
             <%= image_tag 'chef/about-1.jpg', class: 'img-responsive img-thumbnail' %>
           </div>
+        </div>
+        <br >
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12 thumbnail">
+            <iframe src="//player.vimeo.com/video/46218719" width="575" height="325" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+
         </div>
         <div class="row about-company-item">
           <div class="col-md-6 col-sm-6 col-xs-6">
@@ -62,6 +70,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <!-- About Compnay Item -->
         <div class="about-company-item">
@@ -82,90 +91,60 @@
   </div>
 </div>
 
-<!-- Chefs Start -->
-<div class="chefs padd">
-  <div class="container">
-    <!-- Default Heading -->
-    <div class="default-heading">
-      <!-- Crown image -->
-      <%= image_tag 'crown.png', class: 'img-responsive' %>
-      <!-- Heading -->
-      <h2>Our Masters</h2>
-      <!-- Paragraph -->
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
+<% if @chefs.any? %>
+  <!-- Chefs Start -->
+  <div class="chefs padd">
+    <div class="container">
+      <!-- Default Heading -->
+      <div class="default-heading">
+        <!-- Crown image -->
+        <%= image_tag 'crown.png', class: 'img-responsive' %>
+        <!-- Heading -->
+        <h2>Our Masters</h2>
+        <!-- Paragraph -->
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="row">
+        <% @chefs.each do |chef| %>
+          <div class="col-md-4 col-sm-4">
+            <!-- Chef Member -->
+            <div class="chefs-member">
+              <!-- Chefs member header -->
+              <div class="chefs-head">
+                <!-- Member background image -->
+                <%= image_tag chef.background.url(:large), class: 'chefs-back img-responsive', alt: chef.name %>
+                <!-- chef member image -->
+                <%= image_tag chef.avatar.url(:large), class: 'chefs-img img-responsive', alt: chef.name %>
+              </div>
+              <!--Name / Heading -->
+              <h3> <%= chef.name %> </h3>
+              <!-- Member designation -->
+              <span> <%= chef.position %> </span>
+              <!-- Social media links -->
+              <div class="social">
 
-    <div class="row">
-      <div class="col-md-4 col-sm-4">
-        <!-- Chef Member -->
-        <div class="chefs-member">
-          <!-- Chefs member header -->
-          <div class="chefs-head">
-            <!-- Member background image -->
-            <%= image_tag 'chef/c-back2.jpg', class: 'chefs-back img-responsive' %>
-            <!-- chef member image -->
-            <%= image_tag 'chef/4.jpg', class: 'chefs-img img-responsive' %>
+                <%= link_to chef.facebook, class:'facebook', target:'_blank' do %>
+                  <i class="fa fa-facebook"></i>
+                <% end unless chef.facebook.nil? %>
+
+                <%= link_to chef.plus, class:'google-plus', target:'_blank' do %>
+                  <i class="fa fa-google-plus"></i>
+                <% end unless chef.plus.nil? %>
+
+                <%= link_to chef.twitter, class:'twitter', target:'_blank' do %>
+                  <i class="fa fa-twitter"></i>
+                <% end unless chef.twitter.nil? %>
+
+                <%= link_to chef.pinterest, class:'pinterest', target:'_blank' do %>
+                  <i class="fa fa-pinterest"></i>
+                <% end unless chef.pinterest.nil? %>
+
+              </div>
+            </div>
           </div>
-          <!--Name / Heading -->
-          <h3><a href="#">Venison Gorky</a></h3>
-          <!-- Member designation -->
-          <span>Master Incharge</span>
-          <!-- Social media links -->
-          <div class="social">
-            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-            <a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-4">
-        <!-- Chef Member -->
-        <div class="chefs-member">
-          <!-- Chefs member header -->
-          <div class="chefs-head">
-            <!-- Member background image -->
-            <%= image_tag 'chef/c-back1.jpg', class: 'chefs-back img-responsive' %>
-            <!-- chef member image -->
-            <%= image_tag 'chef/7.jpg', class: 'chefs-img img-responsive' %>
-          </div>
-          <!--Name / Heading -->
-          <h3><a href="#">Million Carey</a></h3>
-          <!-- Member designation -->
-          <span>Master Incharge</span>
-          <!-- Social media links -->
-          <div class="social">
-            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-            <a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-4">
-        <!-- Chef Member -->
-        <div class="chefs-member">
-          <!-- Chefs member header -->
-          <div class="chefs-head">
-            <!-- Member background image -->
-            <%= image_tag 'chef/c-back3.jpg', class: 'chefs-back img-responsive' %>
-            <!-- chef member image -->
-            <%= image_tag 'chef/2.jpg', class: 'chefs-img img-responsive' %>
-          </div>
-          <!--Name / Heading -->
-          <h3><a href="#">Juliet Watson</a></h3>
-          <!-- Member designation -->
-          <span>Master Incharge</span>
-          <!-- Social media links -->
-          <div class="social">
-            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-            <a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
-</div>
-<!-- Chefs End -->
+  <!-- Chefs End -->
+<% end %>

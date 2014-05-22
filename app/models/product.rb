@@ -1,6 +1,8 @@
 class Product < ActiveRecord::Base
   include Auditable, Touchable
 
+  before_update :destroy_prices
+
   scope :not_additionable_nor_shoppable, -> (except = nil, categories = nil) {
 
     query = where(enabled:true)
@@ -158,6 +160,12 @@ class Product < ActiveRecord::Base
       else
         self.description
       end
+    end
+  end
+
+  def destroy_prices
+    unless self.type.sizable?
+      self.prices.delete_all
     end
   end
 

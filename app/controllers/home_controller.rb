@@ -7,8 +7,7 @@ class HomeController < ApplicationController
     render layout:'generic'
   end
 
-  def shopping
-
+  def order_online
   end
 
   def category
@@ -24,6 +23,7 @@ class HomeController < ApplicationController
   end
 
   def about
+    @chefs = Chef.order(:name)
   end
 
   def menu

@@ -1,7 +1,7 @@
  <% content_for :content_top do %>
 
     <!-- Banner Start -->
-    <div class="banner padd">
+    <div class="banner <%= yield :banner %> padd">
       <div class="container">
         <!-- Image -->
         <%= image_tag "crown-white.png", class: 'img-responsive' %>

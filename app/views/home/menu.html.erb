@@ -1,3 +1,4 @@
+<% content_for :banner, 'menu' %>
 <% content_for :page_title, 'Menu' %>
 <% content_for :page_description, 'Choose your pizza!' %>
 <% content_for :page_keywords, 'Menu' %>
@@ -8,12 +9,13 @@
 
 <div class="gallery">
   <div class="container">
+
     <!-- Gallery elements with pretty photo -->
     <div class="gallery-content">
 
-      <ul class="nav nav-pills">
+      <ul class="nav nav-pills" data-active="<%= params[:active] %>">
         <% Category.with_shoppable_products.each_with_index do |category, index| %>
-          <li class="<%= 'active' if index == 0 %>">
+          <li class="<%= 'active' if is_tab_active(category, params[:active], index) %>">
             <a href="#<%= category.to_param %>" data-toggle="pill"><%= category.name %></a>
           </li>
         <% end %>
@@ -22,7 +24,8 @@
       <!-- Tab panes -->
       <div class="tab-content">
         <% Category.with_shoppable_products.each_with_index do |category, index| %>
-          <div class="tab-pane fade<%= ' in active' if index == 0 %>" id="<%= category.to_param %>">
+          <div class="tab-pane fade<%= ' in active' if is_tab_active(category, params[:active], index) %>"
+            id="<%= category.to_param %>">
             <br>
             <div class="row">
               <% category.products.shoppable.each do |product| %>
@@ -30,14 +33,17 @@
                   <!-- Separate gallery element -->
                   <div class="element">
                     <!-- Image -->
-                    <%= image_tag product.photo.url(:large),
-                        class: 'img-responsive img-thumbnail', alt: product.describe %>
+                    <%= image_tag product.photo.url(:medium),
+                        class: 'img-responsive img-thumbnail', alt: product.name %>
                     <!-- Gallery Image Hover Effect -->
                     <span class="gallery-img-hover"></span>
                     <!-- Gallery Image Hover Icon -->
-                    <%= link_to product.photo.url(:large), class:'gallery-img-link' do %>
+                    <a href="JavaScript:void(0);"
+                      data-title="<%= product.name %>"
+                      data-description="<%= product.describe %>"
+                      data-url="<%= product.photo.url(:large) %>">
                       <i class="fa fa-search-plus hover-icon icon-left unique"></i>
-                    <% end %>
+                    </a>
                   </div>
                 </div>
               <% end %>

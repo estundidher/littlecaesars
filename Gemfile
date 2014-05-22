@@ -27,6 +27,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 # picture upload
 gem 'paperclip', github: 'thoughtbot/paperclip'
 
+gem 'validate_url'
+
 # pagination..
 gem 'kaminari'
 
