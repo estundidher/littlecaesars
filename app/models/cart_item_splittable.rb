@@ -1,5 +1,7 @@
 class CartItemSplittable < CartItem
 
+  after_destroy :destroy_halfs
+
   belongs_to :first_half,
              class_name: 'CartItemSizableAdditionable',
              foreign_key: :first_half_id,
@@ -23,6 +25,11 @@ class CartItemSplittable < CartItem
             presence: true
 
   validate :product_quantitable?
+
+  def destroy_halfs
+    self.first_half.destroy
+    self.second_half.destroy
+  end
 
   def product_quantitable?
     if self.first_half.instance_of?(CartItemQuantitable) or self.second_half.instance_of?(CartItemQuantitable)

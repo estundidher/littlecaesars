@@ -74,6 +74,11 @@
                     <%= image_tag 'nav-menu/nav1.jpg', class: 'img-responsive' %> Home
                   <% end %>
                 </li>
+                <li>
+                  <%= link_to about_path do %>
+                    <%= image_tag "nav-menu/nav11.jpg", class: 'img-responsive' %> About Us
+                  <% end %>
+                </li>
                 <li class="dropdown hidden-xs">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <%= image_tag "nav-menu/nav2.jpg", class: 'img-responsive' %> Menu
@@ -111,12 +116,17 @@
                 </li>
                 <li>
                   <%= link_to shopping_path do %>
-                    <%= image_tag 'nav-menu/nav3.jpg', class: 'img-responsive' %> Shop
+                    <%= image_tag 'nav-menu/nav3.jpg', class: 'img-responsive' %> Order Online
                   <% end %>
                 </li>
                 <li class="dropdown">
                   <%= link_to pick_up_path do %>
-                    <%= image_tag "nav-menu/nav5.jpg", class: 'img-responsive' %> Pick up
+                    <%= image_tag "nav-menu/nav5.jpg", class: 'img-responsive' %> Pick Up
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to contact_path do %>
+                    <%= image_tag "nav-menu/nav12.jpg", class: 'img-responsive' %> Contact Us
                   <% end %>
                 </li>
                 <li>
@@ -128,16 +138,6 @@
                   <a href="http://pizzaperfector.com/" target="_blank">
                     <%= image_tag "nav-menu/nav10.jpg", class: 'img-responsive' %> Pizza Perfector
                   </a>
-                </li>
-                <li>
-                  <%= link_to about_path do %>
-                    <%= image_tag "nav-menu/nav11.jpg", class: 'img-responsive' %> About
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to contact_path do %>
-                    <%= image_tag "nav-menu/nav12.jpg", class: 'img-responsive' %> Contact Us
-                  <% end %>
                 </li>
               </ul>
             </div><!-- /.navbar-collapse -->
