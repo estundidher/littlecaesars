@@ -40,9 +40,17 @@ $(document).on('ready page:load', function () {
   Application.bind_scroolToTop();
   Application.bind_carousel();
   Application.bind_tabs();
+  Application.bind_spinnable();
 });
 
 var Application = {
+
+  bind_spinnable: function() {
+    $('.spinnable').click(function (e) {
+      $(this).addClass('disabled').find('.glyphicon').hide();
+      $(this).find('.fa-spin').fadeIn('fast');
+    })
+  },
 
   bind_tabs: function() {
     $('.nav-pills a').click(function (e) {

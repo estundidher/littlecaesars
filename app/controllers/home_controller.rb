@@ -17,6 +17,17 @@ class HomeController < ApplicationController
   end
 
   def contact
+    @contact = Contact.new
+  end
+
+  def send_message
+    @contact = Contact.new contact_params
+    if @contact.valid?
+      ContactMailer.request_info(@contact.name, @contact.email, @contact.message).deliver
+      flash[:success] = 'Message sent!'
+      @contact = Contact.new
+    end
+    render 'contact'
   end
 
   def pick_up
@@ -36,5 +47,11 @@ private
   end
   def set_category
     @category = Category.find(params[:id])
+  end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def contact_params
+    params.require(:contact).permit :name,
+                                    :email,
+                                    :message
   end
 end

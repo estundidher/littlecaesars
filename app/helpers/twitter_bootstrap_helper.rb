@@ -15,8 +15,8 @@ module TwitterBootstrapHelper
 		end
 	end
 
-	def tb_show_errors_for model
-		render 'layouts/form_errors', model:model
+	def tb_show_errors_for model, message = nil
+		render 'layouts/form_errors', model:model, message:message
 	end
 
 	def tb_submit model = nil, message = nil, className = 'btn btn-primary btn-sm'

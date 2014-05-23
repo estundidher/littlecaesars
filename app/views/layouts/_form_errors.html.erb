@@ -2,7 +2,12 @@
   <div class="alert alert-danger alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <strong>
-      <%= pluralize(model.errors.count, "error") %> prohibited this <%= model.class.name %> from being saved:
+      <%= pluralize(model.errors.count, "error") %>
+      <% if defined?(message) and !message.nil? %>
+        <%= message %>
+      <% else %>
+        prohibited this <%= model.model_name.human %> from being saved:
+      <% end %>
     </strong>
     <ul>
     <% model.errors.full_messages.each do |msg| %>
