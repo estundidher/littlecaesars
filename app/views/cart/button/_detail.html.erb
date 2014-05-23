@@ -1,6 +1,6 @@
 <%= "#{label} " unless label.nil? %><%= cart_item.name %>
 <ul>
-  <% if size %>
+  <% if show_size %>
     <li>
       <%= "#{cart_item.quantity} x" if cart_item.quantitable? %>
       &nbsp<%= number_to_currency cart_item.product_price %>

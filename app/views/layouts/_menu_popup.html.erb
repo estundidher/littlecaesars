@@ -10,7 +10,7 @@
                 <!-- Heading -->
                 <h3><%= category.name %></h3>
                 <!-- Image -->
-                <%= image_tag category.photo.url(:large), class: 'img-responsive', alt: category.name %>
+                <%= image_tag category.photo.url(:medium), class: 'img-responsive', alt: category.name %>
                 <!-- Button -->
                 <%= link_to 'View Menu', menu_path(category), class:'btn btn-danger btn-xs' %>
               </div>

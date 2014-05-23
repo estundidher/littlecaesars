@@ -1,5 +1,5 @@
 <% if defined?(product) && !product.nil? %>
-  <h4 style="text-align: <%= align %>">
+  <h4 style="text-align: <%= align %>;<%= 'padding-top: 37px;' if align == 'right' %>">
     <%= label if defined?(label) %>
     <span class="<%= splitter if defined?(splitter) %> product">
       <%= product.name %>
