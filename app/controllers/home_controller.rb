@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     render layout:'generic'
   end
 
-  def order_online
+  def order
   end
 
   def category

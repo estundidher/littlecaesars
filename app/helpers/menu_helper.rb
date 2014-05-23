@@ -8,4 +8,10 @@ module MenuHelper
     end
   end
 
+  def menu_popup_cache_key
+    count          = Product.shoppable(nil, nil, nil, nil).count
+    max_updated_at = Product.shoppable(nil, nil, nil, nil).maximum(:updated_at).try(:utc).try(:to_s, :number)
+    "menu_popup/ramdon/#{rand(1..10)}/#{count}-#{max_updated_at}"
+  end
+
 end

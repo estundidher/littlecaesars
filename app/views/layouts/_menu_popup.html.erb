@@ -1,0 +1,23 @@
+<% cache menu_popup_cache_key do %>
+  <ul class="dropdown-menu dropdown-md categories">
+    <li>
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <% Category.with_shoppable_products.each do |category| %>
+            <div style="width: 100px; display:inline-block;margin-right: 10px;">
+              <!-- Menu Item -->
+              <div class="menu-item">
+                <!-- Heading -->
+                <h3><%= category.name %></h3>
+                <!-- Image -->
+                <%= image_tag category.photo.url(:large), class: 'img-responsive', alt: category.name %>
+                <!-- Button -->
+                <%= link_to 'View Menu', menu_path(category), class:'btn btn-danger btn-xs' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  </ul>
+<% end %>

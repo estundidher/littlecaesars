@@ -341,30 +341,6 @@ table { background: #fff; }
     padding-bottom: 0px;
 }
 
-
-
-/*
- HACK ******************************************************************************************************************
- */
-
-
-.header .navbar-default .navbar-nav > li ul.dropdown-md.categories {
-    width: 820px !important;
-}
-
-.dropdown-menu.categories:after,
-.dropdown-menu.categories:before {
-    left: 380px;
-}
-
-@media (min-width: 768px) {
-  .navbar-right .dropdown-menu.categories {
-    left: -350px !important;
-    right: 0;
-  }
-}
-
-
 .header .navbar-default .navbar-nav > li ul.dropdown-md .menu-item { margin-bottom: 15px; }
 
 .header .navbar-default .navbar-nav > li ul.dropdown-md h3 {
@@ -2266,6 +2242,26 @@ $banner_url: 'http://caesars-prod.s3.amazonaws.com/assets/banner/';
 @media (max-width: 1200px){
 }
 
+/*
+ CUSTOMIZATIONS *************************************************************************************************
+*/
+
 .gallery-content .nav-pills > li, .shopping-content .nav-pills > li {
   width: 14%;
+}
+
+.header .navbar-default .navbar-nav > li ul.dropdown-md.categories {
+  width: 820px !important;
+}
+
+.dropdown-menu.categories:after,
+.dropdown-menu.categories:before {
+  left: 380px;
+}
+
+@media (min-width: 768px) {
+  .navbar-right .dropdown-menu.categories {
+    left: -350px !important;
+    right: 0;
+  }
 }

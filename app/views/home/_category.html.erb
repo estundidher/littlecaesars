@@ -12,26 +12,15 @@
         <p> <%= product.describe 30 %> </p>
         <% if product.type.sizable? %>
           <% product.prices.each do |price| %>
-            <%= render partial: 'shopping_price', locals: {name: price.size.name, value: price.value} %>
+            <%= render partial: 'shopping_price', locals: {name:price.size.name, value:price.value} %>
           <% end %>
         <% else %>
-          <%= render partial: 'shopping_price', locals: {name: 'Price', value: product.price} %>
+          <%= render partial: 'shopping_price', locals: {name:'Price', value:product.price} %>
         <% end %>
         <!-- Buy now button -->
         <div class="visible-xs">
           <br>
-          <% if customer_signed_in? %>
-            <% if product.type.additionable? %>
-              <%= link_to t('links.add_to', model_name:Cart.model_name.human),
-                  cart_path(product), class: "btn btn-danger btn-sm" %>
-            <% else %>
-              <%= link_to t('links.add_to', model_name:Cart.model_name.human),
-                  cart_new_item_path(product), remote: true, class: "btn btn-danger btn-sm" %>
-            <% end %>
-          <% else %>
-            <%= link_to t('links.add_to', model_name:Cart.model_name.human),
-                new_customer_registration_path, class: "btn btn-danger btn-sm" %>
-          <% end %>
+          <%= add_to_cart_button product %>
         </div>
         <!-- Shopping item hover block & link -->
         <div class="item-hover br-red hidden-xs"></div>

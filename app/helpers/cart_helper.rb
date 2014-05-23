@@ -57,4 +57,19 @@ module CartHelper
       '175x250'
     end
   end
+
+  def add_to_cart_button product
+    if customer_signed_in?
+      if product.type.additionable?
+        link_to t('links.add_to', model_name:Cart.model_name.human),
+            cart_path(product), class: "btn btn-danger btn-sm"
+      else
+        link_to t('links.add_to', model_name:Cart.model_name.human),
+            cart_new_item_path(product), remote: true, class: "btn btn-danger btn-sm"
+      end
+    else
+      link_to t('links.add_to', model_name:Cart.model_name.human),
+          new_customer_registration_path, class: "btn btn-danger btn-sm"
+    end
+  end
 end

@@ -32,4 +32,9 @@ class Category < ActiveRecord::Base
   def to_param
     "#{id}-#{name.parameterize}"
   end
+
+  def photo
+    total = self.products.shoppable.count
+    self.products.shoppable.offset(rand(total)).first.photo
+  end
 end

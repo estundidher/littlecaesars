@@ -4,7 +4,7 @@
 <% content_for :page_keywords, "#{@product.name},#{@product.items_friendly}" %>
 
 <% content_for :breadcrumb do %>
-  <%= tb_breadcrumb 'Shopping' %>
+  <%= tb_breadcrumb 'Order' %>
 <% end %>
 
 <!-- Single Item Start -->
@@ -13,11 +13,11 @@
     <!-- Shopping single item contents -->
     <div class="single-item-content">
       <div class="row">
-        <div class="col-md-4 col-sm-5">
+        <div class="col-md-6 col-sm-6">
           <!-- Product image -->
-          <%= image_tag @product.photo.url(:large), class: 'img-responsive img-thumbnail' %>
+          <%= image_tag @product.photo.url, class: 'img-responsive img-thumbnail', style:'max-width: 570px;' %>
         </div>
-        <div class="col-md-8 col-sm-7">
+        <div class="col-md-6 col-sm-6">
           <!-- Heading -->
           <h3><%= @product.name %></h3>
           <div class="row">
@@ -25,19 +25,13 @@
               <!-- Single item details -->
               <div class="item-details">
                 <!-- Paragraph -->
-                <p class="text-justify"> <%= @product.items_friendly %> </p>
-                <div class="row">
-                  <% Product.shoppable.each do |product| %>
-                    <div class="col-md-3 col-sm-6">
-                      <%= link_to product_path(product) do %>
-                        <%= image_tag product.photo.url(:large), class: 'dish img-responsive' %>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </div>
+                <p class="text-justify">
+                  <%= @product.describe %>
+                </p>
               </div>
             </div>
           </div><!--/ Inner row end  -->
+          <%= add_to_cart_button @product %>
         </div>
       </div>
     </div>
