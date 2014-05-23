@@ -1,5 +1,5 @@
 class ContactMailer < ActionMailer::Base
-  default from: 'rogerio.alcantara@gmail.com'
+  default from: 'info@theoandco.net'
 
   def request_info name, from, message
     @name = name
