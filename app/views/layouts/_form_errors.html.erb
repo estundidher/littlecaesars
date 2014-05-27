@@ -6,7 +6,7 @@
       <% if defined?(message) and !message.nil? %>
         <%= message %>
       <% else %>
-        prohibited this <%= model.model_name.human %> from being saved:
+        prohibited this <%= model.class.model_name.human %> from being saved:
       <% end %>
     </strong>
     <ul>
