@@ -1,8 +1,9 @@
 {
   "name": "caesars",
   "version": "0.0.0",
+  "description": "Caesar Online pizza shop",
   "dependencies": {
-    "bower": "~1.2"
+    "bower": "~1.3"
   },
   "engine": {
     "node": "0.10.x",
@@ -10,5 +11,14 @@
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roalcantara/caesars/caesars.git"
+  },
+  "author": "@roalcantara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roalcantara/caesars/issues"
   }
 }
