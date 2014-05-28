@@ -9,20 +9,19 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+
 //= require jquery
 //= require jquery.turbolinks
-//= require jquery_ujs
-//= require jquery.ui.core
-//= require jquery.ui.widget
-//= require jquery.ui.mouse
-//= require jquery.ui.position
-//= require jquery.ui.autocomplete
-//= require bootstrap/bootstrap
-//= require theme/theme
-//= require meiomask
+//= require jquery-ujs
+//= require bootstrap
+//= require jquery-meiomask/dist/meiomask
+//= require jquery-prettyPhoto/js/jquery.prettyPhoto
 //= require moment
-//= require bootstrap-datetimepicker
+//= require respond
+//= require html5shiv
+//= require eonasdan-bootstrap-datetimepicker
+//= require twitter-bootstrap-wizard/jquery.bootstrap.wizard.min
+
 //= require modal
 //= require cart
 //= require cart_item
@@ -31,6 +30,7 @@
 //= require cart_toppings
 //= require menu
 //= require turbolinks
+//= require wizard
 
 $(document).on('ready page:load', function () {
   Application.bind_checkAll();

@@ -31,6 +31,9 @@
             <div class="form-group <%= tb_has_error @contact, :message %>">
               <%= f.text_area :message, class:'form-control', placeholder:'Message...' %>
             </div>
+
+            <%= recaptcha_tags ajax:true %>
+
             <!-- Form button -->
             <button class="btn btn-danger btn-sm spinnable" type="submit">
               <i class="glyphicon glyphicon-ok-circle"></i>

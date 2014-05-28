@@ -1,0 +1,24 @@
+<center><h1>Choose your Pick Up Store</h1></center>
+<br>
+<div class="row shopping">
+  <% Place.order(:name).each_with_index do |place, index| %>
+    <div class="<%= 'col-md-offset-1 col-sm-offset-1 ' if index == 0 %>col-md-3 col-sm-6">
+      <!-- Shopping items -->
+      <div class="shopping-item place-item">
+        <!-- Image -->
+        <%= image_tag place.photo.url(:large), class: 'img-responsive' %>
+        <!-- Shopping item name / Heading -->
+        <h4 class="pull-left">
+          <a href="item-single.html">
+            <%= place.name %>
+          </a>
+        </h4>
+        <div class="clearfix"></div>
+        <!-- Paragraph -->
+        <p><%= place.address %></p>
+        <div class="clearfix"></div>
+        <p><%= place.description %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

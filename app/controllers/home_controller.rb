@@ -8,6 +8,9 @@ class HomeController < ApplicationController
   end
 
   def order
+    unless customer_signed_in?
+      redirect_to wizard_path
+    end
   end
 
   def category
@@ -22,7 +25,7 @@ class HomeController < ApplicationController
 
   def send_message
     @contact = Contact.new contact_params
-    if @contact.valid?
+    if verify_recaptcha(model: @contact, message:"Oh! It's error with reCAPTCHA!") and @contact.valid?
       ContactMailer.request_info(@contact.name, @contact.email, @contact.message).deliver
       flash[:success] = 'Message sent!'
       @contact = Contact.new

@@ -1,4 +1,3 @@
-@import "../../../vendor/assets/stylesheets/bootstrap/bootstrap.scss";
 @import "../../../vendor/assets/stylesheets/theme/theme.scss";
 
 /************************
@@ -20,11 +19,18 @@ body{
     background: #fff image-url('crossword.png') repeat;
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
+    font-size: 13px;
 }
 
 h1,h2,h3,h4,h5,h6{
     font-family: 'Droid Serif', serif;
     font-weight: 400;
+}
+
+.form-control {
+
+  font-size: 13px;
+  height: 32px;
 }
 
 p{
@@ -2251,7 +2257,8 @@ $banner_url: 'http://caesars-prod.s3.amazonaws.com/assets/banner/';
 }
 
 .header .navbar-default .navbar-nav > li ul.dropdown-md.categories {
-  width: 820px !important;
+  width: 815px !important;
+  padding-right: 0px;
 }
 
 .dropdown-menu.categories:after,
@@ -2267,6 +2274,5 @@ $banner_url: 'http://caesars-prod.s3.amazonaws.com/assets/banner/';
 }
 
 .messages {
-
   padding-top: 20px;
 }

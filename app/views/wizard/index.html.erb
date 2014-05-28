@@ -1,0 +1,71 @@
+<% content_for :banner, 'pick_up' %>
+<% content_for :page_title, 'Pick Up' %>
+
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'Pick Up' %>
+<% end %>
+
+<div class="container padd">
+  <div id="rootwizard">
+
+    <ul>
+      <li><a href="#tab1" data-toggle="tab">Choose your Pick Up Store</a></li>
+      <li><a href="#tab2" data-toggle="tab">Pick Up Date/Time</a></li>
+      <li><a href="#tab3" data-toggle="tab">Sign Up/Sign in</a></li>
+      <li><a href="#tab4" data-toggle="tab">Choose Your Pizza</a></li>
+      <li><a href="#tab5" data-toggle="tab">Check Out</a></li>
+    </ul>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="progress progress-striped">
+          <div id="bar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <span class="sr-only">80% Complete (success)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="tab-content">
+          <div class="tab-pane" id="tab1">
+            <%= render partial:'places' %>
+          </div>
+          <div class="tab-pane" id="tab2">
+            2
+          </div>
+          <div class="tab-pane" id="tab3">
+              3
+          </div>
+          <div class="tab-pane" id="tab4">
+              4
+          </div>
+          <div class="tab-pane" id="tab5">
+              5
+          </div>
+
+          <div class="row" style="padding-top:50px;">
+            <div class="col-md-12 col-sm-12">
+              <div style="float:left">
+                <a href="JavaScript:void(0);" class="btn btn-primary button-previous" role="button">
+                  <i class="glyphicon glyphicon-chevron-left"></i>
+                  Previous
+                </a>
+              </div>
+              <div style="float:right">
+                <a href="JavaScript:void(0);" class="btn btn-primary button-next" role="button">
+                  Next
+                  <i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

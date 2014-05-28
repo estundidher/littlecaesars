@@ -20,9 +20,16 @@ module Caesars
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # add app/vendor/assets/fonts to the asset path
-    config.assets.paths << Rails.root.join('app', 'vendor', 'assets', 'fonts')
-    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower')
+    # Explicitly register the extensions we are interested in compiling
+    #config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+    config.assets.precompile.push(Proc.new do |path|
+      File.extname(path).in? [
+        '.png',  '.gif', '.jpg', '.jpeg', '.svg', # Images
+        '.eot',  '.otf', '.svc', '.woff', '.ttf', # Fonts
+      ]
+    end)
 
     #devise configuration for Heroku
     config.assets.initialize_on_precompile = false

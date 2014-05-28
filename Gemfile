@@ -16,13 +16,15 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
-gem 'jquery-ui-rails', '~> 4.1.1'
-gem 'meiomask-rails', '~> 1.1.12'
+#gem 'jquery-rails'
+#gem 'jquery-ui-rails', '~> 4.1.1'
+#gem 'meiomask-rails', '~> 1.1.12'
 
 # http://eonasdan.github.io/bootstrap-datetimepicker/
-gem 'momentjs-rails', '~> 2.5.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
+#gem 'momentjs-rails', '~> 2.5.0'
+#gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
+
+gem 'recaptcha', require: 'recaptcha/rails'
 
 # picture upload
 gem 'paperclip', github: 'thoughtbot/paperclip'

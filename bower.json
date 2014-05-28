@@ -1,0 +1,32 @@
+{
+  "name": "caesars",
+  "version": "0.0.0",
+  "homepage": "littlecaesars.herokuapp.com",
+  "authors": [
+    "@roalcantara"
+  ],
+  "description": "Online pizza store",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "jquery-ujs": "*",
+    "bootstrap": "~3.1.1",
+    "jquery-prettyPhoto": "*",
+    "eonasdan-bootstrap-datetimepicker": "~3.0.0",
+    "jquery-meiomask": "~1.1.13",
+    "html5shiv": "~3.7.2",
+    "respond": "~1.4.2",
+    "twitter-bootstrap-wizard": "~1.0.0"
+  }
+}

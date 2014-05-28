@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  #wizard
+  get 'wizard',               to: 'wizard#index',      as: :wizard
+
   #home
   get 'order/:id',            to: 'home#category',     as: :category
   get 'order',                to: 'home#order',        as: :order
