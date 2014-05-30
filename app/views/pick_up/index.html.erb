@@ -1,0 +1,61 @@
+<% content_for :banner, 'pick_up' %>
+<% content_for :page_title, 'Pick Up' %>
+
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'Pick Up' %>
+<% end %>
+
+<div class="container pick-up padd">
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div style="float:left">
+        <a class="btn btn-primary btn-lg prev disabled" href="#wizard" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          Previous
+        </a>
+      </div>
+
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-slide-to="0" class="active"></li>
+        <li data-slide-to="1"></li>
+        <li data-slide-to="2"></li>
+      </ol>
+
+      <div style="float:right">
+        <a class="btn btn-primary btn-lg next" href="#wizard" role="button" data-slide="next">
+          Next
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="wizard" class="carousel wrap slide">
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <%= render partial:'places' %>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <%= render partial:'when' %>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <%= render partial:'sign_in' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   #wizard
-  get 'wizard',               to: 'wizard#index',      as: :wizard
+  get 'pick_up',               to: 'pick_up#index',      as: :pick_up
 
   #home
   get 'order/:id',            to: 'home#category',     as: :category
@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get 'contact',              to: 'home#contact',      as: :contact
   post 'contact',             to: 'home#send_message', as: :send_message
   get 'order/product/:id',    to: 'home#product',      as: :product
-  get 'pick_up',              to: 'home#pick_up',      as: :pick_up
   get 'about',                to: 'home#about',        as: :about
   get 'menu(/:active)',       to: 'home#menu',         as: :menu
 

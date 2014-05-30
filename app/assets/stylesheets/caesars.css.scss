@@ -2275,3 +2275,12 @@ $banner_url: 'http://caesars-prod.s3.amazonaws.com/assets/banner/';
 .messages {
   padding-top: 20px;
 }
+
+.pick-up .carousel-indicators li {
+  border: 1px solid #d43f3a;
+  cursor: auto !important;
+}
+
+.pick-up .carousel-indicators .active {
+  background-color: #d43f3a;
+}

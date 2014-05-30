@@ -1,0 +1,46 @@
+<center><h1>Choose the Date and Time</h1></center>
+<br>
+<div class="row" style="min-height:420px;">
+  <div class="col-md-12 col-sm-12">
+
+    <div class="row checkout">
+      <div class="col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
+        <% place = Place.first %>
+        <div class="sidebar-item">
+          <!-- Heading -->
+          <h5 class="pull-left"><%= place.name %></h5>
+          <!-- Sidebar content icon -->
+          <i class="fa fa-truck br-green pull-right"></i>
+          <div class="clearfix"></div>
+          <!-- Sidebar Paragraph -->
+          <p> <%= place.address %> </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
+        <form role="form">
+          <div class="form-group ">
+            <label for="product_type">Order Date</label>
+            <select class="form-control" id="product_product_type_id" name="product[product_type_id]">
+              <option value="">Friday May 30th 2014</option>
+              <option value="5">Saturday May 31th 2014</option>
+              <option value="2">Sunday Jun 1th 2014</option>
+              <option value="1">Monday Jun 2th 2014</option>
+              <option value="3">Tuesday Jun 3th 2014</option></select>
+          </div>
+          <div class="form-group ">
+            <label for="product_type">Order Time</label>
+            <select class="form-control" id="product_product_type_id" name="product[product_type_id]">
+              <option value="5">30 minutes</option>
+              <option value="2">45 minutes</option>
+              <option value="1">1 hour</option>
+              <option value="3">2 hours</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

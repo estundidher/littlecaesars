@@ -30,7 +30,7 @@
 //= require cart_toppings
 //= require menu
 //= require turbolinks
-//= require wizard
+//= require pick_up
 
 $(document).on('ready page:load', function () {
   Application.bind_checkAll();
@@ -114,12 +114,6 @@ var Application = {
     $('.nav-tabs a').click(function (e) {
        e.preventDefault();
        $(this).tab('show');
-    });
-  },
-
-  bind_prettyPhoto: function() {
-    $('.gallery-img-link').prettyPhoto({
-      overlay_gallery: false, social_tools: false
     });
   }
 };

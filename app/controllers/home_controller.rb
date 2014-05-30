@@ -9,7 +9,7 @@ class HomeController < ApplicationController
 
   def order
     unless customer_signed_in?
-      redirect_to wizard_path
+      redirect_to pick_up_path
     end
   end
 
@@ -31,9 +31,6 @@ class HomeController < ApplicationController
       @contact = Contact.new
     end
     render 'contact'
-  end
-
-  def pick_up
   end
 
   def about
