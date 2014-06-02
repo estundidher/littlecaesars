@@ -41,27 +41,21 @@ class Place < ActiveRecord::Base
 
   def dates_available
     from = Date.today
-    to = from + 7.days
+    to = from + 6.days
     dates =* from..to
   end
 
-  def times_available
-    opening_hour = self.opening_hour_of_today
-
-    times = []
-    now = Date.today.strftime('%F')
-
-    opening_hour.shifts.each do |shift|
-
-      from = Time.parse("#{now} #{shift.start_at}")
-      to = Time.parse("#{now} #{shift.end_at}")
-
-      times += (from.to_i..to.to_i).step(15.minutes).to_a.map{ |date| Time.at(date).strftime("%I:%M %p") }
-    end
-    times
+  def times_available time
+    #puts "#{'@'*100}> day.to_s: #{time.to_s}"
+    opening_hour = self.opening_hour_of time
+    opening_hour.times_available time
   end
 
   def opening_hour_of_today
-    self.opening_hours.find{|opening_hour| opening_hour.day_of_week == Date.today.strftime("%A")}
+    opening_hour_of Date.today
+  end
+
+  def opening_hour_of day
+    self.opening_hours.find{|opening_hour| opening_hour.day_of_week == day.strftime("%A")}
   end
 end

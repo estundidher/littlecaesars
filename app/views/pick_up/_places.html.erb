@@ -3,7 +3,7 @@
 <div class="row shopping">
   <% @places.each_with_index do |place, index| %>
     <div class="<%= 'col-md-offset-1 col-sm-offset-1 ' if index == 0 %>col-md-3 col-sm-6">
-      <%= link_to pick_up_when_path(id:place), remote:true do %>
+      <%= link_to pick_up_when_path(place), remote:true do %>
         <!-- Shopping items -->
         <div class="shopping-item place-item">
           <!-- Image -->

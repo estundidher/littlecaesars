@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531083256) do
+ActiveRecord::Schema.define(version: 20140522073934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,10 @@ ActiveRecord::Schema.define(version: 20140531083256) do
     t.string   "twitter"
     t.string   "pinterest"
     t.string   "plus"
+    t.integer  "created_by",              null: false
+    t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -81,11 +85,9 @@ ActiveRecord::Schema.define(version: 20140531083256) do
     t.string   "background_content_type"
     t.integer  "background_file_size"
     t.datetime "background_updated_at"
-    t.integer  "created_by",              null: false
-    t.integer  "updated_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
+
+  add_index "chefs", ["name"], name: "index_chefs_on_name", unique: true, using: :btree
 
   create_table "customers", force: true do |t|
     t.string   "email",                              null: false

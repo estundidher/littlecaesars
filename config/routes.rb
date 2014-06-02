@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   controller :pick_up do
-    get 'pick_up',           to: :index,        as: :pick_up
-    get 'pick_up/:id',       to: :when,         as: :pick_up_when
+    get 'pick_up',                 to: :index,  as: :pick_up
+    get 'pick_up/:place_id',       to: :when,   as: :pick_up_when
+    get 'pick_up/:place_id/:date', to: :times,  as: :pick_up_times
   end
 
   controller :home do
