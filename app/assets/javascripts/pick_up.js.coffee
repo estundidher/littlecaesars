@@ -42,10 +42,12 @@ class Caesars.PickUp
   date_chosen: (e) =>
     console.log "pick up: date_chosen fired! path: " + $(e.target).find('option:selected').data('path')
     if $(e.target).find('option:selected').data('path')
+      $('.pick-up .when .fa-spin').fadeIn 'fast'
       $.get($(e.target).find('option:selected').data('path'))
       .done (response) ->
         console.log 'pick up: date_chosen done fired!'
-        $('.pick-up .when .times').hide().empty().append(response).fadeIn 'fast'
+        $('.pick-up .when .times').hide().empty().append(response).fadeIn 'fast', ->
+          $('.pick-up .when .fa-spin').fadeOut 'fast'
       .fail (jqHXR, textStatus) ->
         alert 'ops..'
 
