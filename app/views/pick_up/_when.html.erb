@@ -28,7 +28,7 @@
           <div class="form-group">
             <label for="product_type">Order Time</label>
             <div class="times">
-              <%= render partial:'/pick_up/times', locals:{times_available:@place.times_available(Time.now)} %>
+              <%= render partial:'/pick_up/times', locals:{times_available:@place.times_available(Time.current)} %>
             </div>
           </div>
         <% end %>

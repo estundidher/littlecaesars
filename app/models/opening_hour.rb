@@ -39,7 +39,7 @@ class OpeningHour < ActiveRecord::Base
     end
 
     if time.to_date == Date.today
-      times = times.reject {|x| x.to_i < Time.now.to_i}
+      times = times.reject {|x| x.to_i < Time.current.to_i}
     end
 
     times.map{ |date| Time.at(date).strftime("%I:%M %p") }
