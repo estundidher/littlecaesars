@@ -12,14 +12,21 @@ class Shift < ActiveRecord::Base
 
   def start_at day=nil
     if(read_attribute(:start_at))
-        day = Date.current if day.nil?
+        if day.nil?
+          day = Date.current
+        end
         Time.zone.parse("#{day.strftime('%F')} #{read_attribute(:start_at)}")
     end
   end
 
   def end_at day=nil
     if(read_attribute(:end_at))
-        day = Date.current if day.nil?
+        if day.nil?
+          day = Date.current
+        end
+        logger.info "Shift ---------> day: '#{day}'"
+        logger.info "Shift ---------> day.strftime('%F'): '#{day.strftime('%F')}'"
+        logger.info "Shift ---------> read_attribute(:end_at): '#{read_attribute(:end_at)}'"
         Time.zone.parse("#{day.strftime('%F')} #{read_attribute(:end_at)}")
     end
   end
