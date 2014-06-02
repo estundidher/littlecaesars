@@ -14,7 +14,7 @@ class PickUpController < ApplicationController
 
   # GET /pick_up/:place_id/:date
   def times
-    render partial:'pick_up/times', locals:{times_available:@place.times_available(Time.parse(params[:date]))}, layout: nil
+    render partial:'pick_up/times', locals:{times_available:@place.times_available(Time.zone.parse(params[:date]))}, layout: nil
   end
 
   private

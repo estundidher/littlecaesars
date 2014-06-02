@@ -31,12 +31,12 @@ class OpeningHour < ActiveRecord::Base
     now = Date.current.strftime('%F')
 
     self.shifts.each do |shift|
-      from = Time.parse("#{now} #{shift.start_at}")
-      to = Time.parse("#{now} #{shift.end_at}")
+      from = Time.zone.parse("#{now} #{shift.start_at}")
+      to = Time.zone.parse("#{now} #{shift.end_at}")
       times += (from.to_i..to.to_i).step(15.minutes).map {|d| Time.zone.at(d)}
-
-      logger.info "Times: #{times}"
     end
+
+    logger.info "Times: #{times}"
 
     logger.info "Time: #{time}, Time.current: #{Time.current}, Date.current: #{Date.current}"
 
