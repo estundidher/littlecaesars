@@ -27,7 +27,8 @@ class Shift < ActiveRecord::Base
         logger.info "Shift ---------> day: '#{day}'"
         logger.info "Shift ---------> day.strftime('%F'): '#{day.strftime('%F')}'"
         logger.info "Shift ---------> read_attribute(:end_at): '#{read_attribute(:end_at)}'"
-        Time.zone.parse("#{day.strftime('%F')} #{read_attribute(:end_at)}")
+        value = Time.zone.parse("#{day.strftime('%F')} #{read_attribute(:end_at)}")
+        logger.info "Shift ---------> Time.zone.parse: '#{value}'"
     end
   end
 
