@@ -1,12 +1,13 @@
-<%= form_for [:admin, opening_hour], html: {role: 'form', id: "opening_hour_form"}, remote: true do |f| %>
+<%= form_for [:admin, opening_hour.place, opening_hour], html:{role: 'form'},
+    data:{add_shift: opening_hour.id ? admin_place_opening_hour_shift_add_path(opening_hour.place, opening_hour) : admin_place_new_opening_hour_shift_add_path(opening_hour.place)}, remote:true do |f| %>
 
   <%= tb_show_errors_for opening_hour %>
 
   <% if opening_hour.id %>
-    <%= f.hidden_field :id, value: opening_hour.id %>
+    <%= f.hidden_field :id, value:opening_hour.id %>
   <% end %>
 
-  <%= f.hidden_field :place_id, value: opening_hour.place_id %>
+  <%= f.hidden_field :place_id, value:opening_hour.place_id %>
 
   <div class="row">
     <div class="form-group col-md-5 <%= tb_has_error opening_hour, :day_of_week %>">
@@ -18,11 +19,9 @@
     </div>
   </div>
 
-  <div id="opening_hour_shifts_container" class="form-group <%= tb_has_error opening_hour, :shifts %>">
+  <div class="form-group shifts <%= tb_has_error opening_hour, :shifts %>">
     <%= f.label :shifts %>
-    <% opening_hour.shifts.each_with_index do |shift, index| %>
-    <%= render 'shift', shift:shift, shift_index: index %>
-    <% end %>
+    <%= render partial:'/admin/shifts/list', locals:{opening_hour:opening_hour} %>
   </div>
 
 <% end %>

@@ -5,7 +5,6 @@
 
     <div class="row checkout">
       <div class="col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
-        <% place = Place.first %>
         <div class="sidebar-item">
           <!-- Heading -->
           <h5 class="pull-left"><%= place.name %></h5>
@@ -20,26 +19,17 @@
 
     <div class="row">
       <div class="col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
-        <form role="form">
-          <div class="form-group ">
+        <%= form_tag pick_up_when_path(id:place) do |f| %>
+          <div class="form-group">
             <label for="product_type">Order Date</label>
-            <select class="form-control" id="product_product_type_id" name="product[product_type_id]">
-              <option value="">Friday May 30th 2014</option>
-              <option value="5">Saturday May 31th 2014</option>
-              <option value="2">Sunday Jun 1th 2014</option>
-              <option value="1">Monday Jun 2th 2014</option>
-              <option value="3">Tuesday Jun 3th 2014</option></select>
+            <%= select_tag(:date, options_for_select(place.dates_available.map {|d| [d.strftime("%A %d %B %Y"), d] }),
+                class:'form-control') %>
           </div>
-          <div class="form-group ">
+          <div class="form-group">
             <label for="product_type">Order Time</label>
-            <select class="form-control" id="product_product_type_id" name="product[product_type_id]">
-              <option value="5">30 minutes</option>
-              <option value="2">45 minutes</option>
-              <option value="1">1 hour</option>
-              <option value="3">2 hours</option>
-            </select>
+            <%= select_tag(:time, options_for_select(place.times_available), class:'form-control') %>
           </div>
-        </form>
+        <% end %>
       </div>
     </div>
   </div>

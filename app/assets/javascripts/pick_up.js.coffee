@@ -13,6 +13,8 @@ class Caesars.PickUp
 
   bind: ->
     @$carousel.on 'slid.bs.carousel', @slide
+    @$carousel.on 'ajax:before', '.places a', @place_chosen_before
+    @$carousel.on 'ajax:success', '.places a', @place_chosen_success
 
   slide: =>
     $idx = @$carousel.find('.item.active').index();
@@ -34,6 +36,15 @@ class Caesars.PickUp
       $next.addClass 'disabled'
     else if $idx == 0
       $prev.addClass 'disabled'
+
+  place_chosen_before: (e, data, status, xhr) =>
+    console.log "pick up: .places a 'ajax:before' fired!"
+
+  place_chosen_success: (e, data, status, xhr) =>
+    console.log "pick up: .places a 'ajax:success' fired!"
+
+    $('.pick-up .carousel .when').empty().append(xhr.responseText).fadeIn 'fast', ->
+      $('.pick-up .carousel').carousel 'next'
 
 create_pick_up = ->
   window.Caesars.pick_up = new Caesars.PickUp()

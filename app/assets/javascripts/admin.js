@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require categories
-//= require opening_hours
 //= require places
+//= require opening_hours
+//= require shifts
 //= require prices
 //= require product_types
 //= require products

@@ -20,7 +20,6 @@
 //= require respond
 //= require html5shiv
 //= require eonasdan-bootstrap-datetimepicker
-//= require twitter-bootstrap-wizard/jquery.bootstrap.wizard.min
 
 //= require modal
 //= require cart
@@ -60,7 +59,7 @@ var Application = {
   },
 
   bind_dateTimePickers: function() {
-   return $('.datetimepicker_timer').datetimepicker({
+   return $('.bootstrap-datetimepicker').datetimepicker({
         pickDate: false
     });
   },

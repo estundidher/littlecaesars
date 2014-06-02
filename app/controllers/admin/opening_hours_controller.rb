@@ -1,72 +1,67 @@
 class Admin::OpeningHoursController < Admin::BaseController
 
-  before_action :set_opening_hour, only: [:edit, :update, :destroy]
+  before_action :set_opening_hour, only: [:edit, :update, :destroy, :add_shift]
+  before_action :set_place, only: [:new]
 
-  # GET /:place_id/opening_hours/new
+  # GET /places/:place_id/opening_hours/new
   def new
-    @place = Place.find(params[:place_id])
     @opening_hour = @place.opening_hours.build
     @opening_hour.shifts.build
     render 'modal', layout: nil
   end
 
-  # GET /opening_hours/1/edit
+  # GET /places/:place_id/opening_hours/:id/edit
   def edit
+    @opening_hour.shifts.build if @opening_hour.shifts.empty?
     render 'modal', layout: nil
   end
 
-  # GET /opening_hours/shift/add
-  def add_shift
-    if params[:id].present?
-      set_opening_hour()
-    end
-    render partial:'shift', :locals => {shift: Shift.new(opening_hour: @opening_hour), shift_index: params[:shifts].to_i}, layout: nil
-  end
-
-  # DELETE /opening_hours/shift/:id
-  def destroy_shift
-    Shift.find(params[:id]).destroy
-    head :no_content, status: :ok
-  end
-
-  # POST /opening_hours
+  # POST /places/:place_id/opening_hours
   def create
     @opening_hour = OpeningHour.new(opening_hour_params)
     if @opening_hour.save
-      render partial:'list', locals: {place:@opening_hour.place}, layout: nil
+      render partial:'list', locals: {place:@opening_hour.place}, layout:nil
     else
-      render partial:'form', locals: {opening_hour:@opening_hour}, layout: nil, status: :unprocessable_entity
+      render partial:'form', locals: {opening_hour:@opening_hour}, layout:nil, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /opening_hours/1
-  # PATCH/PUT /opening_hours/1.json
+  # PATCH/PUT /places/:place_id/opening_hours/:id
+  # PATCH/PUT /places/:place_id/opening_hours/:id.json
   def update
-    @opening_hour.shifts.destroy_all
     if @opening_hour.update(opening_hour_params)
-      render partial:'list', locals: {place:@opening_hour.place}, layout: nil
+      render partial:'list', locals:{place:@opening_hour.place}, layout:nil
     else
-      render partial:'form', locals: {opening_hour:@opening_hour}, layout: nil, status: :unprocessable_entity
+      render partial:'form', locals:{opening_hour:@opening_hour}, layout:nil, status: :unprocessable_entity
     end
   end
 
-  # DELETE /opening_hours/1
-  # DELETE /opening_hours/1.json
+  # DELETE /places/:place_id/opening_hours/:id
+  # DELETE /places/:place_id/opening_hours/:id.json
   def destroy
     @opening_hour.destroy
-    render partial:'list', locals: {place:@opening_hour.place}, layout: nil
+    render partial:'list', locals:{place:@opening_hour.place}, layout:nil
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_opening_hour
-      @opening_hour = OpeningHour.find(params[:id])
+      if params[:id].present?
+        @opening_hour = OpeningHour.find(params[:id])
+      end
+    end
+
+    def set_place
+      if params[:place_id].present?
+        @place = Place.find(params[:place_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def opening_hour_params
-      params.require(:opening_hour).permit :place_id,
+      params.require(:opening_hour).permit :id,
+                                           :place_id,
                                            :day_of_week,
-                                           :shifts_attributes => [:id, :start_at, :end_at]
+                                           shifts_attributes:[:id, :start_at, :end_at]
     end
 end

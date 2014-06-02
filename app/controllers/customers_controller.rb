@@ -1,6 +1,6 @@
 class CustomerController < ApplicationController
 
-  before_action :set_customers, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   # GET /customers
   # GET /customers.json
@@ -85,7 +85,7 @@ class CustomerController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_customers
+    def set_customer
       @customer = Customer.find(params[:id])
     end
 

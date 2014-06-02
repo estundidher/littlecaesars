@@ -46,6 +46,7 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     builder (3.2.2)
+    chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -59,6 +60,8 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     dalli (2.7.2)
+    delorean (2.1.0)
+      chronic
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -167,6 +170,7 @@ DEPENDENCIES
   better_errors
   coffee-rails (~> 4.0.0)
   dalli (~> 2.7.1)
+  delorean
   devise
   foreigner
   jbuilder (~> 2.0)

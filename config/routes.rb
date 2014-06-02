@@ -7,17 +7,19 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  #wizard
-  get 'pick_up',               to: 'pick_up#index',      as: :pick_up
+  controller :pick_up do
+    get 'pick_up',           to: :index,        as: :pick_up
+    get 'pick_up/:id',       to: :when,         as: :pick_up_when
+  end
 
-  #home
-  get 'order/:id',            to: 'home#category',     as: :category
-  get 'order',                to: 'home#order',        as: :order
-  get 'contact',              to: 'home#contact',      as: :contact
-  post 'contact',             to: 'home#send_message', as: :send_message
-  get 'order/product/:id',    to: 'home#product',      as: :product
-  get 'about',                to: 'home#about',        as: :about
-  get 'menu(/:active)',       to: 'home#menu',         as: :menu
+  controller :home do
+    get 'order',             to: :order,        as: :order
+    get 'contact',           to: :contact,      as: :contact
+    post 'contact',          to: :send_message, as: :send_message
+    get 'about',             to: :about,        as: :about
+    get 'menu(/:active)',    to: :menu,         as: :menu
+    get 'order/product/:id', to: :product,      as: :product
+  end
 
   #cart
   get 'cart/add/:product_id',                to: 'cart#modal',      as: :cart_new_item
@@ -47,12 +49,12 @@ Rails.application.routes.draw do
 
     #home
     root 'home#index'
+    get 'home', to: 'home#index', as: :home
     get 'sign_in', to: 'home#sign_in', as: :sign_in
 
     resources :sizes
     resources :categories
     resources :product_types
-    resources :places
     resources :users
     resources :customers
     resources :chefs
@@ -65,13 +67,13 @@ Rails.application.routes.draw do
     get 'products/:product_id/prices/new', to: 'prices#new', as: :price_new
     resources :prices
 
-    #opening_hours
-    get 'places/:place_id/opening_hour/new', to: 'opening_hours#new', as: :opening_hour_new
-    get 'opening_hour/shift/add', to: 'opening_hours#add_shift', as: :add_shift
-    delete 'opening_hour/shift/:id', to: 'opening_hours#destroy_shift', as: :destroy_shift
-    resources :opening_hours
-
-    get 'home', to: 'home#index', as: :home
+    resources :places do
+      post 'opening_hours(/:opening_hour_id)/shifts/add', to: 'shifts#new', as: :new_opening_hour_shift_add
+      patch 'opening_hours/:opening_hour_id/shifts/add', to: 'shifts#new', as: :opening_hour_shift_add
+      resources :opening_hours do
+        resources :shifts, only: [:destroy, :index]
+      end
+    end
   end
 
   # Example of regular route:

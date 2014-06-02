@@ -1,7 +1,89 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  day_of_week: MyString
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
 
-two:
-  day_of_week: MyString
+mundaring_monday:
+  day_of_week: 'Monday'
+  place: mundaring
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+mundaring_tuesday:
+  day_of_week: 'Tuesday'
+  place: mundaring
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+mundaring_wednesday:
+  day_of_week: 'Wednesday'
+  place: mundaring
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+mundaring_thursday:
+  day_of_week: 'Thursday'
+  place: mundaring
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+mundaring_friday:
+  day_of_week: 'Friday'
+  place: mundaring
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+mundaring_saturday:
+  day_of_week: 'Saturday'
+  place: mundaring
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+mundaring_sunday:
+  day_of_week: 'Sunday'
+  place: mundaring
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+hillarys_monday:
+  day_of_week: 'Monday'
+  place: hillarys
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+hillarys_tuesday:
+  day_of_week: 'Tuesday'
+  place: hillarys
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+hillarys_wednesday:
+  day_of_week: 'Wednesday'
+  place: hillarys
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+hillarys_thursday:
+  day_of_week: 'Thursday'
+  place: hillarys
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+hillarys_friday:
+  day_of_week: 'Friday'
+  place: hillarys
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+hillarys_saturday:
+  day_of_week: 'Saturday'
+  place: hillarys
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+hillarys_sunday:
+  day_of_week: 'Sunday'
+  place: hillarys
+  created_by: roalcantara
+  created_at: 2014-05-30

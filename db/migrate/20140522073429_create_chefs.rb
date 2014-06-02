@@ -9,6 +9,7 @@ class CreateChefs < ActiveRecord::Migration
       t.string :plus
       t.integer :created_by, null: false
       t.integer :updated_by, null: true
+      t.timestamps
     end
 
     add_index :chefs, :name, unique: true

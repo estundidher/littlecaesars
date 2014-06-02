@@ -4,12 +4,128 @@
 		"selected_items":
 		[
 			[
-				"su",
-				"submit"
+				"ca",
+				"category"
+			],
+			[
+				"prdu",
+				"product"
+			],
+			[
+				"first",
+				"first_half"
 			],
 			[
 				"un",
 				"unless	unless … end"
+			],
+			[
+				"product",
+				"product"
+			],
+			[
+				"pro",
+				"product"
+			],
+			[
+				"new",
+				"new_item"
+			],
+			[
+				"pa",
+				"params"
+			],
+			[
+				"cli",
+				"clicked"
+			],
+			[
+				"si",
+				"size"
+			],
+			[
+				"calcu",
+				"calculate_price"
+			],
+			[
+				"cal",
+				"calculate_price"
+			],
+			[
+				"on",
+				"one_flavour"
+			],
+			[
+				"categor",
+				"categories"
+			],
+			[
+				"catego",
+				"categories"
+			],
+			[
+				"cate",
+				"category_ids"
+			],
+			[
+				"catg",
+				"categories"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"MODE",
+				"MODE_ONE_FLAVOUR"
+			],
+			[
+				"fade",
+				"fadeOut"
+			],
+			[
+				"cart",
+				"cart_item"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"produc",
+				"product_id"
+			],
+			[
+				"in",
+				"inj	inject(init) { |mem, var| .. }"
+			],
+			[
+				"det",
+				"details"
+			],
+			[
+				"topp",
+				"topping"
+			],
+			[
+				"to",
+				"toppings"
+			],
+			[
+				"top",
+				"toppings-modal"
+			],
+			[
+				"eac",
+				"each"
+			],
+			[
+				"page",
+				"page_iternal"
+			],
+			[
+				"su",
+				"submit"
 			],
 			[
 				"st",
@@ -26,14 +142,6 @@
 			[
 				"sel",
 				"self"
-			],
-			[
-				"product",
-				"product_types"
-			],
-			[
-				"in",
-				"input_id"
 			],
 			[
 				"tag",
@@ -91,6 +199,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/views/pick_up/index.html.erb",
+			"settings":
+			{
+				"buffer_size": 1617,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/javascripts/pick_up.js.coffee",
+			"settings":
+			{
+				"buffer_size": 1134,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/stylesheets/caesars.css.scss",
+			"settings":
+			{
+				"buffer_size": 51343,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -124,134 +256,134 @@
 	},
 	"file_history":
 	[
-		"/Users/roalcantara/Downloads/Ordem_de_Servico.csv",
-		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart.js.coffee",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_sizes.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/layouts/_header.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/top/_cart.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/layouts/base.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/cart_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_additions.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/modal/_form_internal.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/cart.css.scss",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_additions_internal.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/modal/_prices.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/caesars.css.scss",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/pick_up.js.coffee",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart_button.js.coffee",
+		"/Users/roalcantara/Documents/caesars/app/views/pick_up/_when.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/application.js",
-		"/Users/roalcantara/Documents/caesars/config/routes.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/index.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_mode.html.erb",
-		"/Users/roalcantara/Documents/caesars/Gemfile",
-		"/Users/roalcantara/Documents/caesars/app/models/size.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_chooser.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/main.scss",
-		"/Users/roalcantara/Documents/caesars/app/models/product.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/layouts/application.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_details.html.erb",
-		"/Users/roalcantara/Documents/caesars/public/theme/gallery.html",
-		"/Users/roalcantara/Downloads/Rollout_Banrisul - Lote 5 ( 1213 OS ) 13 04 2014 PROD.csv",
-		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/theme/_prettyPhoto.scss",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_slider.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_splitter.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_categories.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_splitter_side.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_slider_internal.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_cart.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_chooser_additions.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/models/cart.rb",
-		"/Users/roalcantara/Documents/caesars/app/models/cart_item_quantitable.rb",
-		"/Users/roalcantara/Documents/caesars/app/models/product_type.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/modal/_modal.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/chekout/_modal.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/modal/_additionables.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/top/_list.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/modal/_form.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/modal/_split.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_chooser_additions_internal.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_chooser_slider.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_chooser_splitter.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/home/category.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/home/_category.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_additionables.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_chooser_slider_internal.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/product_types/_form.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/products/_form.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_chooser_splitter_side.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/helpers/cart_helper.rb",
-		"/Users/roalcantara/Documents/caesars/config/locales/en.yml",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140506064718_add_attachment_photo_showcase_to_products.rb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/admin/products_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/application.css",
-		"/Users/roalcantara/Documents/caesars/app/controllers/admin/categories_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_add_modal.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/products/show.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/helpers/application_helper.rb",
-		"/Users/roalcantara/Documents/caesars/app/models/category.rb",
-		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/home.js.coffee",
-		"/Users/roalcantara/Documents/caesars/app/views/home/index.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/index.js",
-		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/admin.js",
-		"/Users/roalcantara/Documents/caesars/config/environments/production.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/layouts/admin.html.erb",
-		"/Users/roalcantara/Documents/caesars/vendor/assets/javascripts/theme/theme.js",
-		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/home.js",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_splittable.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/application_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_form_internal.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/home/pick_up.html.erb",
-		"/Users/roalcantara/Documents/caesars/config/environments/development.rb",
-		"/Users/roalcantara/Documents/caesars/config.ru",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/products/index.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/admin/customers_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/admin/places_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/admin/product_types_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/admin/sizes_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/admin/users_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/helpers/twitter_bootstrap_helper.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/products/_list.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/product_types/index.html.erb",
-		"/Users/roalcantara/Documents/caesars/config/database.yml",
-		"/Users/roalcantara/Documents/caesars/config/secrets.yml",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140501142742_add_attachment_photo_left_to_products.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140501142741_remove_column.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140501142743_add_attachment_photo_right_to_products.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140501114057_add_attachment_photo_left_to_products.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140501114153_add_attachment_photo_right_to_products.rb",
-		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/products.js.coffee",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/products/_splittable.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/categories.css.scss",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140501114153_add_attachment_photo_bottom_to_products.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140501114057_add_attachment_photo_top_to_products.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/sizes/_form.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/home/contact.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/home/shopping.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_split.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_form_quantitable.html.erb",
-		"/Users/roalcantara/Documents/Avatek/Workspace/careman/code/osmanager-tenant/application.properties",
-		"/Users/roalcantara/Documents/Avatek/drop_trigger.sql",
-		"/Users/roalcantara/Desktop/Rogerio.webarchive",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/split.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/_navigation.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/models/price.rb",
-		"/Users/roalcantara/Documents/caesars/app/models/cart_item_sizable_additionable.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140430081729_add_splittable_to_sizes.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/sizes/show.html.erb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140430081653_add_splittable_on_sizes.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_sizables.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_form.html.erb",
-		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/theme/_settings.scss",
-		"/Users/roalcantara/Documents/caesars/app/views/layouts/generic.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/menu.js.coffee",
 		"/Users/roalcantara/Documents/caesars/app/controllers/home_controller.rb",
+		"/Users/roalcantara/Documents/caesars/config/routes.rb",
+		"/Users/roalcantara/Documents/caesars/app/controllers/pick_up_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/wizard/index.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/wizard.js.coffee",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart_toppings.js.coffee",
+		"/Users/roalcantara/Documents/caesars/app/views/wizard/_sign_in.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/categories/_form.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/wizard/_when.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/application.css.scss",
+		"/Users/roalcantara/Documents/caesars/app/views/wizard/_places.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_carousel.html.erb",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap/dist/css/bootstrap.css",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap/less/glyphicons.less",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart_item.js.coffee",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/theme/_settings.scss",
+		"/Users/roalcantara/Documents/caesars/config/environments/production.rb",
+		"/Users/roalcantara/Documents/caesars/config/application.rb",
+		"/Users/roalcantara/Documents/caesars/package.json",
+		"/Users/roalcantara/Documents/caesars/bower.json",
+		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/application.css",
+		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/main.scss",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/_header.html.erb",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/jquery-meiomask/.bower.json",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap/.bower.json",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/index.js",
+		"/Users/roalcantara/Documents/caesars/app/views/home/index.html.erb",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/javascripts/bootstrap/bootstrap.js",
+		"/Users/roalcantara/Documents/caesars/.bowerrc",
+		"/Users/roalcantara/Documents/caesars/Gemfile",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/javascripts/theme/theme.js",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/bootstrap/bootstrap.scss",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/_form_errors.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/devise/sessions/new.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/controllers/wizard_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/wizard/sign_in.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/wizard/place.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/controllers/admin/base_controller.rb",
-		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/bootstrap/_variables.scss",
-		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/bootstrap/_carousel.scss",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_form_sizable.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/contact.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/mailers/contact_mailer.rb",
+		"/Users/roalcantara/Documents/caesars/config/environments/development.rb",
+		"/Users/roalcantara/Documents/caesars/config/initializers/recaptcha.rb",
+		"/Users/roalcantara/Documents/caesars/app/models/contact.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/contact_mailer/request_info.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/product_types/_form.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/index.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_chooser.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/base.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/application.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/_flash_messages.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/_flash_message.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/chefs/show.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/helpers/twitter_bootstrap_helper.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_mode.html.erb",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/bootstrap/_base.scss",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_cart_item.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_form_additionable.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/_toppings.html.erb",
-		"/Users/roalcantara/Desktop/teste_parte1.csv",
-		"/Users/roalcantara/Desktop/teste.csv",
-		"/Users/roalcantara/Downloads/Rollout_Banrisul - Lote 6 (11615 OS ) 28 04 2014 PROD.csv"
+		"/Users/roalcantara/Documents/caesars/app/views/contact_mailer/request_info.text.erb",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart.js.coffee",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/button/_detail.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/checkout/_detail.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/checkout/_modal.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/button/_item.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_cart.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/about.html.erb",
+		"/Users/roalcantara/Documents/caesars/public/theme/aboutus.html",
+		"/Users/roalcantara/Documents/caesars/app/views/home/product.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/models/product.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/order.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/menu.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_details.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/_menu_popup.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/helpers/cart_helper.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/_category.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/helpers/menu_helper.rb",
+		"/Users/roalcantara/Documents/caesars/app/models/category.rb",
+		"/Users/roalcantara/Documents/caesars/app/assets/images/booking/table1.jpg",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/generic.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/_footer.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/_navigation.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/models/chef.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/chefs/_chef.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/chefs/_list.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/chefs/index.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/chefs/index.json.jbuilder",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/chefs/new.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/admin.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/chefs/show.json.jbuilder",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/chefs/update_place.js.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/chefs/edit.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/chefs/_form.html.erb",
+		"/Users/roalcantara/Documents/caesars/config/locales/en.yml",
+		"/Users/roalcantara/Documents/caesars/db/migrate/20140522073429_create_chefs.rb",
+		"/Users/roalcantara/Documents/caesars/db/migrate/20140407081115_create_products.rb",
+		"/Users/roalcantara/Documents/caesars/db/migrate/20140522090702_add_auditable_to_chefs.rb",
+		"/Users/roalcantara/Documents/caesars/db/migrate/20140522073934_add_attachment_avatar_background_to_chefs.rb",
+		"/Users/roalcantara/Documents/caesars/app/controllers/admin/chefs_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/models/place.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/order_online.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/helpers/home_helper.rb",
+		"/Users/roalcantara/Documents/caesars/app/helpers/customer_helper.rb",
+		"/Users/roalcantara/Documents/caesars/test/helpers/home_helper_test.rb",
+		"/Users/roalcantara/Documents/caesars/public/theme/index.html",
+		"/Users/roalcantara/Documents/caesars/app/views/home/category.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/pick_up.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/shopping.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/models/cart_item_splittable.rb",
+		"/Users/roalcantara/Documents/caesars/app/controllers/cart_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_categories.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/models/cart_item.rb",
+		"/Users/roalcantara/Documents/caesars/app/models/cart_item_sizable_additionable.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/_banner.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/button/_cart.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart_modal.js.coffee",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_ingredients.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_tags.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/cart.css.scss",
+		"/Users/roalcantara/Documents/caesars/app/models/cart_item_sizable.rb",
+		"/Users/roalcantara/Documents/caesars/app/models/cart_item_quantitable.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/one-flavour/_form.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_form.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/models/product_type.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/two-flavours/_form.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_tag.html.erb"
 	],
 	"find":
 	{
@@ -259,7 +391,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
 			"/Users/roalcantara/Documents/caesars",
@@ -271,109 +403,134 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"url",
-			"cart_item_sizable_price_id",
-			"sizes",
-			"sizes.html.erb",
-			"cart_add_item_modal_size",
-			").",
-			".gif)",
-			".png)",
-			"(../img/prettyPhoto/",
-			":url(",
-			"sprite.png",
-			"gallery-img-link",
-			"splitter_side",
-			"end",
-			"form_for",
-			"form_tag",
-			"isotope_item",
-			"isotope_contenteiner",
-			"<br />",
-			"<br/>",
-			"addition",
-			"additions",
-			"prompt",
-			"blank",
-			"button",
-			"buttons",
-			"search",
-			"find",
-			"search",
-			"produ",
-			"carous",
-			"carousel",
+			"modal_container",
+			"@$cart_button",
+			"@$modal_container",
+			"$carouse",
 			"carouse",
-			"splittable",
-			"slider/",
-			"slider",
-			"assets",
-			"asserts",
-			"timer.png",
-			"s35.png",
-			"large_right.png",
-			"carousel-caption",
-			"$carousel-caption-color",
-			"cart-modal",
-			"caption",
-			"carousel-caption",
-			"slider2",
-			"slider2.jpg",
-			"  <%",
-			"span3",
-			"},\n",
-			"cart-title",
-			"accepts_nested_attributes_for",
-			"shopping-item",
-			"glyphicon-chevron-right",
-			"carousel-control",
-			"500x500",
-			"cart-modal",
-			".cart",
-			"img.dish",
-			"items_not_allowed",
-			".shopping",
-			"fruit3.png",
-			"Your description",
-			"fontawesome-webfont.svg",
-			"asset-url",
-			"asse",
-			"glyphicons-halflings-regular.eot",
-			"'\n",
-			"'pg'",
-			" |",
-			"| ",
-			"console.log('tag_style: ' + tag_style);",
-			"tag_hidden_id",
-			"autocomplete",
-			");\n",
-			"item",
-			"addTag",
-			"id",
-			"addTag",
-			"onAddTag",
-			"flatten",
-			"%>\n",
-			"params",
-			"%>\n",
-			"'}",
-			"Question",
-			"question",
-			"Question",
-			"question",
-			"Question",
-			"question",
-			",\n",
-			"<%= tb_breadcrumb t '.title' %>",
-			"exercise",
-			"Exercise",
-			"exercise",
-			"tab_s",
-			"button_tag(type: 'submit', class: 'btn btn-primary') do\n		 \"<i class='glyphicon glyphicon-ok'></i> \".html_safe + message || t('links.#{model ? \"update\" : \"create\"}')\n		end",
-			"partial: ",
-			"model",
-			"%>\n",
-			"back"
+			"slid",
+			"slide",
+			"bind_carousel",
+			"Glyphicons Halflings",
+			"bind_pretty_photo",
+			"pretty",
+			"bind_prettyPhoto",
+			"pretty",
+			"@font-face",
+			"font-family: 'Glyphicons Halflings'",
+			"font-face",
+			"halflings",
+			"transp",
+			"trans",
+			"image_path 'slider/transparent.png'",
+			"transp",
+			"trans",
+			"url(",
+			"flexslider",
+			"')\n",
+			"email",
+			"bs-example-navbar-collapse-1",
+			".dropdown-menu:after",
+			"place",
+			"Place",
+			"place",
+			"Place",
+			"place",
+			"Place",
+			"place",
+			"Category",
+			"categories",
+			"category",
+			"class",
+			"pp_pic_holder pp_default",
+			"descr",
+			".banner",
+			"banner",
+			"http://theoandco.net/",
+			".navbar-right .dropdown-menu",
+			"%>\">\n",
+			".cart ",
+			"@$cart",
+			"@$cart_panel",
+			"@price",
+			"\"cart: ",
+			"'.cart .",
+			"'cart:",
+			"@$cart",
+			"reload_price",
+			"@$cart_panel",
+			"shoppable_additionable",
+			"shoppable_additionable_splittable",
+			"products",
+			"calculate_price",
+			"is_slider",
+			"is_splitter",
+			"add_toppings",
+			"change_product",
+			"half:half, ",
+			"set_cart_item",
+			"cart_new_item",
+			"cart_item_params",
+			"new_item",
+			"new_cart_item",
+			".cart .cart-panel",
+			".shopping-cart",
+			"btn-cart-md",
+			"btn.add",
+			"add_error",
+			"change_category",
+			"change_mode",
+			"calculate_price",
+			"change_mode",
+			"price",
+			"total",
+			"mode_chooser",
+			"mode_c",
+			"form",
+			"MAX_TOPPINGS",
+			"size",
+			"CART_MODE[:two_flavour]",
+			"MODE",
+			"change_size",
+			"-->",
+			"change_category_before",
+			"mode",
+			"categor",
+			"change_product",
+			"force_touch",
+			"3",
+			"change_category_success",
+			"cart_item_splittables",
+			"two_",
+			"one_",
+			"one_f",
+			"MAX_",
+			"one",
+			"one_",
+			"one_f",
+			".chooser",
+			"@load_product",
+			"carousel",
+			"Enabeling",
+			"items",
+			"@is_",
+			"is_",
+			"container",
+			"ingre",
+			"addition",
+			"puts \"",
+			"chooser",
+			"chooser product",
+			"add_topping",
+			"add_toppings",
+			"calculate_price",
+			"inter",
+			"additions",
+			"class",
+			"sizes",
+			"window.Caesars.product",
+			"used",
+			"!\"\n"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -381,6 +538,29 @@
 		"regex": false,
 		"replace_history":
 		[
+			"slider_path 'transparent.png'",
+			"chef",
+			"Chef",
+			"chef",
+			"Chef",
+			"chef",
+			"Chef",
+			"chef",
+			"Chef",
+			"chefs",
+			"chef",
+			".cart-item ",
+			"@$cart_item",
+			"\"cart-item: ",
+			"'.cart-item .",
+			"'cart-item:",
+			"@$cart_item",
+			".cart .cart-panel .btn-cart-md",
+			".cart-panel",
+			"cart .shopping-cart",
+			"mode_form",
+			"ingredient",
+			"",
 			".gif')",
 			".png')",
 			"('prettyPhoto/",
@@ -410,8 +590,93 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/views/pick_up/index.html.erb",
+					"settings":
+					{
+						"buffer_size": 1617,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								541,
+								560
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/assets/javascripts/pick_up.js.coffee",
+					"settings":
+					{
+						"buffer_size": 1134,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								809,
+								809
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/assets/stylesheets/caesars.css.scss",
+					"settings":
+					{
+						"buffer_size": 51343,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								51272,
+								51272
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 31246.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -461,127 +726,339 @@
 		"selected_items":
 		[
 			[
-				"sizeshtml",
-				"app/views/cart/_sizes.html.erb"
+				"caesars",
+				"app/assets/stylesheets/caesars.css.scss"
 			],
 			[
-				"topcart",
-				"app/views/cart/top/_cart.html.erb"
+				"pickjs",
+				"app/assets/javascripts/pick_up.js.coffee"
 			],
 			[
-				"header",
-				"app/views/layouts/_header.html.erb"
+				"caesarscss",
+				"app/assets/stylesheets/caesars.css.scss"
 			],
 			[
-				"base",
-				"app/views/layouts/base.html.erb"
+				"applic",
+				"app/assets/javascripts/application.js"
 			],
 			[
-				"cartcss",
-				"app/assets/stylesheets/cart.css.scss"
-			],
-			[
-				"cartjs",
-				"app/assets/javascripts/cart.js.coffee"
-			],
-			[
-				"cartsizes",
-				"app/views/cart/_sizes.html.erb"
+				"homec",
+				"app/controllers/home_controller.rb"
 			],
 			[
 				"rout",
 				"config/routes.rb"
 			],
 			[
-				"additions",
-				"app/views/cart/_additions.html.erb"
+				"wizardco",
+				"app/controllers/wizard_controller.rb"
 			],
 			[
-				"app",
+				"appli",
 				"app/assets/javascripts/application.js"
-			],
-			[
-				"gem",
-				"Gemfile"
-			],
-			[
-				"mode",
-				"app/views/cart/_mode.html.erb"
-			],
-			[
-				"rou",
-				"config/routes.rb"
-			],
-			[
-				"size",
-				"app/models/size.rb"
-			],
-			[
-				"chooser",
-				"app/views/cart/_chooser.html.erb"
-			],
-			[
-				"cartco",
-				"app/controllers/cart_controller.rb"
-			],
-			[
-				"main",
-				"app/assets/stylesheets/main.scss"
-			],
-			[
-				"additions_internal",
-				"app/views/cart/_additions_internal.html.erb"
-			],
-			[
-				"cartinde",
-				"app/views/cart/index.html.erb"
-			],
-			[
-				"applicationerb",
-				"app/views/layouts/application.html.erb"
 			],
 			[
 				"applicationjs",
 				"app/assets/javascripts/application.js"
 			],
 			[
-				"produ",
-				"app/models/product.rb"
-			],
-			[
-				"cartcoffe",
-				"app/assets/javascripts/cart.js.coffee"
+				"wizardj",
+				"app/assets/javascripts/wizard.js.coffee"
 			],
 			[
 				"application",
 				"app/assets/javascripts/application.js"
 			],
 			[
-				"detail",
-				"app/views/cart/_details.html.erb"
+				"adminform",
+				"app/views/admin/categories/_form.html.erb"
 			],
 			[
-				"gale",
-				"public/theme/gallery.html"
+				"caro",
+				"app/views/cart/_carousel.html.erb"
 			],
 			[
-				"splitter",
-				"app/views/cart/_splitter.html.erb"
+				"wizardjs",
+				"app/assets/javascripts/wizard.js.coffee"
 			],
 			[
-				"choose",
-				"app/views/cart/_chooser.html.erb"
+				"applica",
+				"app/assets/stylesheets/application.css.scss"
 			],
 			[
-				"splitter_s",
-				"app/views/cart/_splitter_side.html.erb"
+				"application.rb",
+				"config/application.rb"
+			],
+			[
+				"production",
+				"config/environments/production.rb"
+			],
+			[
+				"pa",
+				"package.json"
+			],
+			[
+				"application.r",
+				"config/application.rb"
+			],
+			[
+				"application.css",
+				"app/assets/stylesheets/application.css"
+			],
+			[
+				"placeshtml",
+				"app/views/wizard/_places.html.erb"
+			],
+			[
+				"main",
+				"app/assets/stylesheets/main.scss"
+			],
+			[
+				"hea",
+				"app/views/layouts/_header.html.erb"
+			],
+			[
+				"main.scss",
+				"app/assets/stylesheets/main.scss"
+			],
+			[
+				"index.js",
+				"app/assets/javascripts/index.js"
+			],
+			[
+				"index",
+				"app/views/home/index.html.erb"
+			],
+			[
+				"applicat",
+				"app/assets/javascripts/application.js"
+			],
+			[
+				"applicationcss",
+				"app/assets/stylesheets/application.css"
+			],
+			[
+				"appl",
+				"app/assets/javascripts/application.js"
+			],
+			[
+				"gemf",
+				"Gemfile"
+			],
+			[
+				"applicationr",
+				"config/application.rb"
+			],
+			[
+				"hederr",
+				"app/views/layouts/_header.html.erb"
+			],
+			[
+				"prodution",
+				"config/environments/production.rb"
+			],
+			[
+				"_form_er",
+				"app/views/layouts/_form_errors.html.erb"
+			],
+			[
+				"wiarjs",
+				"app/assets/javascripts/wizard.js.coffee"
 			],
 			[
 				"route",
 				"config/routes.rb"
 			],
 			[
-				"cartc",
+				"header",
+				"app/views/layouts/_header.html.erb"
+			],
+			[
+				"adminco",
+				"app/controllers/admin/base_controller.rb"
+			],
+			[
+				"homc",
+				"app/controllers/home_controller.rb"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"product",
+				"config/environments/production.rb"
+			],
+			[
+				"deve",
+				"config/environments/development.rb"
+			],
+			[
+				"cont",
+				"app/mailers/contact_mailer.rb"
+			],
+			[
+				"request",
+				"app/views/contact_mailer/request_info.html.erb"
+			],
+			[
+				"conta",
+				"app/models/contact.rb"
+			],
+			[
+				"chooser",
+				"app/views/cart/_chooser.html.erb"
+			],
+			[
+				"cartinde",
+				"app/views/cart/index.html.erb"
+			],
+			[
+				"flas",
+				"app/views/layouts/_flash_message.html.erb"
+			],
+			[
+				"flash_messages",
+				"app/views/layouts/_flash_messages.html.erb"
+			],
+			[
+				"baseerb",
+				"app/views/layouts/base.html.erb"
+			],
+			[
+				"prodform",
+				"app/views/admin/product_types/_form.html.erb"
+			],
+			[
+				"tw",
+				"app/helpers/twitter_bootstrap_helper.rb"
+			],
+			[
+				"contact",
+				"app/views/home/contact.html.erb"
+			],
+			[
+				"show",
+				"app/views/admin/chefs/show.html.erb"
+			],
+			[
+				"form_errors",
+				"app/views/layouts/_form_errors.html.erb"
+			],
+			[
+				"twitter",
+				"app/helpers/twitter_bootstrap_helper.rb"
+			],
+			[
+				"produform",
+				"app/views/admin/product_types/_form.html.erb"
+			],
+			[
+				"develo",
+				"config/environments/development.rb"
+			],
+			[
+				"base.css",
+				"vendor/assets/stylesheets/bootstrap/_base.scss"
+			],
+			[
+				"mode",
+				"app/views/cart/_mode.html.erb"
+			],
+			[
+				"devel",
+				"config/environments/development.rb"
+			],
+			[
+				"_modal.html.erb",
+				"app/views/cart/checkout/_modal.html.erb"
+			],
+			[
+				"about",
+				"app/views/home/about.html.erb"
+			],
+			[
+				"menupo",
+				"app/views/layouts/_menu_popup.html.erb"
+			],
+			[
+				"prod",
+				"app/models/product.rb"
+			],
+			[
+				"carthe",
+				"app/helpers/cart_helper.rb"
+			],
+			[
+				"categ",
+				"app/models/category.rb"
+			],
+			[
+				"menuhe",
+				"app/helpers/menu_helper.rb"
+			],
+			[
+				"abouterb",
+				"app/views/home/about.html.erb"
+			],
+			[
+				"categor",
+				"app/models/category.rb"
+			],
+			[
+				"applicationer",
+				"app/views/layouts/application.html.erb"
+			],
+			[
+				"chefsw",
+				"app/views/admin/chefs/show.html.erb"
+			],
+			[
+				"chef",
+				"app/models/chef.rb"
+			],
+			[
+				"menu.erb",
+				"app/views/home/menu.html.erb"
+			],
+			[
+				"admin.erb",
+				"app/views/layouts/admin.html.erb"
+			],
+			[
+				"en",
+				"config/locales/en.yml"
+			],
+			[
+				"maincss",
+				"app/assets/stylesheets/main.scss"
+			],
+			[
+				"menujs",
+				"app/assets/javascripts/menu.js.coffee"
+			],
+			[
+				"homeco",
+				"app/controllers/home_controller.rb"
+			],
+			[
+				"homehel",
+				"test/helpers/home_helper_test.rb"
+			],
+			[
+				"indexerb",
+				"app/views/home/index.html.erb"
+			],
+			[
+				"cartsp",
+				"app/models/cart_item_splittable.rb"
+			],
+			[
+				"carti",
+				"app/models/cart_item.rb"
+			],
+			[
+				"cartco",
 				"app/controllers/cart_controller.rb"
 			],
 			[
@@ -589,388 +1066,176 @@
 				"app/views/cart/_categories.html.erb"
 			],
 			[
-				"product",
-				"app/models/product.rb"
-			],
-			[
-				"cartcoffee",
-				"app/assets/javascripts/cart.js.coffee"
-			],
-			[
-				"cart.rb",
-				"app/models/cart.rb"
-			],
-			[
-				"productt",
-				"app/models/product_type.rb"
-			],
-			[
-				"priceshtml",
-				"app/views/cart/modal/_prices.html.erb"
-			],
-			[
-				"_modal.html",
-				"app/views/cart/modal/_modal.html.erb"
-			],
-			[
-				"cartitemqu",
-				"app/models/cart_item_quantitable.rb"
-			],
-			[
-				"_header.html.erb",
-				"app/views/layouts/_header.html.erb"
-			],
-			[
-				"cartcofee",
-				"app/assets/javascripts/cart.js.coffee"
-			],
-			[
-				"_categoryhtml",
-				"app/views/home/_category.html.erb"
-			],
-			[
-				"categorhtml",
-				"app/views/home/category.html.erb"
+				"rou",
+				"config/routes.rb"
 			],
 			[
 				"cartindex",
 				"app/views/cart/index.html.erb"
 			],
 			[
-				"producfor",
-				"app/views/admin/product_types/_form.html.erb"
+				"ingre",
+				"app/views/cart/_ingredients.html.erb"
 			],
 			[
-				"cartcoff",
-				"app/assets/javascripts/cart.js.coffee"
-			],
-			[
-				"produform",
-				"app/views/admin/products/_form.html.erb"
-			],
-			[
-				"cartcon",
-				"app/controllers/cart_controller.rb"
-			],
-			[
-				"prod",
-				"app/models/product.rb"
-			],
-			[
-				"en",
-				"config/locales/en.yml"
-			],
-			[
-				"p",
-				"app/models/product.rb"
-			],
-			[
-				"pro",
-				"app/models/product.rb"
-			],
-			[
-				"productform",
-				"app/views/admin/products/_form.html.erb"
-			],
-			[
-				"productco",
-				"app/controllers/admin/products_controller.rb"
-			],
-			[
-				"ma",
-				"app/assets/stylesheets/main.scss"
-			],
-			[
-				"catco",
-				"app/controllers/admin/categories_controller.rb"
-			],
-			[
-				"appli",
-				"app/assets/javascripts/application.js"
-			],
-			[
-				"productshow",
-				"app/views/admin/products/show.html.erb"
-			],
-			[
-				"categorieshtml",
-				"app/views/cart/_categories.html.erb"
-			],
-			[
-				"carcontr",
-				"app/controllers/cart_controller.rb"
-			],
-			[
-				"cartcof",
-				"app/assets/javascripts/cart.js.coffee"
-			],
-			[
-				"cate",
-				"app/models/category.rb"
-			],
-			[
-				"admin",
-				"app/assets/javascripts/admin.js"
-			],
-			[
-				"production.rb",
-				"config/environments/production.rb"
-			],
-			[
-				"index",
-				"app/views/home/index.html.erb"
-			],
-			[
-				"baseh",
-				"app/views/layouts/base.html.erb"
-			],
-			[
-				"homej",
-				"app/assets/javascripts/home.js.coffee"
-			],
-			[
-				"a",
-				"app/assets/javascripts/application.js"
-			],
-			[
-				"applicationco",
-				"app/controllers/application_controller.rb"
-			],
-			[
-				"produc",
-				"app/models/product.rb"
-			],
-			[
-				"",
-				"Gemfile"
-			],
-			[
-				"dev",
-				"config/environments/development.rb"
-			],
-			[
-				"config.ru",
-				"config.ru"
-			],
-			[
-				"pick",
-				"app/views/home/pick_up.html.erb"
-			],
-			[
-				"twi",
-				"app/helpers/twitter_bootstrap_helper.rb"
-			],
-			[
-				"producindex",
-				"app/views/admin/product_types/index.html.erb"
-			],
-			[
-				"deve",
-				"config/environments/development.rb"
-			],
-			[
-				"development.rb",
-				"config/environments/development.rb"
-			],
-			[
-				"pic",
-				"app/views/home/pick_up.html.erb"
-			],
-			[
-				"secre",
-				"config/secrets.yml"
-			],
-			[
-				"data",
-				"config/database.yml"
-			],
-			[
-				"_splittable.html.erb",
-				"app/views/cart/_splittable.html.erb"
-			],
-			[
-				"category",
-				"app/models/category.rb"
-			],
-			[
-				"spli",
-				"app/views/cart/_splittable.html.erb"
-			],
-			[
-				"applicatojs",
-				"app/assets/javascripts/application.js"
-			],
-			[
-				"splitable",
-				"app/views/cart/_splittable.html.erb"
-			],
-			[
-				"_category",
-				"app/views/home/_category.html.erb"
-			],
-			[
-				"catgorieshtml",
-				"app/views/cart/_categories.html.erb"
-			],
-			[
-				"pr",
-				"app/models/product.rb"
-			],
-			[
-				"carcss",
+				"cartcss",
 				"app/assets/stylesheets/cart.css.scss"
 			],
 			[
-				"addi",
-				"app/views/cart/_additionables.html.erb"
+				"cartb",
+				"app/assets/javascripts/cart_button.js.coffee"
 			],
 			[
-				"cartaddmo",
-				"app/views/cart/_add_modal.html.erb"
+				"cartite",
+				"app/models/cart_item_quantitable.rb"
 			],
 			[
-				"_categhtml",
-				"app/views/home/_category.html.erb"
+				"cartfotm",
+				"app/views/cart/_form.html.erb"
 			],
 			[
-				"productcoff",
-				"app/assets/javascripts/products.js.coffee"
+				"buttonitem",
+				"app/views/cart/button/_item.html.erb"
 			],
 			[
-				"sizefor",
-				"app/views/admin/sizes/_form.html.erb"
+				"productt",
+				"app/models/product_type.rb"
 			],
 			[
-				"catcss",
-				"app/assets/stylesheets/categories.css.scss"
+				"cart_item_quantitable.rb",
+				"app/models/cart_item_quantitable.rb"
 			],
 			[
-				"carcoff",
+				"cartjs",
 				"app/assets/javascripts/cart.js.coffee"
 			],
 			[
-				"mainc",
-				"app/assets/stylesheets/main.scss"
+				"produ",
+				"app/models/product.rb"
 			],
 			[
-				"sho",
-				"app/views/home/shopping.html.erb"
+				"carouse",
+				"app/views/cart/_carousel.html.erb"
 			],
 			[
-				"catego",
-				"app/models/category.rb"
+				"producr",
+				"app/models/product.rb"
 			],
 			[
-				"split",
-				"app/views/cart/_split.html.erb"
-			],
-			[
-				"cart",
-				"app/models/cart.rb"
-			],
-			[
-				"_catego",
-				"app/views/home/_category.html.erb"
-			],
-			[
-				"shopp",
-				"app/views/home/shopping.html.erb"
-			],
-			[
-				"homecoff",
-				"app/assets/javascripts/home.js.coffee"
-			],
-			[
-				"coffe",
-				"app/assets/javascripts/cart.js.coffee"
-			],
-			[
-				"add_",
-				"app/views/cart/_add_modal.html.erb"
-			],
-			[
-				"add_m",
-				"app/views/cart/_add_modal.html.erb"
-			],
-			[
-				"navi",
-				"app/views/admin/_navigation.html.erb"
+				"cartto",
+				"app/assets/javascripts/cart_toppings.js.coffee"
 			],
 			[
 				"price",
 				"app/models/price.rb"
 			],
 			[
-				"carti",
-				"app/models/cart_item_sizable_additionable.rb"
+				"carth",
+				"app/helpers/cart_helper.rb"
 			],
 			[
-				"sizesho",
-				"app/views/admin/sizes/show.html.erb"
+				"carous",
+				"app/views/cart/_carousel.html.erb"
 			],
 			[
-				"sizeco",
-				"app/controllers/admin/sizes_controller.rb"
+				"splitt",
+				"app/models/cart_item_splittable.rb"
 			],
 			[
-				"sizeform",
-				"app/views/admin/sizes/_form.html.erb"
+				"buttitem",
+				"app/views/cart/button/_item.html.erb"
 			],
 			[
-				"form",
-				"app/views/admin/products/_form.html.erb"
+				"carjs",
+				"app/assets/javascripts/cart.js.coffee"
 			],
 			[
-				"applic",
-				"app/assets/javascripts/application.js"
+				"cartmod",
+				"app/assets/javascripts/cart_modal.js.coffee"
 			],
 			[
-				"applica",
-				"app/assets/javascripts/application.js"
+				"cartbuitem",
+				"app/views/cart/button/_item.html.erb"
 			],
 			[
-				"inde",
-				"app/views/home/index.html.erb"
+				"cartitemsplittable",
+				"app/models/cart_item_splittable.rb"
 			],
 			[
-				"homec",
-				"app/controllers/home_controller.rb"
+				"cart_item",
+				"app/models/cart_item_splittable.rb"
 			],
 			[
-				"carthtm",
-				"app/views/cart/_additionables.html.erb"
+				"_item.html.erb",
+				"app/views/cart/button/_item.html.erb"
 			],
 			[
-				"adminco",
-				"app/controllers/admin/base_controller.rb"
-			],
-			[
-				"homeco",
-				"app/controllers/home_controller.rb"
-			],
-			[
-				"ro",
-				"config/routes.rb"
-			],
-			[
-				"carthtml",
-				"app/views/cart/_cart_item.html.erb"
-			],
-			[
-				"cartform",
+				"cart/form",
 				"app/views/cart/_form.html.erb"
 			],
 			[
-				"checko",
-				"public/theme/checkout.html"
+				"cart_ite",
+				"app/models/cart_item.rb"
+			],
+			[
+				"cartr",
+				"app/models/cart.rb"
+			],
+			[
+				"add",
+				"app/models/concerns/additionable.rb"
+			],
+			[
+				"cartc",
+				"app/controllers/cart_controller.rb"
+			],
+			[
+				"cart/_form.html.erb",
+				"app/views/cart/one_flavour/_form.html.erb"
+			],
+			[
+				"cart_item_splittable.rb",
+				"app/models/cart_item_splittable.rb"
+			],
+			[
+				"choo",
+				"app/views/cart/_chooser.html.erb"
+			],
+			[
+				"cartrb",
+				"app/models/cart.rb"
+			],
+			[
+				"choose",
+				"app/views/cart/_chooser.html.erb"
+			],
+			[
+				"additionable.rb",
+				"app/models/concerns/additionable.rb"
+			],
+			[
+				"cart",
+				"app/models/cart.rb"
+			],
+			[
+				"cart_it",
+				"app/models/cart_item_sizable.rb"
 			],
 			[
 				"cartitem",
 				"app/models/cart_item_sizable_additionable.rb"
 			],
 			[
-				"coff",
-				"app/assets/javascripts/cart.js.coffee"
+				"cartitemr",
+				"app/models/cart_item.rb"
+			],
+			[
+				"productrb",
+				"app/models/product.rb"
+			],
+			[
+				"tag",
+				"app/views/cart/toppings/_tag.html.erb"
 			]
 		],
 		"width": 0.0
@@ -987,6 +1252,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 214.0,
+	"side_bar_width": 206.0,
 	"status_bar_visible": true
 }

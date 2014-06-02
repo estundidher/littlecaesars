@@ -13,9 +13,9 @@
     <tr>
       <td colspan="4">
         <center>
-          <%= link_to t('links.add', model_name:OpeningHour.model_name.human), admin_opening_hour_new_path(place.id),
-                      remote: true,
-                      class:'add_opening_hour' %>
+          <%= link_to t('links.add', model_name:OpeningHour.model_name.human),
+                      new_admin_place_opening_hour_path(place),
+                      remote: true, class:'add' %>
         </center>
       </td>
     </tr>

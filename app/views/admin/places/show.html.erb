@@ -1,5 +1,7 @@
 <%= tb_breadcrumb link_to(Place.model_name.human.pluralize, admin_places_path), t('titles.show', model_name: Place.model_name.human) %>
 
+<% content_for :module, 'places' %>
+
 <p> <%= image_tag @place.photo.url(:medium) %> </p>
 
 <dl>
@@ -23,11 +25,9 @@
   <% end %>
 </dl>
 
-<div class="form-group">
+<div class="form-group opening-hours" style="width: 400px;">
   <%= label :opening_hours, Place.human_attribute_name('opening_hours') %>
-  <div id="place_opening_hours_list_container" style="width: 400px;">
-    <%= render "/admin/opening_hours/list", place:@place %>
-  </div>
+  <%= render partial:'/admin/opening_hours/list', locals:{place:@place} %>
 </div>
 
 <%= tb_button_edit edit_admin_place_path(@place) %>

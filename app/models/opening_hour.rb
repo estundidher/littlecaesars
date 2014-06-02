@@ -5,14 +5,14 @@ class OpeningHour < ActiveRecord::Base
   has_many :shifts,
            dependent: :destroy
 
-  accepts_nested_attributes_for :shifts
-
+  accepts_nested_attributes_for :shifts,
+                                allow_destroy: true
   validates :place,
             presence: true
 
   validates :day_of_week,
             presence: true,
-            uniqueness: {scope: :place, message: "should have one Opening Hour per Day of Week per Place!"}
+            uniqueness: {scope: :place, message: 'should have one Opening Hour per Day of Week per Place!'}
 
   def dates_available
     if self.place.opening_hours
@@ -26,7 +26,9 @@ class OpeningHour < ActiveRecord::Base
     end
   end
 
-  def after_initialize
-    self.shifts.build if self.shifts.nil?
-  end
+  private
+
+    def after_initialize
+      self.shifts.build if self.shifts.nil?
+    end
 end
