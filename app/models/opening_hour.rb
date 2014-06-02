@@ -28,23 +28,10 @@ class OpeningHour < ActiveRecord::Base
 
   def times_available time
     times = []
-    now = Date.current.strftime('%F')
-
-    self.shifts.each do |shift|
-      from = Time.zone.parse("#{now} #{shift.start_at}")
-      to = Time.zone.parse("#{now} #{shift.end_at}")
-      times += (from.to_i..to.to_i).step(15.minutes).map {|d| Time.zone.at(d)}
-    end
-
-    logger.info "Times: #{times}"
-
-    logger.info "Time: #{time}, Time.current: #{Time.current}, Date.current: #{Date.current}"
-
+    times = self.shifts.map{|shift| shift.range(15.minutes)}.flatten
     if time.to_date == Date.current
-      logger.info "time.to_date == Date.current: true.."
       times = times.reject {|x| x.to_i < Time.current.to_i}
     end
-
     times.map{ |date| date.strftime("%I:%M %p") }
   end
 

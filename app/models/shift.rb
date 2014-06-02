@@ -10,16 +10,22 @@ class Shift < ActiveRecord::Base
   validates :end_at,
             presence: true
 
-  def start_at
+  def start_at day=nil
     if(read_attribute(:start_at))
-        read_attribute(:start_at).to_formatted_s(:time)
+        day = Date.current if day.nil?
+        Time.zone.parse("#{day.strftime('%F')} #{read_attribute(:start_at)}")
     end
   end
 
-  def end_at
+  def end_at day=nil
     if(read_attribute(:end_at))
-        read_attribute(:end_at).to_formatted_s(:time)
+        day = Date.current if day.nil?
+        Time.zone.parse("#{day.strftime('%F')} #{read_attribute(:end_at)}")
     end
+  end
+
+  def range step
+    (self.start_at.to_i..self.end_at.to_i).step(step).map {|d| Time.zone.at(d)}
   end
 
   private

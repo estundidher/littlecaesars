@@ -9,7 +9,14 @@ class PickUpController < ApplicationController
 
   # GET /pick_up/:place_id
   def when
-    render partial:'pick_up/when', locals:{place:@place}, layout: nil
+
+    dates_available = @place.dates_available
+    first = dates_available.first
+    times_available = @place.times_available(first)
+
+    render partial:'pick_up/when', locals:{place:@place,
+                                           dates_available:dates_available,
+                                           times_available:times_available}, layout: nil
   end
 
   # GET /pick_up/:place_id/:date

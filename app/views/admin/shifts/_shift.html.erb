@@ -9,7 +9,7 @@
       <div class='col-md-5'>
         <div class="form-group <%= tb_has_error shift, :start_at %>">
           <div class='input-group bootstrap-datetimepicker'>
-            <%= shift_form.text_field :start_at, class: 'form-control', value:shift.start_at %>
+            <%= shift_form.text_field :start_at, class: 'form-control', value:shift.start_at.to_formatted_s(:time) %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-time"></span>
             </span>
@@ -20,7 +20,7 @@
       <div class='col-md-5'>
         <div class="form-group <%= tb_has_error shift, :end_at %>">
           <div class='input-group bootstrap-datetimepicker'>
-            <%= shift_form.text_field :end_at, class: 'form-control', value:shift.end_at %>
+            <%= shift_form.text_field :end_at, class: 'form-control', value:shift.end_at.to_formatted_s(:time) %>
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-time"></span>
             </span>
@@ -34,11 +34,9 @@
     <div class='col-md-1'>
       <div class="form-group">
         <% if shift.id %>
-
           <button type="button" class="btn btn-default delete"<%= ' disabled' if ((opening_hour.shifts.size-1) != shift_index) %> data-path="<%= admin_place_opening_hour_shift_path(opening_hour.place, opening_hour, shift) %>">
             <i class="glyphicon glyphicon-remove"></i>
           </button>
-
         <% else %>
           <button type="button"
           class="btn btn-default remove"<%= ' disabled' if ((opening_hour.shifts.size-1) != shift_index) %>>
