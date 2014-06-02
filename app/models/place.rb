@@ -40,19 +40,18 @@ class Place < ActiveRecord::Base
   end
 
   def dates_available
-    from = Date.today
+    from = Date.current
     to = from + 6.days
     dates =* from..to
   end
 
   def times_available time
-    #puts "#{'@'*100}> day.to_s: #{time.to_s}"
     opening_hour = self.opening_hour_of time
     opening_hour.times_available time
   end
 
   def opening_hour_of_today
-    opening_hour_of Date.today
+    opening_hour_of Date.current
   end
 
   def opening_hour_of day
