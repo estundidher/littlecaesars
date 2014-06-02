@@ -42,10 +42,10 @@ class Place < ActiveRecord::Base
   def dates_available
     dates = []
     day = Date.current
-    while dates.length < 6 do
+    while dates.length < 7 do
       opening_hour = opening_hour_of(day)
       unless opening_hour.nil?
-        puts "opening_hour '#{opening_hour.day_of_week}': end_at: #{opening_hour.shifts.last.end_at(day)}, current: #{Time.current}"
+        logger.info "day: '#{day}', opening_hour '#{opening_hour.day_of_week}': end_at: #{opening_hour.shifts.last.end_at(day)}, current: #{Time.current}"
         if opening_hour.shifts.last.end_at(day).to_i > Time.current.to_i
           dates << day
         end
