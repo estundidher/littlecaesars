@@ -31,7 +31,7 @@ class Shift < ActiveRecord::Base
   private
 
     def start_at_cannot_be_before_last_shift_added
-      unless self.opening_hour.shifts.empty?
+      unless self.opening_hour.nil? || self.opening_hour.shifts.empty?
         last = self.opening_hour.shifts.last
         #puts "#{'@'*100}> last.id: #{last.id}, self.id: #{self.id}"
         unless last.id == self.id
