@@ -3,7 +3,7 @@
 <div class="row" style="min-height:420px;">
   <div class="col-md-12 col-sm-12">
 
-    <div class="row checkout">
+    <div class="row checkout" style="margin-bottom: 0px;">
       <div class="col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
         <div class="sidebar-item">
           <!-- Heading -->
@@ -13,6 +13,11 @@
           <div class="clearfix"></div>
           <!-- Sidebar Paragraph -->
           <p> <%= place.address %> </p>
+          <iframe src="<%= place.map %>"
+            width="340"
+            height="300"
+            frameborder="0"
+            style="border:0"></iframe>
         </div>
       </div>
     </div>
