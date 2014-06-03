@@ -2,6 +2,9 @@ class PickUpController < ApplicationController
 
   before_action :set_place, only: [:when, :times]
 
+  #devise configuration
+  before_action :authenticate_customer!
+
   # GET /pick_up
   def index
     @places = Place.order :name

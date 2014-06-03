@@ -1,8 +1,6 @@
 <%= form_for resource, as: resource_name, url: registration_path(resource_name),
     html: {role: 'form', class: 'form-horizontal', style: 'width:500px;'} do |f| %>
 
-  <%= tb_show_errors_for @customer %>
-
   <div class="form-group <%= tb_has_error @customer, :name %>">
     <%= f.label :name, class:'col-md-2 control-label' %>
     <div class="col-md-8">

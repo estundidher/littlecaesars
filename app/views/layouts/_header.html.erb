@@ -66,17 +66,17 @@
               <ul class="nav navbar-nav">
                 <li>
                   <%= link_to root_path do %>
-                    <%= image_tag 'nav-menu/nav1.jpg', class: 'img-responsive' %> Home
+                    <%= image_tag 'nav-menu/nav1.jpg', class:'img-responsive' %> Home
                   <% end %>
                 </li>
                 <li>
                   <%= link_to about_path do %>
-                    <%= image_tag "nav-menu/nav11.jpg", class: 'img-responsive' %> About Us
+                    <%= image_tag 'nav-menu/nav11.jpg', class:'img-responsive' %> About Us
                   <% end %>
                 </li>
                 <li class="dropdown hidden-xs">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <%= image_tag "nav-menu/nav2.jpg", class: 'img-responsive' %> Menu
+                    <%= image_tag "nav-menu/nav2.jpg", class:'img-responsive' %> Menu
                     <b class="caret"></b>
                   </a>
                   <%= render partial:'layouts/menu_popup' %>
@@ -85,25 +85,23 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <% Category.with_shoppable_products.each do |category| %>
-                      <li>
-                        <%= link_to category.name, menu_path %>
-                      </li>
+                      <li> <%= link_to category.name, menu_path %> </li>
                     <% end %>
                   </ul>
                 </li>
                 <li>
-                  <%= link_to order_path do %>
-                    <%= image_tag 'nav-menu/nav3.jpg', class: 'img-responsive' %> Order Online
+                  <%= link_to pick_up_path do %>
+                    <%= image_tag 'nav-menu/nav3.jpg', class:'img-responsive' %> Order Online
                   <% end %>
                 </li>
                 <li>
                   <%= link_to contact_path do %>
-                    <%= image_tag "nav-menu/nav12.jpg", class: 'img-responsive' %> Contact Us
+                    <%= image_tag 'nav-menu/nav12.jpg', class:'img-responsive' %> Contact Us
                   <% end %>
                 </li>
                 <li>
                   <a href="http://theoandco.net/" target="_blank">
-                    <%= image_tag "nav-menu/nav7.jpg", class: 'img-responsive' %> Theo & Co
+                    <%= image_tag 'nav-menu/nav7.jpg', class:'img-responsive' %> Theo & Co
                   </a>
                 </li>
               </ul>

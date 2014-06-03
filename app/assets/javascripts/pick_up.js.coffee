@@ -12,32 +12,10 @@ class Caesars.PickUp
     @bind()
 
   bind: ->
-    @$carousel.on 'slid.bs.carousel', @slide
     @$carousel.on 'ajax:before', '.places a', @place_chosen_before
     @$carousel.on 'ajax:success', '.places a', @place_chosen_success
 
     @$pick_up.on 'change', '.when .dates select', @date_chosen
-
-  slide: =>
-    $idx = @$carousel.find('.item.active').index();
-
-    console.log "pick up: slide fired!"
-
-    $next = @$pick_up.find('.btn.next')
-    $prev = @$pick_up.find('.btn.prev')
-
-    @$pick_up.find('.carousel-indicators li')
-    @$pick_up.find('.carousel-indicators li').removeClass 'active'
-    item = @$pick_up.find('.carousel-indicators li')[$idx]
-    $(item).addClass 'active'
-
-    $prev.removeClass 'disabled'
-    $next.removeClass 'disabled'
-
-    if $idx == (@$carousel.find('.item').length - 1)
-      $next.addClass 'disabled'
-    else if $idx == 0
-      $prev.addClass 'disabled'
 
   date_chosen: (e) =>
     console.log "pick up: date_chosen fired! path: " + $(e.target).find('option:selected').data('path')

@@ -1,44 +1,53 @@
 <center><h1>Choose the Date and Time</h1></center>
 <br>
-<div class="row" style="min-height:420px;">
-  <div class="col-md-12 col-sm-12">
+<div class="row checkout" style="min-height:420px;">
 
-    <div class="row checkout" style="margin-bottom: 0px;">
-      <div class="col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
-        <div class="sidebar-item">
-          <!-- Heading -->
-          <h5 class="pull-left"><%= place.name %></h5>
-          <!-- Sidebar content icon -->
-          <i class="fa fa-truck br-green pull-right"></i>
-          <div class="clearfix"></div>
-          <!-- Sidebar Paragraph -->
-          <p> <%= place.address %> </p>
-          <iframe src="<%= place.map %>"
-            width="340"
-            height="300"
-            frameborder="0"
-            style="border:0"></iframe>
+  <div class="col-sm-offset-4 col-md-4 col-sm-4">
+    <div class="sidebar-item">
+      <!-- Heading -->
+      <h5 class="pull-left"><%= place.name %></h5>
+      <!-- Sidebar content icon -->
+      <i class="fa fa-truck br-green pull-right"></i>
+      <div class="clearfix"></div>
+      <!-- Sidebar Paragraph -->
+      <p> <%= place.address %> </p>
+      <iframe src="<%= place.map %>"
+        width="340"
+        height="300"
+        frameborder="0"
+        style="border:0"></iframe>
+    </div>
+  </div>
+
+  <%= form_tag pick_up_when_path(place) do |f| %>
+    <div class="col-sm-offset-4 col-md-4 col-sm-4">
+      <div class="form-group dates">
+        <label for="product_type">Pick Up Date</label>
+        <%= select_tag(:date, options_for_select(dates_available.map {|d| [d.strftime("%A %d %B %Y"), d,
+          {'data-path'=>pick_up_times_path(place, d)}] }),
+            class:'form-control') %>
+      </div>
+      <div class="form-group">
+        <label for="product_type">Pick Up Time</label>
+        <i class="fa fa-spinner fa-spin" style="display:none;"></i>
+        <div class="times">
+          <%= render partial:'/pick_up/times', locals:{times_available:times_available} %>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
-        <%= form_tag pick_up_when_path(place) do |f| %>
-          <div class="form-group dates">
-            <label for="product_type">Order Date</label>
-            <%= select_tag(:date, options_for_select(dates_available.map {|d| [d.strftime("%A %d %B %Y"), d, {'data-path'=>pick_up_times_path(place, d)}] }),
-                class:'form-control') %>
-          </div>
-          <div class="form-group">
-            <label for="product_type">Order Time</label>
-            <i class="fa fa-spinner fa-spin" style="display:none;"></i>
-            <div class="times">
-              <%= render partial:'/pick_up/times', locals:{times_available:times_available} %>
-            </div>
-          </div>
+    <div class="col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
+      <div style="float:left">
+        <a class="btn btn-primary btn-lg" href="#wizard" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          Back
+        </a>
+      </div>
+      <div style="float:right">
+        <%= link_to cart_path, class:'btn btn-primary btn-lg', role:'button' do %>
+          Start <i class='fa fa-spinner fa-spin' style='display:none;'></i><i class='glyphicon glyphicon-chevron-right'></i>
         <% end %>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>

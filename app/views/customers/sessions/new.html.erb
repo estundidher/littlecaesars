@@ -4,18 +4,4 @@
   <%= tb_breadcrumb 'Sign In' %>
 <% end %>
 
-<div class="checkout">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-sm-6">
-        <h4>Sign In</h4>
-        <%= render 'form' %>
-      </div>
-      <div class="col-md-6 col-sm-6">
-        <h4>Sign Up</h4>
-        <%= render '/customers/registrations/form' %>
-      </div>
-    </div>
-    <%= render "customers/shared/links" %>
-  </div>
-</div>
+<%= render partial:'/customers/new' %>

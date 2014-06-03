@@ -8,9 +8,6 @@ class HomeController < ApplicationController
   end
 
   def order
-    unless customer_signed_in?
-      redirect_to pick_up_path
-    end
   end
 
   def category
