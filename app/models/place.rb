@@ -60,6 +60,10 @@ class Place < ActiveRecord::Base
     opening_hour.times_available time
   end
 
+  def first_times_available
+    times_available dates_available.first
+  end
+
   def opening_hour_of_today
     opening_hour_of Date.current
   end

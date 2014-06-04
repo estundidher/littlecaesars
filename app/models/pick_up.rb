@@ -1,6 +1,6 @@
 class PickUp < ActiveRecord::Base
 
-  has_one :cart
+  has_one :cart, dependent: :nullify
 
   belongs_to :place
 

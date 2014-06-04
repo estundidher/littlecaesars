@@ -18,9 +18,9 @@ class Admin::PricesController < Admin::BaseController
   def create
     @price = Price.new(price_params)
     if @price.save
-      render partial: 'list', locals: {product:@price.product}, layout: nil
+      render partial:'list', locals: {product:@price.product}, layout: nil
     else
-      render partial: 'form', locals: {price:@price}, layout: nil, status: :unprocessable_entity
+      render partial:'form', locals: {price:@price}, layout: nil, status: :unprocessable_entity
     end
   end
 
@@ -28,9 +28,9 @@ class Admin::PricesController < Admin::BaseController
   # PATCH/PUT /prices/1.json
   def update
     if @price.update!(price_params)
-      render partial: 'list', locals: {product:@price.product}, layout: nil
+      render partial:'list', locals: {product:@price.product}, layout: nil
     else
-      render partial: 'form', locals: {price:@price}, layout: nil, status: :unprocessable_entity
+      render partial:'form', locals: {price:@price}, layout: nil, status: :unprocessable_entity
     end
   end
 

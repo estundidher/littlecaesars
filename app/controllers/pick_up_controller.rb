@@ -14,16 +14,12 @@ class PickUpController < ApplicationController
 
   # GET /pick_up/new
   def new
-    dates_available = @place.dates_available
-    first = dates_available.first
-    times_available = @place.times_available(first)
-
     @pick_up = PickUp.new place:@place
 
     render partial:'pick_up/new', locals:{pick_up:@pick_up,
                                           place:@place,
-                                          dates_available:dates_available,
-                                          times_available:times_available}, layout: nil
+                                          dates_available:@place.dates_available,
+                                          times_available:@place.first_times_available}, layout: nil
   end
 
   # GET /pick_up/:place_id/:date
@@ -33,12 +29,21 @@ class PickUpController < ApplicationController
 
   # POST /pick_up
   def create
-    if @cart.pick_up.nil?
-      @cart.create_pick_up(pick_up_params)
-    else
-      @cart.pick_up.update_attributes(pick_up_params)
+
+    unless @cart.pick_up.nil?
+      @cart.pick_up.destroy
     end
-    redirect_to order_path
+
+    @pick_up = @cart.build_pick_up(pick_up_params)
+
+    if @pick_up.save
+      render plain: order_url, status: :ok
+    else
+      render partial:'pick_up/new', locals:{pick_up:@pick_up,
+                                            place:@pick_up.place,
+                                            dates_available:@pick_up.place.dates_available,
+                                            times_available:@pick_up.place.first_times_available}, layout: nil, status: :unprocessable_entity
+    end
   end
 
   private

@@ -1,8 +1,11 @@
-<%= form_for pick_up, url:{action:'create'} do |f| %>
+<%= form_for pick_up, url:{action:'create'}, remote:true do |f| %>
 
   <%= f.hidden_field :place_id, value:pick_up.place.id %>
 
   <div class="col-sm-offset-4 col-md-4 col-sm-4">
+
+    <%= tb_show_errors_for pick_up %>
+
     <div class="form-group dates">
       <label for="product_type">Pick Up Date</label>
       <%= select_tag(:date, options_for_select(dates_available.map {|d| [d.strftime("%A %d %B %Y"), d, {'data-path'=>pick_up_dates_path(pick_up.place, d)}]}), class:'form-control') %>
