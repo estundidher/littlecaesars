@@ -8,7 +8,7 @@ class Caesars.CartItem
 
   constructor: ->
     @$modal_container = $('#modal_container')
-    @$cart_item = $('.cart-item')
+    @$cart_item = $('.cart-container .cart-item')
     @$form = @$cart_item.find('.cart-item-form')
     @$mode_form = @$cart_item.find('.mode form')
     @$mode_options = @$mode_form.find('input:radio')

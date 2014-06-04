@@ -14,6 +14,10 @@ class CartController < ApplicationController
   before_action :set_topping, only: [:add_topping]
   before_action :set_cart_item, only: [:destroy, :ingredients, :calculate, :create, :toppings, :add_toppings, :modal]
 
+  def update
+    redirect_to order_path
+  end
+
   # GET /cart/add/1
   def modal
     render partial: 'cart/modal/modal', locals:{cart_item:@cart_item, product:@product}, layout: nil
@@ -34,9 +38,6 @@ class CartController < ApplicationController
     if @cart_item.save
       render partial:'cart/button/item', locals:{cart_item:@cart_item}, layout: nil
     else
-
-      puts "#{'#'*100}> cart_item: #{@cart_item}, 1st: #{@cart_item.first_half} price: #{@cart_item.first_half.price.value}, 2nd: #{@cart_item.second_half} price: #{@cart_item.second_half.price.value}"
-
       render partial:'layouts/form_errors', locals:{model:@cart_item},
                                             layout:nil, status: :unprocessable_entity
     end
@@ -187,37 +188,19 @@ private
   # Use callbacks to share common setup or constraints between actions.
   def set_cart_item
     if params[:id].nil?
-      #puts "#{'#'*100}> mode: #{params[:mode]}, @product: #{@product}, @size: #{@size}, cart_item_params: #{cart_item_params}"
       if params.has_key?(:cart_item_splittable) || params[:mode] == CART_MODE[:two_flavours]
         @cart_item = @cart.new_splittable_item @product, @product, @size, cart_item_params
-        #puts "#{'#'*100}> cart_item: #{@cart_item}"
-        #unless @cart_item.first_half.nil?
-        #  puts "#{'#'*100}> 1st: #{@cart_item.first_half}"
-        #  unless @cart_item.first_half.additions.nil?
-        #    puts "#{'#'*100}> 1st additions: #{@cart_item.first_half.additions.map{|a|a.name}.join(',')}"
-        #  end
-        #  unless @cart_item.first_half.price.nil?
-        #    puts "#{'#'*100}> 1st price: #{@cart_item.first_half.price.value}"
-        #  end
-        #end
-        #unless @cart_item.second_half.nil?
-        #  puts "#{'#'*100}> 2nd: #{@cart_item.second_half}"
-        #  unless @cart_item.second_half.price.nil?
-        #    puts "#{'#'*100}> 2nd price: #{@cart_item.second_half.price.value}"
-        #  end
-        #end
       elsif params[:mode].nil? || params[:mode] == CART_MODE[:one_flavour]
         @cart_item = @cart.new_item @product, @size, cart_item_params
       end
     else
       @cart_item = CartItem.find(params[:id])
     end
-    #puts "#{'#'*100}> @cart_item: #{@cart_item}"
   end
 
   def set_cart
     if params[:cart_id].nil?
-      @cart = Cart.find_or_create_by(customer: current_customer, status: Cart.statuses[:open])
+      @cart = Cart.current current_customer
     else
       @cart = Cart.find(params[:cart_id])
     end

@@ -16,4 +16,9 @@ module ApplicationHelper
     return html.html_safe
   end
 
+
+  def is_active(action)
+    params[:controller] == action ? "class=active" : nil
+ end
+
 end

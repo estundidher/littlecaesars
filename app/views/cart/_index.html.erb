@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-9 col-sm-9 cart-item">
+    <div class="row" style="padding-bottom: 10px;">
+      <div class="col-md-4 col-sm-4 mode">
+        <%= render partial:'/cart/mode', locals:{product:product, category:category} %>
+      </div>
+      <div class="col-md-4 col-sm-4 price">
+        <span class="value">
+          <%= number_to_currency product.price_of(size).value if product.sizable? %>
+          <%= number_to_currency product.price unless product.sizable? %>
+        </span>
+      </div>
+    </div>
+    <div class="chooser">
+      <%= render partial:'/cart/chooser', locals:{cart_item: cart_item,
+                                                 categories: categories,
+                                                   category: category,
+                                                       size: size,
+                                                      sizes: sizes,
+                                                    product: product,
+                                                   products: products,
+                                                       mode: CartController::CART_MODE[:one_flavour]} %>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-3 cart">
+    <%= render partial:'/cart/cart', locals:{sizes:sizes} %>
+  </div>
+</div>

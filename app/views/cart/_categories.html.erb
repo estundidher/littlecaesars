@@ -32,6 +32,6 @@
 </div>
 <% if product.sizable? and align == 'left' %>
   <div class="sizes">
-    <%= render partial:'sizes', locals:{sizes:sizes, size:size} %>
+    <%= render partial:'/cart/sizes', locals:{sizes:sizes, size:size} %>
   </div>
 <% end %>

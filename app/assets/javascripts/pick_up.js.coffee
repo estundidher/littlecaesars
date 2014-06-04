@@ -12,9 +12,7 @@ class Caesars.PickUp
     @bind()
 
   bind: ->
-    @$carousel.on 'ajax:before', '.places a', @place_chosen_before
     @$carousel.on 'ajax:success', '.places a', @place_chosen_success
-
     @$pick_up.on 'change', '.when .dates select', @date_chosen
 
   date_chosen: (e) =>
@@ -29,12 +27,8 @@ class Caesars.PickUp
       .fail (jqHXR, textStatus) ->
         alert 'ops..'
 
-  place_chosen_before: (e, data, status, xhr) =>
-    console.log "pick up: .places a 'ajax:before' fired!"
-
   place_chosen_success: (e, data, status, xhr) =>
     console.log "pick up: .places a 'ajax:success' fired!"
-
     $('.pick-up .carousel .when').empty().append(xhr.responseText).fadeIn 'fast', ->
       $('.pick-up .carousel').carousel 'next'
 

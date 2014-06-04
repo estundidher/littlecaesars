@@ -21,10 +21,15 @@
 </div>
 
 <div class="row toppings">
-  <div class="col-md-5 col-sm-5 left" style="padding-right: 0px;">
+  <div class="col-md-4 col-sm-4 left" style="padding-right: 0px;">
     <%= render partial:'cart/toppings/add', locals: {cart_item:cart_item, product:product, mode:mode, side:'left'} %>
   </div>
-  <div class="col-md-2 col-sm-2" style="padding-right: 0px;">
+  <div class="col-md-4 col-sm-4" style="padding-right: 0px; padding-left: 40px;">
+    <%= link_to order_path, class:'btn btn-danger btn-lg' do %>
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Back
+    <% end %>
+
     <a href="JavaScript:void(0);" class="btn btn-danger btn-lg add" role="button">
       Add to
       <i class="glyphicon glyphicon-shopping-cart"></i>
@@ -32,7 +37,7 @@
     </a>
   </div>
   <% if mode == CartController::CART_MODE[:two_flavours] %>
-    <div class="col-md-5 col-sm-5 right" style="padding-left: 0px; text-align: right;">
+    <div class="col-md-4 col-sm-4 right" style="padding-left: 0px; text-align: right;">
       <%= render partial:'cart/toppings/add', locals: {cart_item:cart_item, product:product, mode:mode, side:'right'} %>
     </div>
   <% end %>

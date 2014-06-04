@@ -5,7 +5,7 @@
         <div class="cart-heading">
           <div class="btn-cart-md"> <!-- Button Kart -->
             <a class="cart-link" href="#">
-              <%= image_tag "cart.png", class: 'img-responsive' %>
+              <%= image_tag "cart.png", class:'img-responsive' %>
               <h4>Shopping Cart</h4>
               <span class="price">
                 <%= render partial:'cart/button/price', locals:{cart:@cart} %>
@@ -15,13 +15,19 @@
           </div>
         </div>
       </li>
+      <li>
+        <div class="cart-item" style="text-align: center;">
+          <dt> <%= @cart.pick_up.place.name %> <dt>
+          <dd> <%= l @cart.pick_up.date, format: :short %> <dd>
+        </div>
+      </li>
       <% @cart.items.each do |item| %>
         <%= render partial:'cart/button/item', locals:{cart_item:item} %>
       <% end %>
       <li>
         <!-- Cart items for shopping list -->
         <div class="cart-item">
-          <%= link_to cart_checkout_path(@cart.id), remote: true, role: 'button',
+          <%= link_to cart_checkout_path(@cart.id), remote:true, role:'button',
               class: 'btn btn-danger checkout' do %>
             Checkout
           <% end %>

@@ -1,0 +1,3 @@
+<%= fields_for :pick_up do |f| %>
+  <%= f.select(:date, options_for_select(times_available.map{|d|[d.strftime("%I:%M %p"), d]}), {}, class:'form-control') %>
+<% end %>

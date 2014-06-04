@@ -7,8 +7,8 @@ window.Caesars or= {}
 class Caesars.Cart
 
   constructor: ->
-    @$cart = $('.cart')
-    @$cart_item = $('.cart-item')
+    @$cart = $('.cart-container .cart')
+    @$cart_item = $('.cart-container .cart-item')
     @bind()
 
   bind: ->

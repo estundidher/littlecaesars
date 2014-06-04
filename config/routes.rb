@@ -8,22 +8,15 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  controller :pick_up do
-    get 'pick_up',                 to: :index,  as: :pick_up
-    get 'pick_up/:place_id',       to: :when,   as: :pick_up_when
-    get 'pick_up/:place_id/:date', to: :times,  as: :pick_up_times
+  #get 'pick_up/place/:place_id',      to: 'pick_up#when',  as: :pick_up_when
+  get 'pick_up/when/:place_id/:date', to: 'pick_up#dates', as: :pick_up_dates
+
+  resources :pick_up, except:[:new] do
+    new do
+      get ':place_id', to: :new, as: ''
+    end
   end
 
-  controller :home do
-    get 'order',             to: :order,        as: :order
-    get 'contact',           to: :contact,      as: :contact
-    post 'contact',          to: :send_message, as: :send_message
-    get 'about',             to: :about,        as: :about
-    get 'menu(/:active)',    to: :menu,         as: :menu
-    get 'order/product/:id', to: :product,      as: :product
-  end
-
-  #cart
   get 'cart/add/:product_id',                to: 'cart#modal',      as: :cart_new_item
   post 'cart/add',                           to: 'cart#create',     as: :cart_item_sizables
   post 'cart/add',                           to: 'cart#create',     as: :cart_item_quantitables
@@ -32,6 +25,7 @@ Rails.application.routes.draw do
   post 'cart/add',                           to: 'cart#create',     as: :cart_item_additionables
   post 'cart/calculate',                     to: 'cart#calculate',  as: :cart_item_calculate
   delete 'cart/:id',                         to: 'cart#destroy',    as: :cart_remove_item
+
   get 'cart/:id/checkout',                   to: 'cart#checkout',   as: :cart_checkout
   get '/cart/:mode/:product_id/:side/ingredients', to: 'cart#ingredients',as: :cart_product_items
 
@@ -43,9 +37,18 @@ Rails.application.routes.draw do
 
   #cart page
   get 'cart/price',                               to: 'cart#price',    as: :cart_price
-  get 'cart(/:product_id)',                       to: 'cart#index',    as: :cart
+  get 'cart(/:product_id)',                      to: 'cart#index',    as: :cart
   post 'cart/mode',                               to: 'cart#mode',     as: :cart_mode
   get 'cart/:mode/:side/:category_id(/:size_id)', to: 'cart#carousel', as: :cart_carousel
+
+  controller :home do
+    get 'order',             to: :order,        as: :order
+    get 'contact',           to: :contact,      as: :contact
+    post 'contact',          to: :send_message, as: :send_message
+    get 'about',             to: :about,        as: :about
+    get 'menu(/:active)',    to: :menu,         as: :menu
+    get 'order/product/:id', to: :product,      as: :product
+  end
 
   namespace :admin do
 

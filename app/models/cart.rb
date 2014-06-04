@@ -2,6 +2,8 @@ class Cart < ActiveRecord::Base
 
   enum status: [:open, :closed]
 
+  belongs_to :pick_up
+
   belongs_to :customer
 
   has_many :items,
@@ -63,5 +65,9 @@ class Cart < ActiveRecord::Base
 
   def total
     self.items.inject(0) {|sum, item| sum + item.total}
+  end
+
+  def self.current current
+    find_or_create_by(customer:current, status:Cart.statuses[:open])
   end
 end

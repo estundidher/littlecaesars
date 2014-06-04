@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522073934) do
+ActiveRecord::Schema.define(version: 20140604093818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140522073934) do
     t.integer  "customer_id",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pick_up_id"
   end
 
   create_table "categories", force: true do |t|
@@ -75,8 +76,6 @@ ActiveRecord::Schema.define(version: 20140522073934) do
     t.string   "plus"
     t.integer  "created_by",              null: false
     t.integer  "updated_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -85,6 +84,8 @@ ActiveRecord::Schema.define(version: 20140522073934) do
     t.string   "background_content_type"
     t.integer  "background_file_size"
     t.datetime "background_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "chefs", ["name"], name: "index_chefs_on_name", unique: true, using: :btree
@@ -115,6 +116,13 @@ ActiveRecord::Schema.define(version: 20140522073934) do
     t.string   "day_of_week", null: false
     t.integer  "created_by",  null: false
     t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pick_ups", force: true do |t|
+    t.integer  "place_id",   null: false
+    t.datetime "date",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -251,6 +259,7 @@ ActiveRecord::Schema.define(version: 20140522073934) do
   add_foreign_key "cart_items_subtractions", "products", name: "cart_items_subtractions_product_id_fk"
 
   add_foreign_key "carts", "customers", name: "carts_customer_id_fk"
+  add_foreign_key "carts", "pick_ups", name: "carts_pick_up_id_fk"
 
   add_foreign_key "categories", "users", name: "categories_created_by_fk", column: "created_by"
   add_foreign_key "categories", "users", name: "categories_updated_by_fk", column: "updated_by"
@@ -267,6 +276,8 @@ ActiveRecord::Schema.define(version: 20140522073934) do
   add_foreign_key "opening_hours", "places", name: "opening_hours_place_id_fk"
   add_foreign_key "opening_hours", "users", name: "opening_hours_created_by_fk", column: "created_by"
   add_foreign_key "opening_hours", "users", name: "opening_hours_updated_by_fk", column: "updated_by"
+
+  add_foreign_key "pick_ups", "places", name: "pick_ups_place_id_fk"
 
   add_foreign_key "places", "users", name: "places_created_by_fk", column: "created_by"
   add_foreign_key "places", "users", name: "places_updated_by_fk", column: "updated_by"
