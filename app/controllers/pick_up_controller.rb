@@ -1,11 +1,11 @@
 class PickUpController < ApplicationController
 
+  #devise configuration
+  before_action :authenticate_customer!
+
   before_action :set_place, only: [:new, :dates]
 
   before_action :set_cart, only: [:create, :index]
-
-  #devise configuration
-  before_action :authenticate_customer!
 
   # GET /pick_up/index
   def index
