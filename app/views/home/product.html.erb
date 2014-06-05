@@ -31,6 +31,10 @@
               </div>
             </div>
           </div><!--/ Inner row end  -->
+          <%= link_to order_path, class:'btn btn-danger btn-sm' do %>
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Back
+          <% end %>
           <%= add_to_cart_button @product %>
         </div>
       </div>
