@@ -12,10 +12,10 @@
         <p> <%= product.describe 30 %> </p>
         <% if product.type.sizable? %>
           <% product.prices.each do |price| %>
-            <%= render partial: 'shopping_price', locals: {name:price.size.name, value:price.value} %>
+            <%= render partial:'shopping_price', locals:{name:price.size.name, value:price.value} %>
           <% end %>
         <% else %>
-          <%= render partial: 'shopping_price', locals: {name:'Price', value:product.price} %>
+          <%= render partial:'shopping_price', locals:{name:'Price', value:product.price} %>
         <% end %>
         <!-- Buy now button -->
         <div class="visible-xs">

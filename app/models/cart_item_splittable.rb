@@ -42,7 +42,9 @@ class CartItemSplittable < CartItem
   end
 
   def highest_half
-    if self.first_half.product_price > self.second_half.product_price
+    if self.first_half.product_price == self.second_half.product_price
+      self.first_half
+    elsif self.first_half.product_price > self.second_half.product_price
       self.first_half
     else
       self.second_half
@@ -50,7 +52,9 @@ class CartItemSplittable < CartItem
   end
 
   def lowest_half
-    if self.first_half.product_price < self.second_half.product_price
+    if self.first_half.product_price == self.second_half.product_price
+      self.second_half
+    elsif self.first_half.product_price < self.second_half.product_price
       self.first_half
     else
       self.second_half
