@@ -67,6 +67,13 @@ class Cart < ActiveRecord::Base
     self.items.inject(0) {|sum, item| sum + item.total}
   end
 
+  def pick_up_configurated?
+    unless self.pick_up.nil?
+      return self.pick_up.created_at > 10.minutes.ago
+    end
+    false
+  end
+
   def self.current current
     find_or_create_by(customer:current, status:Cart.statuses[:open])
   end

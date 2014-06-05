@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+  include PickUpConfiguratedConcern
 
   CART_MODE = {:one_flavour=>'one-flavour', :two_flavours=>'two-flavours'}
   MAX_OF_THE_SAME_TOPPING = 2
@@ -13,6 +14,8 @@ class CartController < ApplicationController
   before_action :set_toppings, only: [:toppings, :add_toppings, :toppings_calculate, :add_topping]
   before_action :set_topping, only: [:add_topping]
   before_action :set_cart_item, only: [:destroy, :ingredients, :calculate, :create, :toppings, :add_toppings, :modal]
+
+  before_action :pick_up_configurated?, only: [:index]
 
   def update
     redirect_to order_path

@@ -1,14 +1,19 @@
 class PickUpController < ApplicationController
 
-  before_action :set_place, only: [:new, :times]
+  before_action :set_place, only: [:new, :dates]
 
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :index]
 
   #devise configuration
   before_action :authenticate_customer!
 
   # GET /pick_up/index
   def index
+
+    unless @cart.pick_up.nil?
+      @cart.pick_up.destroy
+    end
+
     @places = Place.order :name
   end
 
@@ -30,11 +35,7 @@ class PickUpController < ApplicationController
   # POST /pick_up
   def create
 
-    unless @cart.pick_up.nil?
-      @cart.pick_up.destroy
-    end
-
-    @pick_up = @cart.build_pick_up(pick_up_params)
+    @pick_up = @cart.build_pick_up pick_up_params
 
     if @pick_up.save
       render plain: order_url, status: :ok
@@ -53,7 +54,7 @@ class PickUpController < ApplicationController
     end
 
     def set_cart
-      @cart = Cart.current(current_customer)
+      @cart = Cart.current current_customer
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

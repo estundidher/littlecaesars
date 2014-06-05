@@ -9,6 +9,8 @@ class Customer < ActiveRecord::Base
          :validatable,
          :authentication_keys => [:email]
 
+  has_one :cart
+
   validates :email,
             uniqueness: {case_sensitive: false}
 

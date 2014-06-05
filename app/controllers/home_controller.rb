@@ -1,19 +1,11 @@
 class HomeController < ApplicationController
+  include PickUpConfiguratedConcern
 
   before_action :set_product, only: [:product]
   before_action :set_category, only: [:category]
 
   def index
     render layout:'generic'
-  end
-
-  def order
-  end
-
-  def category
-  end
-
-  def product
   end
 
   def contact
@@ -34,21 +26,25 @@ class HomeController < ApplicationController
     @chefs = Chef.order(:name)
   end
 
-  def menu
-  end
+  private
 
-private
-    # Use callbacks to share common setup or constraints between actions.
-  def set_product
-    @product = Product.find(params[:id])
-  end
-  def set_category
-    @category = Category.find(params[:id])
-  end
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def contact_params
-    params.require(:contact).permit :name,
-                                    :email,
-                                    :message
-  end
+      # Use callbacks to share common setup or constraints between actions.
+    def set_product
+      @product = Product.find(params[:id])
+    end
+
+    def set_category
+      @category = Category.find(params[:id])
+    end
+
+    def set_cart
+      @cart = Cart.current current_customer
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def contact_params
+      params.require(:contact).permit :name,
+                                      :email,
+                                      :message
+    end
 end

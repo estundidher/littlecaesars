@@ -25,7 +25,10 @@
         <!-- Shopping item hover block & link -->
         <div class="item-hover br-red hidden-xs"></div>
           <% if customer_signed_in? %>
-            <% if product.type.additionable? %>
+            <% if !current_customer.cart.pick_up_configurated? %>
+              <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                  pick_up_index_path, class: "link hidden-xs" %>
+            <% elsif product.type.additionable? %>
               <%= link_to t('links.add_to', model_name:Cart.model_name.human),
                   cart_path(product), class: "link hidden-xs" %>
             <% else %>
