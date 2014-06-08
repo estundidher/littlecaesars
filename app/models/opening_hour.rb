@@ -30,9 +30,13 @@ class OpeningHour < ActiveRecord::Base
     times = []
     times = self.shifts.map{|shift| shift.range(15.minutes)}.flatten
     if time.to_date == Date.current
-      times = times.reject {|x| x.to_i < (Time.now + 15.minutes).to_i}
+      times = times.reject {|x| x.to_i < (time + 15.minutes).to_i}
     end
     times
+  end
+
+  def to_s
+    "day_of_week: #{day_of_week}, shifts: #{self.shifts.map{|s| s.to_s}.join(',')}"
   end
 
   private

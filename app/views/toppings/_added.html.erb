@@ -1,12 +1,12 @@
-<%= form_tag cart_add_topping_path, remote: true,
-    data:{calculate_url:cart_calulate_toppings_path, add_url:cart_add_toppings_path} do %>
+<%= form_tag add_topping_path, remote: true,
+    data:{calculate_url:calulate_toppings_path, add_url:add_toppings_to_cart_path} do %>
   <%= hidden_field_tag :product_id, product.id %>
   <%= hidden_field_tag :topping_id %>
   <%= hidden_field_tag :mode, mode %>
   <%= hidden_field_tag :side, side %>
   <div class="tags">
     <% if toppings %>
-      <%= render partial:'cart/toppings/tags', locals:{products:toppings, type:'toppings'} %>
+      <%= render partial:'toppings/tags', locals:{products:toppings, type:'toppings'} %>
     <% end %>
   </div>
 <% end %>

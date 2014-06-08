@@ -27,8 +27,8 @@ class Caesars.CartItem
     @$cart_item.on 'ajax:before', '.categories .dropdown-menu a', @change_category_before
     @$cart_item.on 'ajax:success', '.categories .dropdown-menu a', @change_category_success
     @$cart_item.on 'click', '.sizable .dropdown-menu a', @change_size
-    @$cart_item.on 'click', '.ingredient .label i', @ingredient_click
-    @$cart_item.on 'click', '.ingredient .label-warning i', @remove_topping
+    @$cart_item.on 'click', '.ingredient .label.label-info i', @ingredient_click
+    @$cart_item.on 'click', '.ingredient .label.label-warning i', @remove_topping
     @$mode_options.change @change_mode
     @$mode_form.on 'ajax:success', @change_mode_success
 
@@ -175,7 +175,7 @@ class Caesars.CartItem
     console.log "cart-item: .ingredient .label-danger i 'click' fired! id : " + $(e.target).closest('.ingredient').data 'id'
     $(e.target).parent().fadeOut 'fast', ->
       console.log 'removing topping ' + $(e.target).closest('.ingredient').data 'id'
-      $(e.target).closest('.topping').remove()
+      $(e.target).closest('.ingredient').remove()
       window.Caesars.cart_item.calculate_price()
 
   bind_carousel: (carousel) ->

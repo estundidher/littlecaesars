@@ -1,5 +1,5 @@
 <div class="col-md-3 col-sm-3 left" style="padding-right: 0px;">
-  <%= render partial:'categories', locals: {mode:CartController::CART_MODE[:two_flavours],
+  <%= render partial:'categories', locals: {mode:Cart::MODE[:two_flavours],
                                            align:'left',
                                            size:size,
                                            sizes:sizes,
@@ -16,7 +16,7 @@
 <div class="col-md-6 col-sm-6 slider">
   <div class="row">
     <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 left" style="padding-right: 0px;">
-      <%= render partial:'cart/carousel', locals:{mode:CartController::CART_MODE[:two_flavours],
+      <%= render partial:'cart/carousel', locals:{mode:Cart::MODE[:two_flavours],
                                                    side:'left',
                                                    category:category,
                                                    size:size,
@@ -24,7 +24,7 @@
                                                    product:product} %>
     </div>
     <div class="col-md-5 col-sm-5 right" style="padding-left: 0px;">
-      <%= render partial:'cart/carousel', locals:{mode:CartController::CART_MODE[:two_flavours],
+      <%= render partial:'cart/carousel', locals:{mode:Cart::MODE[:two_flavours],
                                                  side:'right',
                                                  category:category,
                                                  size:size,
@@ -35,7 +35,7 @@
 </div>
 
 <div class="col-md-3 col-sm-3 right" style="padding-left: 0px;">
-  <%= render partial:'categories', locals:{mode:CartController::CART_MODE[:two_flavours],
+  <%= render partial:'categories', locals:{mode:Cart::MODE[:two_flavours],
                                           align:'right',
                                           size:size,
                                           categories:Category.with_shoppable_products(size),

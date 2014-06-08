@@ -13,12 +13,11 @@ class PlaceTest < ActiveSupport::TestCase
                 Date.parse('3th Jun 2014'),
                 Date.parse('4th Jun 2014'),
                 Date.parse('5th Jun 2014'),
-                Date.parse('6th Jun 2014'),
-                Date.parse('7th Jun 2014')]
+                Date.parse('6th Jun 2014')]
 
-    day = Time.parse("2014-05-31 11:00:01 A.M.")
+    Delorean.time_travel_to Time.parse("2014-05-31 11:00:01 A.M.")
 
-    assert hillarys.dates_available(day) == expected
+    assert hillarys.dates_available == expected, "expecting #{expected}, received: #{hillarys.dates_available}"
   end
 
   test 'Place has opening hour for today' do
@@ -34,81 +33,92 @@ class PlaceTest < ActiveSupport::TestCase
 
     hillarys = places(:hillarys)
 
-    expected = ['11:30 AM',
-                '11:45 AM',
-                '12:00 PM',
-                '12:15 PM',
-                '12:30 PM',
-                '12:45 PM',
-                '01:00 PM',
-                '01:15 PM',
-                '01:30 PM',
-                '01:45 PM',
-                '02:00 PM']
+    expected = [Time.parse("2014-05-31 11:30 A.M."),
+                Time.parse("2014-05-31 11:45 A.M."),
+                Time.parse("2014-05-31 12:00 P.M."),
+                Time.parse("2014-05-31 12:15 P.M."),
+                Time.parse("2014-05-31 12:30 P.M."),
+                Time.parse("2014-05-31 12:45 P.M."),
+                Time.parse("2014-05-31 01:00 P.M."),
+                Time.parse("2014-05-31 01:15 P.M."),
+                Time.parse("2014-05-31 01:30 P.M."),
+                Time.parse("2014-05-31 01:45 P.M."),
+                Time.parse("2014-05-31 02:00 P.M.")]
 
     day = Time.parse("2014-05-31 11:00:01 A.M.")
 
-    assert hillarys.times_available(day) == expected
+    Delorean.time_travel_to Time.parse("2014-05-31 11:00:01 A.M.")
+
+    result = hillarys.times_available(day)
+
+    assert expected == result, "expecting #{expected}, received: #{result}"
   end
 
   test 'Place has times available for day of week with two shifts' do
 
     hillarys = places(:hillarys)
 
-    expected = ['11:30 AM',
-                '11:45 AM',
-                '12:00 PM',
-                '12:15 PM',
-                '12:30 PM',
-                '12:45 PM',
-                '01:00 PM',
-                '01:15 PM',
-                '01:30 PM',
-                '01:45 PM',
-                '02:00 PM',
+    expected = [Time.parse("2014-05-26 11:30:00 A.M."),
+                Time.parse("2014-05-26 11:45:00 A.M."),
+                Time.parse("2014-05-26 12:00:00 P.M."),
+                Time.parse("2014-05-26 12:15:00 P.M."),
+                Time.parse("2014-05-26 12:30:00 P.M."),
+                Time.parse("2014-05-26 12:45:00 P.M."),
+                Time.parse("2014-05-26 01:00:00 P.M."),
+                Time.parse("2014-05-26 01:15:00 P.M."),
+                Time.parse("2014-05-26 01:30:00 P.M."),
+                Time.parse("2014-05-26 01:45:00 P.M."),
+                Time.parse("2014-05-26 02:00:00 P.M."),
 
-                '05:00 PM',
-                '05:15 PM',
-                '05:30 PM',
-                '05:45 PM',
-                '06:00 PM',
-                '06:15 PM',
-                '06:30 PM',
-                '06:45 PM',
-                '07:00 PM',
-                '07:15 PM',
-                '07:30 PM']
+                Time.parse("2014-05-26 05:00:00 P.M."),
+                Time.parse("2014-05-26 05:15:00 P.M."),
+                Time.parse("2014-05-26 05:30:00 P.M."),
+                Time.parse("2014-05-26 05:45:00 P.M."),
+                Time.parse("2014-05-26 06:00:00 P.M."),
+                Time.parse("2014-05-26 06:15:00 P.M."),
+                Time.parse("2014-05-26 06:30:00 P.M."),
+                Time.parse("2014-05-26 06:45:00 P.M."),
+                Time.parse("2014-05-26 07:00:00 P.M."),
+                Time.parse("2014-05-26 07:15:00 P.M."),
+                Time.parse("2014-05-26 07:30:00 P.M.")]
 
-    day = Time.parse("2014-05-26 11:00:00 P.M.")
+    day = Time.parse("2014-05-26 11:00:00 A.M.")
 
-    assert hillarys.times_available(day) == expected, "expecting #{expected}, received: #{hillarys.times_available}"
+    Delorean.time_travel_to Time.parse("2014-05-26 11:00:00 A.M.")
+
+    result = hillarys.times_available(day)
+
+    assert result == expected, "expecting #{expected}, received: #{result}"
   end
 
   test 'Place has times available for day of week with two shifts from middle of the day' do
 
     hillarys = places(:hillarys)
 
-    expected = ['01:00 PM',
-                '01:15 PM',
-                '01:30 PM',
-                '01:45 PM',
-                '02:00 PM',
+    expected = [Time.parse("2014-05-26 01:15 P.M."),
+                Time.parse("2014-05-26 01:30 P.M."),
+                Time.parse("2014-05-26 01:45 P.M."),
+                Time.parse("2014-05-26 02:00 P.M."),
 
-                '05:00 PM',
-                '05:15 PM',
-                '05:30 PM',
-                '05:45 PM',
-                '06:00 PM',
-                '06:15 PM',
-                '06:30 PM',
-                '06:45 PM',
-                '07:00 PM',
-                '07:15 PM',
-                '07:30 PM']
+                Time.parse("2014-05-26 05:00 P.M."),
+                Time.parse("2014-05-26 05:15 P.M."),
+                Time.parse("2014-05-26 05:30 P.M."),
+                Time.parse("2014-05-26 05:45 P.M."),
+                Time.parse("2014-05-26 06:00 P.M."),
+                Time.parse("2014-05-26 06:15 P.M."),
+                Time.parse("2014-05-26 06:30 P.M."),
+                Time.parse("2014-05-26 06:45 P.M."),
+                Time.parse("2014-05-26 07:00 P.M."),
+                Time.parse("2014-05-26 07:15 P.M."),
+                Time.parse("2014-05-26 07:30 P.M.")]
 
     day = Time.parse("2014-05-26 01:00:00 P.M.")
 
-    assert hillarys.times_available(day) == expected, "expecting #{expected}, received: #{hillarys.times_available}"
+    Delorean.time_travel_to Time.parse("2014-05-26 11:00:00 A.M.")
+
+    result = hillarys.times_available(day)
+
+    assert result == expected, "expecting #{expected}, received: #{result}"
   end
 
 end

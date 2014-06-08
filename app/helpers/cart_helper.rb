@@ -41,7 +41,7 @@ module CartHelper
   end
 
   def photo_of item, mode, side
-    if mode == CartController::CART_MODE[:one_flavour]
+    if mode == Cart::MODE[:one_flavour]
       item.photo_showcase
     elsif side == 'left'
       item.photo_left
@@ -51,9 +51,9 @@ module CartHelper
   end
 
   def place_holder mode
-    if mode == CartController::CART_MODE[:one_flavour]
+    if mode == Cart::MODE[:one_flavour]
       '350x250'
-    elsif mode == CartController::CART_MODE[:two_flavours]
+    elsif mode == Cart::MODE[:two_flavours]
       '175x250'
     end
   end

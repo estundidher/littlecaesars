@@ -1,5 +1,7 @@
 class Cart < ActiveRecord::Base
 
+  MODE = {one_flavour:'one-flavour', two_flavours:'two-flavours'}
+
   enum status: [:open, :closed]
 
   belongs_to :pick_up
@@ -69,8 +71,10 @@ class Cart < ActiveRecord::Base
 
   def pick_up_configurated?
     unless self.pick_up.nil?
+      puts "#{'#'*100}> Pick Up configurated at #{self.pick_up.created_at}"
       return self.pick_up.created_at > 10.minutes.ago
     end
+    puts "#{'#'*100}> Pick Up not configurated.."
     false
   end
 

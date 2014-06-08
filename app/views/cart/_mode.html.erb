@@ -4,12 +4,12 @@
   <%= hidden_field_tag :product_id, product.id, class:'product' if defined?(product) %>
   <div class="radio-inline one-flavour">
     <%= label_tag :mode_slider do %>
-      <%= radio_button_tag :mode, CartController::CART_MODE[:one_flavour], true %> 1 Flavour
+      <%= radio_button_tag :mode, Cart::MODE[:one_flavour], true %> 1 Flavour
     <% end %>
   </div>
   <div class="radio-inline two-flavours">
     <%= label_tag :mode_splitter, title:"Only available on #{Size.where(splittable:true).map { |size| size.name }.join(',')} size!" do %>
-      <%= radio_button_tag :mode, CartController::CART_MODE[:two_flavours], false, {disabled:true} %> 2 Flavours
+      <%= radio_button_tag :mode, Cart::MODE[:two_flavours], false, {disabled:true} %> 2 Flavours
     <% end %>
   </div>
   <i class="fa fa-spinner fa-spin" style="display:none;"></i>

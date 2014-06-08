@@ -4,7 +4,7 @@
 
 window.Caesars or= {}
 
-class Caesars.CartToppings
+class Caesars.Toppings
 
   constructor: ->
     @$cart_item = $('.cart-item')
@@ -88,7 +88,7 @@ class Caesars.CartToppings
       $ingredients.find('.tags .topping').remove()
       $ingredients.find('.tags').append response
       $ingredients.find('.tags .topping').hide().fadeIn 'slow', ->
-        console.log "toppings modal: .modal-footer .btn.save finished!"
+        console.log 'toppings modal: .modal-footer .btn.save finished!'
         window.Caesars.cart_item.calculate_price()
     .fail (jqHXR, textStatus) =>
       alert('error')
@@ -108,14 +108,14 @@ class Caesars.CartToppings
       console.log "toppings modal: bind_carousel '" + $(carousel).attr('class') + "' fired!"
       $carousel = $(carousel)
     else
-      console.log "toppings modal: bind_carousel fired!"
+      console.log 'toppings modal: bind_carousel fired!'
       $carousel = $('.cart-item .carousel.slide.vertical')
 
     $carousel.carousel({
       interval: false
     })
 
-create_cart_toppings = ->
-  window.Caesars.cart_toppings = new Caesars.CartToppings()
+create_toppings = ->
+  window.Caesars.toppings = new Caesars.Toppings()
 
-$(document).on 'ready page:load', create_cart_toppings
+$(document).on 'ready page:load', create_toppings

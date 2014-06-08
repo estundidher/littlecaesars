@@ -29,6 +29,8 @@ gem 'recaptcha', require: 'recaptcha/rails'
 # picture upload
 gem 'paperclip', github: 'thoughtbot/paperclip'
 
+gem 'activemerchant'
+
 gem 'validate_url'
 
 # pagination..

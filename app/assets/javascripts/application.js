@@ -26,7 +26,7 @@
 //= require cart_item
 //= require cart_modal
 //= require cart_button
-//= require cart_toppings
+//= require toppings
 //= require menu
 //= require turbolinks
 //= require pick_up

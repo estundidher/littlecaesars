@@ -28,6 +28,10 @@ class Shift < ActiveRecord::Base
     (self.start_at.to_i..self.end_at.to_i).step(step).map {|d| Time.zone.at(d)}
   end
 
+  def to_s
+    "start_at: #{self.start_at}, end_at: #{self.end_at}"
+  end
+
   private
 
     def start_at_cannot_be_before_last_shift_added
