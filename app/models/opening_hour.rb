@@ -30,8 +30,9 @@ class OpeningHour < ActiveRecord::Base
     times = []
     times = self.shifts.map{|shift| shift.range(15.minutes)}.flatten
     if time.to_date == Date.current
-      times = times.reject {|x| x.to_i < (time + 15.minutes).to_i}
+      times = times.reject {|x| x.to_i < (Time.current + 15.minutes).to_i}
     end
+    #puts "opening_hour '#{self}', times: #{times}"
     times
   end
 

@@ -114,7 +114,32 @@ class PlaceTest < ActiveSupport::TestCase
 
     day = Time.parse("2014-05-26 01:00:00 P.M.")
 
-    Delorean.time_travel_to Time.parse("2014-05-26 11:00:00 A.M.")
+    Delorean.time_travel_to Time.parse("2014-05-26 01:00:00 P.M.")
+
+    result = hillarys.times_available(day)
+
+    assert result == expected, "expecting #{expected}, received: #{result}"
+  end
+
+  test 'Place has times available from the middle of the day' do
+
+    hillarys = places(:hillarys)
+
+    expected = [Time.parse("2014-06-09 05:00 P.M."),
+                Time.parse("2014-06-09 05:15 P.M."),
+                Time.parse("2014-06-09 05:30 P.M."),
+                Time.parse("2014-06-09 05:45 P.M."),
+                Time.parse("2014-06-09 06:00 P.M."),
+                Time.parse("2014-06-09 06:15 P.M."),
+                Time.parse("2014-06-09 06:30 P.M."),
+                Time.parse("2014-06-09 06:45 P.M."),
+                Time.parse("2014-06-09 07:00 P.M."),
+                Time.parse("2014-06-09 07:15 P.M."),
+                Time.parse("2014-06-09 07:30 P.M.")]
+
+    day = Time.parse("2014-06-09 04:37 P.M.")
+
+    Delorean.time_travel_to Time.parse("2014-06-09 04:37 P.M.")
 
     result = hillarys.times_available(day)
 

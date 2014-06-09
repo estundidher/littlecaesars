@@ -27,7 +27,7 @@ class Caesars.CartItem
     @$cart_item.on 'ajax:before', '.categories .dropdown-menu a', @change_category_before
     @$cart_item.on 'ajax:success', '.categories .dropdown-menu a', @change_category_success
     @$cart_item.on 'click', '.sizable .dropdown-menu a', @change_size
-    @$cart_item.on 'click', '.ingredient .label.label-info i', @ingredient_click
+    @$cart_item.on 'click', '.ingredient .label.label-info i,.ingredient .label.label-default i', @ingredient_click
     @$cart_item.on 'click', '.ingredient .label.label-warning i', @remove_topping
     @$mode_options.change @change_mode
     @$mode_form.on 'ajax:success', @change_mode_success

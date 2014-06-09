@@ -57,7 +57,6 @@ class Place < ActiveRecord::Base
 
   def times_available time
     opening_hour = self.opening_hour_of time
-    #puts "opening_hour: #{opening_hour}"
     opening_hour.times_available time
   end
 
