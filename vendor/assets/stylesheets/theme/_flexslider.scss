@@ -9,7 +9,6 @@
  * Contributing author: Tyler Smith (@mbmufffin)
  */
 
-
 /* Browser Resets
 *********************************/
 .flex-container a:active,
@@ -25,11 +24,11 @@
 /* Font-face Icons */
 @font-face {
 	font-family: 'flexslider-icon';
-	src:asset-path('fonts/flexslider-icon.eot');
-	src:asset-path('fonts/flexslider-icon.eot?#iefix') format('embedded-opentype'),
-		asset-path('fonts/flexslider-icon.woff') format('woff'),
-		asset-path('fonts/flexslider-icon.ttf') format('truetype'),
-		asset-path('fonts/flexslider-icon.svg#flexslider-icon') format('svg');
+	src:font-path('flexslider-icon.eot');
+	src:font-path('flexslider-icon.eot?#iefix') format('embedded-opentype'),
+		font-path('flexslider-icon.woff') format('woff'),
+		font-path('flexslider-icon.ttf') format('truetype'),
+		font-path('flexslider-icon.svg#flexslider-icon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

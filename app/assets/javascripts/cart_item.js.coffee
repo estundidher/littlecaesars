@@ -186,9 +186,10 @@ class Caesars.CartItem
       console.log "cart-item: bind_carousel fired!"
       $carousel = @$cart_item.find('.carousel.slide.vertical')
 
-    $carousel.carousel({
-      interval: false
-    })
+    if $carousel
+      $carousel.carousel({
+        interval: false
+      })
 
   bind_pretty_photo: ->
     console.log "cart-item: bind_pretty_photo fired!"

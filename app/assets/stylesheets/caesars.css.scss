@@ -1,4 +1,6 @@
-@import "../../../vendor/assets/stylesheets/theme/theme.scss";
+//= depend_on_asset "crossword.png"
+//= depend_on_asset "banner.jpg"
+//= depend_on_asset "flexslider-icon.eot"
 
 /************************
 Designed by : http://responsivewebinc.com
@@ -97,10 +99,17 @@ table { background: #fff; }
     text-decoration:none;
 }
 
+h4.title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 6px;
+    font-size: 20px;
+    border-bottom: 4px double #eee;
+}
+
 /*
  * Quotes
  */
-
 .quote{
     display: inline-block;
     font-family: 'Georgia' 'Times New Roman', serif;
