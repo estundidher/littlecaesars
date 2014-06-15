@@ -14,7 +14,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
+    "bower",
     "test",
     "tests"
   ],
@@ -22,6 +22,7 @@
     "jquery": "~2.1.1",
     "jquery-ujs": "*",
     "jquery-prettyPhoto": "*",
+    "bootstrap-sass": "~3.1.1",
     "eonasdan-bootstrap-datetimepicker": "~3.0.0",
     "jquery-meiomask": "~1.1.13",
     "html5shiv": "~3.7.2",
