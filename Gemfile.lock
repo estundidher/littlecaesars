@@ -196,7 +196,7 @@ DEPENDENCIES
   rails (= 4.1.0.rc2)
   rails_12factor
   recaptcha
-  sass-rails (~> 4.0.2)
+  sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
   sqlite3

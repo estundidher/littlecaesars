@@ -5,7 +5,7 @@
   "authors": [
     "@roalcantara"
   ],
-  "description": "Caesar Online pizza shop",
+  "description": "Caesar Online Pizza Shop",
   "moduleType": [
     "globals"
   ],
@@ -21,7 +21,6 @@
   "dependencies": {
     "jquery": "~2.1.1",
     "jquery-ujs": "*",
-    "bootstrap": "~3.1.1",
     "jquery-prettyPhoto": "*",
     "eonasdan-bootstrap-datetimepicker": "~3.0.0",
     "jquery-meiomask": "~1.1.13",
