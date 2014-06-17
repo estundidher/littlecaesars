@@ -18,9 +18,13 @@
         <%= yield :footer if content_for :footer %>
         <!-- Copyright -->
         <div class="footer-copyright">
+          <div class="terms">
+            <%= link_to 'Privacy Policy', privacy_path, remote:true %>
+            <%= link_to 'Terms of Use', terms_path,   remote:true %>
+            <%= link_to 'Returns', returns_path, remote:true %>
+          </div>
           <!-- Paragraph -->
           <p>&copy; Copyright <%= Date.current.year %> <%= link_to t('brand'), root_path %></a></p>
-          <p>ABN: 61 875 255 848</p>
         </div>
       </div>
     </div>

@@ -98,6 +98,9 @@ Rails.application.routes.draw do
     get 'about',             to: :about,        as: :about
     get 'menu(/:active)',    to: :menu,         as: :menu
     get 'order/product/:id', to: :product,      as: :product
+    get 'privacy',           to: :privacy,      as: :privacy
+    get 'terms',             to: :terms,        as: :terms
+    get 'returns',           to: :returns,      as: :returns
   end
 
   namespace :admin do

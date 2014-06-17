@@ -21,6 +21,7 @@
 //= require html5shiv
 //= require eonasdan-bootstrap-datetimepicker
 
+//= require home
 //= require modal
 //= require cart
 //= require cart_item
@@ -35,7 +36,6 @@ $(document).on('ready page:load', function () {
   Application.bind_checkAll();
   Application.bind_dateTimePickers();
   Application.bind_moneyMask();
-  Application.bind_tooltip();
   Application.bind_scroolToTop();
   Application.bind_carousel();
   Application.bind_tabs();
@@ -81,13 +81,6 @@ var Application = {
     return $('.carousel').carousel({
       interval: false
     });
-  },
-
-  /* *************************************** */
-  /* Tool Tip JS */
-  /* *************************************** */
-  bind_tooltip: function() {
-    $('.my-tooltip').tooltip();
   },
 
   /* *************************************** */

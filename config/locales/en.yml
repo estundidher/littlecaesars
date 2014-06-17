@@ -264,6 +264,11 @@ en:
     hintText: Type in a search term
     noResultsText: No results
 
+  terms:
+    privacy: PRIVACY & SECURITY
+    terms: TERMS OF SERVICE
+    returns: RETURNS
+
   activerecord:
     errors:
       <<: *errors

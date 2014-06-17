@@ -186,7 +186,7 @@ class Caesars.CartItem
       console.log "cart-item: bind_carousel fired!"
       $carousel = @$cart_item.find('.carousel.slide.vertical')
 
-    if $carousel
+    if $carousel is null
       $carousel.carousel({
         interval: false
       })

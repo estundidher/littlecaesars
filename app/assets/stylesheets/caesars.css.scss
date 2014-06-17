@@ -1964,10 +1964,24 @@ $banner_url: 'http://caesars-prod.s3.amazonaws.com/assets/banner/';
     border-radius: 50px;
 }
 
-.footer .footer-copyright { padding-top: 40px; border-top: 1px solid #ddd; }
-.foot-error .footer-copyright { padding-top: 0; border-top: 0; }
+.footer .footer-copyright {
+  border-top: 1px solid #ddd;
+}
+
+.footer .footer-copyright .terms {
+  float:right;
+}
+
+.footer .footer-copyright .terms a {
+  padding-left: 10px;
+}
+
+.foot-error .footer-copyright {
+  padding-top: 0; border-top: 0;
+}
 
 .footer .footer-copyright p {
+    padding-top: 40px;
     font-size: 13px;
     color: #9a9a9a;
     text-align: center;
@@ -2292,4 +2306,15 @@ $banner_url: 'http://caesars-prod.s3.amazonaws.com/assets/banner/';
 
 .pick-up .carousel-indicators .active {
   background-color: #d43f3a;
+}
+
+
+.modal.term h4 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.modal.term p {
+  margin-bottom: 10px;
+  font-size: 12px;
 }
