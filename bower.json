@@ -22,11 +22,8 @@
     "jquery": "~2.1.1",
     "jquery-ujs": "*",
     "jquery-prettyPhoto": "*",
-    "bootstrap-sass-official": "git://github.com/twbs/bootstrap-sass.git#e2e7020",
-    "eonasdan-bootstrap-datetimepicker": "~3.0.0",
     "jquery-meiomask": "~1.1.13",
     "html5shiv": "~3.7.2",
-    "respond": "~1.4.2",
-    "twitter-bootstrap-wizard": "~1.0.0"
+    "respond": "~1.4.2"
   }
 }
