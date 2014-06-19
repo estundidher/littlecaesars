@@ -1,3 +1,8 @@
+//= depend_on_asset "bootstrap/dist/fonts/glyphicons-halflings-regular.eot"
+//= depend_on_asset "bootstrap/dist/fonts/glyphicons-halflings-regular.woff"
+//= depend_on_asset "bootstrap/dist/fonts/glyphicons-halflings-regular.ttf"
+//= depend_on_asset "bootstrap/dist/fonts/glyphicons-halflings-regular.svg"
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -10,9 +15,21 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *= require_self
- *= require bootstrap
- *= require theme/theme
  *= require jquery-prettyPhoto/css/prettyPhoto
  *= require eonasdan-bootstrap-datetimepicker
  *= require_tree .
  */
+
+@import "bootstrap/dist/css/bootstrap";
+
+/* Override Bootstrap 3 font locations */
+@font-face {
+font-family: 'Glyphicons Halflings';
+src: url(font-path('bootstrap/dist/fonts/glyphicons-halflings-regular.eot'));
+src: url(font-path('bootstrap/dist/fonts/glyphicons-halflings-regular.eot?#iefix')) format('embedded-opentype'),
+     url(font-path('bootstrap/dist/fonts/glyphicons-halflings-regular.woff')) format('woff'),
+     url(font-path('bootstrap/dist/fonts/glyphicons-halflings-regular.ttf')) format('truetype'),
+     url(font-path('bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
+}
+
+@import "theme/theme";
