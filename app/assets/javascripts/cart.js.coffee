@@ -17,12 +17,6 @@ class Caesars.Cart
     @$cart_item.on 'ajax:error', '.cart-item-form', @add_error
     @$cart.on 'ajax:success', '.cart-panel .cart-dropdown .cart-item .remove', @remove_success
     @$cart.on 'ajax:error', '.cart-panel .cart-dropdown .cart-item .remove', @remove_error
-    @$cart.on 'ajax:success', '.cart-panel .cart-dropdown .checkout', @checkout
-
-  checkout: (e, data, status, xhr) =>
-    console.log "cart: checkout fired!"
-    $('#modal_container').empty().append xhr.responseText
-    $('#modal_container .checkout').modal 'show'
 
   remove_success: (e, data, status, xhr) =>
     console.log 'cart.button.remove ajax:success fired!'

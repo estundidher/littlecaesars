@@ -28,13 +28,13 @@
               <tr>
                 <td>
                   <% if cart_item.instance_of?(CartItemSplittable) %>
-                    <%= render partial:'/cart/checkout/detail',
+                    <%= render partial:'checkout/detail',
                                locals:{cart_item:cart_item.highest_half, label:'1/2', show_size:true} %>
                     <br><br>
-                    <%= render partial:'/cart/checkout/detail',
+                    <%= render partial:'checkout/detail',
                                locals:{cart_item:cart_item.lowest_half, label:'1/2', show_size:false} %>
                   <% else %>
-                    <%= render partial:'/cart/checkout/detail',
+                    <%= render partial:'checkout/detail',
                                locals:{cart_item:cart_item, label:nil, show_size:true} %>
                   <% end %>
                 </td>
@@ -47,9 +47,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
-        <button type="button" class="btn btn-info">
-          <%= Cart.human_attribute_name 'checkout' %>
-        </button>
+        <%= link_to Cart.human_attribute_name('checkout'), new_checkout_path, class:'btn btn-info', role:'button' %>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

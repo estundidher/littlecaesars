@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery-ujs
-//= require bootstrap-sass-official
+//= require bootstrap-sass
 //= require jquery-meiomask/dist/meiomask
 //= require jquery-prettyPhoto/js/jquery.prettyPhoto
 //= require moment
@@ -27,6 +27,7 @@
 //= require cart_item
 //= require cart_modal
 //= require cart_button
+//= require checkout
 //= require toppings
 //= require menu
 //= require turbolinks

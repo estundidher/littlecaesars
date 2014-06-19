@@ -74,8 +74,9 @@ Rails.application.routes.draw do
   post 'cart/calculate',                     to: 'cart#calculate',  as: :cart_item_calculate
   delete 'cart/:id',                         to: 'cart#destroy',    as: :cart_remove_item
 
-  get 'cart/:id/checkout',                         to: 'cart#checkout',   as: :cart_checkout
   get '/cart/:mode/:product_id/:side/ingredients', to: 'cart#ingredients',as: :cart_product_items
+
+  resources :checkout, only:[:index, :new, :create]
 
   #cart toppings
   controller :toppings do

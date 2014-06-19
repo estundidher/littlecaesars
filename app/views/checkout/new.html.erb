@@ -1,0 +1,62 @@
+<% content_for :page_title, 'Checkout' %>
+<% content_for :page_description, 'Checkout' %>
+<% content_for :page_keywords, 'Checkout' %>
+
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'Checkout' %>
+<% end %>
+
+
+<div class="contactus">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+
+        <!-- Contact form -->
+        <div class="contact-form">
+
+          <!-- Heading -->
+          <h3>Checkout Form</h3>
+
+          <form name="input" action="https://api.securepay.com.au/test/directpost/authorise" method="post" style="width: 200px;">
+
+              <input type="hidden" name="EPS_MERCHANT" value="<?php echo $EPS_MERCHANTID;?>">
+              <input type="hidden" name="EPS_TXNTYPE" value="<?php echo $EPS_TXNTYPE;?>">
+              <input type="hidden" name="EPS_REFERENCEID" value="<?php echo $EPS_REFERENCEID;?>">
+              <input type="hidden" name="EPS_AMOUNT" value="<?php echo $EPS_AMOUNT;?>">
+              <input type="hidden" name="EPS_TIMESTAMP" value="<?php echo $EPS_TIMESTAMP;?>">
+              <input type="hidden" name="EPS_FINGERPRINT" value="<?php echo $fingerprint;?>">
+              <input type="hidden" name="EPS_RESULTURL"  value="http://littlecaesars.herokuapp.com/checkout/confirm" />
+
+              <div class="form-group">
+                <input type="text" name="EPS_CARDNUMBER" id="EPS_CARDNUMBER" placeholder="card number" class="cardnumber form-control"/>
+              </div>
+
+              <div class="form-group">
+                <input type="text" name="EPS_EXPIRYMONTH" id="EPS_EXPIRYMONTH" placeholder="mm" class="month form-control"/>
+              </div>
+
+              <div class="form-group">
+                <input type="text" name="EPS_EXPIRYYEAR" id="EPS_EXPIRYYEAR" placeholder="yyyy" class="year form-control"/>
+              </div>
+
+              <div class="form-group">
+                <input type="text" name="EPS_CCV" id="EPS_CCV" placeholder="cvv" class="form-control"/>
+              </div>
+
+              <div class="form-group">
+                <%= button_tag(type: :submit, class:'btn btn-danger btn-sm') do %>
+                  <i class="glyphicon glyphicon-ok-circle"></i> Confirm
+                <% end %>
+              </div>
+            </form>
+
+        </div><!--/ Contact form end -->
+
+      </div>
+      <div class="col-md-6">
+        <%= image_tag 'contact.png', class:'img-responsive img-thumbnail' %>
+      </div>
+    </div>
+  </div>
+</div>

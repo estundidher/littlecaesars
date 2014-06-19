@@ -5,7 +5,7 @@ class CartController < ApplicationController
   #devise configuration
   before_action :authenticate_customer!
 
-  before_action :set_cart, only: [:modal, :checkout, :create, :calculate, :index, :mode, :price, :ingredients]
+  before_action :set_cart, only: [:modal, :create, :calculate, :index, :mode, :price, :ingredients]
   before_action :set_product, only: [:modal, :calculate, :create, :index, :ingredients, :mode]
   before_action :set_category, only: [:carousel, :mode]
   before_action :set_size, only: [:carousel, :mode]
@@ -46,11 +46,6 @@ class CartController < ApplicationController
       render partial:'cart/button/price', locals:{cart:@cart_item.cart},
                                           layout: nil, status: :unprocessable_entity
     end
-  end
-
-  # GET /cart/checkout
-  def checkout
-    render partial:'cart/checkout/modal', locals:{cart:@cart}, layout: nil
   end
 
   # GET /cart
