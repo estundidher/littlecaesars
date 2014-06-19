@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery-ujs
-//= require bootstrap-sass
+//= require bootstrap
 //= require jquery-meiomask/dist/meiomask
 //= require jquery-prettyPhoto/js/jquery.prettyPhoto
 //= require moment

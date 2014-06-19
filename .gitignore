@@ -12,13 +12,7 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
-/vendor/assets/bower/html5shiv
-/vendor/assets/bower/jquery
-/vendor/assets/bower/jquery-meiomask
-/vendor/assets/bower/jquery-prettyPhoto
-/vendor/assets/bower/jquery-ujs
-/vendor/assets/bower/moment
-/vendor/assets/bower/respond
+/vendor/assets/bower
 npm-debug.log
 
 # TODO Comment out this rules if you are OK with secrets been uploaded to the repo
