@@ -1,0 +1,15 @@
+{
+  "name": "jquery-meiomask",
+  "homepage": "https://github.com/fabiomcosta/jquery-meiomask",
+  "version": "1.1.13",
+  "_release": "1.1.13",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.13",
+    "commit": "56cd777ab13cfda2312239a3148acf7b296e3e4d"
+  },
+  "_source": "git://github.com/fabiomcosta/jquery-meiomask.git",
+  "_target": "~1.1.13",
+  "_originalSource": "jquery-meiomask",
+  "_direct": true
+}
