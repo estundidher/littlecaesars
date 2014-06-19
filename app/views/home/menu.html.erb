@@ -14,7 +14,7 @@
     <div class="gallery-content">
 
       <ul class="nav nav-pills" data-active="<%= params[:active] %>">
-        <% Category.with_shoppable_products.each_with_index do |category, index| %>
+        <% @categories.each_with_index do |category, index| %>
           <li class="<%= 'active' if is_tab_active(category, params[:active], index) %>">
             <a href="#<%= category.to_param %>" data-toggle="pill"><%= category.name %></a>
           </li>
@@ -23,7 +23,7 @@
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <% Category.with_shoppable_products.each_with_index do |category, index| %>
+        <% @categories.each_with_index do |category, index| %>
           <div class="tab-pane fade<%= ' in active' if is_tab_active(category, params[:active], index) %>"
             id="<%= category.to_param %>">
             <br>
@@ -34,7 +34,7 @@
                   <div class="element">
                     <!-- Image -->
                     <%= image_tag product.photo.url(:medium),
-                        class: 'img-responsive img-thumbnail', alt: product.name %>
+                        class: 'img-responsive img-thumbnail', alt:product.name %>
                     <!-- Gallery Image Hover Effect -->
                     <span class="gallery-img-hover"></span>
                     <!-- Gallery Image Hover Icon -->
@@ -51,7 +51,6 @@
           </div>
         <% end %>
       </div>
-
     </div><!-- Separate gallery element --><!--/ End Gallery content class -->
   </div>
 </div>

@@ -75,7 +75,7 @@ class Product < ActiveRecord::Base
                     styles: {large:'175x250>'}
 
   has_attached_file :photo_showcase,
-                    styles: {large:'350x250>', thumb: '120x90>'}
+                    styles: {large:'350x250>', thumb:'120x90>'}
 
   belongs_to :type,
              class_name: 'ProductType',

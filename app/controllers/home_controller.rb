@@ -29,6 +29,11 @@ class HomeController < ApplicationController
     @chefs = Chef.order(:name)
   end
 
+  # GET /menu
+  def menu
+    @categories = Category.with_shoppable_products
+  end
+
   # GET /privacy
   def privacy
     render partial:'home/term', locals:{term:'privacy'}, layout: nil

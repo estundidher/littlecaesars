@@ -1622,6 +1622,33 @@ $banner_url: 'http://caesars-prod.s3.amazonaws.com/assets/banner/';
 
 .inner-page .checkout .sidebar-item p { font-size: 13px; color: #9a9a9a; }
 
+.box {
+    margin-bottom: 30px;
+    padding: 12px 15px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.box h5 {
+    margin-top: 0;
+    font-size: 25px;
+    line-height: 35px;
+}
+
+.box i {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 40px;
+}
+
+.box p { font-size: 13px; color: #9a9a9a; }
+
 /*
  * 404 Error Page
  */
@@ -1912,7 +1939,7 @@ $banner_url: 'http://caesars-prod.s3.amazonaws.com/assets/banner/';
     color: #9a9a9a;
 }
 
-.footer .footer-widget img.payment {
+img.payment {
     display: inline-block;
     margin-right: 5px;
     margin-bottom: 10px;

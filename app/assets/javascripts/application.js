@@ -72,6 +72,7 @@ var Application = {
   },
 
   bind_moneyMask: function() {
+    $('.meio-mask').setMask();
     return $('.money_mask').setMask({mask:'99.99', type:'reverse', maxLength: 5});
   },
 
