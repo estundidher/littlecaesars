@@ -75,6 +75,7 @@ class Caesars.CartItem
         $details.find('.img-thumbnail').hide().attr('src', $item.data('photo')).fadeIn 'fast'
         $details.find('.gallery-img-link').attr 'href', $item.data 'photo'
         $('.cart-item .ingredients .' + target + ' .ingredients_container').hide().empty().append(response).fadeIn 'fast'
+
         if @is_two_flavours_mode() is true
           @calculate_price()
         else
@@ -186,7 +187,7 @@ class Caesars.CartItem
       console.log "cart-item: bind_carousel fired!"
       $carousel = @$cart_item.find('.carousel.slide.vertical')
 
-    if $carousel is null
+    if $carousel
       $carousel.carousel({
         interval: false
       })
