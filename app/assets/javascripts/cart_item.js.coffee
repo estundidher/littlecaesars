@@ -67,6 +67,7 @@ class Caesars.CartItem
         @$mode_form.find('.product').val $item.data 'id'
 
       $('.cart-item .cart-item-form .' + target + ' .product').val($item.data('id'))
+      $('.cart-item .toppings .' + target + ' #product_id').val($item.data('id'))
       $('.cart-item .cart-item-form .' + target + ' .price').val($item.data('price-id'))
 
       $.get($item.data('url'))
