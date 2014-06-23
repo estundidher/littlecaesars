@@ -45,7 +45,6 @@ class Place < ActiveRecord::Base
     while dates.length < 7 do
       opening_hour = opening_hour_of(day)
       unless opening_hour.nil?
-        #logger.info "day: '#{day}', opening_hour '#{opening_hour.day_of_week}': end_at: #{opening_hour.shifts.last.end_at(day)}, current: #{Time.current}"
         if opening_hour.shifts.last.end_at(day).to_i > Time.current.to_i
           dates << day
         end

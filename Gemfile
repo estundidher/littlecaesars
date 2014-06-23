@@ -58,8 +58,14 @@ gem 'aws-sdk'
 # Use postgrees as the database for Active Record
 gem 'pg'
 
-group :test do
+group :test, :development do
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'pry-rails'
 end
 
 group :development do

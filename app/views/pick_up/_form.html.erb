@@ -21,18 +21,32 @@
   </div>
 
   <div class="col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
-    <div style="float:left">
-      <a class="btn btn-primary btn-lg prev" href="#wizard" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-        Back
-      </a>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+        <div style="float:left">
+          <a class="btn btn-primary btn-lg prev" href="#wizard" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            Back
+          </a>
+        </div>
+        <div style="float:right">
+          <%= button_tag type: 'submit', class: 'btn btn-primary btn-lg' do %>
+            Start
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div style="float:right">
-      <%= button_tag type: 'submit', class: 'btn btn-primary btn-lg' do %>
-        Start
-        <span class="glyphicon glyphicon-chevron-right"></span>
-      <% end %>
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-sm-12 col-md-12">
+        <span style="text-align:center; font-size: 12px;">
+          Please note: During busy periods, your order may take a bit longer
+        </span>
+      </div>
     </div>
+
   </div>
 
 <% end %>
