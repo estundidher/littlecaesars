@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"sub",
+				"subject	subject - Rspec subject helper"
+			],
+			[
+				"st",
+				"style"
+			],
+			[
 				"C",
 				"Checkout"
 			],
@@ -17,10 +25,6 @@
 			],
 			[
 				"sty",
-				"stylesheets"
-			],
-			[
-				"st",
 				"stylesheets"
 			],
 			[
@@ -196,10 +200,6 @@
 				"subjects"
 			],
 			[
-				"sub",
-				"subjects"
-			],
-			[
 				"subj",
 				"subjects"
 			],
@@ -236,18 +236,18 @@
 	"buffers":
 	[
 		{
-			"file": "app/assets/stylesheets/application.css.scss",
+			"file": "app/controllers/admin/opening_hours_controller.rb",
 			"settings":
 			{
-				"buffer_size": 930,
+				"buffer_size": 2161,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "vendor/assets/bower/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_glyphicons.scss",
+			"file": "Gemfile",
 			"settings":
 			{
-				"buffer_size": 15609,
+				"buffer_size": 2316,
 				"line_ending": "Unix"
 			}
 		}
@@ -255,9 +255,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 27.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"install p",
 				"Package Control: Install Package"
@@ -288,51 +292,78 @@
 	},
 	"file_history":
 	[
-		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/application.js",
-		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_glyphicons.scss",
-		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass/.bower.json",
-		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass/bower.json",
-		"/Users/roalcantara/Documents/caesars/config/application.rb",
+		"/Users/roalcantara/Documents/caesars/www.littlecs.com.crt",
+		"/Users/roalcantara/Documents/caesars/app/helpers/home_helper.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/index.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/_header.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/_banner.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/_navigation.html.erb",
+		"/Users/roalcantara/Documents/caesars/spec/models/place_spec.rb",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/theme/_settings.scss",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/theme/_less-style.scss",
+		"/Users/roalcantara/Documents/caesars/app/views/layouts/_footer.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/pick_up/_form.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/about.html.erb",
+		"/Users/roalcantara/Documents/caesars/spec/features/contact_spec.rb",
+		"/Users/roalcantara/Documents/caesars/spec/spec_helper.rb",
+		"/Users/roalcantara/Documents/caesars/spec/rails_helper.rb",
+		"/Users/roalcantara/Documents/caesars/app/models/place.rb",
+		"/Users/roalcantara/Documents/caesars/spec/model/place_spec.rb",
+		"/Users/roalcantara/Documents/caesars/.rspec",
+		"/Users/roalcantara/Documents/caesars/Gemfile",
 		"/Users/roalcantara/Documents/caesars/app/views/home/contact.html.erb",
-		"/Users/roalcantara/Documents/caesars/config/routes.rb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/checkout_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart_item.js.coffee",
 		"/Users/roalcantara/Documents/caesars/app/views/checkout/new.html.erb",
+		"/Users/roalcantara/Documents/caesars/spec/factories/place.rb",
+		"/Users/roalcantara/Documents/caesars/bower.json",
+		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/application.css.scss",
+		"/Users/roalcantara/Documents/caesars/config/application.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/_categories.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/application.js",
+		"/Users/roalcantara/Documents/caesars/app/controllers/checkout_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/controllers/admin/chefs_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart.js.coffee",
+		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/caesars.css.scss",
+		"/Users/roalcantara/Documents/caesars/app/views/pick_up/_new.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/pick_up/_dates.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/models/pick_up.rb",
+		"/Users/roalcantara/Documents/caesars/app/controllers/cart_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/home/menu.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/helpers/menu_helper.rb",
+		"/Users/roalcantara/Documents/caesars/app/models/product.rb",
+		"/Users/roalcantara/Documents/caesars/app/controllers/home_controller.rb",
+		"/Users/roalcantara/Documents/caesars/.gitignore",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_glyphicons.scss",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass/bower.json",
+		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass/.bower.json",
+		"/Users/roalcantara/Documents/caesars/config/routes.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/customers/sessions/_form.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/customers/_new.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/checkout/_modal.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/cart/_cart.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/checkout.js.coffee",
-		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart.js.coffee",
 		"/Users/roalcantara/Documents/caesars/app/views/cart/checkout/index.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/cart_controller.rb",
 		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/home.js.coffee",
-		"/Users/roalcantara/Documents/caesars/app/controllers/home_controller.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/home/_term.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/home/_privacy.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/home/_terms.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/application.css.scss",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass-official/vendor/assets/stylesheets/_bootstrap-sprockets.scss",
 		"/Users/roalcantara/Documents/caesars/app/views/home/_returns.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/caesars.css.scss",
 		"/Users/roalcantara/Documents/caesars/config/locales/en.yml",
-		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart_item.js.coffee",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass-official/bower.json",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass-official/.bower.json",
 		"/Users/roalcantara/Documents/caesars/app/views/layouts/base.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/layouts/untitled",
-		"/Users/roalcantara/Documents/caesars/app/views/layouts/_footer.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/customers/passwords/edit.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/customers/passwords/new.html.erb",
 		"/Users/roalcantara/Documents/caesars/config/environments/production.rb",
 		"/Users/roalcantara/Documents/caesars/config/initializers/devise.rb",
 		"/Users/roalcantara/Documents/caesars/app/mailers/contact_mailer.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/customer.rb",
-		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/theme/_settings.scss",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/theme/theme.scss",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/stylesheets/theme/_flexslider.scss",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/jquery-prettyPhoto/js/jquery.prettyPhoto.js",
-		"/Users/roalcantara/Documents/caesars/Gemfile",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/fonts/flexslider-icon.svg",
 		"/Users/roalcantara/Documents/caesars/app/views/customers/sessions/new.html.erb",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/eonasdan-bootstrap-datetimepicker/bower.json",
@@ -343,7 +374,6 @@
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass-official/vendor/assets/stylesheets/_bootstrap-mincer.scss",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss",
 		"/Users/roalcantara/Documents/caesars/.bowerrc",
-		"/Users/roalcantara/Documents/caesars/bower.json",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap/dist/css/bootstrap.css",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap/fonts/glyphicons-halflings-regular.eot",
 		"/Users/roalcantara/Documents/caesars/vendor/assets/bower/bootstrap-sass-official/index.scss",
@@ -353,7 +383,6 @@
 		"/Users/roalcantara/Documents/caesars/app/views/layouts/application.html.erb",
 		"/Users/roalcantara/Documents/caesars/test/models/place_test.rb",
 		"/Users/roalcantara/Documents/caesars/test/fixtures/shifts.yml",
-		"/Users/roalcantara/Documents/caesars/app/models/place.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/opening_hour.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/cart_item.rb",
 		"/Users/roalcantara/Documents/caesars/test/fixtures/opening_hours.yml",
@@ -380,42 +409,17 @@
 		"/Users/roalcantara/Documents/caesars/app/views/cart/_tag.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/toppings/_modal.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/toppings/_tag.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/home/about.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/cart/button/_cart.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/layouts/_header.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/controllers/pick_up_controller.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/cart/button/_item.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/models/cart_item_splittable.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/home/_category.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/home/product.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/pick_up/_form.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/pick_up.js.coffee",
 		"/Users/roalcantara/Documents/caesars/app/controllers/admin/products_controller.rb",
 		"/Users/roalcantara/Documents/caesars/app/controllers/admin/prices_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/models/pick_up.rb",
 		"/Users/roalcantara/Documents/caesars/app/controllers/application_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/pick_up/_places.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/helpers/application_helper.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/pick_up/_times.html.erb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140603145229_create_pick_ups.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140604093818_add_pick_up_to_cart.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/opening_hours/_form.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/product_types/_form.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/pick_up/_when.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/_navigation.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/helpers/menu_helper.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/products/_form.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/pick_ups/_form.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/pick_up/new.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/pick_ups_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/pick_ups/_when.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/models/concerns/auditable.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/pick_ups/new.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/pick_ups/_places.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/admin/chefs_controller.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140522073429_create_chefs.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140603144912_add_place_date_and_time_to_cart.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/index.html.erb"
+		"/Users/roalcantara/Documents/caesars/app/views/pick_up/_places.html.erb"
 	],
 	"find":
 	{
@@ -435,6 +439,14 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"build",
+			"> ",
+			"nav6",
+			"22.png",
+			"br-green",
+			"@$form",
+			"change_product",
+			"money_mask",
 			"/>\n",
 			"check",
 			"h3",
@@ -554,15 +566,7 @@
 			"place",
 			"Category",
 			"categories",
-			"category",
-			"class",
-			"pp_pic_holder pp_default",
-			"descr",
-			".banner",
-			"banner",
-			"http://theoandco.net/",
-			".navbar-right .dropdown-menu",
-			"%>\">\n"
+			"category"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -570,6 +574,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"",
 			"h4",
 			"h3",
 			"2014-06-09",
@@ -636,23 +641,25 @@
 			[
 				{
 					"buffer": 0,
-					"file": "app/assets/stylesheets/application.css.scss",
+					"file": "app/controllers/admin/opening_hours_controller.rb",
 					"settings":
 					{
-						"buffer_size": 930,
+						"buffer_size": 2161,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								930,
-								930
+								353,
+								353
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -662,28 +669,28 @@
 				},
 				{
 					"buffer": 1,
-					"file": "vendor/assets/bower/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_glyphicons.scss",
+					"file": "Gemfile",
 					"settings":
 					{
-						"buffer_size": 15609,
+						"buffer_size": 2316,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1840,
+								1840
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 908.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -724,7 +731,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 191.0
+		"height": 168.0
 	},
 	"replace":
 	{
@@ -737,20 +744,148 @@
 		"selected_items":
 		[
 			[
-				"_gli",
-				"vendor/assets/bower/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_glyphicons.scss"
+				"gemf",
+				"Gemfile"
+			],
+			[
+				"header",
+				"app/views/layouts/_header.html.erb"
+			],
+			[
+				"homehtml",
+				"app/views/home/index.html.erb"
+			],
+			[
+				"navi",
+				"app/views/admin/_navigation.html.erb"
+			],
+			[
+				"_settings.scss",
+				"vendor/assets/stylesheets/theme/_settings.scss"
+			],
+			[
+				"placesp",
+				"spec/models/place_spec.rb"
+			],
+			[
+				"about",
+				"app/views/home/about.html.erb"
+			],
+			[
+				"footer",
+				"app/views/layouts/_footer.html.erb"
+			],
+			[
+				"place",
+				"app/models/place.rb"
+			],
+			[
+				".rs",
+				".rspec"
+			],
+			[
+				"spec_helper.rb",
+				"spec/spec_helper.rb"
+			],
+			[
+				"contacthtml",
+				"app/views/home/contact.html.erb"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"cartico",
+				"app/assets/javascripts/cart_item.js.coffee"
+			],
+			[
+				"bow",
+				"bower.json"
 			],
 			[
 				"application",
 				"config/application.rb"
 			],
 			[
-				"applicationcss",
+				"applicss",
 				"app/assets/stylesheets/application.css.scss"
+			],
+			[
+				"categorhtml",
+				"app/views/cart/_categories.html.erb"
+			],
+			[
+				"checknew",
+				"app/views/checkout/new.html.erb"
+			],
+			[
+				"carcoff",
+				"app/assets/javascripts/cart.js.coffee"
+			],
+			[
+				"chefco",
+				"app/controllers/admin/chefs_controller.rb"
+			],
+			[
+				"check",
+				"app/controllers/checkout_controller.rb"
+			],
+			[
+				"caesa",
+				"app/assets/stylesheets/caesars.css.scss"
+			],
+			[
+				"pic",
+				"app/models/pick_up.rb"
+			],
+			[
+				"checkout",
+				"app/controllers/checkout_controller.rb"
+			],
+			[
+				"homeco",
+				"app/controllers/home_controller.rb"
+			],
+			[
+				"product",
+				"app/models/product.rb"
+			],
+			[
+				"homec",
+				"app/controllers/home_controller.rb"
+			],
+			[
+				"applicatoncss",
+				"app/assets/stylesheets/application.css.scss"
+			],
+			[
+				"giti",
+				".gitignore"
+			],
+			[
+				"appli",
+				"config/application.rb"
+			],
+			[
+				"applic",
+				"app/assets/javascripts/application.js"
+			],
+			[
+				"_gli",
+				"vendor/assets/bower/bootstrap-sass/vendor/assets/stylesheets/bootstrap/_glyphicons.scss"
 			],
 			[
 				"applicationjs",
 				"app/assets/javascripts/application.js"
+			],
+			[
+				"bower",
+				"vendor/assets/bower/bootstrap-sass/bower.json"
+			],
+			[
+				"applicationcss",
+				"app/assets/stylesheets/application.css.scss"
 			],
 			[
 				"contact",
@@ -789,10 +924,6 @@
 				"config/locales/en.yml"
 			],
 			[
-				"homeco",
-				"app/controllers/home_controller.rb"
-			],
-			[
 				"bootstrap.js",
 				"vendor/assets/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js"
 			],
@@ -809,20 +940,8 @@
 				"app/assets/stylesheets/caesars.css.scss"
 			],
 			[
-				"footer",
-				"app/views/layouts/_footer.html.erb"
-			],
-			[
-				"product",
-				"config/environments/production.rb"
-			],
-			[
 				"prod",
 				"config/environments/production.rb"
-			],
-			[
-				"applicss",
-				"app/assets/stylesheets/application.css.scss"
 			],
 			[
 				"contactma",
@@ -855,14 +974,6 @@
 			[
 				"prett",
 				"vendor/assets/bower/jquery-prettyPhoto/js/jquery.prettyPhoto.js"
-			],
-			[
-				"gemf",
-				"Gemfile"
-			],
-			[
-				"appli",
-				"config/application.rb"
 			],
 			[
 				"flexslider",
@@ -903,10 +1014,6 @@
 			[
 				"applica",
 				"config/application.rb"
-			],
-			[
-				"gem",
-				"Gemfile"
 			],
 			[
 				"bootstra_gi",
@@ -969,10 +1076,6 @@
 				"test/models/place_test.rb"
 			],
 			[
-				"place",
-				"app/models/place.rb"
-			],
-			[
 				"openin",
 				"app/models/opening_hour.rb"
 			],
@@ -983,10 +1086,6 @@
 			[
 				"shi",
 				"app/models/shift.rb"
-			],
-			[
-				"pic",
-				"test/fixtures/pick_ups.yml"
 			],
 			[
 				"toppingcoff",
@@ -1033,10 +1132,6 @@
 				"app/assets/javascripts/toppings.js.coffee"
 			],
 			[
-				"check",
-				"app/controllers/checkout_controller.rb"
-			],
-			[
 				"homecon",
 				"app/controllers/home_controller.rb"
 			],
@@ -1047,10 +1142,6 @@
 			[
 				"pick_up_controller.rb",
 				"app/controllers/pick_up_controller.rb"
-			],
-			[
-				"header",
-				"app/views/layouts/_header.html.erb"
 			],
 			[
 				"mode",
@@ -1163,90 +1254,6 @@
 			[
 				"application_helper.rb",
 				"app/helpers/application_helper.rb"
-			],
-			[
-				"sessionnew",
-				"app/views/customers/sessions/new.html.erb"
-			],
-			[
-				"pickinde",
-				"app/views/pick_up/index.html.erb"
-			],
-			[
-				"custonew",
-				"app/views/admin/customers/new.html.erb"
-			],
-			[
-				"applihel",
-				"app/helpers/application_helper.rb"
-			],
-			[
-				"sessionco",
-				"app/controllers/sessions_controller.rb"
-			],
-			[
-				"registra",
-				"app/controllers/registrations_controller.rb"
-			],
-			[
-				"regisform",
-				"app/views/customers/registrations/_form.html.erb"
-			],
-			[
-				"customersessnew",
-				"app/views/customers/sessions/new.html.erb"
-			],
-			[
-				"places",
-				"app/views/pick_up/_places.html.erb"
-			],
-			[
-				"pickco",
-				"app/controllers/pick_up_controller.rb"
-			],
-			[
-				"shift.rb",
-				"app/models/shift.rb"
-			],
-			[
-				"placeshow",
-				"app/views/admin/places/show.html.erb"
-			],
-			[
-				"_shift.html.erb",
-				"app/views/admin/shifts/_shift.html.erb"
-			],
-			[
-				"ope",
-				"app/models/opening_hour.rb"
-			],
-			[
-				"shierb",
-				"app/views/admin/shifts/_shift.html.erb"
-			],
-			[
-				"picku",
-				"app/controllers/pick_up_controller.rb"
-			],
-			[
-				"appliction",
-				"config/application.rb"
-			],
-			[
-				"op",
-				"app/models/opening_hour.rb"
-			],
-			[
-				"shicof",
-				"app/assets/javascripts/shifts.js.coffee"
-			],
-			[
-				"opening_mo",
-				"app/views/admin/opening_hours/modal.html.erb"
-			],
-			[
-				"placeco",
-				"app/controllers/admin/places_controller.rb"
 			]
 		],
 		"width": 0.0
@@ -1263,6 +1270,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 301.0,
+	"side_bar_width": 283.0,
 	"status_bar_visible": true
 }

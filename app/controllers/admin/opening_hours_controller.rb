@@ -20,9 +20,9 @@ class Admin::OpeningHoursController < Admin::BaseController
   def create
     @opening_hour = OpeningHour.new(opening_hour_params)
     if @opening_hour.save
-      render partial:'list', locals: {place:@opening_hour.place}, layout:nil
+      render partial:'list', locals:{place:@opening_hour.place}, layout:nil
     else
-      render partial:'form', locals: {opening_hour:@opening_hour}, layout:nil, status: :unprocessable_entity
+      render partial:'form', locals:{opening_hour:@opening_hour}, layout:nil, status: :unprocessable_entity
     end
   end
 
