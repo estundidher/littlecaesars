@@ -66,15 +66,19 @@ class Product < ActiveRecord::Base
                           after_remove: :force_touch
 
   has_attached_file :photo,
+                    s3_protocol: :https,
                     styles: {huge:'600x400>', large:'400x450>', medium:'300x300>', mini:'120x60>', topping:'110x90>', thumb:'100x100>'}
 
   has_attached_file :photo_left,
+                    s3_protocol: :https,
                     styles: {large:'175x250>'}
 
   has_attached_file :photo_right,
+                    s3_protocol: :https,
                     styles: {large:'175x250>'}
 
   has_attached_file :photo_showcase,
+                    s3_protocol: :https,
                     styles: {large:'350x250>', thumb:'120x90>'}
 
   belongs_to :type,

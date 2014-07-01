@@ -5,10 +5,12 @@ class Chef < ActiveRecord::Base
   before_validation :nil_if_blank
 
   has_attached_file :avatar,
+                    s3_protocol: :https,
                     styles: {large:'250x250>', small:'125x125>'},
                     default_url: '/images/:style/missing.png'
 
   has_attached_file :background,
+                    s3_protocol: :https,
                     styles: {large:'400x250>', small:'200x125>'},
                     default_url: '/images/:style/missing.png'
 
