@@ -5,7 +5,7 @@ class Place < ActiveRecord::Base
            dependent: :destroy
 
   has_attached_file :photo,
-                    s3_protocol: :https,
+                    :s3_protocol => 'https',
                     styles: {large:'400x450>', medium:'300x300>', thumb:'100x100>'},
                     default_url: '/images/:style/missing.png'
 
