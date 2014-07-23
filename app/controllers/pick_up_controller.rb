@@ -11,6 +11,8 @@ class PickUpController < ApplicationController
   def index
 
     unless @cart.pick_up.nil?
+      @order = Order.current current_customer
+      @order.destroy
       @cart.pick_up.destroy
     end
 

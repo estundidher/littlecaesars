@@ -50,6 +50,7 @@ class CartController < ApplicationController
 
   # GET /cart
   def index
+    flash.clear
     @categories = Category.with_shoppable_products
     if @product.nil?
       @category = @categories.first

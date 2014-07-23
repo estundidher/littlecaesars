@@ -58,4 +58,8 @@ class Order < ActiveRecord::Base
   def self.current customer
     find_by(customer:customer)
   end
+
+  def self.current_pending customer
+    find_by(customer:customer, state:Order.states[:pending])
+  end
 end

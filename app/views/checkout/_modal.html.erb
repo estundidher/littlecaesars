@@ -48,8 +48,10 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Continue Shopping</button>
         <div>
-          <%= form_for Order.new do |f| %>
-            <%= f.submit Cart.human_attribute_name('checkout'), class:'btn btn-info', role:'button' %>
+          <% if cart.checkout? %>
+            <%= form_for Order.new do |f| %>
+              <%= f.submit Cart.human_attribute_name('checkout'), class:'btn btn-info', role:'button' %>
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -32,6 +32,7 @@
 //= require menu
 //= require turbolinks
 //= require pick_up
+//= require messages
 
 $(document).on('ready page:load', function () {
   Application.bind_checkAll();

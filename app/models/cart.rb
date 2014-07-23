@@ -91,6 +91,10 @@ class Cart < ActiveRecord::Base
     end
   end
 
+  def checkout?
+    self.items.any?
+  end
+
   def self.current customer
     find_or_create_by(customer:customer, status:Cart.statuses[:open])
   end

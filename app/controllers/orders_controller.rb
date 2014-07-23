@@ -6,9 +6,11 @@ class OrdersController < ApplicationController
 
   before_action :pick_up_configurated?, only: [:create]
 
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :confirm]
 
-  before_action :set_order, only: [:checkout, :destroy, :confirm, :success, :fail]
+  before_action :set_order, only: [:destroy, :confirm, :success, :fail]
+
+  before_action :set_order_pending, only: [:checkout]
 
   # POST /orders
   def create
@@ -48,25 +50,26 @@ class OrdersController < ApplicationController
 
     if params[:summarycode].present?
 
-      if params[:summarycode] == SecurePay.APPROVED
+      if params[:summarycode] == SecurePay::APPROVED
         @order.approved!
       else
         @order.declined!
       end
 
       @order.create_payment status: params[:summarycode],
-                              code: params[:rescode],
-                       description: params[:restext],
-               bank_transaction_id: params[:txnid],
-                     bank_settdate: params[:settdate].to_datetime,
-                       card_number: params[:pan],
-                   card_expirydate: params[:expirydate],
-                         timestamp: params[:timestamp].to_datetime,
-                       fingerprint: params[:fingerprint],
+                              code: params[:rescode], #|| '0001',
+                       description: params[:restext], # || '000002',
+               bank_transaction_id: params[:txnid], # || '0000003',
+                     bank_settdate: (params[:settdate]).to_datetime, #|| '20110614'
+                       card_number: params[:pan], # || '**** **** **** 8838',
+                   card_expirydate: params[:expirydate], # || '0619',
+                         timestamp: (params[:timestamp]).to_datetime, #|| '201106141010'
+                       fingerprint: params[:fingerprint], # || '01a1edbb159aa01b99740508d79620251c2f871d',
                         ip_address: request.remote_ip,
                       full_request: params.to_s
 
       if @order.save
+        @cart.destroy
         redirect_to success_path
       else
         redirect_to fail_path
@@ -76,7 +79,7 @@ class OrdersController < ApplicationController
       flash.clear
       flash[:error] = 'Payment Failed'
       flash[:error_details] = "Summarycode not received. Params: #{params.to_s}"
-      redirect_to fail_path
+      render 'result'
     end
   end
 
@@ -109,6 +112,14 @@ private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.current current_customer
+      if @order.nil?
+        redirect_to cart_path
+      end
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_order_pending
+      @order = Order.current_pending current_customer
       if @order.nil?
         redirect_to cart_path
       end
