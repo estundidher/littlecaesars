@@ -29,7 +29,7 @@
                     <input type="hidden" name="EPS_MERCHANT" value="<%= @secure_pay.merchan_id %>">
                     <input type="hidden" name="EPS_TXNTYPE" value="<%= @secure_pay.transaction_type %>">
                     <input type="hidden" name="EPS_REFERENCEID" value="<%= @secure_pay.reference %>">
-                    <input type="hidden" name="EPS_AMOUNT" value="<%= number_to_currency(@secure_pay.price, unit:'') %>">
+                    <input type="hidden" name="EPS_AMOUNT" value="<%= @secure_pay.price %>">
                     <input type="hidden" name="EPS_TIMESTAMP" value="<%= @secure_pay.timestamp %>">
                     <input type="hidden" name="EPS_FINGERPRINT" value="<%= @secure_pay.fingerprint %>">
                     <input type="hidden" name="EPS_RESULTURL"  value="https://littlecs.com/checkout/confirm" />
