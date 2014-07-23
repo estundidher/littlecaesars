@@ -11,7 +11,7 @@ class PickUpController < ApplicationController
   def index
 
     unless @cart.pick_up.nil?
-      @order = Order.current current_customer
+      @order = Order.current_pending current_customer
       if @order.present?
         @order.destroy
       end
