@@ -20,20 +20,21 @@
               <%= image_tag 'payment/visa.gif', class:'payment img-responsive' %>
             </span>
           </h3>
+          <%= puts 'https://api.securepay.com.au/live/directpost/authorise' %>
           <form name="input" action="https://api.securepay.com.au/test/directpost/authorise" method="post">
             <div class="row">
               <div class="col-sm-12 col-md-12">
                 <div class="row cart-item">
                   <div class="col-sm-6 col-md-6">
-                    <input type="hidden" name="EPS_MERCHANT" value="EPS_MERCHANTID">
-                    <input type="hidden" name="EPS_TXNTYPE" value="EPS_TXNTYPE">
-                    <input type="hidden" name="EPS_REFERENCEID" value="EPS_REFERENCEID">
-                    <input type="hidden" name="EPS_AMOUNT" value="EPS_AMOUNT">
-                    <input type="hidden" name="EPS_TIMESTAMP" value="<EPS_TIMESTAMP>">
-                    <input type="hidden" name="EPS_FINGERPRINT" value="<fingerprint>">
-                    <input type="hidden" name="EPS_RESULTURL"  value="http://littlecaesars.herokuapp.com/checkout/confirm" />
+                    <input type="hidden" name="EPS_MERCHANT" value="<%= @secure_pay.merchan_id %>">
+                    <input type="hidden" name="EPS_TXNTYPE" value="<%= @secure_pay.transaction_type %>">
+                    <input type="hidden" name="EPS_REFERENCEID" value="<%= @secure_pay.reference %>">
+                    <input type="hidden" name="EPS_AMOUNT" value="<%= @secure_pay.price %>">
+                    <input type="hidden" name="EPS_TIMESTAMP" value="<%= @secure_pay.timestamp %>">
+                    <input type="hidden" name="EPS_FINGERPRINT" value="<%= @secure_pay.fingerprint %>">
+                    <input type="hidden" name="EPS_RESULTURL"  value="https://littlecs.com/checkout/confirm" />
                     <div class="form-group price" style="margin-top: 0px;">
-                      Total : <span class="value" style="font-size:18px; font-style:italic;"><%= number_to_currency @cart.total %></span>
+                      Total : <span class="value" style="font-size:18px; font-style:italic;"><%= number_to_currency @order.price %></span>
                     </div>
                     <div class="form-group" style="margin-top: 0px;">
                       <label for="EPS_CARDNAME">Full Name on Credit Card</label>
@@ -64,16 +65,20 @@
                     </div>
                   </div>
                   <div class="col-sm-6 col-md-6 price" style="text-align: center;">
-                    <h4 style="margin-top: 45px;">Selected Date/Time</h4>
-                    <span class="value" style="font-size:18px;"><%= @cart.pick_up.date.strftime("%d %B at %I:%M %p") %></span>
+                    <h1> <%= @order.code %> </h1>
+                    <h4 style="margin-top: 16px;">Selected Date/Time</h4>
+                    <span class="value" style="font-size:18px;"><%= @order.pick_up.date.strftime("%d %B at %I:%M %p") %></span>
                     <h4>Store Details</h4>
                    <div class="box">
-                      <p> <%= @cart.pick_up.place.address %> </p>
+                      <p> <%= @order.pick_up.place.address %> </p>
                     </div>
                   </div>
                 </div>
                 <div class="form-group" style="text-align:center;">
-                  <%= button_tag(type: :submit, class:'btn btn-danger btn-lg') do %>
+                  <%= link_to @order, method: :delete, class: 'btn btn-danger btn-lg', data: {confirm: t('warnings.confirm')} do %>
+                    Cancel
+                  <% end %>
+                  <%= button_tag(type: :submit, class:'btn btn-primary btn-lg') do %>
                     PLACE ORDER
                   <% end %>
                 </div>
@@ -83,7 +88,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <%= image_tag @cart.pick_up.place.photo.url, class:'img-responsive img-thumbnail', style:'width: 600px;' %>
+        <%= image_tag @order.pick_up.place.photo.url, class:'img-responsive img-thumbnail', style:'width: 600px;' %>
       </div>
     </div>
   </div>

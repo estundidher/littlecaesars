@@ -38,7 +38,7 @@ class PickUpController < ApplicationController
     @pick_up = @cart.build_pick_up pick_up_params
 
     if @pick_up.save
-      render plain: order_url, status: :ok
+      render plain: shopping_url, status: :ok
     else
       render partial:'pick_up/new', locals:{pick_up:@pick_up,
                                             place:@pick_up.place,

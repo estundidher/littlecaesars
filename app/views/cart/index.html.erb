@@ -7,11 +7,16 @@
 <% end %>
 
 <div class="container cart-container">
+
+  <div class="messages">
+    <%= render partial: 'layouts/flash_messages', flash: flash %>
+  </div>
+
   <%= render partial:'/cart/index', locals:{product:@product,
-                                            category:@category,
-                                            size:@size,
-                                            cart_item:@cart_item,
-                                            categories:@categories,
-                                            sizes:@sizes,
-                                            products:@products} %>
+                                           category:@category,
+                                               size:@size,
+                                          cart_item:@cart_item,
+                                         categories:@categories,
+                                              sizes:@sizes,
+                                           products:@products} %>
 </div>

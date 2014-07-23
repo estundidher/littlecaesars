@@ -66,24 +66,23 @@ module TwitterBootstrapHelper
 		end
 	end
 
-	def tb_grid_show path
-		link_to "<i class='glyphicon glyphicon-eye-open'></i> ".html_safe, path
+	def tb_grid_show path, className = 'view'
+		link_to path, class:"#{className}" do
+			"<i class='glyphicon glyphicon-eye-open'></i>".html_safe
+		end
 	end
 
-	def tb_grid_edit model, remote = nil, className = nil
-		link_to "<i class='glyphicon glyphicon-pencil'></i> ".html_safe,
-									model,
-									remote: remote,
-                                    class: "#{className}"
+	def tb_grid_edit model, remote = nil, className = 'edit'
+		link_to model, remote:remote, class:"#{className}" do
+			"<i class='glyphicon glyphicon-pencil'></i>".html_safe
+		end
 	end
 
-	def tb_grid_remove model, remote = nil, className = nil
-		link_to "<i class='glyphicon glyphicon-remove'></i> ".html_safe,
-										model,
-										remote: remote,
-                                    	method: :delete,
-                                     	class: "#{className}",
-                                      	data: {confirm: t('warnings.confirm')}
+	def tb_grid_remove model, remote = nil, className = 'delete'
+		link_to model, remote: remote, method: :delete, class: "#{className}",
+                                     data: {confirm: t('warnings.confirm')} do
+			"<i class='glyphicon glyphicon-remove'></i> ".html_safe
+    end
 	end
 
 	def tb_grid_link path, icon

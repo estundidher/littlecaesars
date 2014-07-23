@@ -32,7 +32,7 @@ class Admin::CustomersController < Admin::BaseController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to [:admin, @customer], notice: 'Customer was successfully created.' }
+        format.html { redirect_to [:admin, @customer], notice: t('messages.created', model:Customer.model_name.human) }
         format.json { render action: 'show', status: :created, location: @customer }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class Admin::CustomersController < Admin::BaseController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to [:admin, @customer], notice: 'Customer was successfully updated.' }
+        format.html { redirect_to [:admin, @customer], notice: t('messages.updated', model:Customer.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -61,7 +61,7 @@ class Admin::CustomersController < Admin::BaseController
     begin
       @customer.destroy
       respond_to do |format|
-        format.html { redirect_to customers_url }
+        format.html { redirect_to customers_url, notice: t('messages.deleted', model:Customer.model_name.human) }
         format.json { head :no_content }
       end
     rescue ActiveRecord::InvalidForeignKey => e

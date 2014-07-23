@@ -32,7 +32,7 @@ class Admin::ChefsController < Admin::BaseController
 
     respond_to do |format|
       if @chef.save
-        format.html { redirect_to [:admin, @chef], notice: 'Chef was successfully created.' }
+        format.html { redirect_to [:admin, @chef], notice: t('messages.created', model:Chef.model_name.human) }
         format.json { render action: 'show', status: :created, location: @chef }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class Admin::ChefsController < Admin::BaseController
   def update
     respond_to do |format|
       if @chef.update(chef_params)
-        format.html { redirect_to [:admin, @chef], notice: 'Chef was successfully updated.' }
+        format.html { redirect_to [:admin, @chef], notice: t('messages.updated', model:Chef.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -61,7 +61,7 @@ class Admin::ChefsController < Admin::BaseController
     begin
       @chef.destroy
       respond_to do |format|
-        format.html { redirect_to admin_chefs_url }
+        format.html { redirect_to admin_chefs_url, notice: t('messages.deleted', model:Chef.model_name.human) }
         format.json { head :no_content }
       end
     rescue ActiveRecord::InvalidForeignKey => e

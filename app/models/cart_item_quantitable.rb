@@ -8,6 +8,12 @@ class CartItemQuantitable < CartItem
   validates :quantity,
             presence: true
 
+  validates :price,
+            presence: true
+
+  validates :unit_price,
+            presence: true
+
   validate :product_quantitable?
 
   def product_quantitable?
@@ -22,18 +28,6 @@ class CartItemQuantitable < CartItem
 
   def quantitable?
     true
-  end
-
-  def product_price
-    self.product.price
-  end
-
-  def total
-    self.product.price * (self.quantity || 1)
-  end
-
-  def name
-    self.product.name
   end
 
   def photo

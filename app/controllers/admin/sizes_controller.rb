@@ -32,7 +32,7 @@ class Admin::SizesController < Admin::BaseController
 
     respond_to do |format|
       if @size.save
-        format.html { redirect_to [:admin, @size], notice: 'Size was successfully created.' }
+        format.html { redirect_to [:admin, @size], notice: t('messages.created', model:Size.model_name.human) }
         format.json { render action: 'show', status: :created, location: @size }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class Admin::SizesController < Admin::BaseController
   def update
     respond_to do |format|
       if @size.update(size_params)
-        format.html { redirect_to [:admin, @size], notice: 'Size was successfully updated.' }
+        format.html { redirect_to [:admin, @size], notice: t('messages.updated', model:Size.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -61,7 +61,7 @@ class Admin::SizesController < Admin::BaseController
     begin
       @size.destroy
       respond_to do |format|
-        format.html { redirect_to admin_sizes_url }
+        format.html { redirect_to admin_sizes_url, notice: t('messages.deleted', model:Size.model_name.human) }
         format.json { head :no_content }
       end
     rescue ActiveRecord::InvalidForeignKey => e

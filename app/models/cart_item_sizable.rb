@@ -5,13 +5,8 @@ class CartItemSizable < CartItem
   validates :price,
             presence: true
 
-  def total
-    self.price.value
-  end
-
-  def name
-    self.price.product.name
-  end
+  validates :unit_price,
+            presence: true
 
   def photo
     self.price.product.photo

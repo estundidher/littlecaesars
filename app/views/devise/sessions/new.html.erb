@@ -6,6 +6,9 @@
 
 <div class="container padd">
 
+<%= render partial: 'layouts/flash_messages', flash: flash %>
+<%= tb_show_errors_for resource %>
+
 <%= form_for resource, as: resource_name, url: session_path(resource_name),
     html: {role:'form', class: 'form-horizontal', style:'width: 30%;'} do |f| %>
 

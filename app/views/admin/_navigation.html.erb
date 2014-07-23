@@ -1,5 +1,4 @@
 <nav class="navbar navbar-default" role="navigation">
-
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -15,7 +14,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
     <% if user_signed_in? %>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav menu">
         <li <%= is_active 'admin/product_types' %>>
           <%= link_to ProductType.model_name.human.pluralize, admin_product_types_path %>
         </li>

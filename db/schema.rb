@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604093818) do
+ActiveRecord::Schema.define(version: 20140723092236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "cart_items", force: true do |t|
     t.string   "type",           null: false
@@ -119,6 +120,56 @@ ActiveRecord::Schema.define(version: 20140604093818) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "order_items", force: true do |t|
+    t.string   "type",           null: false
+    t.integer  "order_id",       null: false
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.integer  "size_id"
+    t.decimal  "unit_price"
+    t.decimal  "price"
+    t.integer  "first_half_id"
+    t.integer  "second_half_id"
+    t.text     "notes"
+    t.hstore   "properties"
+    t.hstore   "additions"
+    t.hstore   "subtractions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
+    t.integer  "customer_id", null: false
+    t.integer  "pick_up_id",  null: false
+    t.decimal  "price",       null: false
+    t.integer  "state"
+    t.inet     "ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+  add_index "orders", ["pick_up_id"], name: "index_orders_on_pick_up_id", using: :btree
+
+  create_table "payments", force: true do |t|
+    t.integer  "order_id",            null: false
+    t.string   "status",              null: false
+    t.string   "code",                null: false
+    t.string   "description",         null: false
+    t.string   "bank_transaction_id"
+    t.datetime "bank_settdate"
+    t.string   "card_number",         null: false
+    t.string   "card_expirydate",     null: false
+    t.datetime "timestamp",           null: false
+    t.string   "fingerprint",         null: false
+    t.inet     "ip_address",          null: false
+    t.string   "full_request",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
 
   create_table "pick_ups", force: true do |t|
     t.integer  "place_id",   null: false
@@ -276,6 +327,17 @@ ActiveRecord::Schema.define(version: 20140604093818) do
   add_foreign_key "opening_hours", "places", name: "opening_hours_place_id_fk"
   add_foreign_key "opening_hours", "users", name: "opening_hours_created_by_fk", column: "created_by"
   add_foreign_key "opening_hours", "users", name: "opening_hours_updated_by_fk", column: "updated_by"
+
+  add_foreign_key "order_items", "order_items", name: "order_items_first_half_id_fk", column: "first_half_id"
+  add_foreign_key "order_items", "order_items", name: "order_items_second_half_id_fk", column: "second_half_id"
+  add_foreign_key "order_items", "orders", name: "order_items_order_id_fk"
+  add_foreign_key "order_items", "products", name: "order_items_product_id_fk"
+  add_foreign_key "order_items", "sizes", name: "order_items_size_id_fk"
+
+  add_foreign_key "orders", "customers", name: "orders_customer_id_fk"
+  add_foreign_key "orders", "pick_ups", name: "orders_pick_up_id_fk"
+
+  add_foreign_key "payments", "orders", name: "payments_order_id_fk"
 
   add_foreign_key "pick_ups", "places", name: "pick_ups_place_id_fk"
 

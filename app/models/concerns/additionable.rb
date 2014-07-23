@@ -3,11 +3,11 @@ module Additionable
 
   included do
 
-    has_and_belongs_to_many :additions,
-                            join_table: :cart_items_products,
-                            class_name: 'Product',
-                            foreign_key: :cart_item_id,
-                            validate:false
+  has_and_belongs_to_many :additions,
+                          join_table: :cart_items_products,
+                          class_name: 'Product',
+                          foreign_key: :cart_item_id,
+                          validate:false
 
   has_and_belongs_to_many :subtractions,
                           join_table: :cart_items_subtractions,

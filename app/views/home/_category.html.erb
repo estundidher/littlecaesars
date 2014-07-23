@@ -25,16 +25,21 @@
         <!-- Shopping item hover block & link -->
         <div class="item-hover br-red hidden-xs"></div>
           <% if customer_signed_in? %>
-            <% if !current_customer.cart.pick_up_configurated? %>
-              <%= link_to t('links.add_to', model_name:Cart.model_name.human),
-                  pick_up_index_path, class: "link hidden-xs" %>
-            <% elsif product.type.additionable? %>
-              <%= link_to t('links.add_to', model_name:Cart.model_name.human),
-                  cart_path(product), class: "link hidden-xs" %>
-            <% else %>
-              <%= link_to t('links.add_to', model_name:Cart.model_name.human),
-                  cart_new_item_path(product), remote: true, class: "link hidden-xs add_to_cart" %>
+
+            <% if current_customer.cart.present? %>
+
+              <% if !current_customer.cart.pick_up_configurated? %>
+                <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                    pick_up_index_path, class: "link hidden-xs" %>
+              <% elsif product.type.additionable? %>
+                <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                    cart_path(product), class: "link hidden-xs" %>
+              <% else %>
+                <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                    cart_new_item_path(product), remote: true, class: "link hidden-xs add_to_cart" %>
+              <% end %>
             <% end %>
+
           <% else %>
             <%= link_to t('links.add_to', model_name:Cart.model_name.human),
                 new_customer_registration_path, class: "link hidden-xs" %>

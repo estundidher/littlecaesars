@@ -46,8 +46,12 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
-        <%= link_to Cart.human_attribute_name('checkout'), new_checkout_path, class:'btn btn-info', role:'button' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Continue Shopping</button>
+        <div>
+          <%= form_for Order.new do |f| %>
+            <%= f.submit Cart.human_attribute_name('checkout'), class:'btn btn-info', role:'button' %>
+          <% end %>
+        </div>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

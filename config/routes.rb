@@ -76,8 +76,6 @@ Rails.application.routes.draw do
 
   get '/cart/:mode/:product_id/:side/ingredients', to: 'cart#ingredients',as: :cart_product_items
 
-  resources :checkout, only:[:index, :new, :create]
-
   #cart toppings
   controller :toppings do
     post 'index',       to: :index,         as: :toppings
@@ -92,8 +90,16 @@ Rails.application.routes.draw do
   post 'cart/mode',                               to: 'cart#mode',     as: :cart_mode
   get 'cart/:mode/:side/:category_id(/:size_id)', to: 'cart#carousel', as: :cart_carousel
 
+  get 'checkout_modal', to: 'checkout#modal', as: :checkout_modal
+
+  resources :orders, only: [:create, :destroy]
+  get 'checkout',           to: 'orders#checkout', as: :checkout
+  match 'checkout/confirm', to: 'orders#confirm',  as: :checkout_confirm, via: [:get, :post]
+  get 'success',            to: 'orders#success',  as: :success
+  get 'fail',               to: 'orders#fail',     as: :fail
+
   controller :home do
-    get 'order',             to: :order,        as: :order
+    get 'shopping',          to: :shopping,     as: :shopping
     get 'contact',           to: :contact,      as: :contact
     post 'contact',          to: :send_message, as: :send_message
     get 'about',             to: :about,        as: :about

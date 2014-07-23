@@ -238,6 +238,11 @@ en:
   warnings:
     confirm: Are you sure?
 
+  messages:
+    created: '%{model} was successfully created'
+    updated: '%{model} was successfully updated'
+    deleted: '%{model} was successfully deleted'
+
   links:
     back: Back
     create: Create

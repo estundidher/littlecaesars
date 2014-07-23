@@ -6,6 +6,12 @@ class CartItemAdditionable < CartItem
   validates :product,
             presence: true
 
+  validates :price,
+            presence: true
+
+  validates :unit_price,
+            presence: true
+
   validate :product_additionable?
 
   def product_additionable?
@@ -22,16 +28,8 @@ class CartItemAdditionable < CartItem
     false
   end
 
-  def product_price
-    self.product.price
-  end
-
   def sizable?
     false
-  end
-
-  def name
-    self.product.name
   end
 
   def photo

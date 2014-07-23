@@ -1,6 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
 
-  before_action :set_categories, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
   # GET /categories.json
@@ -32,7 +32,7 @@ class Admin::CategoriesController < Admin::BaseController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to [:admin, @category], notice: 'Category was successfully created.' }
+        format.html { redirect_to [:admin, @category], notice: t('messages.created', model:Category.model_name.human) }
         format.json { render action: 'show', status: :created, location: @category }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class Admin::CategoriesController < Admin::BaseController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to [:admin, @category], notice: 'Category was successfully updated.' }
+        format.html { redirect_to [:admin, @category], notice: t('messages.updated', model:Category.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -61,7 +61,7 @@ class Admin::CategoriesController < Admin::BaseController
     begin
       @category.destroy
       respond_to do |format|
-        format.html { redirect_to admin_categories_url }
+        format.html { redirect_to admin_categories_url, notice: t('messages.deleted', model:Category.model_name.human) }
         format.json { head :no_content }
       end
     rescue ActiveRecord::InvalidForeignKey => e
@@ -89,7 +89,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_categories
+    def set_category
       @category = Category.find(params[:id])
     end
 

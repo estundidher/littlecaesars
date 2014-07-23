@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0.rc2'
-# gem 'rails', '3.2.13'
+gem 'rails', '4.1.4'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -12,22 +11,11 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
-
-# Use jquery as the JavaScript library
-#gem 'jquery-rails'
-#gem 'jquery-ui-rails', '~> 4.1.1'
-#gem 'meiomask-rails', '~> 1.1.12'
-
-# http://eonasdan.github.io/bootstrap-datetimepicker/
-#gem 'momentjs-rails', '~> 2.5.0'
-#gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 
 gem 'recaptcha', require: 'recaptcha/rails'
 
 # picture upload
-gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'paperclip', github:'thoughtbot/paperclip'
 
 gem 'activemerchant'
 
@@ -50,10 +38,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # S3 API
 gem 'aws-sdk'
-#gem 'aws-s3', require: 'aws/s3'
-
-# direct upload form helper and assets
-# gem 's3_direct_upload'
 
 # Use postgrees as the database for Active Record
 gem 'pg'
@@ -64,15 +48,15 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
-  gem 'capybara'
+  gem 'capybara', '~> 2.4.1'
   gem 'pry-rails'
 end
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'better_errors'
-  gem 'sprockets_better_errors'
+  #gem 'better_errors'
+  #gem 'sprockets_better_errors'
   gem 'delorean'
 end
 
@@ -81,21 +65,11 @@ group :production do
   gem 'rails_12factor'
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 gem 'foreigner'
 
 gem 'memcachier'
 gem 'dalli', '~> 2.7.1'
 
-ruby '2.1.1'
+gem 'sprockets', '2.11.0'
+
+ruby '2.1.2'

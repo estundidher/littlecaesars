@@ -23,7 +23,6 @@ module Caesars
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower')
-    #config.assets.paths << Rails.root.join('vendor', 'assets', 'bower', 'bootstrap-sass', 'vendor', 'assets', 'fonts')
 
     # Explicitly register the extensions we are interested in compiling
     #config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/

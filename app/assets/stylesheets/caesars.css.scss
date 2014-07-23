@@ -1086,6 +1086,14 @@ $banner_url: 'https://caesars-prod.s3.amazonaws.com/assets/banner/';
     background: url($banner_url + 'about.jpg') center center repeat-x;
 }
 
+.banner.sign_in {
+    background: url($banner_url + 'sign_in.jpg') center center repeat-x;
+}
+
+.banner.product {
+    background: url($banner_url + 'product.jpg') center center repeat-x;
+}
+
 .banner.menu {
     background: url($banner_url + 'menu.jpg') center center repeat-x;
 }

@@ -4,15 +4,15 @@ class CreateCartItems < ActiveRecord::Migration
 
       t.string :type, null: false
 
-      t.belongs_to :cart, null: false
+      t.references :cart, null: false
       t.foreign_key :carts
 
-      t.belongs_to :product, null: true
+      t.references :product, null: true
       t.foreign_key :products
 
       t.integer :quantity, null: true
 
-      t.belongs_to :price, null: true
+      t.references :price, null: true
       t.foreign_key :prices
 
       t.integer :first_half_id, null: true
@@ -23,7 +23,7 @@ class CreateCartItems < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_foreign_key :cart_items, :cart_items, column: 'first_half_id'
-    add_foreign_key :cart_items, :cart_items, column: 'second_half_id'
+    add_foreign_key :cart_items, :cart_items, column:'first_half_id'
+    add_foreign_key :cart_items, :cart_items, column:'second_half_id'
   end
 end

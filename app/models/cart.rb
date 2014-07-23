@@ -4,13 +4,19 @@ class Cart < ActiveRecord::Base
 
   enum status: [:open, :closed]
 
-  belongs_to :pick_up
-
   belongs_to :customer
+
+  belongs_to :pick_up
 
   has_many :items,
            dependent: :destroy,
-           class_name: 'CartItem'
+           class_name:'CartItem'
+
+  validates :customer,
+            presence:true
+
+  validates :status,
+            presence:true
 
   def new_splittable_item first_half, second_half, size, params
 
@@ -71,14 +77,21 @@ class Cart < ActiveRecord::Base
 
   def pick_up_configurated?
     unless self.pick_up.nil?
-      puts "#{'#'*100}> Pick Up configurated at #{self.pick_up.created_at}"
       return self.pick_up.created_at > 10.minutes.ago
     end
-    puts "#{'#'*100}> Pick Up not configurated.."
     false
   end
 
-  def self.current current
-    find_or_create_by(customer:current, status:Cart.statuses[:open])
+  def create_order id_address
+    order = Order.create self, id_address
+    if order.save
+      return order
+    else
+      return false
+    end
+  end
+
+  def self.current customer
+    find_or_create_by(customer:customer, status:Cart.statuses[:open])
   end
 end

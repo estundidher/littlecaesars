@@ -32,7 +32,7 @@ class Admin::ProductTypesController < Admin::BaseController
 
     respond_to do |format|
       if @product_type.save
-        format.html { redirect_to [:admin, @product_type], notice: 'ProductType was successfully created.' }
+        format.html { redirect_to [:admin, @product_type], notice: t('messages.created', model:ProductType.model_name.human) }
         format.json { render action: 'show', status: :created, location: @product_type }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class Admin::ProductTypesController < Admin::BaseController
   def update
     respond_to do |format|
       if @product_type.update(product_type_params)
-        format.html { redirect_to [:admin, @product_type], notice: 'ProductType was successfully updated.' }
+        format.html { redirect_to [:admin, @product_type], notice: t('messages.updated', model:ProductType.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -61,7 +61,7 @@ class Admin::ProductTypesController < Admin::BaseController
     begin
       @product_type.destroy
       respond_to do |format|
-        format.html { redirect_to admin_product_types_url }
+        format.html { redirect_to admin_product_types_url, notice: t('messages.deleted', model:ProductType.model_name.human) }
         format.json { head :no_content }
       end
     rescue ActiveRecord::InvalidForeignKey => e
