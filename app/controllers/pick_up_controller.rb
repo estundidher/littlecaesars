@@ -12,7 +12,9 @@ class PickUpController < ApplicationController
 
     unless @cart.pick_up.nil?
       @order = Order.current current_customer
-      @order.destroy
+      if @order.present?
+        @order.destroy
+      end
       @cart.pick_up.destroy
     end
 
