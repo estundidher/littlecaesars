@@ -6,7 +6,7 @@ class SecurePay
 
   def initialize(order)
     @order = order
-    @timestamp = Time.now.strftime "%Y%m%d%H%M%S"
+    @timestamp = Time.now.utc.strftime "%Y%m%d%H%M%S"
   end
 
   def timestamp
