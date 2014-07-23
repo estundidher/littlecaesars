@@ -18,7 +18,7 @@ class SecurePay
   end
 
   def price
-    @order.price
+    '%.2f' % @order.price
   end
 
   def password
