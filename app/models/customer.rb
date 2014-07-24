@@ -14,6 +14,8 @@ class Customer < ActiveRecord::Base
 
   has_one :cart
 
+  has_many :orders
+
   validates :email,
             uniqueness: {case_sensitive: false}
 

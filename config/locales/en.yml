@@ -297,6 +297,8 @@ en:
       cart_item_sizable: Cart Item
       cart_item_sizable_additionable: Cart Item
       cart_item_splittable: Cart Item
+      order: Order
+      payment: Payment
     attributes:
       size:
         name: Name
@@ -330,6 +332,7 @@ en:
         prices: Prices
       place:
         photo: Photo
+        code: Code
         name: Name
         address: Address
         phone: Phone
@@ -384,3 +387,20 @@ en:
       cart_item_splittable:
         first_half: First Half
         second_half: Second Half
+      order:
+        code: Code
+        price: Price
+        state: State
+        ip_address: Ip Address
+      payment:
+        status: Status
+        code: Code
+        description: Description
+        bank_transaction_id: Bank Transaction Id
+        bank_settdate: Bank Settlement Date
+        card_number: Card Number
+        card_expirydate: Card Expiry Date
+        timestamp: Timestamp
+        fingerprint: Fingerprint
+        ip_address: IP Address
+        full_request: Full Request
