@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723092236) do
+ActiveRecord::Schema.define(version: 20140724102641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,13 +140,14 @@ ActiveRecord::Schema.define(version: 20140723092236) do
   end
 
   create_table "orders", force: true do |t|
-    t.integer  "customer_id", null: false
-    t.integer  "pick_up_id",  null: false
-    t.decimal  "price",       null: false
+    t.integer  "customer_id",              null: false
+    t.integer  "pick_up_id",               null: false
+    t.decimal  "price",                    null: false
     t.integer  "state"
     t.inet     "ip_address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code",        default: "", null: false
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
@@ -179,12 +180,12 @@ ActiveRecord::Schema.define(version: 20140723092236) do
   end
 
   create_table "places", force: true do |t|
-    t.string   "name",               null: false
-    t.string   "address",            null: false
-    t.string   "phone",              null: false
+    t.string   "name",                            null: false
+    t.string   "address",                         null: false
+    t.string   "phone",                           null: false
     t.string   "description"
     t.text     "map"
-    t.integer  "created_by",         null: false
+    t.integer  "created_by",                      null: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -192,6 +193,7 @@ ActiveRecord::Schema.define(version: 20140723092236) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "code",               default: "", null: false
   end
 
   add_index "places", ["name"], name: "index_places_on_name", unique: true, using: :btree

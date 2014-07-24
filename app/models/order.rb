@@ -5,6 +5,10 @@ class Order < ActiveRecord::Base
   belongs_to :customer
   belongs_to :pick_up
 
+  after_create :create_code
+
+  before_destroy :before_destroy
+
   has_one :payment
 
   enum state: [:pending, :approved, :declined]
@@ -36,10 +40,6 @@ class Order < ActiveRecord::Base
     return order
   end
 
-  def code
-    "#{self.pick_up.place.name[0]}#{self.id.to_s.rjust(8, '0')}"
-  end
-
   def create_item cart_item
     case cart_item
       when CartItemSplittable
@@ -56,10 +56,21 @@ class Order < ActiveRecord::Base
   end
 
   def self.current customer
-    find_by(customer:customer)
+    find_by customer:customer
   end
 
   def self.current_pending customer
-    find_by(customer:customer, state:Order.states[:pending])
+    find_by customer:customer, state:Order.states[:pending]
+  end
+
+private
+
+  def create_code
+    self.code = "#{self.pick_up.place.code}#{self.id.to_s.rjust(8, '0')}"
+    save
+  end
+
+  def before_destroy
+    self.payment.destroy
   end
 end
