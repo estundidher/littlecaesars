@@ -12,20 +12,19 @@ class OrdersController < ApplicationController
 
   before_action :set_order, only: [:destroy, :confirm, :success, :fail]
 
-  before_action :set_order_pending, only: [:checkout]
-
   # POST /orders
   def create
     @order = @cart.create_order request.remote_ip
     if @order
       redirect_to checkout_path
     else
-      redirect_to cart_path, notice: 'Ops..'
+      redirect_to cart_path, notice:'Ops..'
     end
   end
 
   # GET /checkout
   def checkout
+    @order = current_customer.orders.last
     @secure_pay = SecurePay.new @order
     @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
     @months = Date::MONTHNAMES.compact
@@ -113,17 +112,13 @@ private
 
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.current current_customer
-      if @order.nil?
-        redirect_to cart_path
-      end
-    end
-
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order_pending
-      @order = Order.current_pending current_customer
-      if @order.nil?
-        redirect_to cart_path
+      if params[:refid].present?
+        @order = Order.find_by code: params[:refid]
+      else
+        @order = Order.current current_customer
+        if @order.nil?
+          redirect_to cart_path
+        end
       end
     end
 end
