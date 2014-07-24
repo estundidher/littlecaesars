@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
   include PickUpConfiguratedConcern
   include CartConcern
 
+  skip_before_filter :verify_authenticity_token, only: [:confirm]
+
   before_action :authenticate_customer!, except: [:confirm]
 
   before_action :pick_up_configurated?, only: [:create]
