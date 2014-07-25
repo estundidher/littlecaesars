@@ -13,11 +13,11 @@ class SecurePay
     @timestamp
   end
 
-  def reference
+  def reference_id
     @order.code
   end
 
-  def price
+  def amount
     '%.2f' % @order.price
   end
 
@@ -34,6 +34,6 @@ class SecurePay
   end
 
   def fingerprint
-    Digest::SHA1.hexdigest "#{self.merchan_id}|#{self.password}|#{self.transaction_type}|#{self.reference}|#{self.price}|#{self.timestamp}"
+    Digest::SHA1.hexdigest "#{self.merchan_id}|#{self.password}|#{self.transaction_type}|#{self.reference_id}|#{self.amount}|#{self.timestamp}"
   end
 end

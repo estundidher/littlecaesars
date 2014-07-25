@@ -28,8 +28,8 @@
                   <div class="col-sm-6 col-md-6">
                     <input type="hidden" name="EPS_MERCHANT" value="<%= @secure_pay.merchan_id %>">
                     <input type="hidden" name="EPS_TXNTYPE" value="<%= @secure_pay.transaction_type %>">
-                    <input type="hidden" name="EPS_REFERENCEID" value="<%= @secure_pay.reference %>">
-                    <input type="hidden" name="EPS_AMOUNT" value="<%= @secure_pay.price %>">
+                    <input type="hidden" name="EPS_REFERENCEID" value="<%= @secure_pay.reference_id %>">
+                    <input type="hidden" name="EPS_AMOUNT" value="<%= @secure_pay.amount %>">
                     <input type="hidden" name="EPS_TIMESTAMP" value="<%= @secure_pay.timestamp %>">
                     <input type="hidden" name="EPS_FINGERPRINT" value="<%= @secure_pay.fingerprint %>">
                     <input type="hidden" name="EPS_RESULTURL"  value="https://littlecs.com/checkout/confirm" />
@@ -38,11 +38,11 @@
                     </div>
                     <div class="form-group" style="margin-top: 0px;">
                       <label for="EPS_CARDNAME">Full Name on Credit Card</label>
-                      <input type="text" name="EPS_CARDNAME" id="EPS_CARDNAME" maxlength="50" class="form-control" required/>
+                      <input type="text" name="EPS_CARDNAME" id="EPS_CARDNAME" maxlength="50" class="form-control" required placeholder="As it appears on the card" />
                     </div>
                     <div class="form-group" style="margin-top: 0px;">
                       <label for="EPS_CARDNUMBER">Credit Card Number</label>
-                      <input type="text" name="EPS_CARDNUMBER" id="EPS_CARDNUMBER" maxlength="16" class="form-control" required/>
+                      <input type="text" name="EPS_CARDNUMBER" id="EPS_CARDNUMBER" maxlength="16" class="form-control" pattern="\d+" placeholder="Only numbers" required/>
                     </div>
                     <div class="form-group">
                       <label for="EPS_EXPIRYMONTH">Expiry Date</label>
@@ -58,8 +58,8 @@
                     <div class="form-group">
                       <label for="EPS_CCV">CCV</label>
                       <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                          <input type="text" name="EPS_CCV" id="EPS_CCV" maxlength="3" class="form-control meio-mask" alt="integer" required/>
+                        <div class="col-sm-7 col-md-7">
+                          <input type="text" name="EPS_CCV" id="EPS_CCV" maxlength="3" class="form-control" placeholder="Only numbers" required/>
                         </div>
                       </div>
                     </div>
