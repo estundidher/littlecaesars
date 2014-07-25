@@ -7,14 +7,12 @@ class PickUpController < ApplicationController
 
   before_action :set_cart, only: [:create, :index]
 
-  # GET /pick_up/index
+  # GET /pick_up
   def index
 
     unless @cart.pick_up.nil?
-      @order = Order.current_pending current_customer
-      if @order.present?
-        @order.destroy
-      end
+      @order = current_customer.orders.pending.last
+      @order.destroy if @order.present?
       @cart.pick_up.destroy
     end
 
@@ -58,7 +56,7 @@ class PickUpController < ApplicationController
     end
 
     def set_cart
-      @cart = Cart.current current_customer
+      @cart = current_customer.cart
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

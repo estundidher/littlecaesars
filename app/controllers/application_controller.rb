@@ -30,6 +30,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_current_user
+  before_action :check_pending_order
 
 protected
 
@@ -41,5 +42,9 @@ protected
 
   def set_current_user
     User.current = current_user
+  end
+
+  def check_pending_order
+    redirect_to checkout_path if current_customer.orders.pending.last.present?
   end
 end

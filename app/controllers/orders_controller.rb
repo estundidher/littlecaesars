@@ -4,13 +4,15 @@ class OrdersController < ApplicationController
 
   skip_before_filter :verify_authenticity_token, only: [:confirm]
 
+  skip_before_action :check_pending_order, only: [:destroy, :checkout]
+
   before_action :authenticate_customer!, except: [:confirm]
 
   before_action :pick_up_configurated?, only: [:create]
 
   before_action :set_cart, only: [:create, :confirm]
 
-  before_action :set_order, only: [:destroy, :confirm, :success, :fail]
+  before_action :set_order, only: [:checkout, :destroy, :confirm, :success, :fail]
 
   # POST /orders
   def create
@@ -24,7 +26,7 @@ class OrdersController < ApplicationController
 
   # GET /checkout
   def checkout
-    @order = current_customer.orders.last
+    redirect_to cart_path unless @order.pending?
     @secure_pay = SecurePay.new @order
     @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
     @months = Date::MONTHNAMES.compact
@@ -32,6 +34,9 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1
   def destroy
+
+    redirect_to cart_path unless @order.pending?
+
     begin
       @order.destroy
       redirect_to cart_path, notice: t('messages.deleted', model:Order.model_name.human)
@@ -48,6 +53,8 @@ class OrdersController < ApplicationController
 
   # GET|POST /checkout/confirm
   def confirm
+
+    redirect_to cart_path unless @order.pending?
 
     if params[:summarycode].present?
 
@@ -69,12 +76,10 @@ class OrdersController < ApplicationController
                         ip_address: request.remote_ip,
                       full_request: params.to_s
 
-      if @order.save
-        @cart.destroy
-        redirect_to success_path
-      else
-        redirect_to fail_path
-      end
+      redirect_to fail_path unless @order.save
+
+      @cart.destroy
+      redirect_to success_path
 
     else
       flash.clear
@@ -85,15 +90,11 @@ class OrdersController < ApplicationController
   end
 
   def success
-
-    if @order.approved?
-      flash.clear
-      flash[:success] = 'Payment Aproved!'
-      flash[:success_details] = 'The payment was received!'
-      render 'result'
-    else
-      redirect_to fail_path
-    end
+    redirect_to fail_path unless @order.approved?
+    flash.clear
+    flash[:success] = 'Payment Aproved!'
+    flash[:success_details] = 'The payment was received!'
+    render 'result'
   end
 
   def fail
@@ -113,12 +114,10 @@ private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       if params[:refid].present?
-        @order = Order.find_by code: params[:refid]
+        @order = Order.find_by code:params[:refid]
       else
-        @order = Order.current current_customer
-        if @order.nil?
-          redirect_to cart_path
-        end
+        @order = current_customer.orders.last
+        redirect_to cart_path if @order.nil?
       end
     end
 end
