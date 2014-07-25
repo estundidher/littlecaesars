@@ -10,7 +10,7 @@ class Customer < ActiveRecord::Base
          :rememberable,
          :trackable,
          :validatable,
-         :authentication_keys => [:email]
+         authentication_keys: [:email]
 
   has_one :cart
 

@@ -33,7 +33,12 @@ class Order < ActiveRecord::Base
            class_name:'OrderItem'
 
   def self.create cart, ip_address
-    order = Order.new customer:cart.customer, state:Order.states[:pending], price:cart.total, pick_up:cart.pick_up, ip_address:ip_address
+    order = Order.new customer:cart.customer,
+                         state:Order.states[:pending],
+                         price:cart.total,
+                       pick_up:PickUp.new(place:cart.pick_up.place, date:cart.pick_up.date),
+                    ip_address:ip_address
+
     cart.items.each do |cart_item|
       order.create_item cart_item
     end
@@ -71,6 +76,6 @@ private
   end
 
   def before_destroy
-    self.payment.destroy
+    self.payment.destroy if self.payment.present?
   end
 end
