@@ -86,9 +86,9 @@ class OrdersController < ApplicationController
                         ip_address: request.remote_ip,
                       full_request: params.to_s
 
-      render status: :ok
+      render nothing:true, status: :ok
     else
-      render status: :forbidden
+      render nothing:true, status: :forbidden
     end
   end
 
