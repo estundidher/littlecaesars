@@ -1,15 +1,13 @@
 <h3>
-  <div class="messages">
-    <% if @order.approved? %>
-      <div class="alert alert-success" role="alert">
-        <strong>Well done!</strong> The payment has been approved.
-      </div>
-    <% else %>
-      <div class="alert alert-danger" role="alert">
-        <strong>Oh snap!</strong> The payment has been declined!
-      </div>
-    <% end %>
-  </div>
+  <% if @order.approved? %>
+    <div class="alert alert-success" role="alert">
+      <strong>Well done!</strong> The payment has been approved.
+    </div>
+  <% else %>
+    <div class="alert alert-danger" role="alert">
+      <strong>Oh snap!</strong> The payment has been declined!
+    </div>
+  <% end %>
 </h3>
 <div class="row">
   <div class="col-sm-12 col-md-12">

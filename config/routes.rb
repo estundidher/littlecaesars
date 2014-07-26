@@ -122,6 +122,7 @@ Rails.application.routes.draw do
     resources :users
     resources :customers
     resources :chefs
+    resources :orders, except: [:new, :create, :edit]
 
     #products
     get 'products/options', to:'products#options', as: :products_reload_options
