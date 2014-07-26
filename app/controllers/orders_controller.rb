@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
 
   # GET /checkout/code
   def checkout
-    redirect_to cart_path unless @order.pending?
     @secure_pay = SecurePay.new @order
     @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
     @months = Date::MONTHNAMES.compact
