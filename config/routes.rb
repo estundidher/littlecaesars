@@ -93,10 +93,9 @@ Rails.application.routes.draw do
   get 'checkout_modal', to: 'checkout#modal', as: :checkout_modal
 
   resources :orders, only: [:create, :destroy]
-  get 'checkout',           to: 'orders#checkout', as: :checkout
-  match 'checkout/confirm', to: 'orders#confirm',  as: :checkout_confirm, via: [:get, :post]
-  get 'success',            to: 'orders#success',  as: :success
-  get 'fail',               to: 'orders#fail',     as: :fail
+  get 'checkout/:code',       to: 'orders#checkout', as: :checkout
+  get 'order/:code/reload',   to: 'orders#reload',   as: :order_reload
+  match 'checkout/confirm',   to: 'orders#confirm',  as: :checkout_confirm, via: [:get, :post]
 
   controller :home do
     get 'shopping',          to: :shopping,     as: :shopping

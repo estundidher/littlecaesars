@@ -11,6 +11,7 @@ class Caesars.Order
     @$spinner = $('.checkout .checkout-form .fa-spin')
     @$ok_sign = $('.checkout .checkout-form .glyphicon-ok-sign')
     @$button = $('.checkout .checkout-form form .btn-primary')
+    @$checkout_form = $('.checkout .checkout-form')
     @bind()
 
   bind: ->
@@ -24,17 +25,23 @@ class Caesars.Order
   send: (form) =>
     console.log 'order: send fired!'
     @$button.addClass 'disabled'
-    @$ok_sign.hide
+    @$ok_sign.hide()
     @$spinner.fadeIn 'fast'
-    $.post(form.attr('action'), form.serialize())
+    $.post($(form).attr('action'), form.serialize())
       .done (response) ->
-        location.href = form.data('success')
+        console.log 'order.send: done fired!'
+        Caesars.order.reload(form.data('reload'))
       .fail (jqHXR, textStatus) ->
-        console.log 'order: fail fired!'
-        @$spinner.fadeOut 'fast', ->
-          @$ok_sign.show()
-          @$button.removeClass 'disabled'
-          alert 'ops..'
+        console.log 'order.send: fail fired!'
+        Caesars.order.reload(form.data('reload'))
+
+  reload: (path) =>
+    console.log 'order.reload: fired --> ' + path
+    $.get(path)
+      .done (response) ->
+        $('.checkout .checkout-form').hide().empty().append(response).fadeIn 'fast'
+      .fail (jqHXR, textStatus) ->
+        alert 'ops..'
 
 create_order = ->
   window.Caesars.order = new Caesars.Order()

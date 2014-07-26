@@ -1,0 +1,80 @@
+<h3>
+  Please enter your credit card details
+  <span class="pull-right">
+    <%= image_tag 'payment/mastercard.gif', class:'payment img-responsive' %>
+    <%= image_tag 'payment/visa.gif', class:'payment img-responsive' %>
+  </span>
+  <div class="messages">
+    <%= render partial:'layouts/flash_messages', flash:flash %>
+  </div>
+</h3>
+<form action="https://api.securepay.com.au/test/directpost/authorise"
+      data-reload="<%= order_reload_path(@order.code) %>" method="post">
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div class="row cart-item">
+        <div class="col-sm-6 col-md-6">
+          <input type="hidden" name="EPS_MERCHANT" value="<%= @secure_pay.merchan_id %>">
+          <input type="hidden" name="EPS_TXNTYPE" value="<%= @secure_pay.transaction_type %>">
+          <input type="hidden" name="EPS_REFERENCEID" value="<%= @secure_pay.reference_id %>">
+          <input type="hidden" name="EPS_AMOUNT" value="<%= @secure_pay.amount %>">
+          <input type="hidden" name="EPS_TIMESTAMP" value="<%= @secure_pay.timestamp %>">
+          <input type="hidden" name="EPS_FINGERPRINT" value="<%= @secure_pay.fingerprint %>">
+          <input type="hidden" name="EPS_RESULTURL"  value="https://littlecs.com/checkout/confirm" />
+          <div class="form-group price" style="margin-top: 0px;">
+            Total : <span class="value" style="font-size:18px; font-style:italic;"><%= number_to_currency @order.price %></span>
+          </div>
+          <div class="form-group" style="margin-top: 0px;">
+            <label for="EPS_CARDNAME">Full Name on Credit Card</label>
+            <input type="text" name="EPS_CARDNAME" id="EPS_CARDNAME" maxlength="50" class="form-control" required placeholder="As it appears on the card" />
+          </div>
+          <div class="form-group" style="margin-top: 0px;">
+            <label for="EPS_CARDNUMBER">Credit Card Number</label>
+            <input type="text" name="EPS_CARDNUMBER" id="EPS_CARDNUMBER" maxlength="16" class="form-control" pattern="\d+" placeholder="Only numbers" required/>
+          </div>
+          <div class="form-group">
+            <label for="EPS_EXPIRYMONTH">Expiry Date</label>
+            <div class="row">
+              <div class="col-md-7">
+                <%= select_tag 'EPS_EXPIRYMONTH', options_for_select(@months.each_with_index.collect{|m, i| [m, i+1]}), class:'form-control', required:true %>
+              </div>
+              <div class="col-md-5" style="padding-left: 0px;">
+                <%= select_tag 'EPS_EXPIRYYEAR', options_for_select(@years), class:'form-control', required:true %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="EPS_CCV">CCV</label>
+            <div class="row">
+              <div class="col-sm-7 col-md-7">
+                <input type="text" name="EPS_CCV" id="EPS_CCV" maxlength="3" class="form-control" placeholder="Only numbers" required/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-6 price" style="text-align: center;">
+          <h1> <%= @order.code %> </h1>
+          <h4 style="margin-top: 16px;">Selected Date/Time</h4>
+          <span class="value" style="font-size:18px;"><%= @order.pick_up.date.strftime("%d %B at %I:%M %p") %></span>
+          <h4>Store Details</h4>
+         <div class="box">
+            <p> <%= @order.pick_up.place.address %> </p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" style="text-align:center;">
+        <%= link_to @order, method: :delete, class: 'btn btn-danger btn-lg',
+                            data: {confirm: t('warnings.confirm')} do %>
+          Cancel
+          <i class="glyphicon glyphicon-remove-sign"></i>
+        <% end %>
+        <%= button_tag class:'btn btn-primary btn-lg' do %>
+          PLACE ORDER
+          <i class="glyphicon glyphicon-ok-sign"></i>
+          <i class="fa fa-spinner fa-spin" style="display: none;"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</form>
