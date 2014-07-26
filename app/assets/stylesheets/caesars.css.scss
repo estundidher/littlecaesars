@@ -2361,11 +2361,15 @@ img.payment {
     border-radius: 4px;
 }
 
-.inner-page .checkout .checkout-form h3{
+.inner-page .checkout .checkout-form h3 {
     margin-top: 0;
     padding-bottom: 6px;
     font-size: 20px;
     border-bottom: 4px double #eee;
+}
+
+.inner-page .checkout .checkout-form h3 .alert {
+    margin-bottom: 0px;
 }
 
 .inner-page .checkout .checkout .form-group { margin-top: 15px; }

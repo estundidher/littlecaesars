@@ -1,6 +1,14 @@
 <h3>
   <div class="messages">
-    <%= render partial:'layouts/flash_messages', flash:flash %>
+    <% if @order.payment.approved? %>
+      <div class="alert alert-success" role="alert">
+        <strong>Well done!</strong> The payment has been approved.
+      </div>
+    <% else %>
+      <div class="alert alert-danger" role="alert">
+        <strong>Oh snap!</strong> The payment has been declined!
+      </div>
+    <% end %>
   </div>
 </h3>
 <div class="row">
