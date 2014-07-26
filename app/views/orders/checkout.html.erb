@@ -6,12 +6,12 @@
   <%= tb_breadcrumb 'Checkout' %>
 <% end %>
 
-<div class="contactus">
+<div class="checkout">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
         <!-- Contact form -->
-        <div class="contact-form">
+        <div class="checkout-form">
           <!-- Heading -->
           <h3>
             Please enter your credit card details
@@ -21,7 +21,7 @@
             </span>
           </h3>
           <%= puts 'https://api.securepay.com.au/live/directpost/authorise' %>
-          <form name="input" action="https://api.securepay.com.au/test/directpost/authorise" method="post">
+          <form action="https://api.securepay.com.au/test/directpost/authorise" data-success="<%= success_path %>" method="post">
             <div class="row">
               <div class="col-sm-12 col-md-12">
                 <div class="row cart-item">
@@ -77,9 +77,12 @@
                 <div class="form-group" style="text-align:center;">
                   <%= link_to @order, method: :delete, class: 'btn btn-danger btn-lg', data: {confirm: t('warnings.confirm')} do %>
                     Cancel
+                    <i class="glyphicon glyphicon-remove-sign"></i>
                   <% end %>
-                  <%= button_tag(type: :submit, class:'btn btn-primary btn-lg') do %>
+                  <%= button_tag class:'btn btn-primary btn-lg' do %>
                     PLACE ORDER
+                    <i class="glyphicon glyphicon-ok-sign"></i>
+                    <i class="fa fa-spinner fa-spin" style="display: none;"></i>
                   <% end %>
                 </div>
               </div>
