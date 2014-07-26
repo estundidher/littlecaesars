@@ -33,6 +33,7 @@
 //= require turbolinks
 //= require pick_up
 //= require messages
+//= require order
 
 $(document).on('ready page:load', function () {
   Application.bind_checkAll();
