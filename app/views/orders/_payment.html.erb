@@ -1,6 +1,6 @@
 <h3>
   <div class="messages">
-    <% if @order.payment.approved? %>
+    <% if @order.approved? %>
       <div class="alert alert-success" role="alert">
         <strong>Well done!</strong> The payment has been approved.
       </div>
