@@ -45,6 +45,8 @@ protected
   end
 
   def check_pending_order
-    redirect_to checkout_path if current_customer.orders.pending.last.present?
+    if customer_signed_in?
+      redirect_to checkout_path if current_customer.orders.pending.last.present?
+    end
   end
 end
