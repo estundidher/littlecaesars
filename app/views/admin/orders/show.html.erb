@@ -1,0 +1,23 @@
+<%= tb_breadcrumb link_to(Order.model_name.human.pluralize, admin_orders_path), t('titles.show', model_name: Order.model_name.human) %>
+
+<dl>
+  <dt><%= Order.human_attribute_name :code %></dt>
+  <dd><%= @order.code %></dd>
+  <dt><%= Order.human_attribute_name :price %></dt>
+  <dd><%= number_to_currency @order.price %></dd>
+  <dt><%= Order.human_attribute_name :state %></dt>
+  <dd>
+    <% if @order.pending? %>
+      <i class="glyphicon glyphicon-question-sign"></i>
+    <% elsif @order.approved? %>
+      <i class="glyphicon glyphicon-ok-circle"></i>
+    <% elsif @order.declined? %>
+      <i class="glyphicon glyphicon-exclamation-sign"></i>
+    <% end %>
+    <%= @order.state %>
+  </dd>
+</dl>
+
+<%= render 'admin/payments/list', payments:[@order.payment] if @order.payment.present? %>
+
+<%= tb_button_back admin_orders_path %>

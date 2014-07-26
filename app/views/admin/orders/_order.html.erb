@@ -1,0 +1,33 @@
+<tr>
+  <td> <%= order.id %> </td>
+  <td> <%= order.code %> </td>
+  <td> <%= order.customer.name %> </td>
+  <td> <%= number_to_currency order.price %> </td>
+  <td>
+    <% if order.pending? %>
+      <i class="glyphicon glyphicon-question-sign"></i>
+    <% elsif order.approved? %>
+      <i class="glyphicon glyphicon-ok-circle"></i>
+    <% elsif order.declined? %>
+      <i class="glyphicon glyphicon-exclamation-sign"></i>
+    <% end %>
+    <%= order.state %>
+  </td>
+  <td> <%= order.created_at %> </td>
+  <td>
+    <%= tb_grid_show [:admin, order] %>
+    <%= tb_grid_remove [:admin, order] %>
+    <% if order.payment.present? %>
+      <a href="JavaScript:void(0);" class="expanable" data-target="#order_payment_<%= order.payment.id %>">
+        <i class="glyphicon glyphicon-asterisk"></i>
+      </a>
+    <% end %>
+  </td>
+</tr>
+<% if order.payment.present? %>
+<tr id="order_payment_<%= order.payment.id %>" style="display:none;">
+  <td colspan="7">
+    <%= render 'admin/payments/list', payments:[order.payment] %>
+  </td>
+</tr>
+<% end %>

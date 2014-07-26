@@ -43,9 +43,17 @@ $(document).on('ready page:load', function () {
   Application.bind_carousel();
   Application.bind_tabs();
   Application.bind_spinnable();
+  Application.bind_expanable();
 });
 
 var Application = {
+
+  bind_expanable: function() {
+    $('.expanable').click(function (e) {
+      console.log('.expanable clicked!' + $(e).data('target'));
+      $($(this).data('target')).toggle();
+    })
+  },
 
   bind_spinnable: function() {
     $('.spinnable').click(function (e) {

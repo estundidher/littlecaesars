@@ -1,0 +1,29 @@
+<tr>
+  <td> <%= payment.id %> </td>
+  <td> <%= payment.status %> </td>
+  <td> <%= payment.code %> </td>
+  <td> <%= payment.description %> </td>
+  <td> <%= payment.bank_transaction_id %> </td>
+  <td>
+    <% if payment.bank_settdate.present? %>
+      <%= payment.bank_settdate.to_formatted_s(:long) %>
+    <% else %>
+      --
+    <% end %>
+  </td>
+  <td> <%= payment.card_number %> </td>
+  <td> <%= payment.card_expirydate %> </td>
+  <td> <%= payment.timestamp.to_formatted_s(:long) %> </td>
+  <td> <%= payment.ip_address %> </td>
+  <td> <%= payment.created_at.to_formatted_s(:long) %> </td>
+  <td>
+    <a href="JavaScript:void(0);" class="expanable" data-target="#payment_<%= payment.id %>">
+      <i class="glyphicon glyphicon-asterisk"></i>
+    </a>
+  </td>
+</tr>
+<tr id="payment_<%= payment.id %>" style="display:none;">
+  <td colspan="13">
+    <strong><%= Payment.human_attribute_name 'fingerprint' %>:</strong> <%= payment.fingerprint %>
+  </td>
+</tr>

@@ -36,6 +36,9 @@
         <li <%= is_active 'admin/customers' %>>
           <%= link_to Customer.model_name.human.pluralize, admin_customers_path %>
         </li>
+        <li <%= is_active 'admin/orders' %>>
+          <%= link_to Order.model_name.human.pluralize, admin_orders_path %>
+        </li>
         <li <%= is_active 'admin/chefs' %>>
           <%= link_to Chef.model_name.human.pluralize, admin_chefs_path %>
         </li>

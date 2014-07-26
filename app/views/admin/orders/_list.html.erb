@@ -1,0 +1,16 @@
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr>
+      <th style="width:30px;"> # </th>
+      <th><%= Order.human_attribute_name 'code' %></th>
+      <th><%= Customer.model_name.human %></th>
+      <th><%= Order.human_attribute_name 'price' %></th>
+      <th><%= Order.human_attribute_name 'state' %></th>
+      <th><%= Order.human_attribute_name 'created_at' %></th>
+      <th style="width:60px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @orders %>
+  </tbody>
+</table>

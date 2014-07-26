@@ -392,6 +392,7 @@ en:
         price: Price
         state: State
         ip_address: Ip Address
+        created_at: Created At
       payment:
         status: Status
         code: Code
