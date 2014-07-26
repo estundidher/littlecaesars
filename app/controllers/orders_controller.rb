@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   skip_before_filter :verify_authenticity_token, only: [:confirm]
 
-  skip_before_action :check_pending_order, only: [:destroy, :checkout]
+  skip_before_action :check_pending_order
 
   before_action :authenticate_customer!, except: [:confirm]
 
@@ -12,24 +12,36 @@ class OrdersController < ApplicationController
 
   before_action :set_cart, only: [:create, :confirm]
 
-  before_action :set_order, only: [:checkout, :destroy, :confirm, :success, :fail]
+  before_action :set_order, only: [:reload, :checkout, :destroy, :confirm, :success, :fail]
 
   # POST /orders
   def create
     @order = @cart.create_order request.remote_ip
     if @order
-      redirect_to checkout_path
+      redirect_to checkout_path(@order.code)
     else
       redirect_to cart_path, notice:'Ops..'
     end
   end
 
-  # GET /checkout
+  # GET /checkout/code
   def checkout
     redirect_to cart_path unless @order.pending?
     @secure_pay = SecurePay.new @order
     @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
     @months = Date::MONTHNAMES.compact
+  end
+
+  # GET /checkout/code/reload
+  def reload
+    if @order.pending?
+      @secure_pay = SecurePay.new @order
+      @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
+      @months = Date::MONTHNAMES.compact
+      render partial:'form'
+    else
+      render partial:'payment'
+    end
   end
 
   # DELETE /orders/1
@@ -54,9 +66,7 @@ class OrdersController < ApplicationController
   # GET|POST /checkout/confirm
   def confirm
 
-    redirect_to cart_path unless @order.pending?
-
-    if params[:summarycode].present?
+    if @order.pending? && params[:summarycode].present?
 
       if params[:summarycode] == SecurePay::APPROVED
         @order.approved!
@@ -65,48 +75,21 @@ class OrdersController < ApplicationController
       end
 
       @order.create_payment status: params[:summarycode],
-                              code: params[:rescode], #|| '0001',
-                       description: params[:restext], # || '000002',
-               bank_transaction_id: params[:txnid], # || '0000003',
-                     bank_settdate: (params[:settdate]).to_datetime, #|| '20110614'
-                       card_number: params[:pan], # || '**** **** **** 8838',
-                   card_expirydate: params[:expirydate], # || '0619',
-                         timestamp: (params[:timestamp]).to_datetime, #|| '201106141010'
-                       fingerprint: params[:fingerprint], # || '01a1edbb159aa01b99740508d79620251c2f871d',
+                              code: params[:rescode],
+                       description: params[:restext],
+               bank_transaction_id: params[:txnid],
+                     bank_settdate: params[:settdate].present? ? params[:settdate].to_datetime : null,
+                       card_number: params[:pan],
+                   card_expirydate: params[:expirydate],
+                         timestamp: params[:timestamp].to_datetime,
+                       fingerprint: params[:fingerprint],
                         ip_address: request.remote_ip,
                       full_request: params.to_s
 
-      redirect_to fail_path unless @order.save
-
-      @cart.destroy
-      redirect_to success_path
-
+      render status: :ok
     else
-      flash.clear
-      flash[:error] = 'Payment Failed'
-      flash[:error_details] = "Summarycode not received. Params: #{params.to_s}"
-      render 'result'
+      render status: :forbidden
     end
-  end
-
-  def success
-    redirect_to fail_path unless @order.approved?
-    flash.clear
-    flash[:success] = 'Payment Aproved!'
-    flash[:success_details] = 'The payment was received!'
-    render 'result'
-  end
-
-  def fail
-    flash.clear
-    if @order.declined?
-      flash[:error] = 'Payment Declined!'
-      flash[:error_details] = 'The payment was declined!'
-    else
-      flash[:error] = 'Payment not received'
-      flash[:error_details] = 'Something went wrong..'
-    end
-    render 'result'
   end
 
 private
@@ -115,6 +98,8 @@ private
     def set_order
       if params[:refid].present?
         @order = Order.find_by code:params[:refid]
+      elsif params[:code].present?
+        @order = Order.find_by code:params[:code]
       else
         @order = current_customer.orders.last
         redirect_to cart_path if @order.nil?
