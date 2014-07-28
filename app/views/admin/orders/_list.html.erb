@@ -2,11 +2,14 @@
   <thead>
     <tr>
       <th style="width:30px;"> # </th>
-      <th><%= Order.human_attribute_name 'code' %></th>
+      <th><%= Order.human_attribute_name :code %></th>
       <th><%= Customer.model_name.human %></th>
-      <th><%= Order.human_attribute_name 'price' %></th>
-      <th><%= Order.human_attribute_name 'state' %></th>
-      <th><%= Order.human_attribute_name 'created_at' %></th>
+      <th><%= PickUp.model_name.human %> <%= Place.model_name.human %></th>
+      <th><%= PickUp.model_name.human %> <%= PickUp.human_attribute_name :date %></th>
+      <th><%= Order.human_attribute_name :price %></th>
+      <th><%= Order.human_attribute_name :state %></th>
+      <th><%= Order.human_attribute_name :ip_address %></th>
+      <th><%= Order.human_attribute_name :created_at %></th>
       <th style="width:60px;"></th>
     </tr>
   </thead>

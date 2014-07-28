@@ -2,6 +2,8 @@
   <td> <%= order.id %> </td>
   <td> <%= order.code %> </td>
   <td> <%= order.customer.name %> </td>
+  <td> <%= order.pick_up.place.name %> </td>
+  <td> <%= order.pick_up.date.to_formatted_s :long %> </td>
   <td> <%= number_to_currency order.price %> </td>
   <td>
     <% if order.pending? %>
@@ -15,7 +17,8 @@
     <% end %>
     <%= order.state %>
   </td>
-  <td> <%= order.created_at %> </td>
+  <td> <%= order.ip_address %> </td>
+  <td> <%= order.created_at.to_formatted_s :long %> </td>
   <td>
     <%= tb_grid_show [:admin, order] %>
     <%= tb_grid_remove [:admin, order] %>
@@ -28,7 +31,7 @@
 </tr>
 <% if order.payment.present? %>
 <tr id="order_payment_<%= order.payment.id %>" style="display:none;">
-  <td colspan="7">
+  <td colspan="10">
     <%= render 'admin/payments/list', payments:[order.payment] %>
   </td>
 </tr>

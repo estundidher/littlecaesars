@@ -18,6 +18,14 @@
     <% end %>
     <%= @order.state %>
   </dd>
+  <dt><%= PickUp.model_name.human %> <%= Place.model_name.human %></dt>
+  <dd><%= @order.pick_up.place.name %></dd>
+  <dt><%= PickUp.model_name.human %> <%= PickUp.human_attribute_name :date %></dt>
+  <dd><%= @order.pick_up.date.to_formatted_s :long %></dd>
+  <dt><%= Order.human_attribute_name :ip_address %></dt>
+  <dd><%= @order.ip_address %></dd>
+  <dt><%= Order.human_attribute_name :created_at %></dt>
+  <dd><%= @order.created_at.to_formatted_s :long %></dd>
 </dl>
 
 <h3>Items</h3>

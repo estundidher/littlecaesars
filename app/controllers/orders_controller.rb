@@ -39,13 +39,13 @@ class OrdersController < ApplicationController
 
   # GET /orders/code/reload
   def reload
-    if @order.pending? || @order.sent?
+    if @order.approved?
+      render partial:'payment'
+    else
       @secure_pay = SecurePay.new @order
       @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
       @months = Date::MONTHNAMES.compact
       render partial:'form'
-    else
-      render partial:'payment'
     end
   end
 

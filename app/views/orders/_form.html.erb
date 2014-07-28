@@ -11,6 +11,10 @@
     <div class="alert alert-warning" role="alert">
       <strong>Well done!</strong> The payment is still being processed..
     </div>
+  <% elsif @order.declined? %>
+    <div class="alert alert-danger" role="alert">
+      <strong>Oh snap!</strong> The payment has been declined!
+    </div>
   <% end %>
 </h3>
 <form action="https://api.securepay.com.au/test/directpost/authorise"
@@ -75,7 +79,7 @@
           Cancel
           <i class="glyphicon glyphicon-remove-sign"></i>
         <% end %>
-        <% if @order.pending? %>
+        <% if @order.pending? || @order.declined? %>
           <%= button_tag class:'btn btn-primary btn-lg' do %>
             PLACE ORDER
             <i class="glyphicon glyphicon-ok-sign"></i>
