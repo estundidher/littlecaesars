@@ -1,29 +1,20 @@
-<h3>
-  <% if @order.approved? %>
-    <div class="alert alert-success" role="alert">
-      <strong>Well done!</strong> The payment has been approved.
-    </div>
-  <% end %>
-</h3>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      Well done!
+    </h2>
+  </div>
+  <div class="panel-body" style="font-size:12px;">
+    The payment has been approved.
+  </div>
+</div>
+
 <div class="row">
   <div class="col-sm-12 col-md-12">
     <div class="row cart-item">
-      <div class="col-sm-6 col-md-6">
-        <dl>
-          <dt>Status</dt><dd><%= @order.payment.status %></dd>
-          <dt>Code</dt><dd><%= @order.payment.code %></dd>
-          <dt>Description</dt><dd><%= @order.payment.description %></dd>
-          <dt>Bank Transaction ID</dt><dd><%= @order.payment.bank_transaction_id %></dd>
-          <% if @order.payment.bank_settdate %>
-            <dt>Bank Sett Date</dt><dd><%= @order.payment.bank_settdate %></dd>
-          <% end %>
-          <dt>Card Number</dt><dd><%= @order.payment.card_number %></dd>
-          <dt>Card Expiry Date</dt><dd><%= @order.payment.card_expirydate %></dd>
-          <dt>Timestamp</dt><dd><%= @order.payment.timestamp %></dd>
-          <dt>Fingerprint</dt><dd><%= @order.payment.fingerprint %></dd>
-          <dt>IP Address</dt><dd><%= @order.payment.ip_address %></dd>
-          <dt>Full Request</dt><dd><%= @order.payment.full_request %></dd>
-        </dl>
+      <div class="col-sm-6 col-md-6" style="padding-right: 0px;">
+        <h1 style="padding-top:10px;"> Details </h1>
+        <%= render 'orders/resume', items:@order %>
       </div>
       <div class="col-sm-6 col-md-6 price" style="text-align: center;">
         <h1> <%= @order.code %> </h1>
