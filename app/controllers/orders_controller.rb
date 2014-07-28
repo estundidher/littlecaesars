@@ -52,19 +52,21 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   def destroy
 
-    redirect_to cart_path unless @order.pending?
-
-    begin
-      @order.destroy
-      redirect_to cart_path, notice: t('messages.deleted', model:Order.model_name.human)
-    rescue ActiveRecord::InvalidForeignKey => e
-      flash[:error] = t 'errors.messages.delete_fail.being_used', model:@order.code
-      flash[:error_details] = e
-      redirect_to checkout_path
-    rescue ActiveRecord::StatementInvalid => e
-      flash[:error] = t 'errors.messages.ops'
-      flash[:error_details] = e
-      redirect_to checkout_path
+    if @order.pending? || @order.sent?
+      begin
+        @order.destroy
+        redirect_to cart_path, notice: t('messages.deleted', model:Order.model_name.human)
+      rescue ActiveRecord::InvalidForeignKey => e
+        flash[:error] = t 'errors.messages.delete_fail.being_used', model:@order.code
+        flash[:error_details] = e
+        redirect_to checkout_path
+      rescue ActiveRecord::StatementInvalid => e
+        flash[:error] = t 'errors.messages.ops'
+        flash[:error_details] = e
+        redirect_to checkout_path
+      end
+    else
+        redirect_to cart_path
     end
   end
 
