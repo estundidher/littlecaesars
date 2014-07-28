@@ -4,19 +4,25 @@
     <%= image_tag 'payment/mastercard.gif', class:'payment img-responsive' %>
     <%= image_tag 'payment/visa.gif', class:'payment img-responsive' %>
   </span>
-  <div class="messages">
-    <%= render partial:'layouts/flash_messages', flash:flash %>
-  </div>
-  <% if @order.sent? %>
-    <div class="alert alert-warning" role="alert">
-      <strong>Well done!</strong> The payment is still being processed..
-    </div>
-  <% elsif @order.declined? %>
-    <div class="alert alert-danger" role="alert">
-      <strong>Oh snap!</strong> The payment has been declined!
-    </div>
-  <% end %>
 </h3>
+
+<% if @order.sent? %>
+  <div class="alert alert-warning" role="alert">
+    <strong>Well done!</strong> The payment is still being processed..
+  </div>
+<% elsif @order.declined? %>
+  <div class="panel panel-danger" style="margin-bottom: 0px;">
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        The payment has been declined!
+      </h2>
+    </div>
+    <div class="panel-body" style="font-size:12px;">
+      <%= @order.payment.description %>
+    </div>
+  </div>
+<% end %>
+
 <form action="https://api.securepay.com.au/test/directpost/authorise"
       data-reload="<%= order_reload_path(@order.code) %>"
       data-update="<%= order_update_path(@order.code) %>" method="post">
