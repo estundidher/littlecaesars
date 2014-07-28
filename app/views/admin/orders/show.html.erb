@@ -8,6 +8,8 @@
   <dt><%= Order.human_attribute_name :state %></dt>
   <dd>
     <% if @order.pending? %>
+      <i class="glyphicon glyphicon-info-sign"></i>
+    <% elsif @order.sent? %>
       <i class="glyphicon glyphicon-question-sign"></i>
     <% elsif @order.approved? %>
       <i class="glyphicon glyphicon-ok-circle"></i>
@@ -18,6 +20,10 @@
   </dd>
 </dl>
 
+<h3>Items</h3>
+<%= render 'admin/order_items/list', order_items:@order.items %>
+
+<h3>Payment</h3>
 <%= render 'admin/payments/list', payments:[@order.payment] if @order.payment.present? %>
 
 <%= tb_button_back admin_orders_path %>

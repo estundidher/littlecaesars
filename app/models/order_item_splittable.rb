@@ -12,6 +12,14 @@ class OrderItemSplittable < OrderItem
              foreign_key: :second_half_id,
              validate: true
 
+  belongs_to :size
+
+  validates :size,
+            presence: true
+
+  validates :size_name,
+            presence: true
+
   validates :first_half,
             presence: true
 
@@ -22,8 +30,13 @@ class OrderItemSplittable < OrderItem
 
   def self.create order, cart_item
     OrderItemSplittable.new order: order,
-                       first_half: OrderItemSizableAdditionable.create(order, cart_item.first_half),
-                      second_half: OrderItemSizableAdditionable.create(order, cart_item.second_half)
+                             size: cart_item.size,
+                        size_name: cart_item.size.name,
+                         quantity: cart_item.quantity,
+                     product_name: cart_item.name,
+                            price: cart_item.total,
+                       first_half: OrderItemSizableAdditionable.create_half(cart_item.first_half),
+                      second_half: OrderItemSizableAdditionable.create_half(cart_item.second_half)
   end
 
   def product_quantitable?

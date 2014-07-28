@@ -1,0 +1,24 @@
+  <td> <%= order_item_sizable_additionable.product_name %> </td>
+  <td> <%= order_item_sizable_additionable.size_name %> </td>
+  <td> <%= order_item_sizable_additionable.quantity %> </td>
+  <td> <%= number_to_currency order_item_sizable_additionable.price %> </td>
+  <td>
+    <% if order_item_sizable_additionable.additions.any? %>
+    <ul class="simple-list">
+      <% order_item_sizable_additionable.additions.each do |addition| %>
+      <li> <%= addition[0] %>: <%= number_to_currency addition[1] %></li>
+      <% end %>
+    </ul>
+    <% else %>
+      --
+    <% end %>
+  </td>
+  <td>
+    <ul class="simple-list">
+      <% order_item_sizable_additionable.subtractions.each do |subtraction| %>
+      <li> <%= subtraction[0] %>: <%= number_to_currency subtraction[1] %></li>
+      <% end %>
+    </ul>
+  </td>
+  <td> <%= order_item_sizable_additionable.created_at.to_formatted_s(:long) %> </td>
+  <td> </td>

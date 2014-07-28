@@ -11,7 +11,11 @@ class Order < ActiveRecord::Base
 
   has_one :payment
 
-  enum state: [:pending, :approved, :declined]
+  #0=pending  //being prepared by the customer
+  #1=sent     //sent to securepay
+  #2=approved //approved by securepay
+  #3=declined //declined by securepay
+  enum state: [:pending, :sent, :approved, :declined]
 
   validates :state,
             presence: true
@@ -28,7 +32,7 @@ class Order < ActiveRecord::Base
   validates :ip_address,
             presence: true
 
-  has_many :items, -> {order 'id desc'},
+  has_many :items, -> {order id: :desc},
            dependent: :destroy,
            class_name:'OrderItem'
 
@@ -66,6 +70,10 @@ class Order < ActiveRecord::Base
 
   def self.current_pending customer
     find_by customer:customer, state:Order.states[:pending]
+  end
+
+  def allow_send?
+    self.pending? || self.declined?
   end
 
 private

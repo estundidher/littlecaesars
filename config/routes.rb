@@ -94,7 +94,8 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:create, :destroy]
   get 'checkout/:code',       to: 'orders#checkout', as: :checkout
-  get 'order/:code/reload',   to: 'orders#reload',   as: :order_reload
+  get 'orders/:code/reload',  to: 'orders#reload',   as: :order_reload
+  get 'orders/:code/update',  to: 'orders#update',   as: :order_update
   match 'checkout/confirm',   to: 'orders#confirm',  as: :checkout_confirm, via: [:get, :post]
 
   controller :home do

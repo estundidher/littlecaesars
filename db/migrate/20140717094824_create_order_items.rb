@@ -7,7 +7,7 @@ class CreateOrderItems < ActiveRecord::Migration
 
       t.string :type, null:false
 
-      t.references :order, null:false
+      t.references :order, null:true
       t.foreign_key :orders
 
       t.references :product, null:true
