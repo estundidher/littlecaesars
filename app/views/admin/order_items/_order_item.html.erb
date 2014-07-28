@@ -4,7 +4,7 @@
   <td> <%= order_item.size_name %> </td>
   <td> <%= order_item.quantity %> </td>
   <td> <%= order_item.unit_price %> </td>
-  <td> <%= order_item.price %> </td>
+  <td> <%= number_to_currency order_item.price %> </td>
   <td>
     <% if order_item.additions.present? %>
       <%= order_item.additions %>
@@ -19,5 +19,5 @@
       --
     <% end %>
   </td>
-  <td> <%= payment.created_at.to_formatted_s(:long) %> </td>
+  <td> <%= payment.created_at.to_formatted_s :long %> </td>
 </tr>

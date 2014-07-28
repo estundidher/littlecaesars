@@ -78,6 +78,7 @@ class Order < ActiveRecord::Base
 
   def approve!
     self.approved!
+    CustomerMailer.new_order(self).deliver
   end
 
 private
