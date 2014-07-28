@@ -69,20 +69,20 @@
           </div>
         </div>
       </div>
-      <% unless @order.sent? %>
-        <div class="form-group" style="text-align:center;">
-          <%= link_to @order, method: :delete, class: 'btn btn-danger btn-lg',
-                              data: {confirm: t('warnings.confirm')} do %>
-            Cancel
-            <i class="glyphicon glyphicon-remove-sign"></i>
-          <% end %>
+      <div class="form-group" style="text-align:center;">
+        <%= link_to @order, method: :delete, class: 'btn btn-danger btn-lg',
+                            data: {confirm: t('warnings.confirm')} do %>
+          Cancel
+          <i class="glyphicon glyphicon-remove-sign"></i>
+        <% end %>
+        <% if @order.pending? %>
           <%= button_tag class:'btn btn-primary btn-lg' do %>
             PLACE ORDER
             <i class="glyphicon glyphicon-ok-sign"></i>
             <i class="fa fa-spinner fa-spin" style="display: none;"></i>
           <% end %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </form>
