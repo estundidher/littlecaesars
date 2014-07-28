@@ -1,11 +1,10 @@
 <%= "#{label} " unless label.nil? %><%= order_item.product_name %>
 <% if show_size %>
   <br> <small>
-    &nbsp&nbsp&nbsp<%= number_to_currency order_item.price %>
+    <%= number_to_currency order_item.price %>
     <%= order_item.size_name if order_item.sizable? %>
   </small>
 <% end %>
-
 <% if order_item.additionable? %>
   <% if order_item.additions.present? %>
     <% order_item.additions.each do |addition| %>
