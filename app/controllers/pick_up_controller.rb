@@ -52,11 +52,11 @@ class PickUpController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_place
-      @place = Place.find(params[:place_id])
+      @place = Place.find params[:place_id]
     end
 
     def set_cart
-      @cart = current_customer.cart
+      @cart = Cart.current(current_customer)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

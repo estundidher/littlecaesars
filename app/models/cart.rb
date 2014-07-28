@@ -96,6 +96,6 @@ class Cart < ActiveRecord::Base
   end
 
   def self.current customer
-    find_or_create_by(customer:customer, status:Cart.statuses[:open])
+    find_or_create_by customer:customer, status:Cart.statuses[:open]
   end
 end

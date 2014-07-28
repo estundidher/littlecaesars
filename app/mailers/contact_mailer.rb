@@ -1,4 +1,5 @@
 class ContactMailer < ActionMailer::Base
+
   default from: 'info@littlecs.com'
 
   def request_info name, from, message

@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
     if @order.sent? && params[:summarycode].present?
 
       if params[:summarycode] == SecurePay::APPROVED
-        @order.approved!
+        @order.approve!
       else
         @order.declined!
       end
@@ -104,12 +104,12 @@ private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       if params[:refid].present?
-        @order = Order.find_by code:params[:refid]
+        @order = Order.find_by code:params[:refid], customer:current_customer
       elsif params[:code].present?
-        @order = Order.find_by code:params[:code]
+        @order = Order.find_by code:params[:code], customer:current_customer
       else
         @order = current_customer.orders.last
-        redirect_to cart_path if @order.nil?
       end
+      redirect_to cart_path if @order.nil?
     end
 end
