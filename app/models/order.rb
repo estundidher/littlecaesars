@@ -76,6 +76,10 @@ class Order < ActiveRecord::Base
     self.pending? || self.declined?
   end
 
+  def approve!
+    self.approved!
+  end
+
 private
 
   def create_code
