@@ -81,7 +81,7 @@ class OrdersController < ApplicationController
         @order.declined!
       end
 
-      settdate = null
+      settdate = nil
       if params[:settdate].present?
         settdate = params[:settdate].to_datetime
       end
