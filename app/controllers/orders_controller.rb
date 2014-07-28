@@ -104,7 +104,7 @@ private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       if params[:refid].present?
-        @order = Order.find_by code:params[:refid], customer:current_customer
+        @order = Order.find_by code:params[:refid]
       elsif params[:code].present?
         @order = Order.find_by code:params[:code], customer:current_customer
       else
