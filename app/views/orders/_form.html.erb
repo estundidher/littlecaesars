@@ -7,9 +7,15 @@
   <div class="messages">
     <%= render partial:'layouts/flash_messages', flash:flash %>
   </div>
+  <% if @order.sent? %>
+    <div class="alert alert-warning" role="alert">
+      <strong>Well done!</strong> The payment is still being processed..
+    </div>
+  <% end %>
 </h3>
 <form action="https://api.securepay.com.au/test/directpost/authorise"
-      data-reload="<%= order_reload_path(@order.code) %>" method="post">
+      data-reload="<%= order_reload_path(@order.code) %>"
+      data-update="<%= order_update_path(@order.code) %>" method="post">
   <div class="row">
     <div class="col-sm-12 col-md-12">
       <div class="row cart-item">
@@ -63,18 +69,20 @@
           </div>
         </div>
       </div>
-      <div class="form-group" style="text-align:center;">
-        <%= link_to @order, method: :delete, class: 'btn btn-danger btn-lg',
-                            data: {confirm: t('warnings.confirm')} do %>
-          Cancel
-          <i class="glyphicon glyphicon-remove-sign"></i>
-        <% end %>
-        <%= button_tag class:'btn btn-primary btn-lg' do %>
-          PLACE ORDER
-          <i class="glyphicon glyphicon-ok-sign"></i>
-          <i class="fa fa-spinner fa-spin" style="display: none;"></i>
-        <% end %>
-      </div>
+      <% unless @order.sent? %>
+        <div class="form-group" style="text-align:center;">
+          <%= link_to @order, method: :delete, class: 'btn btn-danger btn-lg',
+                              data: {confirm: t('warnings.confirm')} do %>
+            Cancel
+            <i class="glyphicon glyphicon-remove-sign"></i>
+          <% end %>
+          <%= button_tag class:'btn btn-primary btn-lg' do %>
+            PLACE ORDER
+            <i class="glyphicon glyphicon-ok-sign"></i>
+            <i class="fa fa-spinner fa-spin" style="display: none;"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </form>

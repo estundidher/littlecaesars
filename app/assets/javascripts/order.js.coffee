@@ -19,7 +19,11 @@ class Caesars.Order
 
   submit: (e) =>
     console.log 'order: submit fired!'
-    @send $(e.target)
+    $.get($(e.target).data('update'))
+      .done (response) ->
+        Caesars.order.send($(e.target))
+      .fail (jqHXR, textStatus) ->
+        alert 'ops..'
     return false
 
   send: (form) =>
@@ -36,7 +40,7 @@ class Caesars.Order
         Caesars.order.reload(form.data('reload'))
 
   reload: (path) =>
-    console.log 'order.reload: fired --> ' + path
+    console.log 'order.reload: fired!'
     $.get(path)
       .done (response) ->
         $('.checkout .checkout-form').hide().empty().append(response).fadeIn 'fast'

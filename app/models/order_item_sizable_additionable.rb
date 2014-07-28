@@ -35,6 +35,10 @@ class OrderItemSizableAdditionable < OrderItem
                               subtractions:cart_item.subtractions
   end
 
+  def self.create_half cart_item
+  OrderItemSizableAdditionable.create nil, cart_item
+  end
+
   def product_sizable?
     unless self.product.type.sizable?
       errors.add :product, 'has to be sizable!'

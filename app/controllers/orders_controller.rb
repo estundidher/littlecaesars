@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 
   before_action :set_cart, only: [:create, :confirm]
 
-  before_action :set_order, only: [:reload, :checkout, :destroy, :confirm, :success, :fail]
+  before_action :set_order, only: [:reload, :update, :checkout, :destroy, :confirm, :success, :fail]
 
   # POST /orders
   def create
@@ -31,9 +31,15 @@ class OrdersController < ApplicationController
     @months = Date::MONTHNAMES.compact
   end
 
-  # GET /checkout/code/reload
+  # GET /orders/code/update
+  def update
+    @order.sent! if @order.allow_send?
+    render nothing:true, status: :ok
+  end
+
+  # GET /orders/code/reload
   def reload
-    if @order.pending?
+    if @order.pending? || @order.sent?
       @secure_pay = SecurePay.new @order
       @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
       @months = Date::MONTHNAMES.compact
@@ -65,7 +71,7 @@ class OrdersController < ApplicationController
   # GET|POST /checkout/confirm
   def confirm
 
-    if @order.pending? && params[:summarycode].present?
+    if @order.allow_send? && params[:summarycode].present?
 
       if params[:summarycode] == SecurePay::APPROVED
         @order.approved!

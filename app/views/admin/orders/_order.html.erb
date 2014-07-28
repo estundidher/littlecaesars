@@ -5,6 +5,8 @@
   <td> <%= number_to_currency order.price %> </td>
   <td>
     <% if order.pending? %>
+      <i class="glyphicon glyphicon-info-sign"></i>
+    <% elsif order.sent? %>
       <i class="glyphicon glyphicon-question-sign"></i>
     <% elsif order.approved? %>
       <i class="glyphicon glyphicon-ok-circle"></i>
@@ -19,7 +21,7 @@
     <%= tb_grid_remove [:admin, order] %>
     <% if order.payment.present? %>
       <a href="JavaScript:void(0);" class="expanable" data-target="#order_payment_<%= order.payment.id %>">
-        <i class="glyphicon glyphicon-asterisk"></i>
+        <i class="glyphicon glyphicon-plus"></i>
       </a>
     <% end %>
   </td>

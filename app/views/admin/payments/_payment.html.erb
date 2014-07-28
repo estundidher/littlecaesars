@@ -18,12 +18,13 @@
   <td> <%= payment.created_at.to_formatted_s(:long) %> </td>
   <td>
     <a href="JavaScript:void(0);" class="expanable" data-target="#payment_<%= payment.id %>">
-      <i class="glyphicon glyphicon-asterisk"></i>
+      <i class="glyphicon glyphicon-plus"></i>
     </a>
   </td>
 </tr>
 <tr id="payment_<%= payment.id %>" style="display:none;">
-  <td colspan="13">
+  <td></td>
+  <td colspan="12">
     <strong><%= Payment.human_attribute_name 'fingerprint' %>:</strong> <%= payment.fingerprint %>
   </td>
 </tr>
