@@ -81,11 +81,18 @@ class OrdersController < ApplicationController
         @order.declined!
       end
 
+      settdate = null
+      if params[:settdate].present?
+        settdate = params[:settdate].to_datetime
+      end
+
+      @order.payment.destroy if @order.payment.present?
+
       @order.create_payment status: params[:summarycode],
                               code: params[:rescode],
                        description: params[:restext],
                bank_transaction_id: params[:txnid],
-                     bank_settdate: params[:settdate].present? ? params[:settdate].to_datetime : null,
+                     bank_settdate: settdate,
                        card_number: params[:pan],
                    card_expirydate: params[:expirydate],
                          timestamp: params[:timestamp].to_datetime,
