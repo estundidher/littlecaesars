@@ -71,7 +71,7 @@ class OrdersController < ApplicationController
   # GET|POST /checkout/confirm
   def confirm
 
-    if @order.allow_send? && params[:summarycode].present?
+    if @order.sent? && params[:summarycode].present?
 
       if params[:summarycode] == SecurePay::APPROVED
         @order.approved!
