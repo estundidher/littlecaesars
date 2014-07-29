@@ -393,6 +393,7 @@ en:
         state: State
         ip_address: Ip Address
         created_at: Created At
+        attempts: Attempts
       payment:
         status: Status
         code: Code

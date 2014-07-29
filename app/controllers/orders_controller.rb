@@ -33,20 +33,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/code/update
   def update
-    @order.sent! if @order.allow_send?
+    @order.post if @order.allow_send?
     render nothing:true, status: :ok
-  end
-
-  # GET /orders/code/reload
-  def reload
-    if @order.approved?
-      render partial:'payment'
-    else
-      @secure_pay = SecurePay.new @order
-      @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
-      @months = Date::MONTHNAMES.compact
-      render partial:'form'
-    end
   end
 
   # DELETE /orders/1
@@ -78,28 +66,30 @@ class OrdersController < ApplicationController
       if params[:summarycode] == SecurePay::APPROVED
         @order.approve!
       else
-        @order.declined!
+        @order.decline
       end
 
-      settdate = nil
-      if params[:settdate].present?
-        settdate = params[:settdate].to_datetime
+      unless @order.destroyed?
+
+        settdate = nil
+        if params[:settdate].present?
+          settdate = params[:settdate].to_datetime
+        end
+
+        @order.payment.destroy if @order.payment.present?
+
+        @order.create_payment status: params[:summarycode],
+                                code: params[:rescode],
+                         description: params[:restext],
+                 bank_transaction_id: params[:txnid],
+                       bank_settdate: settdate,
+                         card_number: params[:pan],
+                     card_expirydate: params[:expirydate],
+                           timestamp: params[:timestamp].to_datetime,
+                         fingerprint: params[:fingerprint],
+                          ip_address: request.remote_ip,
+                        full_request: params.to_s
       end
-
-      @order.payment.destroy if @order.payment.present?
-
-      @order.create_payment status: params[:summarycode],
-                              code: params[:rescode],
-                       description: params[:restext],
-               bank_transaction_id: params[:txnid],
-                     bank_settdate: settdate,
-                       card_number: params[:pan],
-                   card_expirydate: params[:expirydate],
-                         timestamp: params[:timestamp].to_datetime,
-                       fingerprint: params[:fingerprint],
-                        ip_address: request.remote_ip,
-                      full_request: params.to_s
-
       render nothing:true, status: :ok
     else
       render nothing:true, status: :forbidden

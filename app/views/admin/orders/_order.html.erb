@@ -18,6 +18,7 @@
     <%= order.state %>
   </td>
   <td> <%= order.ip_address %> </td>
+  <td> <%= order.attempts %> </td>
   <td> <%= order.created_at.to_formatted_s :long %> </td>
   <td>
     <%= tb_grid_show [:admin, order] %>

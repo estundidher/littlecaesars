@@ -18,13 +18,12 @@
       </h2>
     </div>
     <div class="panel-body" style="font-size:12px;">
-      <%= @order.payment.description %>
+      <%= @order.payment.description if @order.payment.present? %>
     </div>
   </div>
 <% end %>
 
 <form action="https://api.securepay.com.au/test/directpost/authorise"
-      data-reload="<%= order_reload_path(@order.code) %>"
       data-update="<%= order_update_path(@order.code) %>" method="post">
   <div class="row">
     <div class="col-sm-12 col-md-12">

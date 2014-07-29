@@ -76,6 +76,25 @@ class Order < ActiveRecord::Base
     self.pending? || self.declined?
   end
 
+  def post
+    self.attempts+=1
+    self.sent!
+  end
+
+  def decline
+    self.declined!
+    if self.max_of_attempts?
+      self.destroy
+      return false
+    else
+      return true
+    end
+  end
+
+  def max_of_attempts?
+    self.attempts == 3
+  end
+
   def approve!
     self.approved!
     CustomerMailer.new_order(self).deliver

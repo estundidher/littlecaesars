@@ -41,11 +41,7 @@ class Caesars.Order
 
   reload: (path) =>
     console.log 'order.reload: fired!'
-    $.get(path)
-      .done (response) ->
-        $('.checkout .checkout-form').hide().empty().append(response).fadeIn 'fast'
-      .fail (jqHXR, textStatus) ->
-        alert 'ops..'
+    window.location.reload(false)
 
 create_order = ->
   window.Caesars.order = new Caesars.Order()
