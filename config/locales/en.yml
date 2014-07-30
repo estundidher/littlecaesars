@@ -242,6 +242,7 @@ en:
     created: '%{model} was successfully created'
     updated: '%{model} was successfully updated'
     deleted: '%{model} was successfully deleted'
+    cancelled: '%{model} was successfully cancelled'
 
   links:
     back: Back

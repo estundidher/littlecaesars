@@ -39,22 +39,12 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1
   def destroy
-
     if @order.pending? || @order.sent?
-      begin
-        @order.destroy
-        redirect_to cart_path, notice: t('messages.deleted', model:Order.model_name.human)
-      rescue ActiveRecord::InvalidForeignKey => e
-        flash[:error] = t 'errors.messages.delete_fail.being_used', model:@order.code
-        flash[:error_details] = e
-        redirect_to checkout_path
-      rescue ActiveRecord::StatementInvalid => e
-        flash[:error] = t 'errors.messages.ops'
-        flash[:error_details] = e
-        redirect_to checkout_path
-      end
+      code = @order.code
+      @order.cancelled!
+      redirect_to cart_path, notice: t('messages.cancelled', model:"#{Order.model_name.human} #{code}")
     else
-        redirect_to cart_path
+      redirect_to cart_path
     end
   end
 
@@ -66,30 +56,28 @@ class OrdersController < ApplicationController
       if params[:summarycode] == SecurePay::APPROVED
         @order.approve!
       else
-        @order.decline
+        @order.decline!
       end
 
-      unless @order.destroyed?
-
-        settdate = nil
-        if params[:settdate].present?
-          settdate = params[:settdate].to_datetime
-        end
-
-        @order.payment.destroy if @order.payment.present?
-
-        @order.create_payment status: params[:summarycode],
-                                code: params[:rescode],
-                         description: params[:restext],
-                 bank_transaction_id: params[:txnid],
-                       bank_settdate: settdate,
-                         card_number: params[:pan],
-                     card_expirydate: params[:expirydate],
-                           timestamp: params[:timestamp].to_datetime,
-                         fingerprint: params[:fingerprint],
-                          ip_address: request.remote_ip,
-                        full_request: params.to_s
+      settdate = nil
+      if params[:settdate].present?
+        settdate = params[:settdate].to_datetime
       end
+
+      @order.payment.destroy if @order.payment.present?
+
+      @order.create_payment status: params[:summarycode],
+                              code: params[:rescode],
+                       description: params[:restext],
+               bank_transaction_id: params[:txnid],
+                     bank_settdate: settdate,
+                       card_number: params[:pan],
+                   card_expirydate: params[:expirydate],
+                         timestamp: params[:timestamp].to_datetime,
+                       fingerprint: params[:fingerprint],
+                        ip_address: request.remote_ip,
+                      full_request: params.to_s
+
       render nothing:true, status: :ok
     else
       render nothing:true, status: :forbidden

@@ -32,7 +32,7 @@
 </tr>
 <% if order.payment.present? %>
 <tr id="order_payment_<%= order.payment.id %>" style="display:none;">
-  <td colspan="10">
+  <td colspan="11">
     <%= render 'admin/payments/list', payments:[order.payment] %>
   </td>
 </tr>
