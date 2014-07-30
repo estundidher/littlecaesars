@@ -15,7 +15,8 @@ class Order < ActiveRecord::Base
   #1=sent     //sent to securepay
   #2=approved //approved by securepay
   #3=declined //declined by securepay
-  enum state: [:pending, :sent, :approved, :declined]
+  #3=canceled //declined by securepay
+  enum state: [:pending, :sent, :approved, :declined, :cancelled]
 
   validates :state,
             presence: true
@@ -81,13 +82,9 @@ class Order < ActiveRecord::Base
     self.sent!
   end
 
-  def decline
-    self.declined!
+  def decline!
     if self.max_of_attempts?
-      self.destroy
-      return false
-    else
-      return true
+      self.declined!
     end
   end
 
