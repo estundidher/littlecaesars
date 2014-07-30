@@ -1083,31 +1083,35 @@ h4.title {
 $banner_url: 'https://caesars-prod.s3.amazonaws.com/assets/banner/';
 
 .banner.about {
-    background: url($banner_url + 'about.jpg') center center repeat-x;
+  background: url($banner_url + 'about.jpg') center center repeat-x;
 }
 
 .banner.sign_in {
-    background: url($banner_url + 'sign_in.jpg') center center repeat-x;
+  background: url($banner_url + 'sign_in.jpg') center center repeat-x;
 }
 
 .banner.product {
-    background: url($banner_url + 'product.jpg') center center repeat-x;
+  background: url($banner_url + 'product.jpg') center center repeat-x;
+}
+
+.banner.checkout {
+  background: url($banner_url + 'checkout.jpg') center center repeat-x;
 }
 
 .banner.menu {
-    background: url($banner_url + 'menu.jpg') center center repeat-x;
+  background: url($banner_url + 'menu.jpg') center center repeat-x;
 }
 
 .banner.order_online {
-    background: url($banner_url + 'order_online.jpg') center center repeat-x;
+  background: url($banner_url + 'order_online.jpg') center center repeat-x;
 }
 
 .banner.pick_up {
-    background: url($banner_url + 'pick_up.jpg') center center repeat-x;
+  background: url($banner_url + 'pick_up.jpg') center center repeat-x;
 }
 
 .banner.contact {
-    background: url($banner_url + 'contact.jpg') center center repeat-x;
+  background: url($banner_url + 'contact.jpg') center center repeat-x;
 }
 
 .banner img { margin: 0 auto; margin-bottom: 10px; }

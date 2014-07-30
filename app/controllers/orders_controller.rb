@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 
   before_action :set_cart, only: [:create, :confirm]
 
-  before_action :set_order, only: [:reload, :update, :checkout, :destroy, :confirm, :success, :fail]
+  before_action :set_order, only: [:reload, :update, :index, :destroy, :confirm, :success, :fail]
 
   # POST /orders
   def create
@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
   end
 
   # GET /checkout/code
-  def checkout
+  def index
     @secure_pay = SecurePay.new @order
     @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
     @months = Date::MONTHNAMES.compact
