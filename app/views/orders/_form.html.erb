@@ -91,7 +91,7 @@
         </div>
       </div>
       <div class="form-group" style="text-align:center;">
-        <% if @order.pending? || @order.declined? %>
+        <% if @order.allow_send? && !@order.max_of_attempts? %>
           <%= link_to @order, method: :delete, class: 'btn btn-danger btn-lg',
                               data: {confirm: t('warnings.confirm')} do %>
             Cancel
@@ -102,7 +102,7 @@
             <i class="glyphicon glyphicon-ok-sign"></i>
             <i class="fa fa-spinner fa-spin" style="display: none;"></i>
           <% end %>
-        <% elsif @order.cancelled? %>
+        <% elsif @order.cancelled? || @order.max_of_attempts? %>
           <%= link_to cart_path, class:'btn btn-danger btn-lg' do %>
             <i class="glyphicon glyphicon-arrow-left"></i>
             Back
