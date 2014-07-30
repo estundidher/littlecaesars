@@ -83,9 +83,7 @@ class Order < ActiveRecord::Base
   end
 
   def decline!
-    if self.max_of_attempts?
-      self.declined!
-    end
+    self.declined!
   end
 
   def max_of_attempts?
