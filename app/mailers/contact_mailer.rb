@@ -6,6 +6,6 @@ class ContactMailer < ActionMailer::Base
     @name = name
     @from = from
     @message = message
-    mail to:'bru_iod@hotmail.com', subject:'New contact request'
+    mail to:'info@theoandco.net', subject:'New contact request'
   end
 end

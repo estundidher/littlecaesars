@@ -16,7 +16,7 @@ class Order < ActiveRecord::Base
   #2=approved //approved by securepay
   #3=declined //declined by securepay
   #3=canceled //declined by securepay
-  enum state: [:pending, :sent, :approved, :declined, :cancelled]
+  enum state: [:pending, :sent, :approved, :declined, :cancelled, :expired]
 
   validates :state,
             presence: true
@@ -93,6 +93,13 @@ class Order < ActiveRecord::Base
   def approve!
     self.approved!
     CustomerMailer.new_order(self).deliver
+  end
+
+  def check_expiration
+    if self.pending? && (self.created_at < 10.minutes.ago)
+      self.expired!
+      self.save
+    end
   end
 
 private

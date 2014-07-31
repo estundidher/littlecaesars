@@ -11,16 +11,26 @@
     <strong>Well done!</strong> The payment is still being processed..
   </div>
 <% elsif @order.declined? %>
-  <div class="panel panel-danger" style="margin-bottom: 0px;">
-    <div class="panel-heading">
-      <h2 class="panel-title">
-        The payment has been declined! <%= @order.attempts %> attempts.
-      </h2>
+
+  <% if @order.max_of_attempts? %>
+    <%= render 'declined' %>
+    <%= javascript_tag "$('.modal.declined').modal('show');" %>
+  <% else %>
+
+    <div class="panel panel-danger" style="margin-bottom: 0px;">
+      <div class="panel-heading">
+        <h2 class="panel-title">
+          The payment has been declined
+        </h2>
+      </div>
+      <div class="panel-body" style="font-size:12px;">
+        <% if @order.payment.present? %>
+          Sorry, <%= @order.payment.description %>. Please try again.
+        <% end %>
+      </div>
     </div>
-    <div class="panel-body" style="font-size:12px;">
-      <%= @order.payment.description if @order.payment.present? %>
-    </div>
-  </div>
+  <% end %>
+
 <% elsif @order.cancelled? %>
   <div class="panel panel-danger" style="margin-bottom: 0px;">
     <div class="panel-heading">
@@ -32,6 +42,10 @@
       This order has been cancelled! <%= @order.attempts %> attempts.
     </div>
   </div>
+
+<% elsif @order.expired? %>
+  <%= render 'expired' %>
+  <%= javascript_tag "$('.modal.expired').modal('show');" %>
 <% end %>
 
 <form action="https://api.securepay.com.au/test/directpost/authorise"
@@ -102,7 +116,7 @@
             <i class="glyphicon glyphicon-ok-sign"></i>
             <i class="fa fa-spinner fa-spin" style="display: none;"></i>
           <% end %>
-        <% elsif @order.cancelled? || @order.max_of_attempts? %>
+        <% elsif @order.cancelled? || @order.expired? || @order.max_of_attempts? %>
           <%= link_to cart_path, class:'btn btn-danger btn-lg' do %>
             <i class="glyphicon glyphicon-arrow-left"></i>
             Back

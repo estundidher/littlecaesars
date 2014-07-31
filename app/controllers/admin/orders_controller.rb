@@ -5,9 +5,39 @@ class Admin::OrdersController < Admin::BaseController
   # GET /orders
   # GET /orders.json
   def index
+
+    query = Order.all
+
+    if params['code'].present?
+      query = query.where code: params['code'].to_s
+    end
+
+    if params['place_id'].present?
+      query = query.joins(pick_up: :place)
+                   .where(places: {id:params[:place_id].to_i})
+    end
+
+    if params['customer_id'].present?
+      query = query.joins(:customer)
+                   .where(customers: {id:params[:customer_id].to_i})
+    end
+
+    if params['state'].present?
+      query = query.where(state: params[:state])
+    end
+
+    if params['attempts'].present?
+      query = query.where(attempts: params[:attempts])
+    end
+
+    if params['date_from'].present? && params['date_to'].present?
+      query = query.where("created_at >= :start_date AND created_at <= :end_date",
+              {start_date: params[:date_from].to_datetime.change({hour:00 , min:00 , sec:00 }), end_date: params[:date_to].to_datetime.change({hour:23 , min:59 , sec:59 })})
+    end
+
     respond_to do |format|
-      format.html { @orders = Order.order(created_at: :desc) }
-      format.json { @orders = Order.order(created_at: :desc) }
+      format.html { @orders = query.order(created_at: :desc) }
+      format.json { @orders = query.order(created_at: :desc) }
     end
   end
 

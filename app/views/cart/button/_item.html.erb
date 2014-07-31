@@ -2,8 +2,7 @@
   <!-- Cart items for shopping list -->
   <div class="cart-item cart-item-<%= cart_item.id %>" data-id="<%= cart_item.id %>">
     <!-- Item remove icon -->
-    <%= link_to cart_remove_item_path(cart_item.id), remote: true,
-        method: :delete, data: {confirm: 'Are you sure?'}, class: 'remove' do %>
+    <%= link_to cart_remove_item_path(cart_item.id), remote:true, method: :delete, class:'remove' do %>
       <i class="fa fa-times"></i>
     <% end %>
     <!-- Image -->

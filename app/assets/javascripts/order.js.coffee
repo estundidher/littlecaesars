@@ -23,7 +23,7 @@ class Caesars.Order
       .done (response) ->
         Caesars.order.send($(e.target))
       .fail (jqHXR, textStatus) ->
-        alert 'ops..'
+        Caesars.order.reload()
     return false
 
   send: (form) =>
@@ -34,10 +34,10 @@ class Caesars.Order
     $.post($(form).attr('action'), form.serialize())
       .done (response) ->
         console.log 'order.send: done fired!'
-        Caesars.order.reload(form.data('reload'))
+        Caesars.order.reload()
       .fail (jqHXR, textStatus) ->
         console.log 'order.send: fail fired!'
-        Caesars.order.reload(form.data('reload'))
+        Caesars.order.reload()
 
   reload: (path) =>
     console.log 'order.reload: fired!'

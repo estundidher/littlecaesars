@@ -33,8 +33,12 @@ class OrdersController < ApplicationController
 
   # GET /orders/code/update
   def update
-    @order.post if @order.allow_send?
-    render nothing:true, status: :ok
+    if @order.allow_send?
+      @order.post
+      render nothing:true, status: :ok
+    else
+      render nothing:true, status: :unprocessable_entity
+    end
   end
 
   # DELETE /orders/1
@@ -95,6 +99,7 @@ private
       else
         @order = current_customer.orders.last
       end
+      @order.check_expiration if @order.present?
       redirect_to cart_path if @order.nil?
     end
 end

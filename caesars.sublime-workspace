@@ -268,26 +268,42 @@
 	"buffers":
 	[
 		{
-			"file": "app/mailers/customer_mailer.rb",
-			"settings":
-			{
-				"buffer_size": 229,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "app/models/order.rb",
 			"settings":
 			{
-				"buffer_size": 2242,
+				"buffer_size": 2440,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/orders/_resume_detail.html.erb",
+			"file": "app/views/orders/index.html.erb",
 			"settings":
 			{
-				"buffer_size": 720,
+				"buffer_size": 860,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/orders_controller.rb",
+			"settings":
+			{
+				"buffer_size": 2821,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/routes.rb",
+			"settings":
+			{
+				"buffer_size": 5196,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/mailers/contact_mailer.rb",
+			"settings":
+			{
+				"buffer_size": 247,
 				"line_ending": "Unix"
 			}
 		}
@@ -336,49 +352,55 @@
 	},
 	"file_history":
 	[
+		"/Users/roalcantara/Documents/caesars/app/views/pick_up/index.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/controllers/orders_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/orders/checkout.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/orders/_form.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/caesars.css.scss",
+		"/Users/roalcantara/Documents/caesars/app/controllers/application_controller.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/cart/index.html.erb",
+		"/Users/roalcantara/Documents/caesars/config/locales/en.yml",
+		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/order.js.coffee",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/orders/_list.html.erb",
+		"/Users/roalcantara/Documents/caesars/app/views/admin/orders/_order.html.erb",
+		"/Users/roalcantara/Documents/caesars/config/routes.rb",
+		"/Users/roalcantara/Documents/caesars/app/mailers/customer_mailer.rb",
+		"/Users/roalcantara/Documents/caesars/app/models/order.rb",
+		"/Users/roalcantara/Documents/caesars/db/migrate/20140729095622_add_attempts_to_orders.rb",
+		"/Users/roalcantara/Documents/caesars/app/views/orders/_resume_detail.html.erb",
+		"/Users/roalcantara/Documents/caesars/config/initializers/recaptcha.rb",
+		"/Users/roalcantara/Documents/caesars/db/migrate/20140727100517_add_null_to_order_at_order_items.rb",
 		"/Users/roalcantara/Documents/caesars/Gemfile",
 		"/Users/roalcantara/Documents/caesars/app/mailers/message.html",
 		"/Users/roalcantara/Documents/caesars/app/views/customer_mailer/new_order.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/orders/_resume_detail.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/orders/_resume.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/order_items/_order_item.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/customer_mailer/new_order.text.erb",
 		"/Users/roalcantara/Documents/caesars/app/models/place.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/orders/_payment.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/mailers/contact_mailer.rb",
-		"/Users/roalcantara/Documents/caesars/app/mailers/customer_mailer.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/order_item_sizable_additionables/_order_item_sizable_additionable_detail.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/orders/_order.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/order_items/_details.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/order_items/_list.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/checkout/_detail.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/orders/_resume_details.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/orders/_form.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/orders_controller.rb",
 		"/Users/roalcantara/Documents/caesars/config/initializers/devise.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/payment.rb",
-		"/Users/roalcantara/Documents/caesars/app/views/admin/orders/_list.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/orders/show.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/orders/checkout.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/models/pick_up.rb",
-		"/Users/roalcantara/Documents/caesars/app/models/order.rb",
 		"/Users/roalcantara/Documents/caesars/app/controllers/pick_up_controller.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/cart.rb",
-		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/order.js.coffee",
-		"/Users/roalcantara/Documents/caesars/config/routes.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/order_item_splittable.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/order_item.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/payments/_payment.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/order_item_sizable_additionables/_order_item_sizable_additionable.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/order_item_splittables/_order_item_splittable.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/assets/stylesheets/caesars.css.scss",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/order_items/_list.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/models/cart_item_splittable.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/order_item_sizable_additionable.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/order_item_sizable_additionables/_list.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/order_item_splittables/_list.html.erb",
 		"/Users/roalcantara/Documents/caesars/db/migrate/20140717094824_create_order_items.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140727100517_add_null_to_order_at_order_items.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/order_item_additionable.rb",
 		"/Users/roalcantara/Documents/caesars/app/payment_gateway/secure_pay.rb",
 		"/Users/roalcantara/Documents/caesars/app/controllers/admin/orders_controller.rb",
@@ -387,7 +409,6 @@
 		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart_button.js.coffee",
 		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart.js.coffee",
 		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/cart_item.js.coffee",
-		"/Users/roalcantara/Documents/caesars/config/locales/en.yml",
 		"/Users/roalcantara/Documents/caesars/db/migrate/20140723092236_create_payments.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/orders/index.json.jbuilder",
 		"/Users/roalcantara/Documents/caesars/app/views/layouts/admin.html.erb",
@@ -398,7 +419,6 @@
 		"/Users/roalcantara/Documents/caesars/app/views/admin/orders/index.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/orders/_form.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/controllers/admin/base_controller.rb",
-		"/Users/roalcantara/Documents/caesars/app/controllers/application_controller.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/customers/show.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/controllers/admin/shifts_controller.rb",
 		"/Users/roalcantara/Documents/caesars/app/views/admin/categories/_form.html.erb",
@@ -419,7 +439,6 @@
 		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/admin.js",
 		"/Users/roalcantara/Documents/caesars/app/assets/javascripts/index.js",
 		"/Users/roalcantara/Documents/caesars/app/views/orders/fail.html.erb",
-		"/Users/roalcantara/Documents/caesars/app/views/cart/index.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/views/orders/ready.html.erb",
 		"/Users/roalcantara/Documents/caesars/app/payment_gateway/secure_pay_result.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/user.rb",
@@ -460,10 +479,7 @@
 		"/Users/roalcantara/Documents/caesars/app/models/order/order_item_splittable.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/order/order_item_product.rb",
 		"/Users/roalcantara/Documents/caesars/app/models/order/order_item_additionable.rb",
-		"/Users/roalcantara/Documents/caesars/app/models/order/order_item_sizable_additionable.rb",
-		"/Users/roalcantara/Documents/caesars/app/models/concerns/additionable.rb",
-		"/Users/roalcantara/Documents/caesars/app/models/order/order_item_products.rb",
-		"/Users/roalcantara/Documents/caesars/db/migrate/20140517070211_add_additions_and_subtractions_to_cart_items.rb"
+		"/Users/roalcantara/Documents/caesars/app/models/order/order_item_sizable_additionable.rb"
 	],
 	"find":
 	{
@@ -487,6 +503,10 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"allow_send?",
+			"back",
+			"deleted",
+			"order",
 			",\n",
 			"slideDown",
 			"description",
@@ -610,11 +630,7 @@
 			"@bind_pretty_photo()",
 			"set_ca",
 			"set_cart_item",
-			"set_cart_ite",
-			"set_cart_item",
-			"when",
-			"Times:",
-			"Time.parse"
+			"set_cart_ite"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -688,41 +704,15 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/mailers/customer_mailer.rb",
-					"settings":
-					{
-						"buffer_size": 229,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								225,
-								225
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "app/models/order.rb",
 					"settings":
 					{
-						"buffer_size": 2242,
+						"buffer_size": 2440,
 						"regions":
 						{
 						},
@@ -746,19 +736,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "app/views/orders/_resume_detail.html.erb",
+					"buffer": 1,
+					"file": "app/views/orders/index.html.erb",
 					"settings":
 					{
-						"buffer_size": 720,
+						"buffer_size": 860,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								450,
-								450
+								249,
+								249
 							]
 						],
 						"settings":
@@ -766,6 +756,88 @@
 							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/controllers/orders_controller.rb",
+					"settings":
+					{
+						"buffer_size": 2821,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								447,
+								447
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "config/routes.rb",
+					"settings":
+					{
+						"buffer_size": 5196,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3685,
+								3685
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 940.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/mailers/contact_mailer.rb",
+					"settings":
+					{
+						"buffer_size": 247,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								247,
+								247
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -822,6 +894,70 @@
 		"selected_items":
 		[
 			[
+				"contacm",
+				"app/mailers/contact_mailer.rb"
+			],
+			[
+				"rout",
+				"config/routes.rb"
+			],
+			[
+				"orderco",
+				"app/controllers/orders_controller.rb"
+			],
+			[
+				"caesa.css",
+				"app/assets/stylesheets/caesars.css.scss"
+			],
+			[
+				"orderche",
+				"app/views/orders/checkout.html.erb"
+			],
+			[
+				"appl",
+				"app/controllers/application_controller.rb"
+			],
+			[
+				"en",
+				"config/locales/en.yml"
+			],
+			[
+				"cartindex",
+				"app/views/cart/index.html.erb"
+			],
+			[
+				"orderli",
+				"app/views/admin/orders/_list.html.erb"
+			],
+			[
+				"orderform",
+				"app/views/orders/_form.html.erb"
+			],
+			[
+				"order.rb",
+				"app/models/order.rb"
+			],
+			[
+				"orders_controller.rb",
+				"app/controllers/orders_controller.rb"
+			],
+			[
+				"orderfor",
+				"app/views/orders/_form.html.erb"
+			],
+			[
+				"ordercoff",
+				"app/assets/javascripts/order.js.coffee"
+			],
+			[
+				"orderlist",
+				"app/views/admin/orders/_list.html.erb"
+			],
+			[
+				"reca",
+				"config/initializers/recaptcha.rb"
+			],
+			[
 				"resume_detail",
 				"app/views/orders/_resume_detail.html.erb"
 			],
@@ -858,10 +994,6 @@
 				"app/models/payment.rb"
 			],
 			[
-				"orderco",
-				"app/controllers/orders_controller.rb"
-			],
-			[
 				"pick",
 				"app/models/pick_up.rb"
 			],
@@ -888,14 +1020,6 @@
 			[
 				"ordercheckout",
 				"app/views/orders/checkout.html.erb"
-			],
-			[
-				"ordercoff",
-				"app/assets/javascripts/order.js.coffee"
-			],
-			[
-				"rout",
-				"config/routes.rb"
 			],
 			[
 				"routes",
@@ -938,16 +1062,8 @@
 				"app/payment_gateway/secure_pay.rb"
 			],
 			[
-				"orderform",
-				"app/views/orders/_form.html.erb"
-			],
-			[
 				"ordersco",
 				"app/controllers/orders_controller.rb"
-			],
-			[
-				"en",
-				"config/locales/en.yml"
 			],
 			[
 				"adminorder",
@@ -1040,10 +1156,6 @@
 			[
 				"orderchecl",
 				"app/views/orders/checkout.html.erb"
-			],
-			[
-				"order.rb",
-				"app/models/order.rb"
 			],
 			[
 				"s",
@@ -1198,10 +1310,6 @@
 				"app/controllers/orders_controller.rb"
 			],
 			[
-				"appl",
-				"config/application.rb"
-			],
-			[
 				"_price.html.erb",
 				"app/views/cart/button/_price.html.erb"
 			],
@@ -1296,42 +1404,6 @@
 			[
 				"productsco",
 				"caesars/app/controllers/admin/products_controller.rb"
-			],
-			[
-				"size",
-				"caesars/app/models/size.rb"
-			],
-			[
-				"producttypes",
-				"caesars/spec/factories/product_types.rb"
-			],
-			[
-				"productt",
-				"caesars/spec/models/product_type_spec.rb"
-			],
-			[
-				"user",
-				"caesars/spec/factories/users.rb"
-			],
-			[
-				"usersp",
-				"caesars/spec/features/admin/user_spec.rb"
-			],
-			[
-				"categorys",
-				"caesars/spec/models/category_spec.rb"
-			],
-			[
-				"categories",
-				"caesars/spec/factories/categories.rb"
-			],
-			[
-				"catego",
-				"caesars/app/models/category.rb"
-			],
-			[
-				"users",
-				"caesars/spec/factories/users.rb"
 			]
 		],
 		"width": 0.0
@@ -1348,6 +1420,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 263.0,
+	"side_bar_width": 255.0,
 	"status_bar_visible": true
 }

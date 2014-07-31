@@ -1,0 +1,21 @@
+<!-- Shopping cart Modal -->
+<div class="modal fade declined" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">
+          The payment has been declined
+        </h2>
+      </div>
+      <div class="modal-body">
+        Sorry, you have reached the maximum failed attempts for this order. Please, ensure that you have a valid credit card details with you and try again.
+      </div>
+      <div class="modal-footer">
+        <%= link_to cart_path, class:'btn btn-primary' do %>
+          Close
+        <% end %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Model End -->

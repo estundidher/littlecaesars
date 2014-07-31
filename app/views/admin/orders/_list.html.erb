@@ -14,7 +14,16 @@
       <th style="width:60px;"></th>
     </tr>
   </thead>
+  <tfoot>
+    <tr>
+      <td colspan="4"></td>
+      <td style="text-align: right;">Sum</td>
+      <td><%= number_to_currency @orders.sum(:price) %></td>
+      <td colspan="5"></td>
+    </tr>
+  </tfoot>
   <tbody>
     <%= render @orders %>
   </tbody>
+
 </table>
