@@ -93,11 +93,9 @@ Rails.application.routes.draw do
   get 'checkout_modal', to: 'checkout#modal', as: :checkout_modal
 
   resources :orders, only: [:create, :destroy]
-  scope constraints: {protocol:'https'} do
-    get 'checkout/:code',       to: 'orders#index',   as: :checkout
-    get 'orders/:code/update',  to: 'orders#update',  as: :order_update
-    match 'checkout/confirm',   to: 'orders#confirm', as: :checkout_confirm, via: [:get, :post]
-  end
+  get 'checkout/:code',       to: 'orders#index',   as: :checkout
+  get 'orders/:code/update',  to: 'orders#update',  as: :order_update
+  match 'checkout/confirm',   to: 'orders#confirm', as: :checkout_confirm, via: [:get, :post]
 
   controller :home do
     get 'shopping',          to: :shopping,     as: :shopping

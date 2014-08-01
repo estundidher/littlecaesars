@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
   include PickUpConfiguratedConcern
   include CartConcern
 
+  force_ssl unless Rails.env.development?
+
   skip_before_filter :verify_authenticity_token, only: [:confirm]
 
   skip_before_action :check_pending_order
