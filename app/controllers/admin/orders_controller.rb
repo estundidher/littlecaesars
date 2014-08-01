@@ -35,10 +35,18 @@ class Admin::OrdersController < Admin::BaseController
       from = params[:date_from].to_datetime.change({hour:00 , min:00 , sec:00 })
       to = params[:date_to].to_datetime.change({hour:23 , min:59 , sec:59 })
 
-      puts "#{'#'*100} > Order: Search: Form #{from} to #{to}"
-
       query = query.where("created_at >= :start_date AND created_at <= :end_date",
               {start_date: from, end_date: to})
+    end
+
+    if params['pick_date_from'].present? && params['pick_date_to'].present?
+
+      pick_from = params[:pick_date_from].to_datetime.change({hour:00 , min:00 , sec:00 })
+      pick_to = params[:pick_date_to].to_datetime.change({hour:23 , min:59 , sec:59 })
+
+      query = query.joins(:pick_up)
+                   .where('pick_ups.date >= :start_date and pick_ups.date <= :end_date',
+                    {start_date: pick_from, end_date: pick_to})
     end
 
     respond_to do |format|

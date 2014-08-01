@@ -48,17 +48,32 @@
 
     <div class="col-md-3 col-sm-3">
       <div class="form-group">
-        <%= label :date_from, "From #{Order.human_attribute_name('date')}" %>
+        <%= label :pick_date_from, "#{PickUp.model_name.human} #{Order.human_attribute_name('date')} From" %>
+        <%= date_field_tag(:pick_date_from, params['pick_date_from'], class:'form-control') %>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-3">
+      <div class="form-group">
+        <%= label :pick_date_to, "#{PickUp.model_name.human} #{Order.human_attribute_name('date')} To" %>
+        <%= date_field_tag(:pick_date_to, params['pick_date_to'], class:'form-control') %>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-3">
+      <div class="form-group">
+        <%= label :date_from, "#{Order.human_attribute_name('created_at')} From" %>
         <%= date_field_tag(:date_from, params['date_from'], class:'form-control') %>
       </div>
     </div>
 
     <div class="col-md-3 col-sm-3">
       <div class="form-group">
-        <%= label :date_to, "To #{Order.human_attribute_name('date')}" %>
+        <%= label :date_to, "#{Order.human_attribute_name('created_at')} To" %>
         <%= date_field_tag(:date_to, params['date_to'], class:'form-control') %>
       </div>
     </div>
+
   </div>
 
   <%= tb_submit_search %>
