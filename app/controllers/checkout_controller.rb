@@ -6,7 +6,7 @@ class CheckoutController < ApplicationController
 
   before_action :set_cart, only: [:modal]
 
-  before_action :pick_up_configurated?, only: [:modal]
+  skip_before_action :pick_up_configurated
 
   # GET /checkout
   def modal

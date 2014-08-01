@@ -76,10 +76,8 @@ class Cart < ActiveRecord::Base
   end
 
   def pick_up_configurated?
-    unless self.pick_up.nil?
-      return self.pick_up.created_at > 10.minutes.ago
-    end
-    false
+    return !self.pick_up.expired? if self.pick_up.present?
+    return false
   end
 
   def create_order id_address

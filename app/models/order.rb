@@ -41,7 +41,7 @@ class Order < ActiveRecord::Base
     order = Order.new customer:cart.customer,
                          state:Order.states[:pending],
                          price:cart.total,
-                       pick_up:PickUp.new(place:cart.pick_up.place, date:cart.pick_up.date),
+                       pick_up:PickUp.new(place:cart.pick_up.place, date:cart.pick_up.date, created_at:cart.pick_up.created_at),
                     ip_address:ip_address
 
     cart.items.each do |cart_item|
@@ -96,7 +96,7 @@ class Order < ActiveRecord::Base
   end
 
   def check_expiration
-    if self.pending? && (self.created_at < 10.minutes.ago)
+    if self.pending? && self.pick_up.expired?
       self.expired!
       self.save
     end

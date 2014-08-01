@@ -24,4 +24,8 @@ class PickUp < ActiveRecord::Base
   def has_cart?
     self.cart.present?
   end
+
+  def expired?
+    self.created_at < 10.minutes.ago
+  end
 end

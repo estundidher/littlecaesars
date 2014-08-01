@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
   def create
     @order = @cart.create_order request.remote_ip
     if @order
-      redirect_to checkout_path(@order.code)
+      redirect_to protocol:'http://', checkout_path(@order.code)
     else
       redirect_to cart_path, notice:'Ops..'
     end
