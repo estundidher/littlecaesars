@@ -27,7 +27,7 @@ class Caesars.CartItem
     @$cart_item.on 'ajax:before', '.categories .dropdown-menu a', @change_category_before
     @$cart_item.on 'ajax:success', '.categories .dropdown-menu a', @change_category_success
     @$cart_item.on 'click', '.sizable .dropdown-menu a', @change_size
-    @$cart_item.on 'click', '.ingredient .label.label-info i,.ingredient .label.label-default i', @ingredient_click
+    @$cart_item.on 'click', '.ingredient .label.label-primary i,.ingredient .label.label-default i', @ingredient_click
     @$cart_item.on 'click', '.ingredient .label.label-warning i', @remove_topping
     @$mode_options.change @change_mode
     @$mode_form.on 'ajax:success', @change_mode_success
@@ -164,12 +164,12 @@ class Caesars.CartItem
 
   ingredient_click: (e) =>
     console.log "cart-item: .ingredient .label i 'click' fired! id : " + $(e.target).closest('.ingredient').data 'id'
-    if $(e.target).parent().hasClass 'label-info'
-      $(e.target).parent().removeClass('label-info').addClass 'label-default'
+    if $(e.target).parent().hasClass 'label-primary'
+      $(e.target).parent().removeClass('label-primary').addClass 'label-default'
       $(e.target).closest('.ingredient').find('.additionable').prop('disabled', false)
       $(e.target).removeClass('glyphicon-remove').removeClass('white').addClass 'glyphicon-plus-sign'
     else
-      $(e.target).parent().removeClass('label-default').addClass 'label-info'
+      $(e.target).parent().removeClass('label-default').addClass 'label-primary'
       $(e.target).closest('.ingredient').find('.additionable').prop('disabled', true)
       $(e.target).removeClass('glyphicon-plus-sign').addClass 'glyphicon-remove white'
 
