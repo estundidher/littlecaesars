@@ -2,8 +2,6 @@ class OrdersController < ApplicationController
   include PickUpConfiguratedConcern
   include CartConcern
 
-  force_ssl unless Rails.env.development?
-
   skip_before_filter :verify_authenticity_token, only: [:confirm]
 
   skip_before_action :check_pending_order
@@ -20,7 +18,11 @@ class OrdersController < ApplicationController
   def create
     @order = @cart.create_order request.remote_ip
     if @order
-      redirect_to checkout_path(@order.code)
+      if Rails.env.development?
+        redirect_to checkout_path(@order.code)
+      else
+        redirect_to checkout_url(@order.code), protocol:'https://'
+      end
     else
       redirect_to cart_path, notice:'Ops..'
     end

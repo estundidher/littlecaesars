@@ -14,6 +14,10 @@
       <i class="glyphicon glyphicon-ok-circle"></i>
     <% elsif order.declined? %>
       <i class="glyphicon glyphicon-exclamation-sign"></i>
+    <% elsif order.cancelled? %>
+      <i class="glyphicon glyphicon-ban-circle"></i>
+    <% elsif order.expired? %>
+      <i class="glyphicon glyphicon-minus-sign"></i>
     <% end %>
     <%= order.state %>
   </td>
