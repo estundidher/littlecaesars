@@ -2,6 +2,12 @@ class OrdersController < ApplicationController
   include PickUpConfiguratedConcern
   include CartConcern
 
+  def redirect_https
+    redirect_to protocol:'https://' unless Rails.env.development? || request.ssl?
+    return true
+  end
+  before_filter :redirect_https, except: [:create]
+
   skip_before_filter :verify_authenticity_token, only: [:confirm]
 
   skip_before_action :check_pending_order
@@ -18,11 +24,7 @@ class OrdersController < ApplicationController
   def create
     @order = @cart.create_order request.remote_ip
     if @order
-      if Rails.env.development?
-        redirect_to checkout_path(@order.code)
-      else
-        redirect_to checkout_url(@order.code), protocol:'https://'
-      end
+      redirect_to checkout_path(@order.code)
     else
       redirect_to cart_path, notice:'Ops..'
     end
