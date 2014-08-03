@@ -1080,7 +1080,7 @@ h4.title {
     text-align: center;
 }
 
-$banner_url: 'https://caesars-prod.s3.amazonaws.com/assets/banner/';
+$banner_url: 'https://little-caesars-prod.s3.amazonaws.com/assets/banner/';
 
 .banner.about {
   background: url($banner_url + 'about.jpg') center center repeat-x;
