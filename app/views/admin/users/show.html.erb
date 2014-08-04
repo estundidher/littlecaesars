@@ -1,6 +1,8 @@
 <%= tb_breadcrumb link_to(User.model_name.human.pluralize, admin_users_path), t('titles.show', model_name: User.model_name.human) %>
 
 <dl>
+  <dt><%= User.human_attribute_name 'admin' %></dt>
+  <dd><%= @user.admin? %></dd>
   <dt><%= User.human_attribute_name 'username' %></dt>
   <dd><%= @user.username %></dd>
   <dt><%= User.human_attribute_name 'email' %></dt>

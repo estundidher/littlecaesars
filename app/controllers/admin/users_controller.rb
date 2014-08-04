@@ -11,18 +11,9 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
   # GET /users/new
   def new
     @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
   end
 
   # POST /users
@@ -44,7 +35,16 @@ class Admin::UsersController < Admin::BaseController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+
+      update_params = user_params
+
+      # required for settings form to submit when password is left blank
+      if update_params[:password].blank?
+        update_params.delete 'password'
+        update_params.delete 'password_confirmation'
+      end
+
+      if @user.update(update_params)
         format.html { redirect_to [:admin, @user], notice: t('messages.updated', model:User.model_name.human) }
         format.json { head :no_content }
       else
@@ -60,11 +60,11 @@ class Admin::UsersController < Admin::BaseController
     begin
       @user.destroy
       respond_to do |format|
-        format.html { redirect_to users_url, notice: t('messages.deleted', model:User.model_name.human) }
+        format.html { redirect_to admin_users_url, notice: t('messages.deleted', model:User.model_name.human) }
         format.json { head :no_content }
       end
     rescue ActiveRecord::InvalidForeignKey => e
-      flash[:error] = t 'errors.messages.delete_fail.being_used', model:@user.name
+      flash[:error] = t 'errors.messages.delete_fail.being_used', model:@user.username
       flash[:error_details] = e
       redirect_to [:admin, @user]
     rescue ActiveRecord::StatementInvalid => e
@@ -74,19 +74,8 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  def update_users
-    @users = User.where(user_id:nil).order(:name).map{|s| [s.name, s.id]}.insert(0, "")
-  end
-
-  def autocomplete
-    if(params[:selected] == '')
-      render json: User.where("name like ?", "%#{params[:term]}%").order(:name).map{|s| [id:s.id, label:s.name, value:s.name]}.flatten
-    else
-      render json: User.where("name like ? and id not in (?)", "%#{params[:term]}%", params[:selected].split(',').map(&:to_i)).order(:name).map{|s| [id:s.id, label:s.name, value:s.name]}.flatten
-    end
-  end
-
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_users
       @user = User.find(params[:id])
@@ -94,7 +83,8 @@ class Admin::UsersController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit :username,
+      params.require(:user).permit :admin,
+                                   :username,
                                    :email,
                                    :password,
                                    :password_confirmation
