@@ -42,6 +42,9 @@
         <li <%= is_active 'admin/chefs' %>>
           <%= link_to Chef.model_name.human.pluralize, admin_chefs_path %>
         </li>
+        <li <%= is_active 'admin/live' %>>
+          <%= link_to 'Live', admin_live_path %>
+        </li>
       </ul>
     <% end %>
 
