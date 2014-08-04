@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :rememberable,
          :trackable,
          :validatable,
-         :authentication_keys => [:username]
+         authentication_keys: [:username]
 
   validates :username,
             uniqueness: {case_sensitive: false},

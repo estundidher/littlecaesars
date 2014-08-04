@@ -8,7 +8,11 @@ module Auditable
     validates :created_by,
               presence: true
 
-    before_save :audit!
+    validates :updated_by,
+              presence: true,
+              on: :update
+
+    before_validation :audit!
   end
 
 private
