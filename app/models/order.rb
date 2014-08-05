@@ -51,7 +51,7 @@ class Order < ActiveRecord::Base
   end
 
   def tax
-    value = self.price * 100/10
+    value = self.price/11
     Money.new(value, 'AUD').to_s
   end
 
