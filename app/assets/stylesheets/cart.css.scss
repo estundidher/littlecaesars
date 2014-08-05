@@ -121,7 +121,7 @@ $screen-sm-min:              $screen-sm !default;
 }
 
 .cart-item .two-flavours.right .carousel-control.down {
-  top: 211px;
+  top: 190px;
   left: 139px;
 }
 
@@ -131,7 +131,7 @@ $screen-sm-min:              $screen-sm !default;
 }
 
 .cart-item .two-flavours.left .carousel-control.down {
-  top: 211px;
+  top: 190px;
 }
 
 .cart-item .two-flavours.left .carousel-control.up {
@@ -446,4 +446,8 @@ $screen-sm-min:              $screen-sm !default;
 
 .cart-item .tags .ingredient .label, .toppings-modal .tags .ingredient .label {
   font-size: 11px;
+}
+
+.carousel-control {
+  color: #FC0505
 }
