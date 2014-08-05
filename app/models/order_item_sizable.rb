@@ -19,6 +19,14 @@ class OrderItemSizable < OrderItem
   validates :size_name,
             presence: true
 
+  def second_half
+    nil
+  end
+
+  def first_half
+    nil
+  end
+
   def self.create order, cart_item
 
     OrderItemSizable.new order:order,

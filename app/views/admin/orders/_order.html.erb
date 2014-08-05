@@ -32,6 +32,11 @@
         <i class="glyphicon glyphicon-plus"></i>
       </a>
     <% end %>
+    <% if order.approved? %>
+      <a href="JavaScript:void(0);" class="print" data-url="<%= admin_order_path(order.id, :json) %>">
+        <i class="glyphicon glyphicon-print"></i>
+      </a>
+    <% end %>
   </td>
 </tr>
 <% if order.payment.present? %>
