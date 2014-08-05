@@ -5,6 +5,8 @@
 <p> <%= image_tag @place.photo.url(:medium) %> </p>
 
 <dl>
+  <dt><%= Place.human_attribute_name 'enabled' %></dt>
+  <dd><%= @place.enabled %></dd>
   <dt><%= Place.human_attribute_name 'code' %></dt>
   <dd><%= @place.code %></dd>
   <dt><%= Place.human_attribute_name 'name' %></dt>

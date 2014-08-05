@@ -1,6 +1,6 @@
 <div class="row">
 
-  <% Place.order(:created_at).each do |place| %>
+  <% Place.where(enabled:true).order(:created_at).each do |place| %>
     <div class="col-md-3 col-sm-6">
       <!-- Footer widget -->
       <div class="footer-widget">
