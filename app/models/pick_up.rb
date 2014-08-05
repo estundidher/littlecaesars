@@ -17,6 +17,10 @@ class PickUp < ActiveRecord::Base
   validates :date,
             presence: true
 
+  def date_s
+    self.date.to_formatted_s :long
+  end
+
   def has_order?
     self.order.present?
   end

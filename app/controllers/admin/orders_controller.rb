@@ -1,6 +1,6 @@
 class Admin::OrdersController < Admin::BaseController
 
-  before_action :set_order, only: [:show, :destroy]
+  before_action :set_order, only: [:show, :destroy, :print]
 
   # GET /orders
   # GET /orders.json
@@ -55,9 +55,17 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
-  # GET /orders/1
-  # GET /orders/1.json
   def show
+    respond_to do |format|
+      format.html { @order }
+      format.json { render json: @order, methods: :tax, except:[:state, :notes, :ip_address, :customer_id, :pick_up_id, :created_at, :created_by, :updated_at, :updated_by, :attempts],
+                                    include: [{customer: {except:[:created_at, :created_by, :updated_at, :updated_by]}},
+                                       {pick_up: {methods: :date_s, except:[:date, :created_at, :created_by, :updated_at, :updated_by],
+                                          include:{place: {methods: :printer_ip_s, except: [:map, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at, :code, :enabled, :printer_ip, :created_at, :created_by, :updated_at, :updated_by, :description]}}}},
+                                          items: {except: [:size_id, :notes, :order_id, :product_id, :quantity, :created_at, :created_by, :updated_at, :updated_by, :first_half_id, :second_half_id],
+                                            include: [{first_half:{except: [:size_id, :notes, :order_id, :product_id, :quantity, :created_at, :created_by, :updated_at, :updated_by, :first_half_id, :second_half_id]}},
+                                                      {second_half:{except: [:size_id, :notes, :order_id, :product_id, :quantity, :created_at, :created_by, :updated_at, :updated_by, :first_half_id, :second_half_id]}}]}]}
+    end
   end
 
   # DELETE /orders/1

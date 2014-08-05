@@ -50,6 +50,11 @@ class Order < ActiveRecord::Base
     return order
   end
 
+  def tax
+    value = self.price * 100/10
+    Money.new(value, 'AUD').to_s
+  end
+
   def create_item cart_item
     case cart_item
       when CartItemSplittable

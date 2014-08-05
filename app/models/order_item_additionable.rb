@@ -31,6 +31,14 @@ class OrderItemAdditionable < OrderItem
     end
   end
 
+  def second_half
+    nil
+  end
+
+  def first_half
+    nil
+  end
+
   def additionable?
     true
   end

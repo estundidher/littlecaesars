@@ -39,6 +39,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # S3 API
 gem 'aws-sdk'
 
+gem 'money-rails'
+
 # Use postgrees as the database for Active Record
 gem 'pg'
 

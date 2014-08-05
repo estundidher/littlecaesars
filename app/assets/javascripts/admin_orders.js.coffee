@@ -14,88 +14,108 @@ class Caesars.Orders
     @$order.on 'click', '.print', @print_click
 
   print_click: (e) =>
-    console.log 'Orders - print: cliked! ' + $(e.target).parent().data('code')
-    @print $(e.target).parent().data('code')
+    console.log 'Orders - print: cliked! ' + $(e.target).parent().data('url')
 
-  print: (serial) =>
+    $.getJSON($(e.target).parent().data('url'))
+      .done (response) =>
+        @print response
+      .fail (jqHXR, textStatus) =>
+        alert 'ops..'
 
-    console.log 'Orders - print: fired! ' + code
+  append: (builder, item, half = false) =>
+    unless item.properties.size_name?
+      builder.addText(item.properties.product_name)
+              .addTextPosition(410).addText('$').addText(item.unit_price).addText('0').addFeed()
+    else
+      if half
+        builder.addText('1/2 ')
+      builder.addText(item.properties.product_name).addFeed()
+      unless half
+        if item.properties.size_name?
+          builder.addText(item.properties.size_name)
+        builder.addTextPosition(410)
+               .addText('$').addText(item.unit_price).addText('0').addFeed()
+
+    if item.additions?
+      for key, value of item.additions
+        do ->
+          builder.addTextStyle false, false, true, undefined
+          builder.addText(' WITH ').addText(key).addTextPosition(410).addText('$').addText(value).addText('0').addFeed()
+
+    if item.subtractions?
+      for key, value of item.subtractions
+        do ->
+          builder.addTextStyle false, false, true, undefined
+          builder.addText(' NO ').addText(key).addFeed()
+
+    builder.addTextStyle false, false, false, undefined
+
+  print: (order) =>
 
     $('.print-modal').modal 'show'
 
-    #Settings
-    ipaddr = '192.168.0.13'
-    devid = 'local_printer'
-    timeout = '60000'
-    grayscale = true
-    layout = false
-
-    #Queue Ticket Sequence Number
-    sequence = 1
-
-    #
-    #draw print data
-    #
-
-    #get context of canvas
-    canvas = $('#canvas').get(0)
-    context = canvas.getContext('2d')
-
-    #get current date
     now = new Date()
 
-    #draw background image
-    context.clearRect(0, 0, 512, 480)
-    context.drawImage($('#coffee').get(0), 0, 0, 512, 384)
-    context.fillStyle = 'rgba(255, 255, 255, 0.5)'
-    context.fillRect(0, 0, 512, 480)
-    context.fillStyle = 'rgba(0, 0, 0, 1.0)'
+    #create an ePOS-Print Builder object
+    builder = new epson.ePOSBuilder()
 
-    #draw water mark
-    context.drawImage($('#wmark').get(0), 0, 0)
-    context.drawImage($('#wmark').get(0), 256, 324)
+    line = '------------------------------------------'
 
-    #draw serial number
-    context.textAlign = 'end'
-    context.textBaseline = 'top'
-    context.font = 'normal normal normal 24px "Arial", sans-serif'
-    context.fillText('No. ' + ('000000' + serial).slice(-6), 512, 0)
+    #configure the print character settings
+    builder.addTextLang 'en'
+    builder.addTextSmooth true
+    builder.addTextFont builder.FONT_A
+    builder.addTextSize 1, 1
+    builder.addTextStyle false, false, true, undefined
 
-    #draw message with rotation
-    context.translate(96, 112)
-    context.rotate(-Math.PI / 12)
-    context.textAlign = 'center'
-    context.textBaseline = 'middle'
-    context.font = 'italic normal normal 48px "Times New Roman", serif'
-    context.fillText('Enjoy!', 0, 0)
-    context.rotate(Math.PI / 12)
-    context.translate(-96, -112)
+    #specify the print data
+    builder.addTextAlign builder.ALIGN_CENTER
+    builder.addText('LITTLE CAESARS').addFeed()
 
-    #draw title
-    context.textAlign = 'center'
-    context.textBaseline = 'alphabetic'
-    context.font = 'normal normal bold 72px "Arial", sans-serif'
-    context.fillText('FREE Coffee', 256, 224)
-    context.font = 'normal normal bold 36px "Times New Roman", serif'
-    context.fillText('Expires ' + now.toDateString(), 256, 288)
+    builder.addTextStyle false, false, false, undefined
+    builder.addText(order.pick_up.place.name).addFeed()
+    builder.addText(order.pick_up.place.address).addFeed()
+    builder.addText(order.pick_up.place.phone).addFeed()
+    builder.addText('ABN: ').addText(order.pick_up.place.abn).addFeed()
+    builder.addTextSize 2, 2
+    builder.addText('TAX INVOICE ').addText(order.code).addFeed()
 
-    #draw time
-    context.textAlign = 'start'
-    context.textBaseline = 'bottom'
-    context.font = 'normal normal normal 24px "Arial", sans-serif'
-    context.fillText(now.toTimeString().slice(0, 8), 0, 384)
+    builder.addTextSize 1, 1
+    builder.addText(now.toDateString() + ' ' + now.toTimeString().slice(0, 8)).addFeed().addFeed()
 
-    #draw barcode
-    if !grayscale
-      drawEan13(context, '201234567890', 139, 400, 2, 80)
+    builder.addText(line).addFeed()
 
-    #
-    #print
-    #
+    builder.addTextAlign builder.ALIGN_LEFT
+    for item in order.items
+      do ->
+        Caesars.orders.append builder, item
+        if item.first_half?
+          Caesars.orders.append builder, item.first_half, true
+        if item.second_half?
+          Caesars.orders.append builder, item.second_half, true
+        builder.addFeed()
 
-    #create print object
-    url = 'http://' + ipaddr + '/cgi-bin/epos/service.cgi?devid=' + devid + '&timeout=' + timeout
-    epos = new epson.CanvasPrint(url)
+    builder.addText(line).addFeedLine 2
+
+    builder.addText('SUBTOTAL:').addTextPosition(410).addText('$').addText(order.price).addText('0').addFeed()
+    builder.addText('TAX:').addTextPosition(410).addText('$').addText(order.tax).addFeed()
+    builder.addText('TOTAL:').addTextPosition(410).addText('$').addText(order.price).addText('0').addFeed()
+
+    builder.addText('NAME: ').addText(order.customer.name).addFeed()
+    builder.addText('P/UP TIME: ').addText(order.pick_up.date_s).addFeed()
+
+    builder.addFeedLine 3
+
+    builder.addCut builder.CUT_FEED
+
+    request = builder.toString()
+
+    #Create an ePOS-Print object
+    url = 'http://' + order.pick_up.place.printer_ip_s + '/cgi-bin/epos/service.cgi?devid=' + order.pick_up.place.printer_name + '&timeout=60000'
+    epos = new epson.ePOSPrint(url)
+
+    #Send the print document
+    epos.send request
 
     #register callback function
     epos.onreceive = (res) ->
@@ -158,24 +178,6 @@ class Caesars.Orders
     #register callback function
     epos.onerror = (err) ->
       $('.print-modal').find('.modal-body').empty().append 'Network error occured.'
-
-    #paper layout
-    if layout
-      epos.paper = epos.PAPER_RECEIPT
-      epos.layout = { width:580 }
-
-    #print
-    if grayscale
-      epos.mode = epos.MODE_GRAY16
-    else
-      epos.mode = epos.MODE_MONO
-      epos.halftone = epos.HALFTONE_ERROR_DIFFUSION
-
-    epos.cut = true
-    epos.print canvas
-
-    #set next serial number
-    serial = serial % 999999 + 1
 
 create_orders = ->
   window.Caesars.orders = new Caesars.Orders()

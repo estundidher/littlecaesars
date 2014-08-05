@@ -123,6 +123,7 @@ Rails.application.routes.draw do
     resources :customers
     resources :chefs
     resources :orders, except: [:new, :create, :edit]
+
     get 'live', to:'live#index', as: :live
 
     #products

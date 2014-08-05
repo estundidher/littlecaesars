@@ -36,7 +36,15 @@ class OrderItemSizableAdditionable < OrderItem
   end
 
   def self.create_half cart_item
-  OrderItemSizableAdditionable.create nil, cart_item
+    OrderItemSizableAdditionable.create nil, cart_item
+  end
+
+  def second_half
+    nil
+  end
+
+  def first_half
+    nil
   end
 
   def product_sizable?

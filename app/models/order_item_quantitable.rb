@@ -19,6 +19,14 @@ class OrderItemQuantitable < OrderItem
                          price:cart_item.total
   end
 
+  def second_half
+    nil
+  end
+
+  def first_half
+    nil
+  end
+
   def product_quantitable?
     unless self.product.type.quantitable?
       errors.add :product, 'has to be quantitable!'
