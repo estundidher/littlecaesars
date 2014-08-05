@@ -10,6 +10,11 @@
   <tfoot>
     <tr>
       <th></th>
+      <th style="text-align: center;"> <%= Cart.human_attribute_name 'tax' %> </th>
+      <th> <%= number_to_currency @order.tax %> </th>
+    </tr>
+    <tr>
+      <th></th>
       <th style="text-align: center;"> <%= Cart.human_attribute_name 'total' %> </th>
       <th> <%= number_to_currency @order.price %> </th>
     </tr>
