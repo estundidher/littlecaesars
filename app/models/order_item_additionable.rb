@@ -16,14 +16,13 @@ class OrderItemAdditionable < OrderItem
 
   def self.create order, cart_item
 
-    item = OrderItemSizable.new order:order,
-                              product:cart_item.price.product,
-                         product_name:cart_item.price.product.name,
-                           unit_price:cart_item.price.value,
-                                price:cart_item.total,
-                            additions:cart_item.additions,
-                         subtractions:cart_item.subtractions
-    return item
+    return OrderItemAdditionable.new order:order,
+                                   product:cart_item.product,
+                              product_name:cart_item.product.name,
+                                unit_price:cart_item.price,
+                                     price:cart_item.total,
+                                 additions:cart_item.additions,
+                              subtractions:cart_item.subtractions
   end
 
   def product_additionable?

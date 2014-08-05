@@ -34,6 +34,10 @@ class CartItemAdditionable < CartItem
     self.product.name
   end
 
+  def price
+    self.product.price
+  end
+
   def size
     nil
   end
