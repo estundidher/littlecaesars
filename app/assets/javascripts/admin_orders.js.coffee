@@ -70,7 +70,7 @@ class Caesars.Orders
 
     #specify the print data
     builder.addTextAlign builder.ALIGN_CENTER
-    builder.addText('LITTLE CAESARS').addFeed()
+    builder.addText('LITTLE CAESARS AUSTRALIA PTY LTD').addFeed()
 
     builder.addTextStyle false, false, false, undefined
     builder.addText(order.pick_up.place.name).addFeed()

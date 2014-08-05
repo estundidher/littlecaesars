@@ -17,7 +17,7 @@
   <tfoot>
     <tr>
       <td colspan="4"></td>
-      <td style="text-align: right;">Sum</td>
+      <td style="text-align: right;">Sum (<%= @orders.size %>)</td>
       <td><%= number_to_currency @orders.sum(:price) %></td>
       <td colspan="5"></td>
     </tr>
