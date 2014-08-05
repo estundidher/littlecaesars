@@ -75,6 +75,9 @@ class Admin::PlacesController < Admin::BaseController
     def place_params
       params.require(:place).permit :name,
                                     :enabled,
+                                    :printer_name,
+                                    :printer_ip,
+                                    :abn,
                                     :code,
                                     :address,
                                     :phone,

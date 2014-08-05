@@ -23,6 +23,21 @@
     <%= f.text_field :code, maxlength:3, class:'form-control' %>
   </div>
 
+  <div class="form-group <%= tb_has_error @place, :abn %>">
+    <%= f.label :abn %>
+    <%= f.text_field :abn, class:'form-control' %>
+  </div>
+
+  <div class="form-group <%= tb_has_error @place, :printer_ip %>">
+    <%= f.label :printer_ip %>
+    <%= f.text_field :printer_ip, class:'form-control' %>
+  </div>
+
+  <div class="form-group <%= tb_has_error @place, :printer_name %>">
+    <%= f.label :printer_name %>
+    <%= f.text_field :printer_name, class:'form-control' %>
+  </div>
+
   <div class="form-group <%= tb_has_error @place, :address %>">
     <%= f.label :address %>
     <%= f.text_field :address, class:'form-control' %>

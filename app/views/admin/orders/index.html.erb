@@ -1,3 +1,4 @@
+<% content_for :module, 'orders' %>
 <%= tb_breadcrumb Order.model_name.human.pluralize %>
 <%= form_tag admin_orders_path, method:'get', role:'form' do %>
 
@@ -80,4 +81,14 @@
 
 <% end %>
 <br /><br />
-<%= render partial: 'list' %>
+<%= render 'list' %>
+
+<%= render 'print' %>
+
+<!-- background -->
+<div style="display:none;">
+  <canvas id="canvas" width="512" height="480"></canvas>
+  <%= image_tag 'print/coffee.jpg', id:'coffee' %>
+  <%= image_tag 'print/logo.bmp', id:'logo' %>
+  <%= image_tag 'print/wmark.png', id:'wmark' %>
+</div>
