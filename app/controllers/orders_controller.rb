@@ -6,7 +6,8 @@ class OrdersController < ApplicationController
     redirect_to protocol:'https://' unless Rails.env.development? || request.ssl?
     return true
   end
-  before_filter :redirect_https, except: [:create]
+
+  before_filter :redirect_https, except: [:create, :success]
 
   skip_before_filter :verify_authenticity_token, only: [:confirm]
 
@@ -45,9 +46,13 @@ class OrdersController < ApplicationController
 
   # GET /checkout/code
   def index
-    @secure_pay = SecurePay.new @order
-    @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
-    @months = Date::MONTHNAMES.compact
+    if @order.approved?
+      redirect_to order_success_path, protocol:'http://'
+    else
+      @secure_pay = SecurePay.new @order
+      @years = (Time.current.year.to_i..(Time.current + 10.years).year.to_i).to_a
+      @months = Date::MONTHNAMES.compact
+    end
   end
 
   # GET /orders/code/update
