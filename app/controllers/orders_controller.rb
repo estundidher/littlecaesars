@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
 
   before_action :set_cart, only: [:create, :confirm]
 
-  before_action :set_order, only: [:reload, :update, :index, :destroy, :confirm, :success, :fail]
+  before_action :set_order, only: [:reload, :update, :index, :destroy, :confirm, :success, :fail, :print, :show]
 
   # POST /orders
   def create
@@ -27,6 +27,19 @@ class OrdersController < ApplicationController
       redirect_to checkout_path(@order.code)
     else
       redirect_to cart_path, notice:'Ops..'
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.html { @order }
+      format.json { render json: @order, methods: :tax, except:[:state, :notes, :ip_address, :customer_id, :pick_up_id, :created_at, :created_by, :updated_at, :updated_by, :attempts],
+                                    include: [{customer: {except:[:created_at, :created_by, :updated_at, :updated_by]}},
+                                       {pick_up: {methods: :date_s, except:[:date, :created_at, :created_by, :updated_at, :updated_by],
+                                          include:{place: {methods: :printer_ip_s, except: [:map, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at, :code, :enabled, :printer_ip, :created_at, :created_by, :updated_at, :updated_by, :description]}}}},
+                                          items: {except: [:size_id, :notes, :order_id, :product_id, :quantity, :created_at, :created_by, :updated_at, :updated_by, :first_half_id, :second_half_id],
+                                            include: [{first_half:{except: [:size_id, :notes, :order_id, :product_id, :quantity, :created_at, :created_by, :updated_at, :updated_by, :first_half_id, :second_half_id]}},
+                                                      {second_half:{except: [:size_id, :notes, :order_id, :product_id, :quantity, :created_at, :created_by, :updated_at, :updated_by, :first_half_id, :second_half_id]}}]}]}
     end
   end
 
@@ -45,6 +58,11 @@ class OrdersController < ApplicationController
     else
       render nothing:true, status: :unprocessable_entity
     end
+  end
+
+  def print
+    @order.printed!
+    render nothing:true, status: :ok
   end
 
   # DELETE /orders/1

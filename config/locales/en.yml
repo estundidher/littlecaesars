@@ -392,6 +392,7 @@ en:
         code: Code
         price: Price
         state: State
+        status: Status
         ip_address: Ip Address
         created_at: Created At
         attempts: Attempts

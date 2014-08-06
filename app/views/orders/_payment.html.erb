@@ -9,6 +9,10 @@
   </div>
 </div>
 
+<% if @order.processing? %>
+  <%= javascript_tag "$(document).on('ready page:load', function () { Caesars.order.print('#{order_path(@order.code, format: :json)}', '#{order_print_path(@order.code)}')})" %>
+<% end %>
+
 <div class="row">
   <div class="col-sm-12 col-md-12">
     <div class="row cart-item">
