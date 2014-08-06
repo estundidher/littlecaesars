@@ -11,18 +11,9 @@ class Admin::ChefsController < Admin::BaseController
     end
   end
 
-  # GET /chefs/1
-  # GET /chefs/1.json
-  def show
-  end
-
   # GET /chefs/new
   def new
     @chef = Chef.new
-  end
-
-  # GET /chefs/1/edit
-  def edit
   end
 
   # POST /chefs

@@ -17,8 +17,12 @@ module ApplicationHelper
   end
 
 
-  def is_active(action)
-    params[:controller] == action ? "class=active" : nil
- end
+  def is_active(action, style = nil)
+    params[:controller] == action ? "class=active #{style}" : nil
+  end
+
+  def is_action(action, cssClass = "active")
+    request.url == action ? "class=#{cssClass}" : nil
+  end
 
 end

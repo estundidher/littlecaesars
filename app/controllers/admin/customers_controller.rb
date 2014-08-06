@@ -11,18 +11,9 @@ class Admin::CustomersController < Admin::BaseController
     end
   end
 
-  # GET /customers/1
-  # GET /customers/1.json
-  def show
-  end
-
   # GET /customers/new
   def new
     @customer = Customer.new
-  end
-
-  # GET /customers/1/edit
-  def edit
   end
 
   # POST /customers

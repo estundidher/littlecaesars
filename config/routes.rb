@@ -125,9 +125,8 @@ Rails.application.routes.draw do
     resources :customers
     resources :chefs
     resources :orders, except: [:new, :create, :edit]
-    get 'orders/:id/mail',    to: 'orders#mail',    as: :order_mail
-
-    get 'live', to:'live#index', as: :live
+    get 'live(/:place_id)', to:'orders#live', as: :order_live
+    get 'order/:id/done', to:'orders#done', as: :order_done
 
     #products
     get 'products/options', to:'products#options', as: :products_reload_options
