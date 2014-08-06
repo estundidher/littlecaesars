@@ -7,13 +7,13 @@ class Admin::OpeningHoursController < Admin::BaseController
   def new
     @opening_hour = @place.opening_hours.build
     @opening_hour.shifts.build
-    render 'modal', layout: nil
+    render 'modal', layout:nil
   end
 
   # GET /places/:place_id/opening_hours/:id/edit
   def edit
     @opening_hour.shifts.build if @opening_hour.shifts.empty?
-    render 'modal', layout: nil
+    render 'modal', layout:nil
   end
 
   # POST /places/:place_id/opening_hours

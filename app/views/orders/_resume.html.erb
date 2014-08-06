@@ -1,5 +1,5 @@
 <!-- Items table -->
-<table class="table table-striped table-bordered">
+<table class="table table-condensed">
   <tfoot>
     <tr>
       <th style="text-align: left;"> SUBTOTAL: </th>
@@ -16,12 +16,13 @@
   </tfoot>
   <tbody>
     <% @order.items.each do |order_item| %>
+      <% cssClass = cycle('active', '') %>
       <% if order_item.instance_of?(OrderItemSplittable) %>
-        <%= render 'orders/resume_detail', order_item:order_item, label:nil %>
-        <%= render 'orders/resume_detail', order_item:order_item.highest_half, label:'1/2' %>
-        <%= render 'orders/resume_detail', order_item:order_item.lowest_half, label:'1/2' %>
+        <%= render 'orders/resume_detail', order_item:order_item, label:nil, cssClass:cssClass %>
+        <%= render 'orders/resume_detail', order_item:order_item.highest_half, label:'1/2', cssClass:cssClass %>
+        <%= render 'orders/resume_detail', order_item:order_item.lowest_half, label:'1/2', cssClass:cssClass %>
       <% else %>
-        <%= render 'orders/resume_detail', order_item:order_item, label:nil %>
+        <%= render 'orders/resume_detail', order_item:order_item, label:nil, cssClass:cssClass %>
       <% end %>
     <% end %>
   </tbody>

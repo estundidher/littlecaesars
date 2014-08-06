@@ -1,0 +1,22 @@
+<% content_for :module, 'orders' %>
+<% @orders.each_with_index do |order, index| %>
+  <div class="col-md-4 col-sm-4 order">
+    <% @order = order %>
+    <a href="JavaScript:void(0);" class="btn btn-primary btn-lg print" style="width:100%;"
+      data-url="<%= admin_order_path(@order.id, :json) %>">
+      <i class="glyphicon glyphicon-print"></i>
+      <%= @order.code %>
+      <i class="glyphicon glyphicon-time"></i>
+      <%= @order.pick_up.date.to_formatted_s :short %>
+    </a>
+    <%= render 'orders/resume' %>
+    <%= link_to admin_order_done_path(@order), class:'btn btn-danger btn-lg done',
+        style:'width:100%; margin-bottom: 20px;', remote:true, data: {confirm: t('warnings.confirm')} do %>
+      <i class="glyphicon glyphicon-ok"></i>
+      <i class="fa fa-spinner fa-spin" style="display:none;"></i>
+      Done!
+    <% end %>
+  </div>
+<% end %>
+
+<%= javascript_tag "$(document).on('ready page:load', function () { setTimeout(function(){ window.location.reload(1)}, 60000)})" %>

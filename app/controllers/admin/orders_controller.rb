@@ -1,13 +1,9 @@
 class Admin::OrdersController < Admin::BaseController
 
-  before_action :set_order, only: [:show, :destroy, :print, :mail]
+  before_action :set_order, only: [:show, :destroy, :print, :done]
 
-  def mail
-    render 'customer_mailer/new_order', layout:nil
-  end
-
-  # GET /orders
-  # GET /orders.json
+  # GET /admin/orders
+  # GET /admin/orders.json
   def index
 
     query = Order.all
@@ -72,6 +68,7 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
+  # GET /admin/orders.json
   def show
     respond_to do |format|
       format.html { @order }
@@ -85,8 +82,30 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.json
+  # GET /admin/live
+  def live
+
+    query = Order.approved.processing
+
+    if params[:place_id].present?
+      query = query.joins(pick_up: :place)
+                   .where(places: {id:params[:place_id].to_i})
+    end
+
+    @orders = query.order("pick_ups.date ASC")
+  end
+
+  # GET /admin/order/id/done
+  def done
+    unless @order.done?
+      @order.done!
+      @order.save!
+    end
+    render nothing:true, status: :ok
+  end
+
+  # DELETE /admin/orders/id
+  # DELETE /admin/orders/id.json
   def destroy
     begin
       @order.destroy
