@@ -90,9 +90,11 @@ class Admin::OrdersController < Admin::BaseController
     if params[:place_id].present?
       query = query.joins(pick_up: :place)
                    .where(places: {id:params[:place_id].to_i})
+    else
+      query = query.joins :pick_up
     end
 
-    @orders = query.order("pick_ups.date ASC")
+    @orders = query.order 'pick_ups.date ASC'
   end
 
   # GET /admin/order/id/done
