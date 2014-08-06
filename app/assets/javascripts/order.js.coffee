@@ -18,6 +18,7 @@ class Caesars.Order
   bind: ->
     @$form.on 'submit', '.checkout-form form', @submit
     @$order.on 'click', '.print', @print_click
+    @$order.on 'click', '.print-button', @button_print_click
     @$order.on 'ajax:before', '.btn-danger.done', @done_before
     @$order.on 'ajax:success', '.btn-danger.done', @done_success
     @$order.on 'ajax:error', '.btn-danger.done', @done_error
@@ -38,20 +39,48 @@ class Caesars.Order
     console.log 'Admin Order done: error fired!'
     Caesars.order.reload()
 
+  button_print_click: (e) =>
+    console.log 'Orders - button_print_click: fired!'
+    $button = $(e.target)
+    $button.addClass 'disabled'
+    $button.find('.fa-spin').fadeIn 'fast'
+    $button.find('.glyphicon').hide()
+    $url = $(e.target).data('url')
+    $.getJSON($url)
+      .done (json) =>
+        @send_to_print json, (=> @enable_button($button)), (=> @error_button($button))
+      .fail (jqHXR, textStatus) =>
+        alert 'ops..'
+
+  error_button: (button) =>
+    console.log 'Orders - enable_button: fired!'
+    button.removeClass 'disabled'
+    button.find('.fa-spin').fadeOut 'fast', ->
+      button.find('.glyphicon-exclamation-sign').show()
+
+  enable_button: (button) =>
+    console.log 'Orders - enable_button: fired!'
+    button.removeClass 'disabled'
+    button.find('.fa-spin').fadeOut 'fast', ->
+      button.find('.glyphicon-print').show()
+
   print_click: (e) =>
     $url = $(e.target).data('url')
     unless $url?
       $url = $(e.target).parent().data('url')
-
     console.log 'Orders - print: cliked! ' + $url
     $('.print-modal').modal 'show'
-    @print $url
+    $.getJSON($url)
+      .done (json) =>
+        @send_to_print json, null, null
+      .fail (jqHXR, textStatus) =>
+        alert 'ops..'
 
   print: (url, callback) =>
-    console.log 'Orders - print: fired! URL: ' + url + ' CALLBACK: ' + callback
+    console.log 'Orders - print: fired! URL: ' + url
     $.getJSON(url)
       .done (json) =>
-        @send_to_print json, callback
+        @send_to_print json, => @printed(callback)
       .fail (jqHXR, textStatus) =>
         alert 'ops..'
 
@@ -89,9 +118,9 @@ class Caesars.Order
 
     builder.addTextStyle false, false, false, undefined
 
-  send_to_print: (order, callback) =>
+  send_to_print: (order, callback, error_callback) =>
 
-    console.log 'Orders - print: fired! order: ' + order.code + ' CALLBACK: ' + callback
+    console.log 'Orders - print: fired! order: ' + order.code
 
     now = new Date()
 
@@ -166,7 +195,7 @@ class Caesars.Order
       asb = res.status
 
       if callback? && res.success
-        Caesars.order.printed callback
+        callback()
 
       if asb & epos.ASB_NO_RESPONSE
         msg += ' No printer response\n'
@@ -223,6 +252,8 @@ class Caesars.Order
     epos.onerror = (err) ->
       if $('.print-modal')?
         $('.print-modal').find('.modal-body').empty().append 'Network error occured.'
+      if error_callback?
+        error_callback()
 
   submit: (e) =>
     console.log 'order: submit fired!'
