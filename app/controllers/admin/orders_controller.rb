@@ -1,6 +1,10 @@
 class Admin::OrdersController < Admin::BaseController
 
-  before_action :set_order, only: [:show, :destroy]
+  before_action :set_order, only: [:show, :destroy, :print, :mail]
+
+  def mail
+    render 'customer_mailer/new_order', layout:nil
+  end
 
   # GET /orders
   # GET /orders.json
@@ -8,26 +12,33 @@ class Admin::OrdersController < Admin::BaseController
 
     query = Order.all
 
+    filter = false
+
     if params['code'].present?
       query = query.where code: params['code'].to_s
+      filter = true
     end
 
     if params['place_id'].present?
       query = query.joins(pick_up: :place)
                    .where(places: {id:params[:place_id].to_i})
+      filter = true
     end
 
     if params['customer_id'].present?
       query = query.joins(:customer)
                    .where(customers: {id:params[:customer_id].to_i})
+      filter = true
     end
 
     if params['state'].present?
       query = query.where(state: params[:state])
+      filter = true
     end
 
     if params['attempts'].present?
       query = query.where(attempts: params[:attempts])
+      filter = true
     end
 
     if params['date_from'].present? && params['date_to'].present?
@@ -37,6 +48,7 @@ class Admin::OrdersController < Admin::BaseController
 
       query = query.where("created_at >= :start_date AND created_at <= :end_date",
               {start_date: from, end_date: to})
+      filter = true
     end
 
     if params['pick_date_from'].present? && params['pick_date_to'].present?
@@ -47,6 +59,11 @@ class Admin::OrdersController < Admin::BaseController
       query = query.joins(:pick_up)
                    .where('pick_ups.date >= :start_date and pick_ups.date <= :end_date',
                     {start_date: pick_from, end_date: pick_to})
+      filter = true
+    end
+
+    unless filter
+      query = query.limit(50)
     end
 
     respond_to do |format|
@@ -55,9 +72,17 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
-  # GET /orders/1
-  # GET /orders/1.json
   def show
+    respond_to do |format|
+      format.html { @order }
+      format.json { render json: @order, methods: :tax, except:[:state, :notes, :ip_address, :customer_id, :pick_up_id, :created_at, :created_by, :updated_at, :updated_by, :attempts],
+                                    include: [{customer: {except:[:created_at, :created_by, :updated_at, :updated_by]}},
+                                       {pick_up: {methods: :date_s, except:[:date, :created_at, :created_by, :updated_at, :updated_by],
+                                          include:{place: {methods: :printer_ip_s, except: [:map, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at, :code, :enabled, :printer_ip, :created_at, :created_by, :updated_at, :updated_by, :description]}}}},
+                                          items: {except: [:size_id, :notes, :order_id, :product_id, :quantity, :created_at, :created_by, :updated_at, :updated_by, :first_half_id, :second_half_id],
+                                            include: [{first_half:{except: [:size_id, :notes, :order_id, :product_id, :quantity, :created_at, :created_by, :updated_at, :updated_by, :first_half_id, :second_half_id]}},
+                                                      {second_half:{except: [:size_id, :notes, :order_id, :product_id, :quantity, :created_at, :created_by, :updated_at, :updated_by, :first_half_id, :second_half_id]}}]}]}
+    end
   end
 
   # DELETE /orders/1

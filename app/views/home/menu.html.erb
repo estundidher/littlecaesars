@@ -32,6 +32,7 @@
                 <div class="col-md-3 col-sm-4">
                   <!-- Separate gallery element -->
                   <div class="element">
+                    <%= product.name %>
                     <!-- Image -->
                     <%= image_tag product.photo.url(:medium),
                         class: 'img-responsive img-thumbnail', alt:product.name %>

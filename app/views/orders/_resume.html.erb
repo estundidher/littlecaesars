@@ -1,34 +1,28 @@
 <!-- Items table -->
 <table class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th> <%= Product.human_attribute_name 'name' %> </th>
-      <th style="text-align: center; width: 10px;"> Qtd </th>
-      <th style="text-align: right; width: 10px;"> <%= Product.human_attribute_name 'price' %> </th>
-    </tr>
-  </thead>
   <tfoot>
     <tr>
-      <th></th>
-      <th style="text-align: center;"> <%= Cart.human_attribute_name 'total' %> </th>
+      <th style="text-align: left;"> SUBTOTAL: </th>
+      <th> <%= number_to_currency @order.price %> </th>
+    </tr>
+    <tr>
+      <th style="text-align: left;"> TAX: </th>
+      <th> <%= number_to_currency @order.tax %> </th>
+    </tr>
+    <tr>
+      <th style="text-align: left;"> TOTAL: </th>
       <th> <%= number_to_currency @order.price %> </th>
     </tr>
   </tfoot>
   <tbody>
     <% @order.items.each do |order_item| %>
-      <tr>
-        <td>
-          <% if order_item.instance_of?(CartItemSplittable) %>
-            <%= render 'orders/resume_detail', order_item:order_item.highest_half, label:'1/2', show_size:true %>
-            <br><br>
-            <%= render 'orders/resume_detail', order_item:order_item.lowest_half, label:'1/2', show_size:false %>
-          <% else %>
-            <%= render 'orders/resume_detail', order_item:order_item, label:nil, show_size:true %>
-          <% end %>
-        </td>
-        <td style="text-align: center;"> <%= order_item.quantity %> </td>
-        <td> <%= number_to_currency order_item.price %> </td>
-      </tr>
+      <% if order_item.instance_of?(OrderItemSplittable) %>
+        <%= render 'orders/resume_detail', order_item:order_item, label:nil %>
+        <%= render 'orders/resume_detail', order_item:order_item.highest_half, label:'1/2' %>
+        <%= render 'orders/resume_detail', order_item:order_item.lowest_half, label:'1/2' %>
+      <% else %>
+        <%= render 'orders/resume_detail', order_item:order_item, label:nil %>
+      <% end %>
     <% end %>
   </tbody>
 </table>

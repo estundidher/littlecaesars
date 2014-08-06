@@ -43,6 +43,10 @@ class Place < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
+  def printer_ip_s
+    self.printer_ip.to_s
+  end
+
   def dates_available
     dates = []
     day = Date.current

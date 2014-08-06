@@ -16,7 +16,7 @@ class PickUpController < ApplicationController
       @cart.pick_up.destroy
     end
 
-    @places = Place.order :name
+    @places = Place.where(enabled:true).order :name
   end
 
   # GET /pick_up/new

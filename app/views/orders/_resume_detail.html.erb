@@ -1,23 +1,40 @@
-<%= "#{label} " unless label.nil? %><%= order_item.product_name %>
-<% if show_size %>
-  <br> <small>
-    <%= number_to_currency order_item.price %>
-    <%= order_item.size_name if order_item.sizable? %>
-  </small>
+<% if label %>
+  <tr>
+    <td colspan="2">
+      <%= "#{label} " unless label.nil? %><%= order_item.product_name %>
+    </td>
+  </tr>
+<% else %>
+  <% if order_item.sizable? %>
+    <tr>
+      <td colspan="2"> <%= order_item.product_name %> </td>
+    </tr>
+    <tr>
+      <td> <%= order_item.size_name %> </td>
+      <td> <%= number_to_currency order_item.unit_price %> </td>
+    </tr>
+  <% else %>
+    <tr>
+      <td> <%= order_item.product_name %> </td>
+      <td> <%= number_to_currency order_item.unit_price %> </td>
+    </tr>
+  <% end %>
 <% end %>
+
 <% if order_item.additionable? %>
   <% if order_item.additions.present? %>
     <% order_item.additions.each do |addition| %>
-      <br> <small>
-        + <%= addition[0] %>: <%= number_to_currency addition[1] %>
-      </small>
+      <tr>
+        <td style="font-weight: bold;"> WITH <%= addition[0] %> </td>
+        <td> <%= number_to_currency addition[1] %> </td>
+      </tr>
     <% end %>
   <% end %>
   <% if order_item.subtractions.present? %>
     <% order_item.subtractions.each do |subtraction| %>
-      <br> <small>
-        - <%= subtraction[0] %>: <%= number_to_currency subtraction[1] %>
-      </small>
+      <tr>
+        <td colspan="2" style="font-weight: bold;"> NO <%= subtraction[0] %> </td>
+      </tr>
     <% end %>
   <% end %>
 <% end %>

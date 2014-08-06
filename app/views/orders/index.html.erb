@@ -13,11 +13,7 @@
       <div class="col-md-6">
         <!-- Contact form -->
         <div class="checkout-form">
-          <% if @order.approved? %>
-            <%= render 'payment', order:@order %>
-          <% else %>
-            <%= render 'form', order:@order %>
-          <% end %>
+          <%= render 'form', order:@order %>
         </div>
       </div>
       <div class="col-md-6">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729095622) do
+ActiveRecord::Schema.define(version: 20140806013856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 20140729095622) do
     t.datetime "updated_at"
     t.string   "code",        default: "", null: false
     t.integer  "attempts",    default: 0,  null: false
+    t.integer  "status"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
@@ -195,6 +196,10 @@ ActiveRecord::Schema.define(version: 20140729095622) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "code",               default: "", null: false
+    t.boolean  "enabled"
+    t.string   "abn"
+    t.inet     "printer_ip"
+    t.string   "printer_name"
   end
 
   add_index "places", ["name"], name: "index_places_on_name", unique: true, using: :btree

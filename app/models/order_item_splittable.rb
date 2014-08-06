@@ -35,6 +35,7 @@ class OrderItemSplittable < OrderItem
                          quantity: cart_item.quantity,
                      product_name: cart_item.name,
                             price: cart_item.total,
+                       unit_price: cart_item.product_price,
                        first_half: OrderItemSizableAdditionable.create_half(cart_item.first_half),
                       second_half: OrderItemSizableAdditionable.create_half(cart_item.second_half)
   end

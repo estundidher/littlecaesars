@@ -92,10 +92,12 @@ Rails.application.routes.draw do
 
   get 'checkout_modal', to: 'checkout#modal', as: :checkout_modal
 
-  resources :orders, only: [:create, :destroy]
-  get 'checkout/:code',       to: 'orders#index',   as: :checkout
-  get 'orders/:code/update',  to: 'orders#update',  as: :order_update
-  match 'checkout/confirm',   to: 'orders#confirm', as: :checkout_confirm, via: [:get, :post]
+  resources :orders, only: [:create, :destroy, :show]
+  get 'checkout/:code',        to: 'orders#index',   as: :checkout
+  get 'orders/:code/update',   to: 'orders#update',  as: :order_update
+  get 'orders/:code/print',    to: 'orders#print',   as: :order_print
+  get 'checkout/:code/success',to: 'orders#success', as: :order_success
+  match 'checkout/confirm',    to: 'orders#confirm', as: :checkout_confirm, via: [:get, :post]
 
   controller :home do
     get 'shopping',          to: :shopping,     as: :shopping
@@ -123,6 +125,8 @@ Rails.application.routes.draw do
     resources :customers
     resources :chefs
     resources :orders, except: [:new, :create, :edit]
+    get 'orders/:id/mail',    to: 'orders#mail',    as: :order_mail
+
     get 'live', to:'live#index', as: :live
 
     #products

@@ -21,6 +21,7 @@
     <% end %>
     <%= order.state %>
   </td>
+  <td> <%= order.status || '--' %> </td>
   <td> <%= order.ip_address %> </td>
   <td> <%= order.attempts %> </td>
   <td> <%= order.created_at.to_formatted_s :long %> </td>
@@ -30,6 +31,11 @@
     <% if order.payment.present? %>
       <a href="JavaScript:void(0);" class="expanable" data-target="#order_payment_<%= order.payment.id %>">
         <i class="glyphicon glyphicon-plus"></i>
+      </a>
+    <% end %>
+    <% if order.approved? %>
+      <a href="JavaScript:void(0);" class="print" data-url="<%= admin_order_path(order.id, :json) %>">
+        <i class="glyphicon glyphicon-print"></i>
       </a>
     <% end %>
   </td>

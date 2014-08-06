@@ -6,23 +6,14 @@ class Admin::PlacesController < Admin::BaseController
   # GET /places.json
   def index
     respond_to do |format|
-      format.html { @places = Place.all }
+      format.html { @places = Place.order(:name) }
       format.json { @places = Place.order(:name) }
     end
-  end
-
-  # GET /places/1
-  # GET /places/1.json
-  def show
   end
 
   # GET /places/new
   def new
     @place = Place.new
-  end
-
-  # GET /places/1/edit
-  def edit
   end
 
   # POST /places
@@ -74,18 +65,6 @@ class Admin::PlacesController < Admin::BaseController
     end
   end
 
-  def update_places
-    @places = Place.where(place_id:nil).order(:name).map{|s| [s.name, s.id]}.insert(0, "")
-  end
-
-  def autocomplete
-    if(params[:selected] == '')
-      render json: Place.where("name like ?", "%#{params[:term]}%").order(:name).map{|s| [id:s.id, label:s.name, value:s.name]}.flatten
-    else
-      render json: Place.where("name like ? and id not in (?)", "%#{params[:term]}%", params[:selected].split(',').map(&:to_i)).order(:name).map{|s| [id:s.id, label:s.name, value:s.name]}.flatten
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_places
@@ -95,6 +74,10 @@ class Admin::PlacesController < Admin::BaseController
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
       params.require(:place).permit :name,
+                                    :enabled,
+                                    :printer_name,
+                                    :printer_ip,
+                                    :abn,
                                     :code,
                                     :address,
                                     :phone,
