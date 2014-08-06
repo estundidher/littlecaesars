@@ -19,4 +19,3 @@
 //= require products
 //= require sizes
 //= require users
-//= require admin_orders

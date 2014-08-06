@@ -10,17 +10,26 @@ class Admin::ProductsController < Admin::BaseController
 
     query = Product.all
 
+    filter = false
+
     if @product.name?
       query = query.where('name ilike ?', "%#{@product.name}%")
+      filter = true
     end
 
     if @product.product_type_id?
       query = query.where(product_type_id:@product.product_type_id)
+      filter = true
     end
 
     unless params[:category_id].nil? or params[:category_id].empty?
       query = query.joins(:categories)
                    .where(categories: {id:params[:category_id].to_i})
+      filter = true
+    end
+
+    unless filter
+      query = query.limit 50
     end
 
     respond_to do |format|

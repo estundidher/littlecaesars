@@ -18,6 +18,11 @@ class Order < ActiveRecord::Base
   #3=canceled //declined by securepay
   enum state: [:pending, :sent, :approved, :declined, :cancelled, :expired]
 
+  #processing -> approved and wating to be printed
+  #printed --> already printed
+  #done --> already done
+  enum status: [:processing, :printed, :done]
+
   validates :state,
             presence: true
 
@@ -97,6 +102,7 @@ class Order < ActiveRecord::Base
 
   def approve!
     self.approved!
+    self.processing!
     CustomerMailer.new_order(self).deliver
   end
 

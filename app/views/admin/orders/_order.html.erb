@@ -21,6 +21,7 @@
     <% end %>
     <%= order.state %>
   </td>
+  <td> <%= order.status || '--' %> </td>
   <td> <%= order.ip_address %> </td>
   <td> <%= order.attempts %> </td>
   <td> <%= order.created_at.to_formatted_s :long %> </td>
