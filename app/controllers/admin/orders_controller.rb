@@ -85,7 +85,7 @@ class Admin::OrdersController < Admin::BaseController
   # GET /admin/live
   def live
 
-    query = Order.approved.processing
+    query = Order.approved.where('status <> ?', Order.statuses[:done])
 
     if params[:place_id].present?
       query = query.joins(pick_up: :place)

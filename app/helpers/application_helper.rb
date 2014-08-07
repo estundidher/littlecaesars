@@ -21,8 +21,12 @@ module ApplicationHelper
     params[:controller] == action ? "class=active" : nil
   end
 
-  def is_action(action)
-    request.url == action ? "class=active" : nil
+  def is_action(action, trueCase)
+    request.url == action ? trueCase : nil
+  end
+
+  def is_live
+    request.url.index('live')
   end
 
 end
