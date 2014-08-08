@@ -15,7 +15,9 @@
         <i class="glyphicon glyphicon-time"></i>
         <%= @order.pick_up.date.to_formatted_s :short %>
       </h4>
-      <%= render 'orders/resume' %>
+			<div style="font-size: 15px;">
+      	<%= render 'orders/resume' %>
+			</div>
       <%= link_to admin_order_done_path(@order), class:'btn btn-danger btn-lg done',
           style:'width:100%; margin-bottom: 20px;', remote:true, data: {confirm: t('warnings.confirm')} do %>
         <i class="glyphicon glyphicon-ok"></i>
@@ -26,4 +28,4 @@
   <% end %>
 </div>
 
-<%= javascript_tag "$(document).on('ready page:load', function () { setTimeout(function(){ window.location.reload(1)}, 60000)})" %>
+<%= javascript_tag "$(function () { setTimeout(function(){ window.location.reload(1)}, 60000)});" %>

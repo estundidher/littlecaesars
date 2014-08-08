@@ -8,8 +8,11 @@
 
 <% if @order.sent? %>
   <div class="alert alert-warning" role="alert">
-    <strong>Well done!</strong> The payment is still being processed..
+    <strong>Processing</strong> The payment is still being processing...
   </div>
+
+<%= javascript_tag "$(function () { setTimeout(function(){ window.location.reload(1)}, 5000)});" %>
+
 <% elsif @order.declined? %>
 
   <% if @order.max_of_attempts? %>
