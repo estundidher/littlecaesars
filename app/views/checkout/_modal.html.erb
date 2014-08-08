@@ -50,7 +50,11 @@
         <div>
           <% if cart.checkout? %>
             <%= form_for Order.new do |f| %>
-              <%= f.submit Cart.human_attribute_name('checkout'), class:'btn btn-info', role:'button' %>
+              <a href="JavaScript: void(0);" class="btn btn-info">
+                <i class="glyphicon glyphicon-ok"></i>
+                <i class="fa fa-spinner fa-spin" style="display:none;"></i>
+                <%= Cart.human_attribute_name('checkout') %>
+              </a>
             <% end %>
           <% end %>
         </div>

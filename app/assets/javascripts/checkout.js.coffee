@@ -7,11 +7,21 @@ window.Caesars or= {}
 class Caesars.Checkout
 
   constructor: ->
+    @$checkout = $('#modal_container')
     @$cart = $('.cart-container .cart')
     @bind()
 
   bind: ->
     @$cart.on 'ajax:success', '.cart-panel .cart-dropdown .checkout', @open
+    @$checkout.on 'click', '.checkout form .btn.btn-info', @checkout_click
+
+  checkout_click: (e) =>
+    console.log 'Checkout - checkout_click: fired!'
+    $button = $(e.target)
+    $button.addClass 'disabled'
+    $button.find('.fa-spin').fadeIn 'fast'
+    $button.find('.glyphicon').hide()
+    $button.parent().submit()
 
   open: (e, data, status, xhr) =>
     console.log "checkout: open fired!"
