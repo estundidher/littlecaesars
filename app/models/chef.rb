@@ -1,9 +1,6 @@
 class Chef < ActiveRecord::Base
   include Auditable
 
-  NULL_ATTRS = %w( facebook twitter plus pinterest )
-  before_validation :nil_if_blank
-
   has_attached_file :avatar,
                     styles: {large:'250x250>', small:'125x125>'},
                     default_url: '/images/:style/missing.png'
@@ -23,23 +20,19 @@ class Chef < ActiveRecord::Base
 
   validates :facebook,
             length: {maximum: 100},
-            uniqueness: true,
-            url: {allow_nil: true}
+            presence: false
 
   validates :twitter,
             length: {maximum: 100},
-            uniqueness: true,
-            url: {allow_nil: true}
+            presence: false
 
   validates :plus,
             length: {maximum: 100},
-            uniqueness: true,
-            url: {allow_nil: true}
+            presence: false
 
   validates :pinterest,
             length: {maximum: 100},
-            uniqueness: true,
-            url: {allow_nil: true}
+            presence: false
 
   validates_attachment :avatar,
                        content_type: {content_type:['image/jpg', 'image/jpeg', 'image/gif', 'image/png']},
@@ -50,11 +43,4 @@ class Chef < ActiveRecord::Base
                        content_type: {content_type:['image/jpg', 'image/jpeg', 'image/gif', 'image/png']},
                        size: {in: 0..500.kilobytes},
                        presence: true
-
-protected
-
-  def nil_if_blank
-    NULL_ATTRS.each { |attr| self[attr] = nil if self[attr].blank? }
-  end
-
 end
