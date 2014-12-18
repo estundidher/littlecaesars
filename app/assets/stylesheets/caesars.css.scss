@@ -2328,12 +2328,12 @@ img.payment {
 
 .dropdown-menu.categories:after,
 .dropdown-menu.categories:before {
-  left: 380px;
+  left: 540px;
 }
 
 @media (min-width: 768px) {
   .navbar-right .dropdown-menu.categories {
-    left: -350px !important;
+    left: -500px !important;
     right: 0;
   }
 }
