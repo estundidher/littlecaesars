@@ -75,7 +75,7 @@ gem 'dalli', '~> 2.7.1'
 
 gem 'sprockets', '2.11.0'
 
-ruby '2.0.0'
+ruby '2.1.2'
 
 gem 'tzinfo-data'
 gem 'debugger'
