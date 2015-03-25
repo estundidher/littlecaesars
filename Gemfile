@@ -77,5 +77,5 @@ gem 'sprockets', '2.11.0'
 
 ruby '2.1.2'
 
-gem 'tzinfo-data'
-gem 'debugger'
+# gem 'tzinfo-data'
+# gem 'debugger'
