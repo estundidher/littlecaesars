@@ -75,3 +75,6 @@ gem 'dalli', '~> 2.7.1'
 gem 'sprockets', '2.11.0'
 
 ruby '2.1.2'
+
+# By default Rails 4 will not serve your assets. To enable this functionality the line below is needed
+gem 'rails_12factor', group: :production
