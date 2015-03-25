@@ -1,0 +1,40 @@
+<% if label %>
+  <tr class="<%= cssClass %>">
+    <td colspan="2">
+      <%= "#{label} " unless label.nil? %><%= order_item.product_name %>
+    </td>
+  </tr>
+<% else %>
+  <% if order_item.sizable? %>
+    <tr class="<%= cssClass %>">
+      <td colspan="2"> <%= order_item.product_name %> </td>
+    </tr>
+    <tr class="<%= cssClass %>">
+      <td> <%= order_item.size_name %> </td>
+      <td> <%= number_to_currency order_item.unit_price %> </td>
+    </tr>
+  <% else %>
+    <tr class="<%= cssClass %>">
+      <td> <%= order_item.product_name %> </td>
+      <td> <%= number_to_currency order_item.unit_price %> </td>
+    </tr>
+  <% end %>
+<% end %>
+
+<% if order_item.additionable? %>
+  <% if order_item.additions.present? %>
+    <% order_item.additions.each do |addition| %>
+      <tr class="<%= cssClass %>">
+        <td style="font-weight: bold; padding-left: 30px;"> WITH <%= addition[0] %> </td>
+        <td> <%= number_to_currency addition[1] %> </td>
+      </tr>
+    <% end %>
+  <% end %>
+  <% if order_item.subtractions.present? %>
+    <% order_item.subtractions.each do |subtraction| %>
+      <tr class="<%= cssClass %>">
+        <td colspan="2" style="font-weight: bold; padding-left: 30px;"> NO <%= subtraction[0] %> </td>
+      </tr>
+    <% end %>
+  <% end %>
+<% end %>

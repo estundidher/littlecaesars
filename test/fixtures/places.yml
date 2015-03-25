@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+
+mundaring:
+  name: Mundaring
+  address: 7125 Grt Eastern Hwy Mundaring WA 6073
+  phone: (08) 9295 6611
+  description: Booking - Not available but our waiter/ess will find a table for you
+  map: http://www.google.com/maps
+  created_by: roalcantara
+  created_at: 2014-05-30
+
+hillarys:
+  name: Hillarys
+  address: 127 Oxford Street Leederville WA 6007
+  phone: (08) 9444 0499
+  description: Booking - Not available but our waiter/ess will find a table for you
+  map: http://www.google.com/maps
+  created_by: roalcantara
+  created_at: 2014-05-30

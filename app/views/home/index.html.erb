@@ -1,0 +1,365 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'index', 'data-turbolinks-track' => true %>
+<% end %>
+
+<% content_for :page_title, 'Home' %>
+
+<!-- Slider Start
+#################################
+- THEMEPUNCH BANNER -
+################################# -->
+<div class="tp-banner-container">
+  <div class="tp-banner" >
+    <ul>  <!-- SLIDE  -->
+      <li data-transition="fade" data-slotamount="7" data-masterspeed="2000" >
+        <!-- MAIN IMAGE -->
+        <img src="<%= slider_path 'slide1.jpg' %>"  alt=""  data-bgfit="cover" data-bgposition="center bottom" data-bgrepeat="no-repeat">
+
+        <!-- LAYERS -->
+        <!-- LAYER NR. 1 -->
+        <div class="tp-caption large_bold_grey randomrotate customout tp-resizeme heading white"
+          data-x="left" data-hoffset="10"
+          data-y="100" data-voffset="0"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-speed="4000"
+          data-start="500"
+          data-easing="Power3.easeInOut"
+          data-splitin="chars"
+          data-splitout="chars"
+          data-elementdelay="0.08"
+          data-endelementdelay="0.08"
+          data-endspeed="500"
+          style="z-index: 1; max-width: auto; max-height: auto; white-space: nowrap;">Award Winning!
+        </div>
+      </li>
+      <li data-transition="cube" data-slotamount="7" data-masterspeed="1000">
+        <!-- MAIN IMAGE -->
+        <img src="<%= slider_path 'slide2.jpg' %>" style="background-color:#fff" alt=""  data-bgfit="cover" data-bgposition="center bottom" data-bgrepeat="no-repeat">
+
+        <!-- LAYERS -->
+        <!-- LAYER NR. 2 -->
+        <div class="tp-caption lfl large_bold_grey heading white"
+          data-x="560"
+          data-y="100"
+          data-speed="800"
+          data-start="1500"
+          data-easing="Power4.easeOut"
+          data-endspeed="500"
+          data-endeasing="Power4.easeIn"
+          style="z-index: 3">Yummy
+        </div>
+        <!-- LAYER NR. 2.1 -->
+        <div class="tp-caption lfr large_bold_grey heading red"
+          data-x="660"
+          data-y="160"
+          data-speed="800"
+          data-start="2000"
+          data-easing="Power4.easeOut"
+          data-endspeed="500"
+          data-endeasing="Power4.easeIn"
+          style="z-index: 3">&
+        </div>
+        <!-- LAYER NR. 2.2 -->
+        <div class="tp-caption lfl large_bold_grey heading white"
+          data-x="535"
+          data-y="220"
+          data-speed="800"
+          data-start="2500"
+          data-easing="Power4.easeOut"
+          data-endspeed="500"
+          data-endeasing="Power4.easeIn"
+          style="z-index: 3">Decadent
+        </div>
+        <!-- LAYER NR. 2.3 -->
+        <div class="tp-caption lfr large_bold_grey heading customin customout red"
+          data-x="550"
+          data-y="280"
+          data-splitin="chars"
+          data-splitout="chars"
+          data-elementdelay="0.08"
+          data-start="3000"
+          data-speed="1500"
+          data-easing="Back.easeOut"
+          data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-endspeed="500"
+          data-endeasing="Power3.easeInOut"
+          data-captionhidden="on"
+          style="z-index:5">Desserts
+        </div>
+        <div class="tp-caption lfr large_bold_grey heading customin customout red"
+          data-x="550"
+          data-y="280"
+          data-splitin="chars"
+          data-splitout="chars"
+          data-elementdelay="0.08"
+          data-start="4000"
+          data-speed="1500"
+          data-easing="Back.easeOut"
+          data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-endspeed="500"
+          data-endeasing="Power3.easeInOut"
+          data-captionhidden="on"
+          style="z-index:5">Desserts
+        </div>
+        <div class="tp-caption lfr large_bold_grey heading customin customout red"
+          data-x="550"
+          data-y="280"
+          data-splitin="chars"
+          data-splitout="chars"
+          data-elementdelay="0.08"
+          data-start="5000"
+          data-speed="1500"
+          data-easing="Back.easeOut"
+          data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-endspeed="500"
+          data-endeasing="Power3.easeInOut"
+          data-captionhidden="on"
+          style="z-index:5">Desserts
+        </div>
+        <div class="tp-caption lfr large_bold_grey heading customin customout red"
+          data-x="550"
+          data-y="280"
+          data-splitin="chars"
+          data-splitout="chars"
+          data-elementdelay="0.08"
+          data-start="6000"
+          data-speed="1500"
+          data-easing="Back.easeOut"
+          data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-endspeed="500"
+          data-endeasing="Power3.easeInOut"
+          data-captionhidden="on"
+          style="z-index:5">Desserts
+        </div>
+        <div class="tp-caption lfr large_bold_grey heading customin customout red"
+          data-x="550"
+          data-y="280"
+          data-splitin="chars"
+          data-splitout="chars"
+          data-elementdelay="0.08"
+          data-start="7000"
+          data-speed="1500"
+          data-easing="Back.easeOut"
+          data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-endspeed="500"
+          data-endeasing="Power3.easeInOut"
+          data-captionhidden="on"
+          style="z-index:5">Desserts
+        </div>
+        <div class="tp-caption lfr large_bold_grey heading customin customout red"
+          data-x="550"
+          data-y="280"
+          data-splitin="chars"
+          data-splitout="chars"
+          data-elementdelay="0.08"
+          data-start="8000"
+          data-speed="1500"
+          data-easing="Back.easeOut"
+          data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-endspeed="500"
+          data-endeasing="Power3.easeInOut"
+          data-captionhidden="on"
+          style="z-index:5">Desserts
+        </div>
+      </li>
+      <li data-transition="zoomin" data-slotamount="6" data-masterspeed="2000" >
+        <!-- MAIN IMAGE -->
+        <img src="<%= slider_path 'slide3.jpg' %>" style="background-color:#fea501" alt=""  data-bgfit="cover" data-bgposition="center bottom" data-bgrepeat="no-repeat">
+        <!-- LAYERS NR. 2 -->
+        <div class="tp-caption lfr large_bold_grey heading white"
+          data-x="left" data-hoffset="-10"
+          data-y="80"
+          data-speed="2500"
+          data-start="2500"
+          data-easing="Power4.easeOut"
+          data-endspeed="300"
+          data-endeasing="Linear.easeNone"
+          data-captionhidden="off">Tasty Yummy
+        </div>
+        <!-- LAYER NR. 3 -->
+        <div class="tp-caption whitedivider3px customin customout tp-resizeme"
+          data-x="left" data-hoffset="-10"
+          data-y="150" data-voffset="0"
+          data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-speed="700"
+          data-start="3000"
+          data-easing="Power3.easeInOut"
+          data-splitin="none"
+          data-splitout="none"
+          data-elementdelay="0.1"
+          data-endelementdelay="0.1"
+          data-endspeed="500"
+          style="z-index: 3; max-width: auto; max-height: auto; white-space: nowrap;">&nbsp;
+        </div>
+        <!-- LAYER NR. 4 -->
+        <div class="tp-caption lfr large_bold_grey heading white"
+          data-x="left" data-hoffset="0"
+          data-y="150" data-voffset="0"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-speed="3000"
+          data-start="4000"
+          data-easing="Power4.easeOut"
+          data-endspeed="300"
+          data-endeasing="Linear.easeNone"
+          data-captionhidden="off">MUDHONEY
+        </div>
+        <!-- LAYER NR. 5 -->
+        <div class="tp-caption finewide_verysmall_white_mw white customin customout tp-resizeme text-right paragraph"
+          data-x="center"  data-hoffset="-280"
+          data-y="210"
+          data-customin="x:0;y:50;z:0;rotationX:-120;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 0%;"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-speed="1000"
+          data-start="5500"
+          data-easing="Power3.easeInOut"
+          data-splitin="lines"
+          data-splitout="lines"
+          data-elementdelay="0.2"
+          data-endelementdelay="0.08"
+          data-endspeed="300"
+          style="z-index: 10; max-width: auto; max-height: auto; white-space: nowrap;">Chocolate Mud Cake, Honey, Chocolate Sauce
+        </div>
+        <!-- LAYER NR. 5.1 -->
+        <div class="tp-caption finewide_verysmall_white_mw white customin customout tp-resizeme text-right paragraph"
+          data-x="center"  data-hoffset="-280"
+          data-y="230"
+          data-customin="x:0;y:50;z:0;rotationX:-120;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 0%;"
+          data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+          data-speed="1000"
+          data-start="5500"
+          data-easing="Power3.easeInOut"
+          data-splitin="lines"
+          data-splitout="lines"
+          data-elementdelay="0.2"
+          data-endelementdelay="0.08"
+          data-endspeed="300"
+          style="z-index: 10; max-width: auto; max-height: auto; white-space: nowrap;">White Milk and Dark Chocolate Buttons, Icing Sugar
+        </div>
+      </li>
+      <li data-transition="cube" data-slotamount="7" data-masterspeed="1000" >
+        <!-- MAIN IMAGE -->
+        <img src="<%= slider_path 'slide4.jpg' %>"  alt=""  data-bgfit="cover" data-bgposition="center bottom" data-bgrepeat="no-repeat">
+        <!-- LAYERS NR. 4.1 -->
+        <div class="tp-caption data=transition=fade "data-slotamount="7"
+          data-x="left" data-hoffset="-280"
+          data-y="130"
+          data-speed="5000"
+          data-start="1500"
+          data-easing="Power4.easeOut"
+          data-endspeed="300"
+          data-endeasing="Power4.easeIn"
+          data-captionhidden="off"><img src="<%= slider_path 's3.png' %>" class="img-responsive" alt="" />
+        </div>
+        <!-- LAYERS NR. 4.2 -->
+        <div class="tp-caption data=transition=fade "data-slotamount="7"
+          data-x="left" data-hoffset="-280"
+          data-y="265"
+          data-speed="500"
+          data-start="2200"
+          data-easing="Power4.easeOut"
+          data-endspeed="300"
+          data-endeasing="Power4.easeIn"
+          data-captionhidden="off"><img src="<%= slider_path 's2.png' %>" class="img-responsive" alt="" />
+        </div>
+        <!-- LAYERS NR. 4.3 -->
+        <div class="tp-caption data=transition=fade "data-slotamount="7"
+          data-x="left" data-hoffset="50"
+          data-y="312"
+          data-speed="500"
+          data-start="2700"
+          data-easing="Power4.easeOut"
+          data-endspeed="300"
+          data-endeasing="Power4.easeIn"
+          data-captionhidden="off"><img src="<%= slider_path 's1.png' %>" class="img-responsive" alt="" />
+        </div>
+        <!-- LAYERS NR. 4.4 -->
+        <div class="tp-caption h1 heading white"
+          data-x="right" data-hoffset="-10"
+          data-y="120"
+          data-speed="800"
+          data-start="3200"
+          data-easing="Power4.easeOut"
+          data-endspeed="500"
+          data-endeasing="Power4.easeIn"
+          style="z-index: 3">Order Online Now
+        </div>
+        <!-- LAYERS NR. 4.5 -->
+        <div class="tp-caption h1 white"
+          data-x="right" data-hoffset="-200"
+          data-y="190"
+          data-speed="800"
+          data-start="4000"
+          data-easing="Power1.easeOut"
+          data-endspeed="500"
+          data-endeasing="Power4.easeIn"
+          style="z-index: 11">
+          <%= link_to pick_up_index_path, class:'btn btn-success' do %>
+            <font size="5">Order Online</font>
+          <% end %>
+        </div>
+        <div class="tp-caption h1 white"
+          data-x="right" data-hoffset="-200"
+          data-y="190"
+          data-speed="800"
+          data-start="5000"
+          data-easing="Power1.easeOut"
+          data-endspeed="500"
+          data-endeasing="Power4.easeIn"
+          style="z-index: 11">
+          <%= link_to pick_up_index_path, class:'btn btn-danger' do %>
+            <font size="5">Order Online</font>
+          <% end %>
+        </div>
+        <div class="tp-caption h1 white"
+          data-x="right" data-hoffset="-200"
+          data-y="190"
+          data-speed="800"
+          data-start="6000"
+          data-easing="Power1.easeOut"
+          data-endspeed="500"
+          data-endeasing="Power4.easeIn"
+          style="z-index: 11">
+          <%= link_to pick_up_index_path, class:'btn btn-info' do %>
+            <font size="5">Order Online</font>
+          <% end %>
+        </div>
+        <div class="tp-caption h1 white"
+          data-x="right" data-hoffset="-200"
+          data-y="190"
+          data-speed="800"
+          data-start="7000"
+          data-easing="Power1.easeOut"
+          data-endspeed="500"
+          data-endeasing="Power4.easeIn"
+          style="z-index: 11">
+          <%= link_to pick_up_index_path, class:'btn btn-danger' do %>
+            <font size="5">Order Online</font>
+          <% end %>
+        </div>
+        <div class="tp-caption h1 white"
+          data-x="right" data-hoffset="-200"
+          data-y="190"
+          data-speed="800"
+          data-start="8000"
+          data-easing="Power1.easeOut"
+          data-endspeed="500"
+          data-endeasing="Power4.easeIn"
+          style="z-index: 11">
+          <%= link_to pick_up_index_path, class:'btn btn-success' do %>
+            <font size="5">Order Online</font>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+    <!-- Banner Timer -->
+    <div class="tp-bannertimer"></div>
+  </div>
+</div>
+<!-- Slider End -->

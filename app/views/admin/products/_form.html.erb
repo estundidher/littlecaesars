@@ -1,0 +1,74 @@
+<%= form_for [:admin, @product], html: {multipart:true, role:'form', style:'width:500px;'} do |f| %>
+
+  <%= tb_show_errors_for @product %>
+
+  <div class="checkbox <%= tb_has_error @product, :enabled %>">
+    <%= f.label :enabled do %>
+      <%= f.check_box :enabled %> <%= ProductType.human_attribute_name 'enabled' %>
+    <% end %>
+  </div>
+
+  <div class="form-group <%= tb_has_error @product, :photo %> ">
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
+  </div>
+
+  <% if @product.splittable? %>
+    <div class="form-group <%= tb_has_error @product, :photo_left %>">
+      <%= f.label :photo_left %>
+      <%= f.file_field :photo_left %>
+    </div>
+
+    <div class="form-group <%= tb_has_error @product, :photo_right %>">
+      <%= f.label :photo_right %>
+      <%= f.file_field :photo_right %>
+    </div>
+  <% end %>
+
+  <% if @product.shoppable? %>
+    <div class="form-group <%= tb_has_error @product, :photo_showcase %>">
+      <%= f.label :photo_showcase %>
+      <%= f.file_field :photo_showcase %>
+    </div>
+  <% end %>
+
+  <div class="form-group <%= tb_has_error @product, :type %>">
+    <%= f.label :type %>
+    <%= f.collection_select :product_type_id,
+        ProductType.order(:name), :id, :name,
+        {prompt: true, selected: @product.product_type_id},
+        {class: 'form-control product-reloadable', data: {path:admin_products_reload_options_path}} %>
+  </div>
+
+  <div class="form-group <%= tb_has_error @product, :name %>">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group <%= tb_has_error @product, :description %>">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group <%= tb_has_error @product, :categories %>">
+    <%= label :product, :categories %>
+    <% categories = Category.order :name %>
+    <% if categories.size() > 0 %>
+      <%= collection_check_boxes :product, :category_ids, categories, :id, :name do |b|
+          b.label(class: "checkbox") { b.check_box + b.text }
+      end %>
+    <% else %>
+      '--'
+    <% end %>
+  </div>
+
+  <div id="product_options_container">
+    <% if @product.type || @product.id %>
+      <%= render 'options', product:@product %>
+    <% end %>
+  </div>
+
+  <%= tb_submit @product %>
+  <%= tb_button_back admin_products_path %>
+
+<% end %>

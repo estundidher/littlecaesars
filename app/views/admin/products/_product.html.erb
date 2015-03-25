@@ -1,0 +1,11 @@
+<tr>
+  <td> <%= product.id %> </td>
+	<td> <%= product.name %> </td>
+    <td> <%= product.type.name %> </td>
+    <td> <%= product.categories_friendly || '--' %> </td>
+    <td>
+    	<%= tb_grid_show [:admin, product] %>
+    	<%= tb_grid_edit edit_admin_product_path(product) %>
+    	<%= tb_grid_remove [:admin, product] %>
+    </td>
+</tr>

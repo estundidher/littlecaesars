@@ -1,0 +1,28 @@
+<% content_for :page_title, 'Forgot your password?' %>
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'Forgot your password?' %>
+<% end %>
+
+<div class="container padd">
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <h4 class="title">Forgot your password?</h4>
+      <%= form_for resource, as: resource_name, url: password_path(resource_name),
+          html: {role:'form', class:'form-horizontal', style:'width:500px;', method: :post} do |f| %>
+        <%= devise_error_messages! %>
+        <div class="form-group">
+          <%= f.label :email, class:'col-md-2 control-label' %>
+          <div class="col-md-8">
+            <%= f.email_field :email, class:'form-control', placeholder:'Email', autofocus: true %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-8">
+            <%= f.submit "Send me reset password instructions", class:'btn btn-danger btn-sm' %>
+            <%= tb_button_back root_path %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

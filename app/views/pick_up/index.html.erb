@@ -1,0 +1,27 @@
+<% content_for :banner, 'pick_up' %>
+<% content_for :page_title, 'Pick Up' %>
+
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'Pick Up' %>
+<% end %>
+
+<div class="container pick-up padd">
+  <div id="wizard" class="carousel wrap slide">
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 places">
+            <%= render partial:'places' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 when"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

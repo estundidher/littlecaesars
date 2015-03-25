@@ -1,0 +1,14 @@
+<%= tb_breadcrumb link_to(Size.model_name.human.pluralize, admin_sizes_path), t('titles.show', model_name: Size.model_name.human) %>
+
+<dl>
+  <dt><%= Size.human_attribute_name 'splittable' %></dt>
+  <dd><%= @size.splittable %></dd>
+  <dt><%= Size.human_attribute_name 'name' %></dt>
+  <dd><%= @size.name %></dd>
+  <dt><%= Size.human_attribute_name 'description' %></dt>
+  <dd><%= @size.description %></dd>
+  <%= auditable @size %>
+</dl>
+
+<%= tb_button_edit edit_admin_size_path(@size) %>
+<%= tb_button_back admin_sizes_path %>

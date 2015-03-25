@@ -1,0 +1,17 @@
+<%= tb_breadcrumb link_to(Customer.model_name.human.pluralize, admin_customers_path), t('titles.show', model_name: Customer.model_name.human) %>
+
+<dl>
+  <dt><%= Customer.human_attribute_name 'name' %></dt>
+  <dd><%= @customer.name %></dd>
+  <dt><%= Customer.human_attribute_name 'surname' %></dt>
+  <dd><%= @customer.surname %></dd>
+  <dt><%= Customer.human_attribute_name 'mobile' %></dt>
+  <dd><%= @customer.mobile %></dd>
+  <dt><%= Customer.human_attribute_name 'email' %></dt>
+  <dd><%= @customer.email %></dd>
+</dl>
+
+
+
+<%= tb_button_edit edit_admin_customer_path(@customer) %>
+<%= tb_button_back admin_customers_path %>

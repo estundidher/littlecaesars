@@ -1,0 +1,7 @@
+<div class="ingredient toppings" data-id="<%= product.id %>">
+  <%= hidden_field_tag 'topping_ids[]', product.id, class:'additionable' %>
+  <span class="label label-warning" >
+    <%= product.name %>
+    <i class="glyphicon glyphicon-remove white"></i>
+  </span>
+</div>

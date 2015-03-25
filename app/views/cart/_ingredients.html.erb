@@ -1,0 +1,8 @@
+<% if product.type.additionable? %>
+  <h5> <%= Product.human_attribute_name 'ingredients' %> </h5 >
+  <div class="tags">
+    <%= render partial:'/cart/ingredients_tags', locals:{product:product,
+                                                          side:side,
+                                                          cart_item:cart_item} %>
+  </div>
+<% end %>

@@ -1,0 +1,22 @@
+<%= tb_breadcrumb link_to(Chef.model_name.human.pluralize, admin_chefs_path), t('titles.show', model_name: Chef.model_name.human) %>
+
+<p> <%= image_tag @chef.avatar.url(:small) %> </p>
+<p> <%= image_tag @chef.background.url(:small) %> </p>
+
+<dl>
+  <dt><%= Chef.human_attribute_name :name %></dt>
+  <dd><%= @chef.name %></dd>
+  <dt><%= Chef.human_attribute_name :position %></dt>
+  <dd><%= @chef.position %></dd>
+  <dt><%= Chef.human_attribute_name :facebook %></dt>
+  <dd><%= @chef.facebook %></dd>
+  <dt><%= Chef.human_attribute_name :twitter %></dt>
+  <dd><%= @chef.twitter %></dd>
+  <dt><%= Chef.human_attribute_name :pinterest %></dt>
+  <dd><%= @chef.pinterest %></dd>
+  <dt><%= Chef.human_attribute_name :plus %></dt>
+  <dd><%= @chef.pinterest %></dd>
+</dl>
+
+<%= tb_button_edit edit_admin_chef_path(@chef) %>
+<%= tb_button_back admin_chefs_path %>

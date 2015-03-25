@@ -1,0 +1,12 @@
+<table class="table table-condensed table-bordered">
+	<thead>
+		<tr>
+			<th style="width:30px;"> # </th>
+			<th><%= ProductType.human_attribute_name 'name' %></th>
+			<th style="width:60px;"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render @product_types %>
+	</tbody>
+</table>

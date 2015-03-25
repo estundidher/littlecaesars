@@ -1,0 +1,20 @@
+<%= "#{label} " unless label.nil? %><%= cart_item.name %>
+<% if show_size %>
+  <br> <small>
+    &nbsp&nbsp&nbsp<%= number_to_currency cart_item.product_price %>
+    <%= cart_item.size.name if cart_item.sizable? %>
+  </small>
+<% end %>
+
+<% if cart_item.additionable? %>
+  <% cart_item.additions.each do |addition| %>
+    <br> <small>
+      + <%= number_to_currency addition.price %> <%= addition.name %>
+    </small>
+  <% end %>
+<% cart_item.subtractions.each do |subtraction| %>
+    <br> <small>
+      - <%= number_to_currency 0.0 %> <%= subtraction.name %>
+    </small>
+  <% end %>
+<% end %>

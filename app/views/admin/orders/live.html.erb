@@ -1,0 +1,31 @@
+<% content_for :module, 'orders' %>
+<% content_for :default_class, 'container-fluid' %>
+<div class="row">
+  <% @orders.each_with_index do |order, index| %>
+    <div class="col-md-4 col-sm-4 order">
+      <% @order = order %>
+      <a href="JavaScript:void(0);" class="btn btn-primary btn-lg print-button" style="width:100%;"
+        data-url="<%= admin_order_path(@order.id, :json) %>">
+        <i class='fa fa-spinner fa-spin' style='display:none;'></i>
+        <i class="glyphicon glyphicon-exclamation-sign" style='display:none;'></i>
+        <i class="glyphicon glyphicon-print"></i>
+        <%= @order.code %>
+      </a>
+      <h4 style="text-align: center">
+        <i class="glyphicon glyphicon-time"></i>
+        <%= @order.pick_up.date.to_formatted_s :short %>
+      </h4>
+			<div style="font-size: 15px;">
+      	<%= render 'orders/resume' %>
+			</div>
+      <%= link_to admin_order_done_path(@order), class:'btn btn-danger btn-lg done',
+          style:'width:100%; margin-bottom: 20px;', remote:true, data: {confirm: t('warnings.confirm')} do %>
+        <i class="glyphicon glyphicon-ok"></i>
+        <i class="fa fa-spinner fa-spin" style="display:none;"></i>
+        Done!
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<%= javascript_tag "$(function () { setTimeout(function(){ window.location.reload(1)}, 60000)});" %>

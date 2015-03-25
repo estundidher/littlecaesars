@@ -1,0 +1,23 @@
+<tr>
+  <td> <%= order_item_splittable.id %> </td>
+  <td> <%= order_item_splittable.product_name %> </td>
+  <td> <%= order_item_splittable.size_name %> </td>
+  <td> <%= order_item_splittable.quantity %> </td>
+  <td> <%= number_to_currency order_item_splittable.price %> </td>
+  <td> -- </td>
+  <td> -- </td>
+  <td> <%= order_item_splittable.created_at.to_formatted_s(:long) %> </td>
+  <td>
+    <a href="JavaScript:void(0);" class="expanable" data-target=".order_item_<%= order_item_splittable.id %>">
+      <i class="glyphicon glyphicon-plus"></i>
+    </a>
+  </td>
+</tr>
+<tr class="order_item_<%= order_item_splittable.id %>" style="display:none;">
+  <td>1/2</td>
+  <%= render 'admin/order_item_sizable_additionables/order_item_sizable_additionable_detail', order_item_sizable_additionable:order_item_splittable.first_half %>
+</tr>
+<tr class="order_item_<%= order_item_splittable.id %>" style="display:none;">
+  <td>1/2</td>
+  <%= render 'admin/order_item_sizable_additionables/order_item_sizable_additionable_detail', order_item_sizable_additionable:order_item_splittable.second_half %>
+</tr>

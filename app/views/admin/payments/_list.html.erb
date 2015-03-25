@@ -1,0 +1,21 @@
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr>
+      <th style="width:30px;"> # </th>
+      <th><%= Payment.human_attribute_name 'status' %></th>
+      <th><%= Payment.human_attribute_name 'code' %></th>
+      <th><%= Payment.human_attribute_name 'description' %></th>
+      <th><%= Payment.human_attribute_name 'bank_transaction_id' %></th>
+      <th><%= Payment.human_attribute_name 'bank_settdate' %></th>
+      <th><%= Payment.human_attribute_name 'card_number' %></th>
+      <th><%= Payment.human_attribute_name 'card_expirydate' %></th>
+      <th><%= Payment.human_attribute_name 'timestamp' %></th>
+      <th><%= Payment.human_attribute_name 'ip_address' %></th>
+      <th><%= Payment.human_attribute_name 'created_at' %></th>
+      <th style="width:30px;"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render payments %>
+  </tbody>
+</table>

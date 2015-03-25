@@ -1,0 +1,39 @@
+<div class="row">
+
+  <% Place.where(enabled:true).order(:created_at).each do |place| %>
+    <div class="col-md-3 col-sm-6">
+      <!-- Footer widget -->
+      <div class="footer-widget">
+        <!-- Heading -->
+        <h4><%= place.name %></h4>
+        <div class="contact-details">
+          <!-- Address / Icon -->
+          <i class="fa fa-map-marker br-red"></i>
+          <span style="width: 150px;"> <%= place.address %> </span>
+          <div class="clearfix"></div>
+          <!-- Contact Number / Icon -->
+          <i class="fa fa-phone br-green"></i> <span><%= place.phone %></span>
+        </div>
+      </div> <!--/ Footer widget end -->
+    </div>
+  <% end %>
+
+  <div class="col-md-3 col-sm-6">
+    <!-- Footer widget -->
+    <div class="footer-widget">
+      <!-- Heading -->
+      <h4>Contact Us</h4>
+      <div class="contact-details">
+        <!-- Email / Icon -->
+        <i class="fa fa-envelope-o br-lblue"></i> <span><a href="mailto:info@littlecs.com?subject=Info Little Caesars&body=Dear Little Caesars,">info@littlecs.com</a></span>
+        <div class="clearfix"></div>
+      </div>
+      <!-- Social media icon -->
+      <div class="social">
+        <a href="https://www.facebook.com/pages/Little-Caesars-Pizzeria-Perth-WA/140628759285387" class="facebook"><i class="fa fa-facebook"></i></a>
+        <a href="https://plus.google.com/107666662353798158669/about" class="google-plus"><i class="fa fa-google-plus"></i></a>
+        <a href="https://twitter.com/theoandco" class="twitter"><i class="fa fa-twitter"></i></a>
+      </div>
+    </div> <!--/ Footer widget end -->
+  </div>
+</div>

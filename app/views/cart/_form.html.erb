@@ -1,0 +1,18 @@
+<%= form_for cart_item, remote: true, html:{class:'cart-item-form'}, data:{calculate:cart_item_calculate_path} do |f| %>
+
+  <%= f.hidden_field :cart_id, value:cart_item.cart.id %>
+
+  <% if product.type.quantitable? %>
+    <%= f.hidden_field :quantity, value:1 %>
+    <%= f.hidden_field :product_id, value:product.id %>
+  <% end %>
+
+  <%= render partial:"cart/#{mode}/form", locals: { mode:mode,
+                                          cart_item:cart_item,
+                                          categories:categories,
+                                          category:category,
+                                          size:size,
+                                          sizes:sizes,
+                                          product:product,
+                                          products:products} %>
+<% end %>

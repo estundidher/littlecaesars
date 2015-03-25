@@ -1,0 +1,35 @@
+<div class="modal fade cart-modal" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4><%= product.name %></h4>
+      </div>
+      <div id="price_modal_form_container" class="modal-body" style="padding-top: 10px;">
+        <div class="single-item">
+          <%= render partial:'cart/modal/form', locals:{cart_item:cart_item, product:product} %>
+        </div>
+      </div>
+      <div class="modal-footer" style="margin-top: 0px;">
+        <div class="pull-left">
+          <div class="row">
+            <div class="col-md-4 col-sm-4" style="padding-top: 4px;">
+              Total:
+            </div>
+            <div class="col-md-1 col-sm-1">
+              <span class="price">
+                <%= number_to_currency cart_item.total %>
+              </span>
+            </div>
+          </div>
+        </div>
+        <%= render partial:'cart/modal/prices', locals:{cart_item:cart_item, product:product} unless product.type.priceable? %>
+        <%= render partial:'cart/modal/split', locals:{cart_item:cart_item, product:product} if product.splittable? %>
+        <button type="button" class="btn btn-primary save">
+          <i class='glyphicon glyphicon-shopping-cart'></i>
+          <%= t 'links.add_simple' %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

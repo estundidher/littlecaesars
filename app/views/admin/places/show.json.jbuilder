@@ -1,0 +1,1 @@
+json.extract! @place, :id, :name, :address, :phone, :description, :map, :created_at, :updated_at

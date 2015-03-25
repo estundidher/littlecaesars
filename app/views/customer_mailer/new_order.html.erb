@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <dl style="width: 500px;">
+      <dt style="text-align:center;">LITTLE Cs</dt>
+      <dt style="text-align:center;"><%= @order.pick_up.place.name %></dt>
+      <dt style="text-align:center;"><%= @order.pick_up.place.address %></dt>
+      <dt style="text-align:center;"><%= @order.pick_up.place.phone %></dt>
+      <dt style="text-align:center;">ABN: <%= @order.pick_up.place.abn %></dt>
+      <dt style="text-align:center; font-size: 35px;">
+        TAX INVOICE: <%= @order.code %>
+      </dt>
+      <dt style="text-align:center;"><%= Time.now.to_formatted_s :long %> </dt>
+    </dl>
+    <dl>
+      <dd>
+        <table>
+          <tfoot>
+            <tr>
+              <th style="text-align: left;"> SUBTOTAL: </th>
+              <th> <%= number_to_currency @order.price %> </th>
+            </tr>
+            <tr>
+              <th style="text-align: left;"> TAX: </th>
+              <th> <%= number_to_currency @order.tax %> </th>
+            </tr>
+            <tr>
+              <th style="text-align: left;"> TOTAL: </th>
+              <th> <%= number_to_currency @order.price %> </th>
+            </tr>
+            <tr>
+              <th style="text-align: left;" colspan="2">
+                NAME: <%= @order.customer.name %>
+              </th>
+            </tr>
+            <tr>
+              <th style="text-align: left;" colspan="2">
+                P/UP TIME:
+                <%= @order.pick_up.date.to_formatted_s :long %>
+              </th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% @order.items.each do |order_item| %>
+              <% cssClass = cycle('active', '') %>
+              <% if order_item.instance_of?(OrderItemSplittable) %>
+                <%= render 'orders/resume_detail', order_item:order_item, label:nil, cssClass:cssClass %>
+                <%= render 'orders/resume_detail', order_item:order_item.highest_half, label:'1/2', cssClass:cssClass %>
+                <%= render 'orders/resume_detail', order_item:order_item.lowest_half, label:'1/2', cssClass:cssClass %>
+              <% else %>
+                <%= render 'orders/resume_detail', order_item:order_item, label:nil, cssClass:cssClass %>
+              <% end %>
+              <tr>
+                <td colspan="2">
+                  &nbsp;
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </dd>
+    </dl>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<% content_for :page_title, 'Sign Up' %>
+<% content_for :banner, 'sign_in' %>
+
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'Sign Up' %>
+<% end %>
+
+<%= render partial:'/customers/new' %>

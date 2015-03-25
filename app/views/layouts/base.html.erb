@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= t 'brand' %> <%= " - #{yield :page_title}" if content_for :page_title %> </title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'epos-print-3.0.0.js' %>
+    <%= yield :head %>
+    <%= csrf_meta_tags %>
+    <meta name="description" content="<%= yield :page_description %>">
+    <meta name="keywords" content="<%= yield :page_keywords %>">
+  </head>
+  <body class="<%= 'admin' if admin? %>">
+    <%= content_for?(:content) ? yield(:content) : yield %>
+    <!-- Footer Start -->
+    <div class="footer padd">
+      <div class="container">
+        <%= yield :footer if content_for :footer %>
+        <!-- Copyright -->
+        <div class="footer-copyright">
+          <div class="terms">
+            <%= link_to 'Privacy Policy', privacy_path, remote:true %>
+            <%= link_to 'Terms of Use', terms_path,   remote:true %>
+            <%= link_to 'Returns', returns_path, remote:true %>
+          </div>
+          <!-- Paragraph -->
+          <p>&copy; Copyright <%= Date.current.year %> <%= link_to t("Little Cs"), root_path %></a></p>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+    <div id="modal_container"></div>
+  </body>
+</html>

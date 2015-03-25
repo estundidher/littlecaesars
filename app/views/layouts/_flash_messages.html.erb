@@ -1,0 +1,12 @@
+<% if flash.any? %>
+  <% flash.each do |type, message| %>
+    <% unless type.include? 'details' %>
+      <% details = nil
+        if flash.key? "#{type}_details"
+          details = flash["#{type}_details"]
+        end
+      %>
+      <%= render partial:'layouts/flash_message', locals:{type:type, message:message, details:details} %>
+    <% end %>
+  <% end %>
+<% end %>

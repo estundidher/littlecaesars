@@ -1,0 +1,137 @@
+<% content_for :banner, 'about' %>
+<% content_for :page_title, 'About' %>
+<% content_for :page_description, 'Little Cs' %>
+<% content_for :page_keywords, 'Pizza' %>
+
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'About' %>
+<% end %>
+
+<!-- About company -->
+<div class="about-company padd">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- About Compnay Item -->
+        <div class="row">         
+        </div>
+        <br >
+
+          <div class="col-md-12 col-sm-12 col-xs-12">
+          	<iframe src="//player.vimeo.com/video/46218719" width="800" height="600" align="center" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="row about-company-item">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <!-- About company inner items -->
+            <div class="about-company-inner">
+              <!-- Paragraph with icon -->
+              <span class="company-feature"><i class="fa fa-building-o br-red"></i>
+                <b class="red">2</b> Locations
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <!-- About company inner items -->
+            <div class="about-company-inner">
+              <!-- Paragraph with icon -->
+              <span class="company-feature">
+                <i class="fa fa-trophy br-lblue"></i>
+                <b class="lblue">(*)</b> Awards
+              </span>
+            </div>
+          </div>
+          <div class="clearfix visible-xs"></div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <!-- About company inner items -->
+            <div class="about-company-inner">
+              <!-- Paragraph with icon -->
+              <span class="company-feature">
+                <i class="fa fa-users br-green"></i>
+                <b class="green">8</b> Masters
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <!-- About company inner items -->
+            <div class="about-company-inner">
+              <!-- Paragraph with icon -->
+              <span class="company-feature">
+                <i class="fa fa-shopping-cart br-purple"></i>
+                <b class="purple">98</b> Dishes
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
+    </div>
+  </div>
+</div>
+
+<% if @chefs.any? %>
+  <!-- Chefs Start -->
+  <div class="chefs padd">
+    <div class="container">
+      <!-- Default Heading -->
+      <div class="default-heading">
+        <!-- Crown image -->
+        <%= image_tag 'crown.png', class: 'img-responsive' %>
+        <!-- Heading -->
+        <h2>Our Masters</h2>
+        <!-- Paragraph -->
+        <p>
+          Our fantastic team will do the best for you. Making sure you feel home while enjoying and experimenting our delicious menu!!!
+        </p>
+      </div>
+      <div class="row">
+        <% @chefs.each do |chef| %>
+          <div class="col-md-4 col-sm-4">
+            <!-- Chef Member -->
+            <div class="chefs-member">
+              <!-- Chefs member header -->
+              <div class="chefs-head">
+                <!-- Member background image -->
+                <%= image_tag chef.background.url(:large), class: 'chefs-back img-responsive', alt: chef.name %>
+                <!-- chef member image -->
+                <%= image_tag chef.avatar.url(:large), class: 'chefs-img img-responsive', alt: chef.name %>
+              </div>
+              <!--Name / Heading -->
+              <h3> <%= chef.name %> </h3>
+              <!-- Member designation -->
+              <span> <%= chef.position %> </span>
+              <!-- Social media links -->
+              <div class="social">
+
+                <%= link_to chef.facebook, class:'facebook', target:'_blank' do %>
+                  <i class="fa fa-facebook"></i>
+                <% end unless chef.facebook.nil? %>
+
+                <%= link_to chef.plus, class:'google-plus', target:'_blank' do %>
+                  <i class="fa fa-google-plus"></i>
+                <% end unless chef.plus.nil? %>
+
+                <%= link_to chef.twitter, class:'twitter', target:'_blank' do %>
+                  <i class="fa fa-twitter"></i>
+                <% end unless chef.twitter.nil? %>
+
+                <%= link_to chef.pinterest, class:'pinterest', target:'_blank' do %>
+                  <i class="fa fa-pinterest"></i>
+                <% end unless chef.pinterest.nil? %>
+
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- Chefs End -->
+<% end %>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12" style="text-align:center; color: #9a9a9a">
+    ABN: 61 875 255 848
+  </div>
+</div>

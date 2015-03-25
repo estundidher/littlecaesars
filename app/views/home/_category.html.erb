@@ -1,0 +1,47 @@
+<div class="row">
+  <% category.products.shoppable.each do |product| %>
+    <div class="col-md-3 col-sm-6">
+      <div class="shopping-item"> <!-- Shopping items -->
+        <!-- Image -->
+        <%= link_to product_path(product), {title: product.describe} do %>
+          <%= image_tag product.photo.url(:large), class: 'img-responsive', alt: product.describe %>
+        <% end %>
+        <h4 class="pull-left"> <%= product.name %> </h4><!-- Shopping item name / Heading -->
+        <div class="clearfix"></div>
+        <!-- Paragraph -->
+        <p> <%= product.describe 30 %> </p>
+        <% if product.type.sizable? %>
+          <% product.prices.each do |price| %>
+            <%= render partial:'shopping_price', locals:{name:price.size.name, value:price.value} %>
+          <% end %>
+        <% else %>
+          <%= render partial:'shopping_price', locals:{name:'Price', value:product.price} %>
+        <% end %>
+        <!-- Buy now button -->
+        <div class="visible-xs">
+          <br>
+          <%= add_to_cart_button product %>
+        </div>
+        <!-- Shopping item hover block & link -->
+        <div class="item-hover br-red hidden-xs"></div>
+          <% if customer_signed_in? %>
+            <% if current_customer.cart.present? %>
+              <% if !current_customer.cart.pick_up_configurated? %>
+                <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                    pick_up_index_path, class:'link hidden-xs' %>
+              <% elsif product.type.additionable? %>
+                <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                    cart_path(product), class:'link hidden-xs' %>
+              <% else %>
+                <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                    cart_new_item_path(product), remote:true, class:'link hidden-xs add_to_cart' %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to t('links.add_to', model_name:Cart.model_name.human),
+                new_customer_registration_path, class:'link hidden-xs' %>
+          <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

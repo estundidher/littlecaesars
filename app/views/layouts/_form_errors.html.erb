@@ -1,0 +1,18 @@
+<% if model.errors.any? %>
+  <div class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>
+      <%= pluralize(model.errors.count, "error") %>
+      <% if defined?(message) and !message.nil? %>
+        <%= message %>
+      <% else %>
+        prohibited this <%= model.class.model_name.human %> from being saved:
+      <% end %>
+    </strong>
+    <ul>
+    <% model.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+default: &default
+  adapter: postgresql
+  reconnect: false
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+
+development:
+  <<: *default
+  database: caesars_development
+  username: caesars
+  password: caesars..
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  adapter: sqlite3
+  database: db/test.sqlite3
+
+# Do not keep production credentials in the repository,
+# instead read the configuration from the environment.
+#
+# Example:
+#   sqlite3://myuser:mypass@localhost/full/path/to/somedatabase
+#
+production:
+  <<: *default
+  #database: caesars_development
+  #username: caesars
+  #password: caesars..
+  #ec2-79-125-21-70.eu-west-1.compute.amazonaws.com
+  #database: d3u1kjamv0toqu
+  #user: yrfknokwpcdtru
+  #port: 5432
+  #Password: 6RvM5TF-OXhYCjRIbfxNMlg7de
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling

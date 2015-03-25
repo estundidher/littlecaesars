@@ -1,0 +1,44 @@
+<%= tb_breadcrumb link_to(Place.model_name.human.pluralize, admin_places_path), t('titles.show', model_name: Place.model_name.human) %>
+
+<% content_for :module, 'places' %>
+
+<p> <%= image_tag @place.photo.url(:medium) %> </p>
+
+<dl>
+  <dt><%= Place.human_attribute_name 'enabled' %></dt>
+  <dd><%= @place.enabled %></dd>
+  <dt><%= Place.human_attribute_name 'code' %></dt>
+  <dd><%= @place.code %></dd>
+  <dt><%= Place.human_attribute_name 'name' %></dt>
+  <dd><%= @place.name %></dd>
+  <dt><%= Place.human_attribute_name 'abn' %></dt>
+  <dd><%= @place.abn %></dd>
+  <dt><%= Place.human_attribute_name 'printer_ip' %></dt>
+  <dd><%= @place.printer_ip %></dd>
+  <dt><%= Place.human_attribute_name 'printer_name' %></dt>
+  <dd><%= @place.printer_name %></dd>
+  <dt><%= Place.human_attribute_name 'address' %></dt>
+  <dd><%= @place.address %></dd>
+  <dt><%= Place.human_attribute_name 'phone' %></dt>
+  <dd><%= @place.phone %></dd>
+  <dt><%= Place.human_attribute_name 'description' %></dt>
+  <dd><%= @place.description %></dd>
+  <% if @place.map? %>
+  <dt><%= Place.human_attribute_name 'map' %></dt>
+  <dd>
+    <iframe src="<%= @place.map %>"
+            width="400"
+            height="300"
+            frameborder="0"
+            style="border:0"></iframe>
+  </dd>
+  <% end %>
+</dl>
+
+<div class="form-group opening-hours" style="width: 400px;">
+  <%= label :opening_hours, Place.human_attribute_name('opening_hours') %>
+  <%= render partial:'/admin/opening_hours/list', locals:{place:@place} %>
+</div>
+
+<%= tb_button_edit edit_admin_place_path(@place) %>
+<%= tb_button_back admin_places_path %>

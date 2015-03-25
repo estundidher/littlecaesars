@@ -1,0 +1,39 @@
+<% content_for :banner, 'pick_up' %>
+<% content_for :page_title, 'Pick Up' %>
+
+<% content_for :breadcrumb do %>
+  <%= tb_breadcrumb 'Pick Up' %>
+<% end %>
+
+<center><h1>Choose your pick up store</h1></center>
+
+<!-- Shopping Start -->
+<div class="shopping">
+  <div class="container">
+    <!-- Shopping items content -->
+    <div class="shopping-content">
+      <div class="row">
+        <% Place.order(:name).each do |place| %>
+          <div class="col-md-3 col-sm-6">
+            <!-- Shopping items -->
+            <div class="shopping-item">
+              <!-- Image -->
+              <%= image_tag place.photo.url(:large), class: 'img-responsive' %>
+              <!-- Shopping item name / Heading -->
+              <h4 class="pull-left">
+                <a href="item-single.html">
+                  <%= place.name %>
+                </a>
+              </h4>
+              <div class="clearfix"></div>
+              <!-- Paragraph -->
+              <p><%= place.address %></p>
+              <div class="clearfix"></div>
+              <p><%= place.description %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div><!-- Shopping End -->

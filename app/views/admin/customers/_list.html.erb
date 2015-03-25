@@ -1,0 +1,13 @@
+<table class="table table-condensed table-bordered">
+  <thead>
+    <tr>
+      <th style="width:30px;"> # </th>
+      <th> <%= Customer.human_attribute_name 'name' %> </th>
+      <th> <%= Customer.human_attribute_name 'email' %> </th>
+      <th style="width:60px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @customers %>
+  </tbody>
+</table>

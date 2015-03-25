@@ -1,0 +1,29 @@
+<!-- Items table -->
+<table class="table table-condensed">
+  <tfoot>
+    <tr>
+      <th style="text-align: left;"> SUBTOTAL: </th>
+      <th> <%= number_to_currency @order.price %> </th>
+    </tr>
+    <tr>
+      <th style="text-align: left;"> TAX: </th>
+      <th> <%= number_to_currency @order.tax %> </th>
+    </tr>
+    <tr>
+      <th style="text-align: left;"> TOTAL: </th>
+      <th> <%= number_to_currency @order.price %> </th>
+    </tr>
+  </tfoot>
+  <tbody>
+    <% @order.items.each do |order_item| %>
+      <% cssClass = cycle('active', '') %>
+      <% if order_item.instance_of?(OrderItemSplittable) %>
+        <%= render 'orders/resume_detail', order_item:order_item, label:nil, cssClass:cssClass %>
+        <%= render 'orders/resume_detail', order_item:order_item.highest_half, label:'1/2', cssClass:cssClass %>
+        <%= render 'orders/resume_detail', order_item:order_item.lowest_half, label:'1/2', cssClass:cssClass %>
+      <% else %>
+        <%= render 'orders/resume_detail', order_item:order_item, label:nil, cssClass:cssClass %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

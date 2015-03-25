@@ -1,0 +1,13 @@
+defaults: &defaults
+  access_key_id: 'AKIAIMIAFYQRZWU46WPA'
+  secret_access_key: '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'
+  region: 'Sydney'
+development:
+  <<: *defaults
+  bucket: 'little-caesars-dev'
+test:
+  <<: *defaults
+  bucket: 'little-caesars-test'
+production:
+  <<: *defaults
+  bucket: 'little-caesars-prod'

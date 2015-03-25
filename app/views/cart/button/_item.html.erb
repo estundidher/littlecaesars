@@ -1,0 +1,24 @@
+<li>
+  <!-- Cart items for shopping list -->
+  <div class="cart-item cart-item-<%= cart_item.id %>" data-id="<%= cart_item.id %>">
+    <!-- Item remove icon -->
+    <%= link_to cart_remove_item_path(cart_item.id), remote:true, method: :delete, class:'remove' do %>
+      <i class="fa fa-times"></i>
+    <% end %>
+    <!-- Image -->
+    <%= image_tag cart_item.photo.url(:medium), class: 'img-responsive img-rounded' %>
+    <!-- Title for purchase item -->
+    <span class="cart-title">
+      <% if cart_item.instance_of?(CartItemSplittable) %>
+        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item.highest_half, label: '1/2', show_size:true} %>
+        <br>
+        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item.lowest_half, label: '1/2', show_size:false} %>
+      <% else %>
+        <%= render partial:'cart/button/detail', locals:{cart_item:cart_item, label: nil, show_size:true} %>
+      <% end %>
+    </span>
+    <!-- Cart item price -->
+    <span class="cart-price pull-right red"> <%= number_to_currency cart_item.total %> </span>
+    <div class="clearfix"></div>
+  </div>
+</li>
