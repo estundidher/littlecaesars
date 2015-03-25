@@ -1,5 +1,0 @@
-<span class="<%= 'topping' if type == 'additions' %>">
-  <% products.each do |product| %>
-    <%= render partial:'cart/tag', locals:{product:product, side:side, type:type, cart_item:cart_item} %>
-  <% end %>
-</span>

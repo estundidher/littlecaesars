@@ -1,1 +1,0 @@
-json.extract! @chef, :id, :name, :position, :facebook, :pinterest, :twitter, :plus, :created_at, :updated_at
