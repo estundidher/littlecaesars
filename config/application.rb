@@ -34,7 +34,7 @@ module Caesars
     end)
 
     #devise configuration for Heroku
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = false #The config.assets.initialize_on_precompile option has been removed is and not needed for Rails 4
     config.serve_static_assets = true
   end
 end
