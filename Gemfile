@@ -37,7 +37,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # S3 API
-gem 'aws-sdk'
+#gem 'aws-sdk' It will load the v2 which causes assets compilation issues. Added by Diego
+gem 'aws-sdk-v1'
 
 gem 'money-rails'
 
