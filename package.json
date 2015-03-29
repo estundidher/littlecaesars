@@ -14,11 +14,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/roalcantara/caesars/caesars.git"
+    "url": "https://github.com/estundidher/caesars.git"
   },
-  "author": "@roalcantara",
+  "author": "@estundidher",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/roalcantara/caesars/issues"
+    "url": "https://github.com/estundidher/caesars/issues"
   }
 }

@@ -1030,6 +1030,8 @@ h4.title {
     margin-bottom: 30px;
     padding-bottom: 1px;
     overflow: hidden;
+    text-align: center;
+    font-weight: bold;
 }
 
 .gallery-content .element .gallery-img-hover {
@@ -2317,8 +2319,18 @@ img.payment {
  CUSTOMIZATIONS *************************************************************************************************
 */
 
+.gallery-content .nav-pills > li[class=""] a, .shopping-content .nav-pills > li[class=""] a {
+  border-color: #f75353;
+}
+
+.gallery-content .nav-pills > li.active a, .shopping-content .nav-pills > li.active a {
+  border-color: #ff0000;
+}
+
 .gallery-content .nav-pills > li, .shopping-content .nav-pills > li {
   width: 14%;
+  text-align: center;
+  font-weight: bold;
 }
 
 .header .navbar-default .navbar-nav > li ul.dropdown-md.categories {

@@ -8,12 +8,12 @@ little:
   name: Little Caesar
   description: 8 slices/10 inch
   splittable: false
-  created_by: roalcantara
+  created_by: admin
   created_at: 2014-05-30
 
 big:
   name: Big Caesars
   description: 12 slices/13 inch
   splittable: true
-  created_by: roalcantara
+  created_by: admin
   created_at: 2014-05-30

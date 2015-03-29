@@ -9,7 +9,7 @@ pizza:
   sizable: true
   additionable: true
   shoppable: true
-  created_by: roalcantara
+  created_by: admin
   created_at: 2014-05-30
 
 ingredient:
@@ -17,5 +17,5 @@ ingredient:
   sizable: false
   additionable: false
   shoppable: false
-  created_by: roalcantara
+  created_by: admin
   created_at: 2014-05-30

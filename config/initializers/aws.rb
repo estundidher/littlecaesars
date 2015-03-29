@@ -1,4 +1,5 @@
-#require 'aws-sdk' It will load the v2 which causes assets compilation issues. Added by Diego
+#require 'aws-sdk' It will load the v2 which causes assets compilation issues.
+# Added by Diego
 require 'aws-sdk-v1'
 
 # Rails.configuration.aws is used by AWS, Paperclip, and S3DirectUpload

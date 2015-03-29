@@ -23,26 +23,31 @@
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <% @categories.each_with_index do |category, index| %>
-          <div class="tab-pane fade<%= ' in active' if is_tab_active(category, params[:active], index) %>"
-            id="<%= category.to_param %>">
+        <% @categories.each_with_index do |category, categoryIndex| %>
+          <div class="tab-pane fade<%= ' in active' if is_tab_active(category, params[:active], categoryIndex) %>" id="<%= category.to_param %>">
             <br>
             <div class="row">
-              <% category.products.shoppable.each do |product| %>
+              <% category.products.shoppable.each_with_index do |product, productIndex| %>
                 <div class="col-md-3 col-sm-4">
                   <!-- Separate gallery element -->
                   <div class="element">
                     <%= product.name %>
+                    
                     <!-- Image -->
-                    <%= image_tag product.photo.url(:medium),
-                        class: 'img-responsive img-thumbnail', alt:product.name %>
+                    <%= image_tag product.photo.url(:medium), class: 'img-responsive img-thumbnail', alt:product.name %>
+                    
                     <!-- Gallery Image Hover Effect -->
                     <span class="gallery-img-hover"></span>
+                    
                     <!-- Gallery Image Hover Icon -->
-                    <a href="JavaScript:void(0);"
+                    <a id="category<%= category.id %>product<%= product.id %>"
+                      href="JavaScript:void(0);"
+                      data-category="<%= category.id %>"
+                      data-product-index="<%= productIndex %>"
                       data-title="<%= product.name %>"
                       data-description="<%= product.describe %>"
                       data-url="<%= product.photo.url %>">
+                      
                       <i class="fa fa-search-plus hover-icon icon-left unique"></i>
                     </a>
                   </div>

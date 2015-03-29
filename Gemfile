@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # S3 API
+# Added by Diego
 #gem 'aws-sdk' It will load the v2 which causes assets compilation issues. Added by Diego
 gem 'aws-sdk-v1'
 
@@ -53,6 +54,10 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'capybara', '~> 2.4.1'
   gem 'pry-rails'
+  
+  # Added by Diego
+  gem 'tzinfo-data'
+  gem 'debugger'
 end
 
 group :development do
@@ -76,7 +81,6 @@ gem 'dalli', '~> 2.7.1'
 
 gem 'sprockets', '2.11.0'
 
+# Added by Diego
 ruby '2.1.2'
-
-# gem 'tzinfo-data'
-# gem 'debugger'
+#ruby '2.0.0'
