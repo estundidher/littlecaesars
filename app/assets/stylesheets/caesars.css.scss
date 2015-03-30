@@ -1934,7 +1934,7 @@ $banner_url: 'https://little-caesars-prod.s3.amazonaws.com/assets/banner/';
  */
 
 .footer { background: #fff; border-top: 1px solid #eaeaea; margin-top:20px;}
-.footer .footer-widget { margin-bottom: 40px;}
+.footer .footer-widget { margin-bottom: 5px;}
 .footer .footer-widget .logo{ margin-top: 0; margin-bottom: 10px; }
 .footer .footer-widget .logo img{ max-width: 40px; }
 .footer .footer-widget .logo h1{ top: 10px; font-size: 30px; }
@@ -1998,11 +1998,14 @@ img.payment {
     color: #9a9a9a;
 }
 
-.footer .footer-widget .social { margin-top: 10px; }
+.footer .footer-widget .social { 
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .footer .footer-widget .social a i {
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
     margin: 0;
     margin-right: 2px;
     font-size: 14px;
@@ -2026,7 +2029,7 @@ img.payment {
 }
 
 .footer .footer-copyright p {
-    padding-top: 40px;
+    padding-top: 20px;
     font-size: 13px;
     color: #9a9a9a;
     text-align: center;
@@ -2065,9 +2068,6 @@ img.payment {
 /*
  * Desktop
  */
-@media (max-width: 1200px){
-}
-
 @media (max-width: 991px){
     .header .navbar-default .navbar-nav > li ul.dropdown-md { width: 450px; }
     .testimonial h3 { text-align: center; }
@@ -2077,9 +2077,9 @@ img.payment {
         margin: 0 auto;
         margin-top: 30px;
     }
+    
     .testimonial .flexslider-testimonial { margin-bottom: 50px; }
     .testimonial .flexslider-recent  { margin-bottom: 80px; }
-
 
     .pricing .pricing-item img{
         max-width: 100%;
@@ -2287,13 +2287,21 @@ img.payment {
       padding-bottom: 0px;
     }
     
-    .navbar-nav {
+    .header .header-top .navbar-nav {
       margin: 0px;
       text-align: center;
     }
     
-    .nav li {
+    .header .header-top .nav li {
       display: inline-block;
+    }
+    
+    .padd {
+      padding: 5px 0;
+    }
+    
+    .footer .footer-widget {
+      margin-bottom: 5px;
     }
     
     .footer .footer-copyright .terms {
@@ -2301,6 +2309,19 @@ img.payment {
       text-align: center;
     }
     
+    .footer .footer-widget .social { 
+      text-align: center;
+    }
+  
+    .envelope {
+      float: right;
+      margin-right: 10px;
+    }
+    
+    .footer .footer-copyright p {
+      padding-top: 5px;
+    }
+
     .tp-banner .tp-caption span.price-tag{
         padding-top: 9px !important;
         width: 50px !important;
@@ -2371,6 +2392,10 @@ img.payment {
     left: -500px !important;
     right: 0;
   }
+  
+  div.container div.row .col-sm-6 {
+    width: 28%;
+  }
 }
 
 .messages {
@@ -2421,4 +2446,4 @@ img.payment {
   list-style: none;
   padding-left: 0px;
   margin-bottom: 0px
-}
+}  

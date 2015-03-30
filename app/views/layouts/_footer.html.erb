@@ -11,13 +11,13 @@
           <i class="fa fa-map-marker br-red"></i>
           
 		  <% if place.code == "H" %>
-		  	<span style="width: 150px;"><a href="https://goo.gl/maps/KSvd3"><%= place.address %></a></span>
+		  	<span style="width: 250px;"><a href="https://goo.gl/maps/KSvd3"><%= place.address %></a></span>
 		  <% end %>
 		  <% if place.code == "L" %>
-		  	<span style="width: 150px;"><a href="https://goo.gl/maps/eR8qi"><%= place.address %></a></span>
+		  	<span style="width: 250px;"><a href="https://goo.gl/maps/eR8qi"><%= place.address %></a></span>
 		  <% end %>
 		  <% if place.code != "H" && place.code != "L" %>
-		  	<span style="width: 150px;"><%= place.address %></span>
+		  	<span style="width: 250px;"><%= place.address %></span>
 		  <% end %>
 		  
           <div class="clearfix"></div>
@@ -33,16 +33,13 @@
     <div class="footer-widget">
       <!-- Heading -->
       <h4>Contact Us</h4>
-      <div class="contact-details">
-        <!-- Email / Icon -->
-        <i class="fa fa-envelope-o br-lblue"></i> <span><a href="mailto:info@littlecs.com?subject=Info Little Caesars&body=Dear Little Caesars,">info@littlecs.com</a></span>
-        <div class="clearfix"></div>
-      </div>
       <!-- Social media icon -->
       <div class="social">
         <a href="https://www.facebook.com/pages/Little-Caesars-Pizzeria-Perth-WA/140628759285387" class="facebook"><i class="fa fa-facebook"></i></a>
         <a href="https://plus.google.com/107666662353798158669/about" class="google-plus"><i class="fa fa-google-plus"></i></a>
         <a href="https://twitter.com/theoandco" class="twitter"><i class="fa fa-twitter"></i></a>
+        
+        <a href="mailto:info@littlecs.com?subject=Info Little Caesars&body=Dear Little Caesars," class="envelope"><i class="fa fa-envelope-o br-lblue"></i>info@littlecs.com</a>
       </div>
     </div> <!--/ Footer widget end -->
   </div>
