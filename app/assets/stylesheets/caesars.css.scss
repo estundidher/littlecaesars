@@ -2277,16 +2277,29 @@ img.payment {
  * ---------------
  * Mobile phones
  */
-@media (max-width: 480px){
+@media (max-width: 480px) {
     .header .logo {
         max-width: 300px;
+    }
+    
+    .header .header-top {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+    
+    .navbar-nav {
+      margin: 0px;
+      text-align: center;
+    }
+    
+    .nav li {
+      display: inline-block;
     }
     
     .footer .footer-copyright .terms {
       float: none;
       text-align: center;
     }
-
     
     .tp-banner .tp-caption span.price-tag{
         padding-top: 9px !important;
