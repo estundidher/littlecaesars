@@ -9,10 +9,10 @@
         <div class="contact-details">
           <!-- Address / Icon -->
           <i class="fa fa-map-marker br-red"></i>
-          <span style="width: 150px;"> <%= place.address %> </span>
+          <span style="width: 150px;"><a href="<%= place.map %>"><%= place.address %></a></span>
           <div class="clearfix"></div>
           <!-- Contact Number / Icon -->
-          <i class="fa fa-phone br-green"></i> <span><%= place.phone %></span>
+          <i class="fa fa-phone br-green"></i> <span><a href="tel:<%= place.phone %>"><%= place.phone %></a></span>
         </div>
       </div> <!--/ Footer widget end -->
     </div>

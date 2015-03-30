@@ -82,5 +82,5 @@ gem 'dalli', '~> 2.7.1'
 gem 'sprockets', '2.11.0'
 
 # Added by Diego
-ruby '2.1.2'
-#ruby '2.0.0'
+#ruby '2.1.2'
+ruby '2.0.0'
