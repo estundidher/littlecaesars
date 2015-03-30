@@ -9,7 +9,17 @@
         <div class="contact-details">
           <!-- Address / Icon -->
           <i class="fa fa-map-marker br-red"></i>
-          <span style="width: 150px;"><a href="<%= place.map %>"><%= place.address %></a></span>
+          
+		  <% if place.code == "H" %>
+		  	<span style="width: 150px;"><a href="https://goo.gl/maps/KSvd3"><%= place.address %></a></span>
+		  <% end %>
+		  <% if place.code == "L" %>
+		  	<span style="width: 150px;"><a href="https://goo.gl/maps/eR8qi"><%= place.address %></a></span>
+		  <% end %>
+		  <% if place.code != "H" && place.code != "L" %>
+		  	<span style="width: 150px;"><%= place.address %></span>
+		  <% end %>
+		  
           <div class="clearfix"></div>
           <!-- Contact Number / Icon -->
           <i class="fa fa-phone br-green"></i> <span><a href="tel:<%= place.phone %>"><%= place.phone %></a></span>
