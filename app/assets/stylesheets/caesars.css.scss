@@ -339,7 +339,7 @@ h4.title {
 .header .navbar-default .navbar-toggle{
     margin-top: 0px;
     margin-bottom: 20px;
-    margin-right: 15px;
+    margin-right: 30px;
     border-radius: 3px;
 }
 
@@ -570,7 +570,7 @@ h4.title {
  * Default Heading
  */
 
-.default-heading { margin-bottom: 40px; text-align: center; }
+.default-heading { text-align: center; }
 
 .default-heading img { margin: 0 auto; margin-bottom: 12px; }
 
@@ -1147,7 +1147,7 @@ $banner_url: 'https://little-caesars-prod.s3.amazonaws.com/assets/banner/';
  * About Us
  */
 
- .inner-page .chefs{ border-top: 0; }
+.inner-page .chefs{ border-top: 0; }
 
 .about-company .about-company-item h3{
     margin: 0;
@@ -1156,7 +1156,6 @@ $banner_url: 'https://little-caesars-prod.s3.amazonaws.com/assets/banner/';
 }
 
 .about-company .about-company-item {
-    max-width: 600px;
     margin: 0 auto;
     margin-top: 30px;
 }
@@ -1168,7 +1167,10 @@ $banner_url: 'https://little-caesars-prod.s3.amazonaws.com/assets/banner/';
     color: #9a9a9a;
 }
 
-.about-company .about-company-item .about-company-inner { margin: 10px 0; }
+.about-company .about-company-item .about-company-inner { 
+  margin: 10px 0;
+  width: 220px;
+}
 .about-company .about-company-inner span.company-feature {
     font-size: 25px;
     line-height: 35px;
@@ -2068,6 +2070,10 @@ img.payment {
 /*
  * Desktop
  */
+@media (max-width: 1200px){
+
+}
+
 @media (max-width: 991px){
     .header .navbar-default .navbar-nav > li ul.dropdown-md { width: 450px; }
     .testimonial h3 { text-align: center; }
@@ -2124,16 +2130,47 @@ img.payment {
     .inner-page .blog .sidebar-widget{ margin-top: 30px; margin-bottom: 0; }
 }
 
+@media (min-width: 992px){
+  .about-company .about-company-item .about-company-inner {
+    float: right;
+  }
+}
+
 /*
  * Tablets
  */
 @media (max-width: 767px){
-    .header .logo {
-        max-width: 260px;
-        margin: 0 auto;
-        margin-top: 20px;
+  
+    .header .navbar-default .navbar-toggle{
+        float: left;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        margin-left: 5px;
+        border-radius: 3px;
+        margin-top: -162px;
     }
-
+    .header .navbar {
+      min-height: 5px;
+    }
+    .header .logo {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .header .header-top {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+    
+    .header .header-top .navbar-nav {
+      margin: 0px;
+      text-align: center;
+    }
+    
+    .header .header-top .nav li {
+      display: inline-block;
+    }
+    
     .header .logo h1 { font-size: 35px; }
     .header .logo p { font-size: 13px; }
     .header .navbar-default .navbar-nav { margin-top: 8px; }
@@ -2262,38 +2299,20 @@ img.payment {
     }
 
     /*
+     * About page
+     */
+    .about-iframe {
+        width: 100%;
+        height: 180px;
+    }
+    
+    /*
      * footer
      */
-
     .footer .footer-widget{
         max-width: 400px;
         margin: 0 auto;
         margin-bottom: 40px;
-    }
-}
-
-/*
- * Responsive CSS
- * ---------------
- * Mobile phones
- */
-@media (max-width: 480px) {
-    .header .logo {
-        max-width: 300px;
-    }
-    
-    .header .header-top {
-      padding-top: 0px;
-      padding-bottom: 0px;
-    }
-    
-    .header .header-top .navbar-nav {
-      margin: 0px;
-      text-align: center;
-    }
-    
-    .header .header-top .nav li {
-      display: inline-block;
     }
     
     .padd {
@@ -2321,7 +2340,14 @@ img.payment {
     .footer .footer-copyright p {
       padding-top: 5px;
     }
+}
 
+/*
+ * Responsive CSS
+ * ---------------
+ * Mobile phones
+ */
+@media (max-width: 480px) {
     .tp-banner .tp-caption span.price-tag{
         padding-top: 9px !important;
         width: 50px !important;
@@ -2393,7 +2419,7 @@ img.payment {
     right: 0;
   }
   
-  div.container div.row .col-sm-6 {
+  div.footer div.container div.row .col-sm-6 {
     width: 28%;
   }
 }
