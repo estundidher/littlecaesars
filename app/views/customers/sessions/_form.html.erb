@@ -1,5 +1,5 @@
 <%= form_for resource, as: resource_name, url: session_path(resource_name),
-    html: {role: 'form', class: 'form-horizontal', style: 'width:500px;'} do |f| %>
+    html: {role: 'form', class: 'form-horizontal'} do |f| %>
 
   <div class="form-group">
     <%= f.label :email, class:'col-md-2 control-label' %>
@@ -20,21 +20,19 @@
 
   <div class="row">
     <div class="col-md-6 col-md-6">
-      <div class="checkbox>">
+      <div id="rememberMeDiv" class="checkbox">
         <%= f.label :remember_me do %>
           <%= f.check_box :remember_me %> <%= f.label :remember_me %>
         <% end %>
+        <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+			<%= link_to "Forgot password?", new_password_path(resource_name) %><br />      		
+		<% end %>
       </div>
-    </div>
-    <div>
-      <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-        <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-      <% end %>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="col-md-offset-2 col-md-8">
+    <div class="col-md-offset-2 col-md-8 sign-in-buttons">
       <%= f.submit "Sign in", class: 'btn btn-danger btn-sm' %>
       <%= tb_button_back root_path %>
     </div>

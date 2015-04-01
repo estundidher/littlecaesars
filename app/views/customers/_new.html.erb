@@ -1,4 +1,4 @@
-<div class="container padd">
+<div class="sign-in container padd">
   <%= render partial: 'layouts/flash_messages', flash: flash %>
   <%= tb_show_errors_for @customer %>
   <div class="row">
@@ -6,7 +6,7 @@
       <h4 class="title">Sign In</h4>
       <%= render '/customers/sessions/form' %>
     </div>
-    <div class="col-md-6 col-sm-6">
+    <div id="customerSignUpDiv" class="col-md-6 col-sm-6">
       <h4 class="title">Sign Up</h4>
       <%= render '/customers/registrations/form' %>
     </div>

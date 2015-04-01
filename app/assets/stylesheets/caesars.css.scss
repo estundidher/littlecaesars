@@ -1541,8 +1541,9 @@ $banner_url: 'https://little-caesars-prod.s3.amazonaws.com/assets/banner/';
  * Contact Us Page
  */
 
-.inner-page .contactus { margin-top: 40px; margin-bottom: 40px; }
-.inner-page .contactus .contact-details { margin-bottom: 30px; }
+.inner-page .contactus .contact-details { 
+  margin-bottom: 30px; 
+}
 .inner-page .contactus .contact-details h4 {
     margin-top: 0;
     margin-bottom: 5px;
@@ -1574,21 +1575,25 @@ $banner_url: 'https://little-caesars-prod.s3.amazonaws.com/assets/banner/';
     color: #9a9a9a;
 }
 
-.inner-page .contactus .contact-form {
+.inner-page .contactus .contact-form,
+.inner-page .sign-in,
+.inner-page .forgot-password {
     padding: 15px;
     background: #fff;
     border: 1px solid #eee;
     border-radius: 4px;
 }
 
-.inner-page .contactus .contact-form h3{
+.inner-page .contactus .contact-form h3 {
     margin-top: 0;
     padding-bottom: 6px;
     font-size: 20px;
     border-bottom: 4px double #eee;
 }
 
-.inner-page .contactus .contact-form .form-group { margin-top: 15px; }
+.inner-page .contactus .contact-form .form-group { 
+  margin-top: 15px; 
+}
 .inner-page .contactus .map-container {
     height: 400px;
     border: 3px solid #fff;
@@ -2206,6 +2211,38 @@ img.payment {
         text-align: center;
     }
 
+    /*
+    #customerSignUpDiv {
+          display: none;
+        }*/
+    
+    .sign-in-buttons, .sign-up-buttons {
+      padding: 10px;
+    }
+  
+    #forgotPasswordDiv {
+      min-height: 27px;
+      padding-top: 7px;
+      float: right;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-right: 20px;
+    }
+    
+    #rememberMeDiv a {
+      margin-left: 40px;
+    }
+    
+    .inner-page .sign-in h4.title {
+        margin-bottom: 0px;
+    }
+
+    #dynamic_recaptcha {
+      margin-left: 10px;
+      margin-bottom: 15px;
+      margin-top: -4px;
+      transform: scale(1.08);
+    }
 
     .tp-banner .tp-caption span.price-tag{
         width: 70px;
@@ -2255,10 +2292,17 @@ img.payment {
     .inner-page .single-item { max-width: 400px; margin: 0 auto; }
     .inner-page .single-item h3 { margin-top: 10px; }
     .inner-page .single-item .table-responsive { margin-top: 15px !important; }
-    .inner-page .contactus { max-width: 400px; margin: 0 auto; }
-    .inner-page .checkout { max-width: 400px; margin: 0 auto; }
-    .inner-page .checkout .sidebar-item { margin-top: 30px; margin-bottom: 0;}
-    .inner-page .blog { margin-bottom: 0;}
+    .inner-page .checkout { 
+      max-width: 400px; 
+      margin: 0 auto; 
+     }
+    .inner-page .checkout .sidebar-item { 
+      margin-top: 30px; 
+      margin-bottom: 0;
+     }
+    .inner-page .blog { 
+      margin-bottom: 0;
+     }
     .inner-page .blog .blog-post,
     .inner-page .blog .blog-sidebar { max-width: 400px; margin: 0 auto; }
     .inner-page .blog .blog-post .entry .blog-img{
@@ -2342,6 +2386,16 @@ img.payment {
     }
 }
 
+@media (max-width: 767px) and (orientation:landscape) {
+  #rememberMeDiv {
+      text-align: center;
+  }
+  #rememberMeDiv input[type='checkbox'] {
+    float: right;
+    position: absolute;
+  }
+}
+
 /*
  * Responsive CSS
  * ---------------
@@ -2362,6 +2416,31 @@ img.payment {
         font-size: 10px;
     }
 
+    #dynamic_recaptcha {
+      transform: scale(0.84);
+      margin-left: -28px;
+      margin-top: -18px;
+      margin-bottom: -2px;
+    }
+    #rememberMeDiv {
+      float: left;
+    }
+    #rememberMeDiv a {
+      margin-left: 24px;
+    }
+    #forgotPasswordDiv {
+      min-height: 27px;
+      padding-top: 7px;
+      float: right;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-right: 20px;
+    }
+    .inner-page .sign-in .form-group { 
+      margin-top: 0px; 
+      margin-bottom: 0px;
+    }
+
     .main-content{ max-width: 350px; margin: 0 auto; }
     .testimonial .flexslider-recent p { display: none;}
 
@@ -2371,6 +2450,12 @@ img.payment {
         height: 30px;
         line-height: 30px;
         font-size: 13px;
+    }
+    
+    .inner-page .sign-in,
+    .inner-page .forgot-password {
+        margin-left: 20px;
+        width: 280px;
     }
 
     .inner-page .booking h3 { font-size: 25px; }
@@ -2421,6 +2506,20 @@ img.payment {
   
   div.footer div.container div.row .col-sm-6 {
     width: 28%;
+  }
+  
+  #rememberMeDiv {
+    margin-left: 100px;
+    width: 100%;
+  }
+  #rememberMeDiv a {
+    margin-left: 134px;
+  }
+  .sign-in-buttons {
+    margin-top: 10px;
+  }
+  .inner-page .sign-in .col-md-6 .col-md-6 {
+    width: 100%;
   }
 }
 
