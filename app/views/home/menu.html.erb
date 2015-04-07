@@ -31,25 +31,28 @@
                 <div class="col-md-3 col-sm-4">
                   <!-- Separate gallery element -->
                   <div class="element">
-                    <%= product.name %>
-                    
-                    <!-- Image -->
-                    <%= image_tag product.photo.url(:medium), class: 'img-responsive img-thumbnail', alt:product.name %>
-                    
-                    <!-- Gallery Image Hover Effect -->
-                    <span class="gallery-img-hover"></span>
-                    
-                    <!-- Gallery Image Hover Icon -->
-                    <a id="category<%= category.id %>product<%= product.id %>"
-                      href="JavaScript:void(0);"
-                      data-category="<%= category.id %>"
-                      data-product-index="<%= productIndex %>"
-                      data-title="<%= product.name %>"
-                      data-description="<%= product.describe %>"
-                      data-url="<%= product.photo.url %>">
-                      
-                      <i class="fa fa-search-plus hover-icon icon-left unique"></i>
-                    </a>
+                  	<span id="productNameSpan">
+						<%= product.name %>                  		
+                  	</span>
+                    <span id="productImageSpan">
+	                    <!-- Image -->
+	                    <%= image_tag product.photo.url(:medium), class: 'img-responsive img-thumbnail', alt:product.name %>
+	                    
+	                    <!-- Gallery Image Hover Effect -->
+	                    <span class="gallery-img-hover"></span>
+	                    
+	                    <!-- Gallery Image Hover Icon -->
+	                    <a id="category<%= category.id %>product<%= product.id %>"
+	                      href="JavaScript:void(0);"
+	                      data-category="<%= category.id %>"
+	                      data-product-index="<%= productIndex %>"
+	                      data-title="<%= product.name %>"
+	                      data-description="<%= product.describe %>"
+	                      data-url="<%= product.photo.url %>">
+	                      
+	                      <i class="fa fa-search-plus hover-icon icon-left unique"></i>
+	                    </a>
+					</span>
                   </div>
                 </div>
               <% end %>
