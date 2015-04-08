@@ -1,6 +1,6 @@
 defaults: &defaults
-  access_key_id: 'AKIAIMIAFYQRZWU46WPA'
-  secret_access_key: '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'
+  access_key_id: 'AKIAII3PGZXSFC3Q2S7Q'
+  secret_access_key: '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'
   region: 'Sydney'
 development:
   <<: *defaults
