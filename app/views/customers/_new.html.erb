@@ -3,18 +3,14 @@
   <%= tb_show_errors_for @customer %>
   <div class="row">
   	
-  	<% if controller_name == 'sessions' %>
-	    <div class="col-md-6 col-sm-6">
-	      <h4 class="title">Sign In</h4>
-	      <%= render '/customers/sessions/form' %>
-	    </div>
-    <% end %>
-    
-    <% if controller_name == 'registrations' %>
-	    <div id="customerSignUpDiv" class="col-md-6 col-sm-6">
-	      <h4 class="title">Sign Up</h4>
-	      <%= render '/customers/registrations/form' %>
-	    </div>
-	<% end %>
+    <div id="signInDiv" class="col-md-6 col-sm-6" style="display:<%= ' none' if controller_name != 'sessions' %>">
+      <h4 class="title">Sign In</h4>
+      <%= render '/customers/sessions/form' %>
+    </div>
+
+    <div id="customerSignUpDiv" class="col-md-6 col-sm-6" style="display:<%= ' none' if controller_name != 'registrations' %>">
+      <h4 class="title">Sign Up</h4>
+      <%= render '/customers/registrations/form' %>
+    </div>
   </div>
 </div>
