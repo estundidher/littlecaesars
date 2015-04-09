@@ -2082,72 +2082,82 @@ img.payment {
 }
 
 /*
- * Desktop
- */
-@media (max-width: 1200px){
+ CUSTOMIZATIONS *************************************************************************************************
+*/
 
+.gallery-content .nav-pills > li[class=""] a, .shopping-content .nav-pills > li[class=""] a {
+  border-color: #f75353;
 }
 
-@media (max-width: 991px){
-    .header .navbar-default .navbar-nav > li ul.dropdown-md { width: 450px; }
-    .testimonial h3 { text-align: center; }
-    .testimonial .flexslider-testimonial,
-    .testimonial .flexslider-recent {
-        max-width: 600px;
-        margin: 0 auto;
-        margin-top: 30px;
-    }
-    
-    .testimonial .flexslider-testimonial { margin-bottom: 50px; }
-    .testimonial .flexslider-recent  { margin-bottom: 80px; }
-
-    .pricing .pricing-item img{
-        max-width: 100%;
-        float: none;
-    }
-
-    .pricing .pricing-item .pricing-item-details {
-        margin-left: 0px;
-        margin-top: 15px;
-        text-align: center;
-    }
-
-    .pricing .pricing-item .pricing-item-details a.view-link{ margin-right: 7px; }
-    .pricing .pricing-item .pricing-item-details a.btn{
-        float: none !important;
-    }
-
-    .showcase .showcase-item { padding: 20px; }
-    .showcase .showcase-item img {
-        position: relative;
-        top: -40px;
-        margin: 0 auto;
-    }
-
-    .showcase .showcase-item h3, .showcase .showcase-item p {
-        position: relative;
-        top: -13px;
-        margin: 0;
-    }
-
-    .showcase .showcase-item h3{ margin-bottom: 10px; padding: 0; text-align: center; }
-    .showcase .showcase-item p { padding: 0; text-align: center; }
-
-    .inner-page .booking .booking-form { margin-top: 40px; }
-    .inner-page .recipe .recipe-content{ padding-bottom: 15px; }
-    .inner-page .recipe .recipe-item{ margin-bottom: 15px; }
-    .inner-page .single-item .table-responsive { margin-top: 10px; }
-    .inner-page .contactus .map-container { margin-top: 30px; }
-    .inner-page .checkout form label { margin-bottom: 7px; }
-    .inner-page .checkout form .form-group { margin-bottom: 7px; }
-    .inner-page .checkout form button{ margin-top: 7px; }
-    .inner-page .blog .sidebar-widget{ margin-top: 30px; margin-bottom: 0; }
+.gallery-content .nav-pills > li.active a, .shopping-content .nav-pills > li.active a {
+  border-color: #ff0000;
 }
 
-@media (min-width: 992px){
-  .about-company .about-company-item .about-company-inner {
-    float: right;
-  }
+.header .navbar-default .navbar-nav > li ul.dropdown-md.categories {
+  width: 815px !important;
+  padding-right: 0px;
+}
+
+.dropdown-menu.categories:after,
+.dropdown-menu.categories:before {
+  left: 540px;
+}
+
+.messages {
+  padding-top: 20px;
+}
+
+.pick-up .carousel-indicators li {
+  border: 1px solid #d43f3a;
+  cursor: auto !important;
+}
+
+.pick-up .carousel-indicators .active {
+  background-color: #d43f3a;
+}
+
+.modal.term h4 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.modal.term p {
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.inner-page .checkout .checkout-form {
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.inner-page .checkout .checkout-form h3 {
+    margin-top: 0;
+    padding-bottom: 6px;
+    font-size: 20px;
+    border-bottom: 4px double #eee;
+}
+
+.inner-page .checkout .checkout-form h3 .alert {
+    margin-bottom: 0px;
+}
+
+.inner-page .checkout .checkout .form-group { margin-top: 15px; }
+
+.simple-list {
+  list-style: none;
+  padding-left: 0px;
+  margin-bottom: 0px
+}
+#productNameSpan {
+  width: 100%;
+  display: inline-block;
+  min-height: 36px;
+}
+div.footer div.container div.row .placeAddress {
+  width: 82%;
 }
 
 /*
@@ -2524,26 +2534,70 @@ img.payment {
   }
 }
 
+@media (min-width: 480px) and (max-width: 767px) {
+  .chefs .col-md-4 {
+    width: 50%;
+    float: left;
+  }
+}
+
 /*
- CUSTOMIZATIONS *************************************************************************************************
-*/
+ * Desktop
+ */
+@media (max-width: 991px){
+    .header .navbar-default .navbar-nav > li ul.dropdown-md { width: 450px; }
+    .testimonial h3 { text-align: center; }
+    .testimonial .flexslider-testimonial,
+    .testimonial .flexslider-recent {
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+    
+    .testimonial .flexslider-testimonial { margin-bottom: 50px; }
+    .testimonial .flexslider-recent  { margin-bottom: 80px; }
 
-.gallery-content .nav-pills > li[class=""] a, .shopping-content .nav-pills > li[class=""] a {
-  border-color: #f75353;
-}
+    .pricing .pricing-item img{
+        max-width: 100%;
+        float: none;
+    }
 
-.gallery-content .nav-pills > li.active a, .shopping-content .nav-pills > li.active a {
-  border-color: #ff0000;
-}
+    .pricing .pricing-item .pricing-item-details {
+        margin-left: 0px;
+        margin-top: 15px;
+        text-align: center;
+    }
 
-.header .navbar-default .navbar-nav > li ul.dropdown-md.categories {
-  width: 815px !important;
-  padding-right: 0px;
-}
+    .pricing .pricing-item .pricing-item-details a.view-link{ margin-right: 7px; }
+    .pricing .pricing-item .pricing-item-details a.btn{
+        float: none !important;
+    }
 
-.dropdown-menu.categories:after,
-.dropdown-menu.categories:before {
-  left: 540px;
+    .showcase .showcase-item { padding: 20px; }
+    .showcase .showcase-item img {
+        position: relative;
+        top: -40px;
+        margin: 0 auto;
+    }
+
+    .showcase .showcase-item h3, .showcase .showcase-item p {
+        position: relative;
+        top: -13px;
+        margin: 0;
+    }
+
+    .showcase .showcase-item h3{ margin-bottom: 10px; padding: 0; text-align: center; }
+    .showcase .showcase-item p { padding: 0; text-align: center; }
+
+    .inner-page .booking .booking-form { margin-top: 40px; }
+    .inner-page .recipe .recipe-content{ padding-bottom: 15px; }
+    .inner-page .recipe .recipe-item{ margin-bottom: 15px; }
+    .inner-page .single-item .table-responsive { margin-top: 10px; }
+    .inner-page .contactus .map-container { margin-top: 30px; }
+    .inner-page .checkout form label { margin-bottom: 7px; }
+    .inner-page .checkout form .form-group { margin-bottom: 7px; }
+    .inner-page .checkout form button{ margin-top: 7px; }
+    .inner-page .blog .sidebar-widget{ margin-top: 30px; margin-bottom: 0; }
 }
 
 @media (min-width: 768px) {
@@ -2552,10 +2606,15 @@ img.payment {
     right: 0;
   }
   div.footer div.container div.row .col-sm-6 {
-    width: 28%;
+    width: 33%;
   }
+  
+  div.footer div.container div.row div.social a.envelope span.envelopeEmail {
+    float: right;
+    position: absolute;
+  }
+  
   #rememberMeDiv {
-    margin-left: 100px;
     width: 100%;
   }
   #rememberMeDiv a {
@@ -2567,59 +2626,50 @@ img.payment {
   .inner-page .sign-in .col-md-6 .col-md-6 {
     width: 100%;
   }
+  .about-company .about-company-item .about-company-inner {
+    float: right;
+  }
+  .about-company .about-company-item .col-sm-6 {
+    width: 45%;
+  }
 }
 
-.messages {
-  padding-top: 20px;
+@media (min-width: 768px) and (max-width: 820px) {
+  .header .navbar-default .navbar-nav > li > a {
+    padding: 10px 8px;
+  }
 }
 
-.pick-up .carousel-indicators li {
-  border: 1px solid #d43f3a;
-  cursor: auto !important;
+@media (min-width: 768px) and (max-width: 991px) {
+  .header .container {
+    width: 100%;
+  }
 }
 
-.pick-up .carousel-indicators .active {
-  background-color: #d43f3a;
+@media (min-width: 768px) and (max-width: 1199px) {
+  .about-iframe {
+    width: 50em;
+    height: 220px;
+  }
 }
 
-
-.modal.term h4 {
-  font-size: 15px;
-  font-weight: bold;
+@media (min-width: 992px) and (max-width: 1199px) {
+  .about-company .about-company-item .col-sm-6 {
+    width: 50%;
+  }
 }
 
-.modal.term p {
-  margin-bottom: 10px;
-  font-size: 12px;
+@media (min-width: 992px) {
+  #rememberMeDiv {
+    margin-left: 80px;
+  }
 }
 
-.inner-page .checkout .checkout-form {
-    padding: 15px;
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 4px;
+@media (max-width: 1200px){
 }
 
-.inner-page .checkout .checkout-form h3 {
-    margin-top: 0;
-    padding-bottom: 6px;
-    font-size: 20px;
-    border-bottom: 4px double #eee;
-}
-
-.inner-page .checkout .checkout-form h3 .alert {
-    margin-bottom: 0px;
-}
-
-.inner-page .checkout .checkout .form-group { margin-top: 15px; }
-
-.simple-list {
-  list-style: none;
-  padding-left: 0px;
-  margin-bottom: 0px
-}
-#productNameSpan {
-  width: 100%;
-  display: inline-block;
-  min-height: 36px;
+@media (min-width: 1200px){
+  #rememberMeDiv {
+    margin-left: 100px;
+  }
 }
