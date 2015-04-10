@@ -2601,6 +2601,11 @@ div.footer div.container div.row .placeAddress {
 }
 
 @media (min-width: 768px) {
+  .pizzaMenuItem {
+    width: 100px; 
+    display: inline-block;
+    margin-right: 10px;
+  }
   .navbar-right .dropdown-menu.categories {
     left: -500px !important;
     right: 0;
