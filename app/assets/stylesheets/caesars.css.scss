@@ -1389,11 +1389,15 @@ $banner_url: 'https://little-caesars-prod.s3.amazonaws.com/assets/banner/';
             transition: all 0.4s ease-in-out;
 }
 
+.inner-page .shopping .shopping-content .shopping-item {
+    min-height: 365px;
+}
+
 .inner-page .shopping .shopping-item img { border: 1px solid #f5f5f5; }
 .inner-page .shopping .shopping-item h4 {
-    margin-top: 15px;
+    margin-top: 0px;
     margin-left: 3px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 26px;
 }
 
@@ -2074,7 +2078,7 @@ img.payment {
 
 .gallery-content .nav-pills > li, .shopping-content .nav-pills > li {
   width: 14%;
-  min-width: 92px;
+  min-width: 96px;
   text-align: center;
   font-weight: bold;
   padding: 1px;
@@ -2176,6 +2180,10 @@ div.footer div.container div.row .placeAddress {
     width: 100%;
 }
 
+.inner-page div.shopping {
+  margin-top: 40px;
+}
+  
 /*
  * Tablets
  */
@@ -2188,6 +2196,50 @@ div.footer div.container div.row .placeAddress {
       border-radius: 3px;
       margin-top: -162px;
       width: 72px;
+  }
+  
+  /*
+   * Menu
+   */
+  .gallery-content .nav-pills > li, .shopping-content .nav-pills > li {
+    width: 33.33%;
+  }
+  .inner-page .shopping div.container {
+    padding: 0px;
+  }
+  .inner-page div.shopping {
+    margin-top: 10px;
+  }
+  .inner-page .shopping-item .price h4.pull-left, .inner-page .shopping-item .price span.pull-right {
+    font-size: 11px;
+  }
+  .inner-page .shopping .shopping-item h4 {
+    font-size: 12px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .inner-page .shopping .shopping-content .shopping-item {
+    min-height: 325px;    
+  }
+  .inner-page .shopping .shopping-content .shopping-item .visible-xs a.btn {
+    margin-top: -10px;
+    margin-bottom: 0px;
+  }
+  
+  .inner-page .shopping .shopping-content .tab-content div.tab-pane .row {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .inner-page .shopping .shopping-content .tab-content div.tab-pane .col-md-3.col-sm-6 {
+    width: 50%;
+    float: left;
+    padding-right: 2px;
+    padding-left: 2px;
+  }
+  
+  .inner-page .shopping .shopping-content ul.nav.nav-pills {
+    padding-left: 15px;
+    padding-right: 15px;
   }
   
   #menuSpan {
@@ -2328,6 +2380,12 @@ div.footer div.container div.row .placeAddress {
     display: none;
   }
   .banner.pick_up.padd {
+    display: none;
+  }
+  .banner.order_online.padd {
+    display: none;
+  }
+  .banner.menu.padd {
     display: none;
   }
   .shopping-item.place-item {
@@ -2572,6 +2630,9 @@ div.footer div.container div.row .placeAddress {
     width: 50%;
     float: left;
   }
+  .inner-page .shopping .shopping-content .tab-content div.tab-pane .col-md-3.col-sm-6 {
+    width: 33.33%;
+  }
 }
 
 /*
@@ -2700,6 +2761,9 @@ div.footer div.container div.row .placeAddress {
   .about-iframe {
     width: 50em;
     height: 220px;
+  }
+  .inner-page .shopping .shopping-content .shopping-item .visible-xs {
+    display: block !important;
   }
 }
 

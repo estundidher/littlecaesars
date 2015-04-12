@@ -2,14 +2,14 @@
   <% category.products.shoppable.each do |product| %>
     <div class="col-md-3 col-sm-6">
       <div class="shopping-item"> <!-- Shopping items -->
+      	<h4 class="pull-left"> <%= product.name %> </h4><!-- Shopping item name / Heading -->
         <!-- Image -->
         <%= link_to product_path(product), {title: product.describe} do %>
           <%= image_tag product.photo.url(:large), class: 'img-responsive', alt: product.describe %>
         <% end %>
-        <h4 class="pull-left"> <%= product.name %> </h4><!-- Shopping item name / Heading -->
+        
         <div class="clearfix"></div>
         <!-- Paragraph -->
-        <p> <%= product.describe 30 %> </p>
         <% if product.type.sizable? %>
           <% product.prices.each do |price| %>
             <%= render partial:'shopping_price', locals:{name:price.size.name, value:price.value} %>
