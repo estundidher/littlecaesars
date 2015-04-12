@@ -2160,6 +2160,22 @@ div.footer div.container div.row .placeAddress {
   width: 82%;
 }
 
+.container.pick-up.padd {
+  padding: 0px;
+}
+
+.carousel-shopping-place h1, .carousel-shopping-date h1 {
+  margin-bottom: 20px;
+}
+
+.inner-page .checkout .sidebar-item { 
+  margin-bottom: 10px;
+ }
+
+.shopping-date-iframe {
+    width: 100%;
+}
+
 /*
  * Tablets
  */
@@ -2204,7 +2220,7 @@ div.footer div.container div.row .placeAddress {
   }
   
   .header .header-top .nav li {
-    display: inline-block;
+    float: right;
   }
   
   .header .logo h1 { font-size: 35px; }
@@ -2305,7 +2321,19 @@ div.footer div.container div.row .placeAddress {
       margin-top: 40px;
   }
 
-
+  /*
+   * Order online
+   */
+  #iFramePlaceMap {
+    display: none;
+  }
+  .banner.pick_up.padd {
+    display: none;
+  }
+  .shopping-item.place-item {
+    min-height: 320px;
+  }
+  
   .testimonial .flexslider-testimonial,
   .testimonial .flexslider-recent { max-width: 400px !important; }
 
@@ -2324,10 +2352,6 @@ div.footer div.container div.row .placeAddress {
   .inner-page .checkout { 
     max-width: 400px; 
     margin: 0 auto; 
-   }
-  .inner-page .checkout .sidebar-item { 
-    margin-top: 30px; 
-    margin-bottom: 0;
    }
   .inner-page .blog { 
     margin-bottom: 0;
@@ -2443,6 +2467,12 @@ div.footer div.container div.row .placeAddress {
     float: right;
     position: absolute;
   }
+  .shopping-place {
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    width: 50%;
+  }
 }
 
 /*
@@ -2451,6 +2481,9 @@ div.footer div.container div.row .placeAddress {
  * Mobile phones
  */
 @media (max-width: 480px) {
+  .carousel-shopping-place h1, .carousel-shopping-date h1 {
+    font-size: 22px;
+  }
   .tp-banner .tp-caption span.price-tag{
       padding-top: 9px !important;
       width: 50px !important;
@@ -2596,11 +2629,23 @@ div.footer div.container div.row .placeAddress {
     .inner-page .contactus .map-container { margin-top: 30px; }
     .inner-page .checkout form label { margin-bottom: 7px; }
     .inner-page .checkout form .form-group { margin-bottom: 7px; }
-    .inner-page .checkout form button{ margin-top: 7px; }
     .inner-page .blog .sidebar-widget{ margin-top: 30px; margin-bottom: 0; }
 }
 
 @media (min-width: 768px) {
+  /*
+   * Order online
+   */
+  .shopping-item.place-item {
+    min-height: 730px;
+  }
+  .shopping-place {
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    width: 50%;
+  }
+  
   .pizzaMenuItem {
     width: 100px; 
     display: inline-block;
@@ -2671,6 +2716,9 @@ div.footer div.container div.row .placeAddress {
 }
 
 @media (max-width: 1200px){
+  .shopping-date-iframe {
+      height: 180px;
+  }
 }
 
 @media (min-width: 1200px){
