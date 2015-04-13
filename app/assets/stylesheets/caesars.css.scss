@@ -2077,7 +2077,7 @@ img.payment {
 }
 
 .gallery-content .nav-pills > li, .shopping-content .nav-pills > li {
-  width: 14%;
+  width: 16.66%;
   min-width: 94px;
   text-align: center;
   font-weight: bold;
@@ -2098,7 +2098,7 @@ img.payment {
 }
 
 .header .navbar-default .navbar-nav > li ul.dropdown-md.categories {
-  width: 815px !important;
+  min-width: 700px !important;
   padding-right: 0px;
 }
 
@@ -2517,6 +2517,18 @@ div.footer div.container div.row .placeAddress {
   .pp_content_container .pp_details {float: none;}
 }
 
+@media (max-width: 768px) {
+  /*
+   * Carousel 
+   */
+  .slide4-mobile-img {
+    left: 130px !important;
+  }
+  .slide4-img {
+    left: 0px !important;
+  }
+}
+
 @media (max-width: 767px) and (orientation:landscape) {
   #rememberMeDiv {
       text-align: center;
@@ -2713,7 +2725,7 @@ div.footer div.container div.row .placeAddress {
     margin-right: 10px;
   }
   .navbar-right .dropdown-menu.categories {
-    left: -500px !important;
+    left: -450px !important;
     right: 0;
   }
   div.footer div.container div.row .col-sm-6 {
@@ -2773,6 +2785,15 @@ div.footer div.container div.row .placeAddress {
   }
 }
 
+@media (max-height: 768px) {
+  /*
+   * Carousel 
+   */
+  .tp-banner {
+    height: 250px !important;
+  }
+}
+  
 @media (min-width: 992px) {
   #rememberMeDiv {
     margin-left: 80px;
