@@ -28,9 +28,9 @@ test:
 production:
   <<: *default
   #ec2-79-125-25-99.eu-west-1.compute.amazonaws.com
-  database: d37sakjejv35mm
-  user: wrhjbhxcdrdsbr
-  port: 5432
-  Password: CZ2ii8REQSqaO85aWYYyn1XUvY
+  #database: d37sakjejv35mm
+  #user: wrhjbhxcdrdsbr
+  #port: 5432
+  #Password: CZ2ii8REQSqaO85aWYYyn1XUvY
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
