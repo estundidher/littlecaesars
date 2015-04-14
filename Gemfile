@@ -72,8 +72,8 @@ end
 group :production do
   #heroku integration
   gem 'rails_12factor'
-  gem 'rack-cache'
-  gem 'heroku-deflater'
+  gem 'rack-cache' #Enable Rack::Cache to put a simple HTTP cache in front of your application
+  gem 'heroku-deflater' #Enable gzip compression on heroku, but don't compress images.
 end
 
 gem 'foreigner'
