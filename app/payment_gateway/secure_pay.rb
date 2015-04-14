@@ -22,11 +22,11 @@ class SecurePay
   end
 
   def password
-    'O20rz7gm'
+    'abc123'
   end
 
   def merchan_id
-    'ABC0101'
+    'ABC0001'
   end
 
   def transaction_type
