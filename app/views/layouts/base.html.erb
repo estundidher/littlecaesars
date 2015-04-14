@@ -5,7 +5,6 @@
     <title><%= t 'brand' %> <%= " - #{yield :page_title}" if content_for :page_title %> </title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'epos-print-3.0.0.js' %>
     <%= yield :head %>
     <%= csrf_meta_tags %>
     <meta name="description" content="<%= yield :page_description %>">
