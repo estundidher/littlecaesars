@@ -2769,13 +2769,16 @@ div.footer div.container div.row .placeAddress {
   }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .inner-page .shopping .shopping-content .shopping-item .visible-xs {
+    display: block !important;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1199px) {
   .about-iframe {
     width: 50em;
     height: 220px;
-  }
-  .inner-page .shopping .shopping-content .shopping-item .visible-xs {
-    display: block !important;
   }
 }
 
