@@ -26,7 +26,7 @@ class SecurePay
   end
 
   def merchan_id
-    'ABC0001'
+    'ABC0030'
   end
 
   def transaction_type
