@@ -73,6 +73,7 @@ group :production do
   #heroku integration
   gem 'rails_12factor'
   gem 'rack-cache'
+  gem 'heroku-deflater'
 end
 
 gem 'foreigner'
