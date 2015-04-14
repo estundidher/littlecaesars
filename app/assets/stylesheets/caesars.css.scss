@@ -2799,6 +2799,11 @@ div.footer div.container div.row .placeAddress {
     margin-left: 80px;
   }
 }
+@media (min-width: 1025px) {
+  .inner-page .shopping .shopping-content .shopping-item .img-responsive {
+	display: inherit;
+  }
+}
 
 @media (max-width: 1200px){
   .shopping-date-iframe {
