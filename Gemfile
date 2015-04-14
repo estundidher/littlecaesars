@@ -66,6 +66,7 @@ group :development do
   #gem 'better_errors'
   #gem 'sprockets_better_errors'
   gem 'delorean'
+  gem 'rack-cache'
 end
 
 # By default Rails 4 will not serve your assets. To enable this functionality the line below is needed
