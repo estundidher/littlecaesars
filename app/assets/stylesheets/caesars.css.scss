@@ -1581,7 +1581,8 @@ $banner_url: 'https://little-caesars-prod.s3.amazonaws.com/assets/banner/';
 
 .inner-page .contactus .contact-form,
 .inner-page .sign-in,
-.inner-page .forgot-password {
+.inner-page .forgot-password,
+.inner-page .edit-password {
     padding: 15px;
     background: #fff;
     border: 1px solid #eee;
@@ -2380,18 +2381,17 @@ div.footer div.container div.row .placeAddress {
   /*
    * Order online
    */
-  #iFramePlaceMap {
+  #iFramePlaceMap, 
+  .banner.pick_up.padd, 
+  .banner.order_online.padd, 
+  .banner.edit_password.padd,
+  .banner.forgot_password.padd,
+  .banner.sign_in.padd,
+  .banner.menu.padd,
+  .banner.about.padd {
     display: none;
   }
-  .banner.pick_up.padd {
-    display: none;
-  }
-  .banner.order_online.padd {
-    display: none;
-  }
-  .banner.menu.padd {
-    display: none;
-  }
+  
   .shopping-item.place-item {
     min-height: 320px;
   }
@@ -2603,7 +2603,8 @@ div.footer div.container div.row .placeAddress {
   }
   
   .inner-page .sign-in,
-  .inner-page .forgot-password {
+  .inner-page .forgot-password,
+  .inner-page .edit-password {
       margin-left: 20px;
       width: 90%;
   }
