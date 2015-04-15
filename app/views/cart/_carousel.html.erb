@@ -20,7 +20,7 @@
                  data-price-id="<%= product.price_of(size).id if product.type.sizable? %>"
                  data-price-value="<%= number_to_currency (product.type.sizable? ? product.price_of(size).value : product.price) %>"
                  data-target="<%= side %>">
-              <% if photo_of(product, mode, side).exists? %>
+              <% if photo_of(product, mode, side) %>
                 <%= image_tag photo_of(product, mode, side).url(:large), class:'img-responsive', alt:product.name %>
               <% else %>
                 <img src="http://placehold.it/<%= place_holder(mode) %>/" alt="<%= product.name %>" class"img-responsive">
