@@ -5,17 +5,17 @@ FactoryGirl.define do
     created_at { Date.current }
 
     factory :big_caesars do
-      name 'Big Caesars'
+      name 'BC'
       description '12 slices/13 inch'
     end
 
     factory :little_caesars do
-      name 'Little Caesar'
+      name 'LC'
       description '8 slices/10 inch'
     end
 
     factory :gluten_free do
-      name 'Gluten Free'
+      name 'GF'
       description '12 slices/12 inch'
     end
   end
