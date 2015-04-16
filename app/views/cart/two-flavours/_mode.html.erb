@@ -15,7 +15,7 @@
 
 <div class="col-md-6 col-sm-6 slider">
   <div class="row">
-    <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 left" style="padding-right: 0px;">
+    <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 left carousel-cart" style="padding-right: 0px;">
       <%= render partial:'cart/carousel', locals:{mode:Cart::MODE[:two_flavours],
                                                    side:'left',
                                                    category:category,
@@ -23,7 +23,7 @@
                                                    products:products,
                                                    product:product} %>
     </div>
-    <div class="col-md-5 col-sm-5 right" style="padding-left: 0px;">
+    <div class="col-md-5 col-sm-5 right carousel-cart" style="padding-left: 0px;">
       <%= render partial:'cart/carousel', locals:{mode:Cart::MODE[:two_flavours],
                                                  side:'right',
                                                  category:category,

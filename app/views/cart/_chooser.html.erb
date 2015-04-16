@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row cart-mode">
 
   <%= render partial:"cart/#{mode}/mode", locals: {categories:categories,
                                                     category:category,
@@ -21,10 +21,10 @@
 </div>
 
 <div class="row toppings">
-  <div class="col-md-4 col-sm-4 left" style="padding-right: 0px;">
+  <div class="col-md-4 col-sm-4 left">
     <%= render partial:'toppings/add', locals:{cart_item:cart_item, product:product, mode:mode, side:'left'} %>
   </div>
-  <div class="col-md-4 col-sm-4" style="padding-right: 0px; padding-left: 40px;">
+  <div class="col-md-4 col-sm-4 middle">
     <%= link_to shopping_path, class:'btn btn-danger btn-lg' do %>
       <i class="glyphicon glyphicon-chevron-left"></i>
       Back
@@ -37,18 +37,18 @@
     </a>
   </div>
   <% if mode == Cart::MODE[:two_flavours] %>
-    <div class="col-md-4 col-sm-4 right" style="padding-left: 0px; text-align: right;">
+    <div class="col-md-4 col-sm-4 right">
       <%= render partial:'toppings/add', locals:{cart_item:cart_item, product:product, mode:mode, side:'right'} %>
     </div>
   <% end %>
 </div>
-<div class="row" style="margin-top:30px; font-size: 11px;">
-  <div class="col-md-12 col-sm-12" style="padding-right: 0px;">
+<div class="row pizza-features">
+  <div class="col-md-12 col-sm-12">
     PLEASE NOTE: Over 95% of our products contain gluten. For gluten free choices please select a gluten free base and check for a gluten free toppings product. However, we do not guarantee 100% allergen free environment.
   </div>
 </div>
-<div class="row" style="margin-top:10px; font-size: 11px;">
-  <div class="col-md-3 col-sm-3" style="padding-right: 0px;">
+<div class="row pizza-features">
+  <div class="col-md-3 col-sm-3">
     LC 10’’ = Little Cs (1-2 serves)
   </div>
   <div class="col-md-3 col-sm-3">
@@ -58,21 +58,21 @@
     GF 12’’ = Gluten Free (1-2 serves)
   </div>
 </div>
-<div class="row" style="margin-top:10px; font-size: 11px;">
-  <div class="col-md-3 col-sm-3" style="padding-right: 0px;">
-    <%= image_tag 'GlutenFree.png' %>
-    Gluten Free Toppings
+<div class="row pizza-features">
+  <div class="col-md-3 col-sm-3 pizza-features-item first left">
+    <span class="pizza-features-item-img"><%= image_tag 'GlutenFree.png' %></span>
+    <span class="pizza-features-item-name">Gluten Free Toppings</span>
   </div>
-  <div class="col-md-3 col-sm-3">
-    <%= image_tag 'Pork.png' %>
-    Contains Pork
+  <div class="col-md-3 col-sm-3 pizza-features-item first right">
+    <span class="pizza-features-item-img"><%= image_tag 'Pork.png' %></span>
+    <span class="pizza-features-item-name">Contains Pork</span>
   </div>
-  <div class="col-md-3 col-sm-3">
-    <%= image_tag 'Nuts.png' %>
-    Contains Nuts
+  <div class="col-md-3 col-sm-3 pizza-features-item left">
+    <span class="pizza-features-item-img"><%= image_tag 'Nuts.png' %></span>
+    <span class="pizza-features-item-name">Contains Nuts</span>
   </div>
-  <div class="col-md-3 col-sm-3">
-    <%= image_tag 'Egg.png' %>
-    Contains Egg
+  <div class="col-md-3 col-sm-3 pizza-features-item right">
+    <span class="pizza-features-item-img"><%= image_tag 'Egg.png' %></span>
+    <span class="pizza-features-item-name">Contains Egg</span>
   </div>
 </div>

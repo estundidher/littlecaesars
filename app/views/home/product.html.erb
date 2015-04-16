@@ -13,13 +13,15 @@
     <!-- Shopping single item contents -->
     <div class="single-item-content">
       <div class="row">
-        <div class="col-md-6 col-sm-6">
-          <!-- Product image -->
-          <%= image_tag @product.photo.url, class: 'img-responsive img-thumbnail', style:'max-width: 570px;' %>
-        </div>
-        <div class="col-md-6 col-sm-6">
+      	<div class="col-md-6 col-sm-6">
           <!-- Heading -->
           <h3><%= @product.name %></h3>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <!-- Product image -->
+          <%= image_tag @product.photo.url, class: 'img-responsive img-thumbnail' %>
+        </div>
+        <div class="col-md-6 col-sm-6">
           <div class="row">
             <div class="col-md-7 col-sm-12">
               <!-- Single item details -->

@@ -2189,6 +2189,22 @@ div.footer div.container div.row .placeAddress {
   font-size: x-large;
 }
   
+.pizza-features {
+  margin-top:10px; 
+  font-size: 11px;
+}
+
+.col-md-9.col-sm-9.cart-item div.row.toppings .col-md-4.col-sm-4.right .btn.btn-warning {
+  float: right;
+}
+
+.col-md-9.col-sm-9.cart-item div.row.toppings .col-md-4.col-sm-4.middle {
+  text-align: center;
+}
+.cart .cart-panel .cart-dropdown {
+  width: 100% !important;
+}
+
 /*
  * Tablets
  */
@@ -2388,9 +2404,135 @@ div.footer div.container div.row .placeAddress {
   .banner.forgot_password.padd,
   .banner.sign_in.padd,
   .banner.menu.padd,
-  .banner.about.padd {
+  .banner.about.padd,
+  .banner.product.padd {
     display: none;
   }
+  
+  /*
+   * Pick up
+   */
+  .dropdown-menu>li>a.hidden-xs {
+    display: block !important;
+  }
+  
+  .cart-item .chooser .row.cart-mode .col-md-3.col-sm-3.left {
+    padding: 10px !important;
+  }
+  
+  .cart-container {
+    margin-top: 10px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+  .cart-item div.mode {
+    width: 68.8% !important;
+    float: left !important;
+  }
+  .cart-item div.price {
+    top: -10px !important;
+    padding: 0px !important;
+    min-height: 0px !important;
+    float: left !important;
+    width: 30% !important;
+    text-align: left !important;
+  }
+  .cart-item .price .value {
+    font-size: 28px !important;
+  }
+  .col-md-9.col-sm-9.cart-item div.row {
+    padding: 0px !important;
+  }
+  .cart-item .mode .fa-spin {
+    margin-left: 4px !important;
+  }
+  .cart-item .chooser .element {
+    display: none;
+  }
+  #one-flavour_left .carousel-control.down {
+    top: 155px !important;
+    left: -15px !important;
+  }
+  #one-flavour_left .carousel-control.up {
+    top: 20px;
+    left: -15px !important;
+  }
+  #two-flavours_left .carousel-control.down {
+    top: 155px !important;
+    left: 8px !important;
+  }
+  #two-flavours_left .carousel-control.up {
+    top: 20px;
+    left: 8px !important;
+  }
+  #two-flavours_right .carousel-control.down {
+    top: 155px !important;
+    left: inherit !important;
+    right: 8px !important;
+  }
+  #two-flavours_right .carousel-control.up {
+    top: 20px;
+    left: inherit !important;
+    right: 8px !important;
+  }
+  .cart-item .one-flavour .carousel-control,
+  .cart-item .two-flavours .carousel-control,
+  .cart-item .one-flavour .carousel-control:hover,
+  .cart-item .two-flavours .carousel-control:hover,
+  .cart-item .one-flavour .carousel-control:focus,
+  .cart-item .two-flavours .carousel-control:focus {
+    color: #FA3030;
+    opacity: .9;
+  }
+  .pizza-features-item {
+    padding-right: 0px;
+    width: 50%;
+    display: inline-block;
+  }
+  .pizza-features-item.first {
+    margin-bottom: 10px;
+  }
+  .pizza-features-item.right {
+    padding-left: 0px; 
+    width: 46%;
+  }
+  .pizza-features-item-img {
+    width: 28px;
+    display: inline-block;
+  }
+  .col-md-9.col-sm-9.cart-item div.row.toppings {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .col-md-9.col-sm-9.cart-item div.row.toppings .col-md-4.col-sm-4.left {
+    position: relative;
+    float: left;
+  }
+  .col-md-9.col-sm-9.cart-item div.row.toppings .col-md-4.col-sm-4.left {
+    position: relative;
+    float: right;
+  }
+  .col-md-9.col-sm-9.cart-item div.row.toppings .col-md-4.col-sm-4.middle {
+    position: absolute;
+    margin-top: 40px;
+  }
+  .col-md-6.col-sm-6.slider .carousel-cart {
+    width: 50%;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+  }
+  .col-md-6.col-sm-6.slider .carousel-cart #two-flavours_left {
+    float: right;
+  }
+  .row.cart-mode div.slider {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+  }
+  .row.cart-mode div.col-md-3.col-sm-3.right {
+    padding-left: 15px !important;
+  }
+  
   
   .shopping-item.place-item {
     min-height: 320px;
