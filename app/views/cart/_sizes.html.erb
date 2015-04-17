@@ -9,10 +9,9 @@
   <ul class="dropdown-menu" role="menu">
     <% sizes.each do |size| %>
       <li>
-        <a href="JavaScript:void(0);" data-id="<%= size.id %>"
-          data-name="<%= size.name %>" data-splittable="<%= size.splittable %>">
+        <a href="JavaScript:void(0);" data-id="<%= size.id %>" data-name="<%= size.name %>" data-splittable="<%= size.splittable %>">
           <%= size.name %>
-          <div class="size">(<%= size.description %>)</div>
+          <span class="size size-description">(<%= size.description %>)</span>
         </a>
       </li>
     <% end %>

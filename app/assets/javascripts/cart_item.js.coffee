@@ -158,6 +158,11 @@ class Caesars.CartItem
     @bind_carousel()
     if @is_two_flavours_mode() is true
       @calculate_price()
+      
+      if window.screen.width < 767
+      	$('.row.cart-mode div.col-md-3.col-sm-3.left .btn-group.categories').css("width", "50%");
+      	$('.row.ingredients .cart-item-form .col-md-6.col-sm-6.left').css("width", "50%");
+      
     else
       $item = $('.cart-item .carousel .item.active')
       @price.hide().empty().append($item.data('price-value')).slideDown 'fast'

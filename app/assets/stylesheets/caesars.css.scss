@@ -2162,7 +2162,7 @@ img.payment {
   min-height: 36px;
 }
 div.footer div.container div.row .placeAddress {
-  width: 82%;
+  width: 86%;
 }
 
 .container.pick-up.padd {
@@ -2204,7 +2204,14 @@ div.footer div.container div.row .placeAddress {
 .cart .cart-panel .cart-dropdown {
   width: 100% !important;
 }
+.cart-item .sizable ul.dropdown-menu {
+  width: 100%;
+}
+.cart-item .sizable .size-description {
+  float: right;
+}
 
+  
 /*
  * Tablets
  */
@@ -2500,22 +2507,6 @@ div.footer div.container div.row .placeAddress {
     width: 28px;
     display: inline-block;
   }
-  .col-md-9.col-sm-9.cart-item div.row.toppings {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .col-md-9.col-sm-9.cart-item div.row.toppings .col-md-4.col-sm-4.left {
-    position: relative;
-    float: left;
-  }
-  .col-md-9.col-sm-9.cart-item div.row.toppings .col-md-4.col-sm-4.left {
-    position: relative;
-    float: right;
-  }
-  .col-md-9.col-sm-9.cart-item div.row.toppings .col-md-4.col-sm-4.middle {
-    position: absolute;
-    margin-top: 40px;
-  }
   .col-md-6.col-sm-6.slider .carousel-cart {
     width: 50%;
     float: left;
@@ -2529,9 +2520,80 @@ div.footer div.container div.row .placeAddress {
     margin-left: 10px !important;
     margin-right: 10px !important;
   }
-  .row.cart-mode div.col-md-3.col-sm-3.right {
-    padding-left: 15px !important;
+  .row.cart-mode div.col-md-3.col-sm-3.left {
+    position: relative;
+    margin-bottom: 88px;
   }
+  .row.cart-mode div.col-md-3.col-sm-3.left .btn-group.categories {
+    position: absolute;
+    top: 36px;
+    z-index: 2;
+    padding-right: 20px;
+  }
+  .row.cart-mode div.col-md-3.col-sm-3.left .sizes {
+    width: 100%;
+    position: absolute;
+    top: -8px;
+    padding-right: 20px;
+  }
+  .row.cart-mode div.col-md-3.col-sm-3.left .details {
+    position: absolute;
+    top: 68px;
+    width: 100%;
+  }
+  .row.cart-mode div.col-md-3.col-sm-3.left .details h4,
+  .row.cart-mode div.col-md-3.col-sm-3.right .details h4 {
+    font-size: 14px;
+  }
+  .row.cart-mode div.col-md-3.col-sm-3.left .details h4 {
+    width: 46%;
+  }
+  .row.cart-mode div.col-md-3.col-sm-3.right .details h4 {
+    position: absolute;
+    right: 10px;
+    top: -5px;
+    width: 46%;
+  }
+    
+  .row.cart-mode div.col-md-3.col-sm-3.right {
+    width: 100%;
+    position: absolute;
+    top: 64px;
+    padding-right: 10px;
+    padding-left: 15px !important;
+    z-index: 1;
+  }
+  .row.cart-mode div.col-md-3.col-sm-3.right .btn-group.categories {
+    float: right;
+    width: 50% !important;
+  }
+  .row.ingredients .cart-item-form .col-md-6.col-sm-6.left {
+    float: left;
+  }
+  .row.ingredients .cart-item-form .col-md-6.col-sm-6.right {
+    width: 50%;
+    float: right;
+  }
+  .row.toppings {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 90px;
+  }
+  .row.toppings .col-md-4.col-sm-4.left {
+    float: left;
+  }
+  .row.toppings .col-md-4.col-sm-4.middle {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    top: 10px;
+  }
+  .row.toppings .col-md-4.col-sm-4.right {
+    float: right;
+    top: -75px;
+  }
+  
   
   
   .shopping-item.place-item {
@@ -2781,6 +2843,9 @@ div.footer div.container div.row .placeAddress {
     margin-left: -28px;
     margin-top: -18px;
     margin-bottom: -2px;
+  }
+  .row.cart-mode div.col-md-3.col-sm-3.right .btn-group.categories .dropdown-menu {
+    left: -12px;
   }
 }
 
