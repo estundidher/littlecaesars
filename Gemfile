@@ -57,7 +57,6 @@ group :test, :development do
   
   # Added by Diego
   gem 'tzinfo-data'
-  gem 'debugger'
 end
 
 group :development do
