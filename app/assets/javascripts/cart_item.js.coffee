@@ -247,7 +247,7 @@ class Caesars.CartItem
   is_one_flavours_mode: ->
     @$cart_item.find('.carousel.slide.vertical').length == 1
 
-  remove_or_add_two_flavours_radio: =>
+  remove_or_add_two_flavours_radio: ->
     selectedCategoryId = @$mode_form.find('.category').val()
     console.log "cart-item: remove_or_add_two_flavours_radio fired! selected category id: " + selectedCategoryId
     
