@@ -1,6 +1,5 @@
 <div class="btn-group categories" style="width: 100%;">
-  <button type="button" class="btn btn-danger dropdown-toggle"
-          data-toggle="dropdown" style="width: 100%; text-align: <%= align %>;">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="width: 100%; text-align: <%= align %>;">
     <% if align == 'left' %>
       <span class="caret"></span>
     <% else %>
@@ -19,12 +18,15 @@
     <% categories.each do |category| %>
       <li>
         <% if align == 'left' %>
-           <a href="JavaScript:void(0);" data-id="<%= category.id %>" class="left">
-            <%= category.name %>
-          </a>
+        	<% if mode == 'one-flavour' %>
+				<a href="JavaScript:void(0);" data-id="<%= category.id %>" class="left">
+		        	<%= category.name %>
+		        </a>
+			<% else %>
+				<%= link_to category.name, cart_carousel_path(mode, align, category, size), remote: true, class: "left", data: {target: align, id: category.id, name: category.name} %>
+			<% end %>	
         <% else %>
-           <%= link_to category.name, cart_carousel_path(mode, align, category, size), remote: true,
-            data: {target: align, name: category.name} %>
+			<%= link_to category.name, cart_carousel_path(mode, align, category, size), remote: true, data: {target: align, id: category.id, name: category.name} %>
         <% end %>
       </li>
     <% end %>

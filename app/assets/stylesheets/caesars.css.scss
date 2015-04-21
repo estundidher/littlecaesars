@@ -2211,6 +2211,12 @@ div.footer div.container div.row .placeAddress {
   float: right;
 }
 
+/*
+ * Modal toppings text
+ */
+.toppings-modal .col-md-2.col-sm-2 .thumbnail h6 {
+  height: 20px;
+}
   
 /*
  * Tablets
@@ -2554,7 +2560,6 @@ div.footer div.container div.row .placeAddress {
     top: -5px;
     width: 46%;
   }
-    
   .row.cart-mode div.col-md-3.col-sm-3.right {
     width: 100%;
     position: absolute;
@@ -2593,8 +2598,17 @@ div.footer div.container div.row .placeAddress {
     float: right;
     top: -75px;
   }
-  
-  
+  /*
+   * Modal toppings
+  .toppings-modal .col-md-2 {
+    width: 50%;
+    float: left;
+  }
+  .modal-body {
+    max-height: 300px; 
+    overflow-y: auto;
+  }
+  */
   
   .shopping-item.place-item {
     min-height: 320px;

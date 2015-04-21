@@ -100,31 +100,53 @@ class Caesars.CartItem
 
   change_category: (e) =>
     console.log 'cart-item: .categories a clicked! id : ' + $(e.target).data('id')
+    
     if $(e.target).data('id')?
+      priviousSelectedId = @$mode_form.find('.category').val()  
       @$mode_form.find('.size').val('')
       @$mode_form.find('.product').val('')
-      @disable_two_flavours()
       @$mode_form.find('.category').val($(e.target).data('id'))
-      @$mode_one_flavour.trigger('change');
+      
+      if @is_two_flavours_mode() is true
+         if $(e.target).data('id') == 10 || $(e.target).data('id') == 11 || priviousSelectedId == "10" || priviousSelectedId == "11"
+            @disable_two_flavours()
+            @$mode_one_flavour.trigger('change');
+         
+            if $(e.target).data('id') != 10 && $(e.target).data('id') != 11
+               @$mode_two_flavours.prop('disabled', false)
+      else
+         @$mode_one_flavour.trigger('change');
+
+         if $(e.target).data('id') == 10 || $(e.target).data('id') == 11
+            @$mode_two_flavours.prop('disabled', true)
+         else 
+            @$mode_two_flavours.prop('disabled', false)
 
   change_category_before: (e, data, status, xhr) =>
-    console.log "cart-item: .categories a 'ajax:before' fired! category: " + $(e.target).data('name') + ', target: ' + $(e.target).data('target')
-    $menu = $(e.target).closest('.btn-group')
-    $menu.find('.fa-spin').fadeIn 'fast'
-    $menu.find('.name').empty().html $(e.target).data('name')
-    $menu.removeClass 'open'
+    
+    if @is_two_flavours_mode() is true && $(e.target).data('id') != 10 && $(e.target).data('id') != 11
+      
+      console.log "cart-item: .categories a 'ajax:before' fired! category: " + $(e.target).data('name') + ', target: ' + $(e.target).data('target')
+      
+      $menu = $(e.target).closest('.btn-group')
+      $menu.find('.fa-spin').fadeIn 'fast'
+      $menu.find('.name').empty().html $(e.target).data('name')
+      $menu.removeClass 'open'
 
   change_category_success: (e, data, status, xhr) =>
-    console.log "cart-item: .categories a 'ajax:success' fired! category: " + $(e.target).data('category') + ', target: ' + $(e.target).data('target')
+    
+    if @is_two_flavours_mode() is true && $(e.target).data('id') != 10 && $(e.target).data('id') != 11
+    
+       console.log "cart-item: .categories a 'ajax:success' fired! category: " + $(e.target).data('category') + ', target: ' + $(e.target).data('target')
 
-    $carousel_container = @$cart_item.find('.slider .' + $(e.target).data('target'))
-    $carousel_container.hide().empty().append(xhr.responseText).fadeIn 'fast'
-    $carousel = $carousel_container.find('.carousel')
+       $carousel_container = @$cart_item.find('.slider .' + $(e.target).data('target'))
+       $carousel_container.hide().empty().append(xhr.responseText).fadeIn 'fast'
+       $carousel = $carousel_container.find('.carousel')
 
-    @bind_carousel $carousel
-    @carousel_activate_item $carousel
-    @load_product($carousel.find('.active'), $(e.target).data('target'))
-    $(e.target).closest('.btn-group').find('.fa-spin').fadeOut 'fast'
+       @bind_carousel $carousel
+       @carousel_activate_item $carousel
+       @load_product($carousel.find('.active'), $(e.target).data('target'))
+       $(e.target).closest('.btn-group').find('.fa-spin').fadeOut 'fast'
 
   change_size: (e) =>
     console.log 'cart-item: .sizable a clicked! id : ' + $(e.target).data('id') + ', name: ' + $(e.target).data('name') + ", splittable: '" + $(e.target).data('splittable') + "'"
@@ -147,6 +169,15 @@ class Caesars.CartItem
   change_mode: (e) =>
     console.log "cart-item: .mode_form a 'change' fired!"
     @$mode_spinner.fadeIn 'fast'
+    
+    if e.target.id == 'mode_two-flavours'
+       splittableMenu = $('.sizable').find('.dropdown-menu').find('[data-splittable="true"]')
+       $(splittableMenu).closest('.sizable').find('.name').html $(splittableMenu).data 'name'
+	  
+       if $(splittableMenu).data('id')?
+         @$mode_form.find('.size').val($(splittableMenu).data('id'))
+         @$form.find('.size').val($(splittableMenu).data('id'))
+    
     $(e.target).closest('form').submit()
 
   change_mode_success: (e, data, status, xhr) =>
@@ -156,13 +187,15 @@ class Caesars.CartItem
     @$mode_spinner.fadeOut 'fast'
     @bind_pretty_photo()
     @bind_carousel()
+    
     if @is_two_flavours_mode() is true
       @calculate_price()
       
-      if window.screen.width < 767
-      	$('.row.cart-mode div.col-md-3.col-sm-3.left .btn-group.categories').css("width", "50%");
+      if window.screen.width <= 767
+      	$('.row.cart-mode div.col-md-3.col-sm-3.left .btn-group.categories').css("width", "46%");
       	$('.row.ingredients .cart-item-form .col-md-6.col-sm-6.left').css("width", "50%");
-      
+      	$('.row.cart-mode div.col-md-3.col-sm-3.left .btn-group.categories').css("paddingRight", "0px");
+      	
     else
       $item = $('.cart-item .carousel .item.active')
       @price.hide().empty().append($item.data('price-value')).slideDown 'fast'
@@ -197,19 +230,36 @@ class Caesars.CartItem
       $carousel.carousel({
         interval: false
       })
+    @remove_or_add_two_flavours_radio()
 
   bind_pretty_photo: ->
-    console.log "cart-item: bind_pretty_photo fired!"
-    $prettyLink = @$cart_item.find('.gallery-img-link')
-    $prettyLink.prettyPhoto({
-      overlay_gallery: false, social_tools: false
-    })
+    # There is no need to bind preetyphoto since the photo to bind is disabled on Mobile
+    if window.screen.width > 767
+      console.log "cart-item: bind_pretty_photo fired!"
+      $prettyLink = @$cart_item.find('.gallery-img-link')
+      $prettyLink.prettyPhoto({
+        overlay_gallery: false, social_tools: false
+      })
 
   is_two_flavours_mode: ->
     @$cart_item.find('.carousel.slide.vertical').length == 2
 
   is_one_flavours_mode: ->
     @$cart_item.find('.carousel.slide.vertical').length == 1
+
+  remove_or_add_two_flavours_radio: =>
+    selectedCategoryId = @$mode_form.find('.category').val()
+    console.log "cart-item: remove_or_add_two_flavours_radio fired! selected category id: " + selectedCategoryId
+    
+    if selectedCategoryId == '10' || selectedCategoryId == '11'
+       $('.radio-inline.two-flavours').css('display', 'none')
+       
+       if window.screen.width <= 767 && selectedCategoryId == '11'
+          $('.row.cart-mode div.col-md-3.col-sm-3.left .btn-group.categories').css('top','0px')
+          $('.row.cart-mode div.col-md-3.col-sm-3.left .details').css('top','34px')
+          $('.row.cart-mode div.col-md-3.col-sm-3.left').css('marginBottom','54px')
+    else
+       $('.radio-inline.two-flavours').css('display', '')
 
 create_cart_item = ->
   window.Caesars.cart_item = new Caesars.CartItem()
