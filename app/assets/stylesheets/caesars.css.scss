@@ -2217,6 +2217,40 @@ div.footer div.container div.row .placeAddress {
 .toppings-modal .col-md-2.col-sm-2 .thumbnail h6 {
   height: 20px;
 }
+.toppings-modal .col-md-2 {
+  width: 20%;
+  float: left;
+  text-align: center;
+}
+
+.modal-content .col-md-1.col-sm-1.total {
+    float: left;
+    margin-left: 16px;
+    width: 60px;
+}
+.modal-content .col-md-1.col-sm-1.button {
+  float: right;
+  top: -20px;
+  right: 40px;
+}
+.modal-content .col-md-1.col-sm-1.price {
+  float: left;
+}
+.modal-content .ingredient.toppings {
+  padding: 0px;
+  float: left;
+}
+.toppings-modal .modal-footer .button {
+  float: right;
+}
+.toppings-modal .modal-footer .row.added {
+  margin-bottom: 10px;
+}
+.modal-footer h4 {
+  margin-left: 10px;
+  text-align: left;
+  padding: 0px;
+}
   
 /*
  * Tablets
@@ -2598,17 +2632,38 @@ div.footer div.container div.row .placeAddress {
     float: right;
     top: -75px;
   }
+  .modal-content {
+    width: 96%;
+  }
   /*
    * Modal toppings
+   */
   .toppings-modal .col-md-2 {
     width: 50%;
     float: left;
   }
   .modal-body {
-    max-height: 300px; 
+    max-height: 400px; 
     overflow-y: auto;
   }
-  */
+  .modal-content .col-md-1.col-sm-1.total {
+    float: left;
+    margin-left: 16px;
+  }
+  .modal-content .col-md-1.col-sm-1.button {
+    right: 20px;
+    top: -10px;
+  }
+  span.glyphicon.glyphicon-chevron-left {
+    top: 240px;
+    position: fixed;
+    left: 30px;
+  }
+  span.glyphicon.glyphicon-chevron-right {
+    top: 240px;
+    position: fixed;
+    right: 30px;
+  }
   
   .shopping-item.place-item {
     min-height: 320px;
@@ -2863,6 +2918,15 @@ div.footer div.container div.row .placeAddress {
   }
 }
 
+@media (max-width: 380px) {
+  /*
+   * Toppings
+   */
+  a.btn.btn-warning.btn-xs.add {
+    width: 90px;
+  }
+}
+
 @media (min-width: 480px) and (max-width: 767px) {
   .chefs .col-md-4 {
     width: 50%;
@@ -2870,6 +2934,12 @@ div.footer div.container div.row .placeAddress {
   }
   .inner-page .shopping .shopping-content .tab-content div.tab-pane .col-md-3.col-sm-6 {
     width: 33.33%;
+  }
+  .toppings-modal .col-md-2 {
+    width: 33.33%;
+  }
+  a.btn.btn-warning.btn-xs.add {
+    width: 100px;
   }
 }
 
@@ -2992,6 +3062,9 @@ div.footer div.container div.row .placeAddress {
 @media (min-width: 768px) and (max-width: 991px) {
   .header .container {
     width: 100%;
+  }
+  .modal-footer .col-md-1.col-sm-1.button {
+      right: 30px;
   }
 }
 

@@ -1,14 +1,13 @@
 <% cache cache_key_for_toppings_available(product.categories_of_toppings_available, all_products) do %>
   <div id="available_carousel" class="carousel slide available">
     <div class="carousel-inner">
-      <% pages = (all_products.page(1).per(15).total_pages) %>
+      <% pages = (all_products.page(1).per(12).total_pages) %>
       <% (1..pages).each do |page| %>
-        <% products = all_products.page(page).per(15) %>
+        <% products = all_products.page(page).per(12) %>
         <div class="item <%= 'active' if page == 1 %>">
-          <% pages_iternal = all_products.page(page).per(15).total_pages %>
+          <% pages_iternal = all_products.page(page).per(12).total_pages %>
           <% (1..pages_iternal).each do |page_iternal| %>
-            <div class="row text-center">
-              <% Kaminari.paginate_array(products).page(page_iternal).per(5).each_with_index do |topping, index| %>
+              <% Kaminari.paginate_array(products).page(page_iternal).per(4).each_with_index do |topping, index| %>
                 <div class="col-md-2 col-sm-2 <%= 'col-md-offset-1 col-sm-offset-1' if index == 0 %>">
 
                   <% cache ['topping_thumbail', topping] do %>
@@ -30,7 +29,6 @@
 
                 </div>
               <% end %>
-            </div>
           <% end %>
         </div>
       <% end %>

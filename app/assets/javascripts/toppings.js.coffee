@@ -18,7 +18,7 @@ class Caesars.Toppings
     @$modal_container.on 'ajax:success', '.toppings-modal .added form', @add_success
     @$modal_container.on 'ajax:error', '.toppings-modal .added form', @add_error
     @$modal_container.on 'click', '.toppings-modal .added .glyphicon-remove', @remove
-    @$modal_container.on 'click', '.toppings-modal .modal-footer .btn.save', @add_to_cart
+    @$modal_container.on 'click', '.toppings-modal .modal-content .btn.save', @add_to_cart
 
   open_before: (e, data, status, xhr) =>
     console.log 'toppings modal: before_open fired!'
@@ -35,7 +35,9 @@ class Caesars.Toppings
     $form = $(e.target)
     $form.find('.additionable').remove()
     @$modal_container.empty().append xhr.responseText
+    
     $('#modal_container .toppings-modal').modal 'show'
+    
     @bind_carousel $('.toppings-modal .carousel')
     $button = $form.find('.btn')
     if $button?

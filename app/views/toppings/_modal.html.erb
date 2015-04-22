@@ -8,15 +8,18 @@
       <div class="modal-body">
         <div class="single-item">
           <%= render partial:'toppings/available', locals:{all_products:products, product:product} %>
-          <h4> Toppings added </h4>
-          <div class="row added">
-            <div class="col-md-12 col-sm-12">
-              <%= render partial:'toppings/added', locals:{product:product, toppings:toppings, mode:mode, side:side} %>
-            </div>
-          </div>
         </div>
       </div>
       <div class="modal-footer">
+      	<div class="row">
+	      	<h4> Toppings added </h4>
+		</div>
+	    <div class="row added">
+	        <div class="col-md-12 col-sm-12">
+	          <%= render partial:'toppings/added', locals:{product:product, toppings:toppings, mode:mode, side:side} %>
+	    	</div>
+	    </div>
+	    </div>
         <div class="row">
           <div class="col-md-1 col-sm-1 total">
             Total:
@@ -31,7 +34,6 @@
               <%= t 'links.add_simple' %>
             </button>
           </div>
-        </div>
       </div>
     </div>
   </div>
