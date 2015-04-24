@@ -2456,6 +2456,85 @@ div.footer div.container div.row .placeAddress {
     display: none;
   }
   
+  
+  /*
+   * Check out Page
+   */
+  
+  .banner {
+    display: none;
+  }
+  
+  .inner-page .checkout .checkout-form h3 {
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  .checkout-form .pull-right {
+  margin-top: 20px;
+  }
+  
+  .inner-page .checkout form .form-group.price {
+  font-size: 20px;
+  color: red;
+  margin-top: -4px;
+  }
+  
+  .inner-page .checkout form .form-group.price .value {   
+  margin-right: -130px; 
+  font-size: 24px !important;
+  }
+  
+  .inner-page .checkout form label[for=EPS_CARDNAME] {
+  margin-top: 5px;
+  margin-left: -75.6px;
+  }
+  
+  .col-md-5 {
+  padding-left: 15px !important;
+  margin-top: 5px;
+  }
+  
+  .col-sm-6.col-md-6.price {
+  width: 100% !important;
+  text-align: center !important;
+  margin-bottom: -30px;
+  }
+  
+  .col-sm-6.col-md-6.price h4 {
+  display: none;
+  }
+  
+  .col-sm-6.col-md-6.price h1 {
+  font-weight: bold;
+  }
+  
+  .col-sm-6.col-md-6.price .box {
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-weight: bold;
+  }
+  
+  .btn.btn-danger.btn-lg {
+  font-size: 15px;
+  }
+  
+  .btn.btn-primary.btn-lg {
+  font-size: 15px;
+  }
+  
+  .inner-page .checkout .container .row .col-md-6 .img-thumbnail{
+  display: none;
+  }
+  
+  @media (width: 375px) {
+  .inner-page .checkout form label[for=EPS_CARDNAME] {
+  margin-top: 30px;
+  margin-left: -96px;
+    }
+  }
+ 
+  
   /*
    * Pick up
    */
@@ -2941,6 +3020,11 @@ div.footer div.container div.row .placeAddress {
   a.btn.btn-warning.btn-xs.add {
     width: 100px;
   }
+   .inner-page .checkout form label[for=EPS_CARDNAME] {
+  margin-top: 40px;
+  margin-left: -103px;
+  }
+  
 }
 
 /*
