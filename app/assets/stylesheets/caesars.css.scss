@@ -2251,7 +2251,6 @@ div.footer div.container div.row .placeAddress {
 }
 .modal-open .modal-body {
   padding: 15px;
-  margin-bottom: -20px;
 }
 .modal-open .modal-body .table {
   margin-bottom: -10px;
@@ -2261,7 +2260,11 @@ div.footer div.container div.row .placeAddress {
   text-align: left;
   padding: 0px;
 }
-  
+.cart-item .mode .radio-inline + .radio-inline {
+  float: left;
+  position: absolute;
+}
+
 /*
  * Tablets
  */
@@ -2485,19 +2488,17 @@ div.footer div.container div.row .placeAddress {
   }
   
   .inner-page .checkout form .form-group.price {
-  font-size: 20px;
-  color: red;
-  margin-top: -4px;
-  }
-  
-  .inner-page .checkout form .form-group.price .value {   
-  margin-right: -130px; 
-  font-size: 24px !important;
+    font-size: 20px;
+    color: red;
+    width: 100% !important;
+    margin-top: 10px !important;
+    position: absolute;
   }
   
   .inner-page .checkout form label[for=EPS_CARDNAME] {
-  margin-top: 5px;
-  margin-left: -75.6px;
+    margin-top: 5px;
+    width: 100%;
+    text-align: left;
   }
   
    .inner-page .checkout .checkout-form .form-group .col-md-5 {
@@ -2537,14 +2538,6 @@ div.footer div.container div.row .placeAddress {
   display: none;
   }
   
-  @media (width: 375px) {
-  .inner-page .checkout form label[for=EPS_CARDNAME] {
-  margin-top: 30px;
-  margin-left: -96px;
-    }
-  }
- 
-  
   /*
    * Pick up
    */
@@ -2575,6 +2568,9 @@ div.footer div.container div.row .placeAddress {
   }
   .cart-item .price .value {
     font-size: 28px !important;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #f75353;
+    font-weight: bold;
   }
   .col-md-9.col-sm-9.cart-item div.row {
     padding: 0px !important;
@@ -2604,12 +2600,12 @@ div.footer div.container div.row .placeAddress {
   #two-flavours_right .carousel-control.down {
     top: 155px !important;
     left: inherit !important;
-    right: 8px !important;
+    left: 120px !important;
   }
   #two-flavours_right .carousel-control.up {
     top: 20px;
     left: inherit !important;
-    right: 8px !important;
+    left: 120px !important;
   }
   .cart-item .one-flavour .carousel-control,
   .cart-item .two-flavours .carousel-control,
@@ -2743,12 +2739,12 @@ div.footer div.container div.row .placeAddress {
     right: 20px;
     top: -30px;
   }
-  span.glyphicon.glyphicon-chevron-left {
+  .modal-content span.glyphicon.glyphicon-chevron-left {
     top: 240px;
     position: fixed;
     left: 30px;
   }
-  span.glyphicon.glyphicon-chevron-right {
+  .modal-content span.glyphicon.glyphicon-chevron-right {
     top: 240px;
     position: fixed;
     right: 50px;
@@ -2909,6 +2905,37 @@ div.footer div.container div.row .placeAddress {
     float: left;
     width: 50%;
   }
+  #one-flavour_left .carousel-control.down {
+    top: 198px !important;
+  }
+  #two-flavours_left .carousel-control.down {
+    top: 198px !important;
+    left: -20px !important;
+  }
+  #two-flavours_left .carousel-control.up {
+    left: -20px !important;
+  }
+  #two-flavours_right .carousel-control.up {
+    left: 160px !important;
+  }
+  #two-flavours_right .carousel-control.down {
+    left: 160px !important;
+    top: 198px !important;
+  }
+  .modal-body {
+    max-height: 170px; 
+  }
+  .modal-content span.glyphicon.glyphicon-chevron-left {
+    top: 120px;
+    left: 10px;
+  }
+  .modal-content span.glyphicon.glyphicon-chevron-right {
+    top: 120px;
+    right: 20px;
+  }
+  .modal-content {
+    width: 98%;
+  }
 }
 
 /*
@@ -3016,6 +3043,12 @@ div.footer div.container div.row .placeAddress {
   }
 }
 
+@media (min-width: 350px) and (max-width: 480px) {
+  #one-flavour_left .carousel-control.down, #two-flavours_left .carousel-control.down, #two-flavours_right .carousel-control.down {
+    top: 190px !important;
+  }
+}
+
 @media (min-width: 480px) and (max-width: 767px) {
   .chefs .col-md-4 {
     width: 50%;
@@ -3030,11 +3063,6 @@ div.footer div.container div.row .placeAddress {
   a.btn.btn-warning.btn-xs.add {
     width: 100px;
   }
-   .inner-page .checkout form label[for=EPS_CARDNAME] {
-  margin-top: 40px;
-  margin-left: -103px;
-  }
-  
 }
 
 /*
@@ -3159,6 +3187,48 @@ div.footer div.container div.row .placeAddress {
   }
   .modal-footer .col-md-1.col-sm-1.button {
       right: 30px;
+  }
+  .row.toppings .col-md-4.col-sm-4.middle {
+    width: 100%;
+  }
+  .row.toppings .col-md-4.col-sm-4.right {
+    float: right;
+    top: -75px;
+  }
+  a.btn.btn-warning.btn-xs.add {
+    width: 70px;
+  }
+  .modal-content .col-md-1.col-sm-1.button {
+    right: 60px;
+  }
+  #one-flavour_left .carousel-control.up, #one-flavour_left .carousel-control.down, #two-flavours_left .carousel-control.up, #two-flavours_left .carousel-control.down {
+    left: -10px;
+  }
+  #two-flavours_right .carousel-control.up, #two-flavours_right .carousel-control.down {
+    left: 90px;
+  }
+  .cart .cart-panel .cart-dropdown .cart-heading {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 10px !important;
+  }
+  .cart .cart-panel .cart-dropdown .cart-heading .btn-cart-md {
+    margin-left: 0px !important;
+  }
+  button.btn.btn-danger.dropdown-toggle {
+    font-size: smaller;
+  }
+  .cart .cart-panel .cart-dropdown .cart-item span {
+    margin-left: 0px !important;
+    float: left;
+  }
+  .col-md-7.expiry-month {
+    width: 58.33333333%;
+    float: left;
+  }
+  .col-md-5.expiry-year {
+    width: 41.66666667%;
+    float: left;
   }
 }
 
