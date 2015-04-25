@@ -2484,15 +2484,15 @@ div.footer div.container div.row .placeAddress {
   }
   
   .checkout-form .pull-right {
-  margin-top: 20px;
+    margin-top: 10px;
+    position: absolute;
+    right: 20px;
   }
   
   .inner-page .checkout form .form-group.price {
     font-size: 20px;
     color: red;
     width: 100% !important;
-    margin-top: 10px !important;
-    position: absolute;
   }
   
   .inner-page .checkout form label[for=EPS_CARDNAME] {
