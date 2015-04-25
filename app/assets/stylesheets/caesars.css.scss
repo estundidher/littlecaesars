@@ -2246,6 +2246,16 @@ div.footer div.container div.row .placeAddress {
 .toppings-modal .modal-footer .row.added {
   margin-bottom: 10px;
 }
+.modal-footer .btn.btn-default {
+  font-size: 13px;
+}
+.modal-open .modal-body {
+  padding: 15px;
+  margin-bottom: -20px;
+}
+.modal-open .modal-body .table {
+  margin-bottom: -10px;
+}
 .modal-footer h4 {
   margin-left: 10px;
   text-align: left;
@@ -2731,7 +2741,7 @@ div.footer div.container div.row .placeAddress {
   }
   .modal-content .col-md-1.col-sm-1.button {
     right: 20px;
-    top: -10px;
+    top: -30px;
   }
   span.glyphicon.glyphicon-chevron-left {
     top: 240px;
@@ -2741,7 +2751,7 @@ div.footer div.container div.row .placeAddress {
   span.glyphicon.glyphicon-chevron-right {
     top: 240px;
     position: fixed;
-    right: 30px;
+    right: 50px;
   }
   
   .shopping-item.place-item {
