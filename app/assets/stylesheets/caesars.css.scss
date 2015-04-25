@@ -3230,6 +3230,9 @@ div.footer div.container div.row .placeAddress {
     width: 41.66666667%;
     float: left;
   }
+  .checkout .col-md-6 img.img-thumbnail {
+    width: 100% !important;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
