@@ -7,6 +7,9 @@ window.Caesars or= {}
 class Caesars.Order
 
   constructor: ->
+    
+    $('#checkoutOrder').h5Validate();
+    
     @$form = $('.checkout')
     @$spinner = $('.checkout .checkout-form .fa-spin')
     @$ok_sign = $('.checkout .checkout-form .glyphicon-ok-sign')
