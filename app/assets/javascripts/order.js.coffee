@@ -257,13 +257,12 @@ class Caesars.Order
 
   submit: (e) =>
     console.log 'order: submit fired!'
-    if $('#checkoutOrderForm').validate()
-      $.get($(e.target).data('update'))
-        .done (response) ->
-          Caesars.order.send($(e.target))
-        .fail (jqHXR, textStatus) ->
-          Caesars.order.reload()
-      return false
+    $.get($(e.target).data('update'))
+      .done (response) ->
+        Caesars.order.send($(e.target))
+      .fail (jqHXR, textStatus) ->
+        Caesars.order.reload()
+    return false
 
   send: (form) =>
     console.log 'order: send fired!'
@@ -283,6 +282,7 @@ class Caesars.Order
     window.location.reload(false)
 
 create_order = ->
+  $('#checkoutOrderForm').h5Validate();
   window.Caesars.order = new Caesars.Order()
 
 $(document).on 'ready page:load', create_order
