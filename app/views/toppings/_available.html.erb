@@ -12,7 +12,7 @@
 
                   <% cache ['topping_thumbail', topping] do %>
                     <div class="thumbnail">
-                      <% if topping.photo.exists? %>
+                      <% if topping.photo? %>
                         <%= image_tag topping.photo.url(:topping), class: 'img-responsive' %>
                       <% else %>
                         <img src="http://placehold.it/110x90/" alt="Slide1" class"img-responsive">

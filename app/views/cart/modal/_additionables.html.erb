@@ -9,7 +9,7 @@
             <% Product.not_additionable_nor_shoppable.page(page).per(4).each do |topping| %>
               <div class="col-md-3 col-sm-3">
                 <div class="thumbnail">
-                  <% if topping.photo.exists? %>
+                  <% if topping.photo? %>
                     <%= image_tag topping.photo.url(:mini), class: 'img-responsive' %>
                   <% else %>
                     <img src="http://placehold.it/120x60/" alt="Slide1" class"img-responsive">
