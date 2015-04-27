@@ -7,9 +7,6 @@ window.Caesars or= {}
 class Caesars.Order
 
   constructor: ->
-    
-    $('#checkoutOrder').h5Validate();
-    
     @$form = $('.checkout')
     @$spinner = $('.checkout .checkout-form .fa-spin')
     @$ok_sign = $('.checkout .checkout-form .glyphicon-ok-sign')
@@ -260,12 +257,14 @@ class Caesars.Order
 
   submit: (e) =>
     console.log 'order: submit fired!'
-    $.get($(e.target).data('update'))
-      .done (response) ->
-        Caesars.order.send($(e.target))
-      .fail (jqHXR, textStatus) ->
-        Caesars.order.reload()
-    return false
+    
+    if $('#checkoutOrderForm').validate()
+      $.get($(e.target).data('update'))
+        .done (response) ->
+          Caesars.order.send($(e.target))
+        .fail (jqHXR, textStatus) ->
+          Caesars.order.reload()
+      return false
 
   send: (form) =>
     console.log 'order: send fired!'
