@@ -2718,7 +2718,7 @@ div.footer div.container div.row .placeAddress {
     top: -75px;
   }
   .modal-content {
-    width: 96%;
+    width: 98%;
   }
   /*
    * Modal toppings
@@ -2739,16 +2739,19 @@ div.footer div.container div.row .placeAddress {
     right: 20px;
     top: -30px;
   }
+  /*
   .modal-content span.glyphicon.glyphicon-chevron-left {
-    top: 240px;
-    position: fixed;
-    left: 30px;
-  }
-  .modal-content span.glyphicon.glyphicon-chevron-right {
-    top: 240px;
-    position: fixed;
-    right: 50px;
-  }
+      top: 240px;
+      position: fixed;
+      left: 30px;
+    }
+    .modal-content span.glyphicon.glyphicon-chevron-right {
+      top: 240px;
+      position: fixed;
+      right: 50px;
+    }
+  */
+  
   
   .shopping-item.place-item {
     min-height: 320px;
