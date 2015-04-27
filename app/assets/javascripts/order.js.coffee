@@ -257,7 +257,6 @@ class Caesars.Order
 
   submit: (e) =>
     console.log 'order: submit fired!'
-    
     if $('#checkoutOrderForm').validate()
       $.get($(e.target).data('update'))
         .done (response) ->

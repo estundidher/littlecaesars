@@ -51,7 +51,7 @@
   <%= javascript_tag "$('.modal.expired').modal('show');" %>
 <% end %>
 
-<form id="checkoutOrder" action="https://api.securepay.com.au/test/directpost/authorise" data-update="<%= order_update_path(@order.code) %>" method="post">
+<form id="checkoutOrderForm" action="https://api.securepay.com.au/test/directpost/authorise" data-update="<%= order_update_path(@order.code) %>" method="post">
   <div class="row">
     <div class="col-sm-12 col-md-12">
       <div class="row cart-item">
@@ -74,7 +74,7 @@
           </div>
           <div class="form-group" style="margin-top: 0px;">
             <label for="EPS_CARDNUMBER">Credit Card Number</label>
-            <input type="text" name="EPS_CARDNUMBER" id="EPS_CARDNUMBER" maxlength="16" class="form-control" pattern="\d{16}" placeholder="Only numbers" title="Credit card number is required."  required />
+            <input type="number" name="EPS_CARDNUMBER" id="EPS_CARDNUMBER" maxlength="16" class="form-control" pattern="\d{16}" placeholder="Only numbers" title="Credit card number is required."  required />
           </div>
           <div class="form-group">
             <label for="EPS_EXPIRYMONTH">Expiry Date</label>
@@ -91,7 +91,7 @@
             <label for="EPS_CCV">CCV</label>
             <div class="row">
               <div class="col-sm-7 col-md-7">
-                <input type="text" name="EPS_CCV" id="EPS_CCV" maxlength="3" class="form-control" placeholder="XXX" pattern="\d{3}" title="CCV is required." required/>
+                <input type="number" name="EPS_CCV" id="EPS_CCV" maxlength="3" class="form-control" placeholder="XXX" pattern="\d{3}" title="CCV is required." required/>
               </div>
             </div>
           </div>
