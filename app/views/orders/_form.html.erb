@@ -51,11 +51,12 @@
   <%= javascript_tag "$('.modal.expired').modal('show');" %>
 <% end %>
 
-<form id="checkoutOrderForm" action="https://api.securepay.com.au/test/directpost/authorise" data-update="<%= order_update_path(@order.code) %>" method="post">
+<form id="checkoutOrderForm" action="https://api.securepay.com.au/test/directpost/authorise" data-update="<%= order_update_path(@order.code) %>" data-toggle="validator" role="form" method="post">
   <div class="row">
     <div class="col-sm-12 col-md-12">
       <div class="row cart-item">
         <div class="col-sm-6 col-md-6">
+        	
           <input type="hidden" name="EPS_MERCHANT" value="<%= @secure_pay.merchan_id %>">
           <input type="hidden" name="EPS_TXNTYPE" value="<%= @secure_pay.transaction_type %>">
           <input type="hidden" name="EPS_REFERENCEID" value="<%= @secure_pay.reference_id %>">
@@ -64,6 +65,7 @@
           <input type="hidden" name="EPS_FINGERPRINT" value="<%= @secure_pay.fingerprint %>">
           <input type="hidden" name="EPS_RESULTURL"  value="https://littlecs.com/checkout/confirm" />
           <input type="hidden" name="EPS_CALLBACKURL"  value="https://littlecs.com/checkout/confirm" />
+          
           <div class="form-group price" style="margin-top: 0px;">
           	<span class="total-label">Total :</span>
             <span class="value"><%= number_to_currency @order.price %></span>
