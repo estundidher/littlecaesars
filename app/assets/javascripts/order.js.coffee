@@ -15,7 +15,7 @@ class Caesars.Order
     @$order = $('.orders')
     @bind()
     
-    if ($("checkoutOrderForm").bootstrap3Validate)
+    if ($("checkoutOrderForm").bootstrap3Validate) # require to check because the bootstrap-validator.js is only loaded on the checkout order page
        @validateForm()
 
   bind: ->
