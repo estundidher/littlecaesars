@@ -14,9 +14,11 @@ class Caesars.Order
     @$checkout_form = $('.checkout .checkout-form')
     @$order = $('.orders')
     @bind()
+    
+    if ($("checkoutOrderForm").bootstrap3Validate)
+       @validateForm()
 
   bind: ->
-    @$form.on 'submit', '.checkout-form form', @submit
     @$order.on 'click', '.print', @print_click
     @$order.on 'click', '.print-button', @button_print_click
     @$order.on 'ajax:before', '.btn-danger.done', @done_before
@@ -255,9 +257,31 @@ class Caesars.Order
       if error_callback?
         error_callback()
 
-  submit: (e) =>
+  validateForm: () =>
+    console.log 'order: validateForm fired!'
+    
+    $("#checkoutOrderForm").bootstrap3Validate (e, data) ->
+       e.preventDefault();
+
+       self = $(this);
+
+       $('.progress', self).show();
+       $("[type='submit']", self).hide();
+       $(".alert-danger", self).hide();
+
+       $.ajax(
+       ).done (response) =>
+           self[0].reset(); # Clear form
+           Caesars.order.submit(self[0])
+       .fail (jqHXR, textStatus) =>
+           $('.alert-danger', self).text('Error!').show();
+       .always () =>
+           $('.progress', self).hide();
+           $("[type='submit']", self).show();
+           
+  submit: (e) =>  
     console.log 'order: submit fired!'
-    $.get($(e.target).data('update'))
+    $.get($(e).data('update'))
       .done (response) ->
         Caesars.order.send($(e.target))
       .fail (jqHXR, textStatus) ->

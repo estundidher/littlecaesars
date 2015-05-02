@@ -1,3 +1,10 @@
+<style>
+	form .alert,
+	form .progress {
+	    display: none;
+	}
+</style>
+
 <h3>
   Please enter your credit card details
   <span class="pull-right">
@@ -51,7 +58,7 @@
   <%= javascript_tag "$('.modal.expired').modal('show');" %>
 <% end %>
 
-<form id="checkoutOrderForm" action="https://api.securepay.com.au/test/directpost/authorise" data-update="<%= order_update_path(@order.code) %>" data-toggle="validator" role="form" method="post">
+<form id="checkoutOrderForm" action="https://api.securepay.com.au/test/directpost/authorise" data-update="<%= order_update_path(@order.code) %>" method="post">
   <div class="row">
     <div class="col-sm-12 col-md-12">
       <div class="row cart-item">
@@ -71,21 +78,21 @@
             <span class="value"><%= number_to_currency @order.price %></span>
           </div>
           <div class="form-group" style="margin-top: 0px;">
-            <label for="EPS_CARDNAME">Full Name on Credit Card</label>
-            <input type="text" name="EPS_CARDNAME" id="EPS_CARDNAME" maxlength="50" class="form-control" placeholder="As it appears on the card" title="Full name is required." required />
+            <label for="EPS_CARDNAME control-label">Full Name on Credit Card</label>
+            <input type="text" name="EPS_CARDNAME" id="EPS_CARDNAME" maxlength="50" class="form-control" placeholder="As it appears on the card" data-title="Full name is required." required />
           </div>
           <div class="form-group" style="margin-top: 0px;">
             <label for="EPS_CARDNUMBER">Credit Card Number</label>
-            <input type="text" name="EPS_CARDNUMBER" id="EPS_CARDNUMBER" maxlength="16" class="form-control" pattern="\d{16}" placeholder="Only numbers" title="Credit card number is required."  required />
+            <input type="text" name="EPS_CARDNUMBER" id="EPS_CARDNUMBER" maxlength="16" class="form-control" pattern="\d{16}" data-regex="^[0-9]{16}$" placeholder="Only numbers" data-title="Credit card number is invalid."  required />
           </div>
           <div class="form-group">
             <label for="EPS_EXPIRYMONTH">Expiry Date</label>
             <div class="row">
               <div class="col-md-7 expiry-month">
-                <%= select_tag 'EPS_EXPIRYMONTH', options_for_select(@months.each_with_index.collect{|m, i| [m, i+1]}), class:'form-control', title:'Expiry month is required.', required:true %>
+                <%= select_tag 'EPS_EXPIRYMONTH', options_for_select(@months.each_with_index.collect{|m, i| [m, i+1]}), class:'form-control', required:true %>
               </div>
               <div class="col-md-5 expiry-year" style="padding-left: 0px;">
-                <%= select_tag 'EPS_EXPIRYYEAR', options_for_select(@years), class:'form-control', title:'Expiry year is required.', required:true %>
+                <%= select_tag 'EPS_EXPIRYYEAR', options_for_select(@years), class:'form-control', required:true %>
               </div>
             </div>
           </div>
@@ -93,7 +100,7 @@
             <label for="EPS_CCV">CCV</label>
             <div class="row">
               <div class="col-sm-7 col-md-7">
-                <input type="number" name="EPS_CCV" id="EPS_CCV" maxlength="3" class="form-control" placeholder="XXX" pattern="\d{3}" title="CCV is required." required/>
+                <input type="text" name="EPS_CCV" id="EPS_CCV" maxlength="3" class="form-control" placeholder="XXX" pattern="\d{3}" data-regex="^[0-9]{3}$" data-title="CCV is invalid." required/>
               </div>
             </div>
           </div>
@@ -109,6 +116,18 @@
           </div>
         </div>
       </div>
+      
+ 		<div class="progress progress-striped active">
+			<div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+				<span class="sr-only">Please wait...</span>
+			</div>
+		</div>
+		<div class="alert alert-danger">
+		</div>
+		<div class="alert alert-success">
+			Sent!
+		</div>
+      
       <div class="form-group" style="text-align:center;">
         <% if @order.allow_send? && !@order.max_of_attempts? %>
           <%= link_to @order, method: :delete, class: 'btn btn-danger btn-lg', data: {confirm: t('warnings.confirm')} do %>
