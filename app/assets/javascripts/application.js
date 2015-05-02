@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery-ujs
 //= require bootstrap
+//= require bootstrap-validator
 //= require jquery-meiomask/dist/meiomask
 //= require jquery-prettyPhoto/js/jquery.prettyPhoto
 //= require moment
