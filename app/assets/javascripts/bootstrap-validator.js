@@ -1,4 +1,4 @@
-###*
+###
 * Bootstrap.validator plugin for JQuery and Bootstrap 3.
 * https://github.com/wpic/bootstrap.validator.js
 * By Hamed Abdollahpour 2014 - WPIC Co
