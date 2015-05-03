@@ -272,7 +272,6 @@ class Caesars.Order
 
        $.ajax(
        ).done (response) =>
-           self[0].reset(); # Clear form
            Caesars.order.submit(self[0])
        .fail (jqHXR, textStatus) =>
            $('.alert-danger', self).text('Error!').show();
