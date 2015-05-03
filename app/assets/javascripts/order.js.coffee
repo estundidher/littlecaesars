@@ -258,7 +258,7 @@ class Caesars.Order
       if error_callback?
         error_callback()
 
-  validateForm:
+  validateForm: () =>
     console.log 'order: validateForm fired!'
     
     $("#checkoutOrderForm").bootstrap3Validate (e, data) ->
