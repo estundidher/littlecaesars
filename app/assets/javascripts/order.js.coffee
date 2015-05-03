@@ -15,7 +15,8 @@ class Caesars.Order
     @$order = $('.orders')
     @bind()
     
-    if ($("checkoutOrderForm").bootstrap3Validate) # require to check because the bootstrap-validator.js is only loaded on the checkout order page
+    # require to check because the bootstrap-validator.js is only loaded on the checkout order page
+    if ($("checkoutOrderForm").bootstrap3Validate)
        @validateForm()
 
   bind: ->
@@ -283,7 +284,7 @@ class Caesars.Order
     console.log 'order: submit fired!'
     $.get($(e).data('update'))
       .done (response) ->
-        Caesars.order.send($(e.target))
+        Caesars.order.send($(e))
       .fail (jqHXR, textStatus) ->
         Caesars.order.reload()
     return false

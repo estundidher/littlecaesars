@@ -79,11 +79,11 @@
           </div>
           <div class="form-group" style="margin-top: 0px;">
             <label for="EPS_CARDNAME control-label">Full Name on Credit Card</label>
-            <input type="text" name="EPS_CARDNAME" id="EPS_CARDNAME" maxlength="50" class="form-control" placeholder="As it appears on the card" data-title="Full name is required." required />
+            <input type="text" name="EPS_CARDNAME" id="EPS_CARDNAME" maxlength="50" class="form-control" data-regex="^(?![0-9]).*?$" placeholder="As it appears on the card" data-title="Please enter your full name" required />
           </div>
           <div class="form-group" style="margin-top: 0px;">
             <label for="EPS_CARDNUMBER">Credit Card Number</label>
-            <input type="text" name="EPS_CARDNUMBER" id="EPS_CARDNUMBER" maxlength="16" class="form-control" pattern="\d{16}" data-regex="^[0-9]{16}$" placeholder="Only numbers" data-title="Credit card number is invalid."  required />
+            <input type="text" name="EPS_CARDNUMBER" id="EPS_CARDNUMBER" maxlength="16" class="form-control" pattern="\d{16}" data-regex="^[0-9]{16}$" placeholder="Only numbers" data-title="Please enter your credit card number"  required />
           </div>
           <div class="form-group">
             <label for="EPS_EXPIRYMONTH">Expiry Date</label>
@@ -100,7 +100,7 @@
             <label for="EPS_CCV">CCV</label>
             <div class="row">
               <div class="col-sm-7 col-md-7">
-                <input type="text" name="EPS_CCV" id="EPS_CCV" maxlength="3" class="form-control" placeholder="XXX" pattern="\d{3}" data-regex="^[0-9]{3}$" data-title="CCV is invalid." required/>
+                <input type="text" name="EPS_CCV" id="EPS_CCV" maxlength="3" class="form-control" placeholder="XXX" pattern="\d{3}" data-regex="^[0-9]{3}$" data-title="Please enter your CCV" required/>
               </div>
             </div>
           </div>
