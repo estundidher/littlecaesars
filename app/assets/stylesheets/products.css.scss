@@ -1,3 +1,16 @@
 // Place all the styles related to the Dishes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+div#new_product {
+  width: 100%;
+}
+
+label[for="product_categories"], 
+label[for="product_items"] {
+  width: 100%;
+}
+div#category_container label.checkbox,
+div#product_options_container label.checkbox {
+  width: 20%;
+  display: inline-block;
+}

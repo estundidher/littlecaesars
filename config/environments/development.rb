@@ -38,6 +38,11 @@ Rails.application.configure do
   # Set to :debug to see everything in the log.
   config.log_level = :debug
 
+  Paperclip.options[:log] = true 
+  Paperclip.options[:log_command] = true 
+  Paperclip.options[:command_path] = 'C:\Program Files\ImageMagick-6.9.1-Q16' 
+  Paperclip.options[:swallow_stderr] = false
+  
   #Devise configuration
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.raise_delivery_errors = true

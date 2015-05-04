@@ -1,7 +1,7 @@
 defaults: &defaults
   access_key_id: 'AKIAII3PGZXSFC3Q2S7Q'
   secret_access_key: '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'
-  region: 'Sydney'
+  region: 'ap-southeast-2'
 development:
   <<: *defaults
   bucket: 'little-caesars-dev'
