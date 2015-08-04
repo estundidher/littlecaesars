@@ -1,17 +1,17 @@
 <!-- Items table -->
 <table class="table table-condensed">
-  <tfoot>
+  <tfoot class="order-total">
     <tr>
-      <th style="text-align: left;"> SUBTOTAL: </th>
-      <th> <%= number_to_currency @order.price %> </th>
+      <th colspan="2" class="order-total-label"> SUBTOTAL: </th>
+      <th class="order-total-price"> <%= number_to_currency @order.price %> </th>
     </tr>
     <tr>
-      <th style="text-align: left;"> TAX: </th>
-      <th> <%= number_to_currency @order.tax %> </th>
+      <th colspan="2" class="order-total-label"> TAX: </th>
+      <th class="order-total-price"> <%= number_to_currency @order.tax %> </th>
     </tr>
     <tr>
-      <th style="text-align: left;"> TOTAL: </th>
-      <th> <%= number_to_currency @order.price %> </th>
+      <th colspan="2" class="order-total-label"> TOTAL: </th>
+      <th class="order-total-price"> <%= number_to_currency @order.price %> </th>
     </tr>
   </tfoot>
   <tbody>

@@ -94,7 +94,7 @@ class Admin::OrdersController < Admin::BaseController
       query = query.joins :pick_up
     end
 
-    @orders = query.order 'pick_ups.date ASC'
+    @orders = query.order 'pick_ups.date ASC, id ASC'
   end
 
   # GET /admin/order/id/done

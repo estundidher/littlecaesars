@@ -1,4 +1,106 @@
 body.admin {
 
-    // Put all your admin CSS in here
+  // Put all your admin CSS in here
+  div.order-item {
+    font-size: 1.1em;
+  }
+  .order-inner {
+    border: 3px solid;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    color: #000;
+  }
+  .order-inner h4 {
+    background-color: #5cb85c;
+    margin: 0px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+  }
+  .order-inner table {
+    margin-bottom: 0px;    
+  }
+  a.order-item-anchor {
+    cursor: pointer;
+  }
+  .table>tbody>tr.active>td {
+    background-color: #FFFBAA;
+  }
+  tfoot.order-total {
+    background-color: rgb(96, 156, 236);
+    color: #fff;
+    border-top: 1px solid #333;
+  }
+  .order-total-label {
+    text-align: left;
+    border-top: 0px;
+  }
+  .order-total-price {
+    text-align: right;
+    border-top: 0px;
+  }
+  .order-total-label, 
+  .order-total-price {
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+  
+  .order-item-price {
+    text-align: right;
+  }
+  #modalDone .btn.btn-danger,
+  #modalDone .btn.btn-success {
+    width: 100%;
+    padding: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  #modalDone .btn.btn-primary {
+    width: 100%;
+    margin-top: 20px;
+  }
+  #modalDone .col-xs-12.print {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  #modalDone .col-xs-6.danger {
+    padding-left: 30px;
+  }
+  #modalDone .col-xs-6.success {
+    padding-right: 30px;
+  }
+  .order-inner.active {
+    border: 5px solid red;
+  }
+  .splittable-pizza {
+    padding-left: 30px;
+  }
+  .splittable-pizza i {
+    padding-right: 5px;
+  }
+  .removed-topping,
+  .added-topping {
+    font-weight: bold;
+    padding-left: 60px;
+  }
+  .removed-topping {
+    color: #d43f3a;
+  }
+  .added-topping {
+    color: #4cae4c;
+  }
+  span.order-id {
+    float: left;
+    border: 2px solid;
+    border-radius: 15px;
+    padding: 5px;
+    margin-top: -8px;
+    font-size: 1.1em;
+    background-color: #fff;
+    color: #333;
+  }
+  .pizza-name {
+    font-weight: bold;
+  }
 }

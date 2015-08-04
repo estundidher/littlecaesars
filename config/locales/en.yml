@@ -233,7 +233,7 @@ en:
     errors:
       <<: *errors
 
-  brand: Little Caesars
+  brand: Little C's
 
   warnings:
     confirm: Are you sure?

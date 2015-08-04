@@ -1,31 +1,56 @@
 <% content_for :module, 'orders' %>
 <% content_for :default_class, 'container-fluid' %>
 <div class="row">
-  <% @orders.each_with_index do |order, index| %>
-    <div class="col-md-4 col-sm-4 order">
-      <% @order = order %>
-      <a href="JavaScript:void(0);" class="btn btn-primary btn-lg print-button" style="width:100%;"
-        data-url="<%= admin_order_path(@order.id, :json) %>">
-        <i class='fa fa-spinner fa-spin' style='display:none;'></i>
-        <i class="glyphicon glyphicon-exclamation-sign" style='display:none;'></i>
-        <i class="glyphicon glyphicon-print"></i>
-        <%= @order.code %>
-      </a>
-      <h4 style="text-align: center">
-        <i class="glyphicon glyphicon-time"></i>
-        <%= @order.pick_up.date.to_formatted_s :short %>
-      </h4>
-			<div style="font-size: 15px;">
-      	<%= render 'orders/resume' %>
-			</div>
-      <%= link_to admin_order_done_path(@order), class:'btn btn-danger btn-lg done',
-          style:'width:100%; margin-bottom: 20px;', remote:true, data: {confirm: t('warnings.confirm')} do %>
-        <i class="glyphicon glyphicon-ok"></i>
-        <i class="fa fa-spinner fa-spin" style="display:none;"></i>
-        Done!
-      <% end %>
-    </div>
-  <% end %>
+	<% @orders.each_with_index do |order, index| %>
+		<div class="col-md-4 col-sm-4 order">
+			<% @order = order %>
+			<a class="order-item-anchor" onclick="JavaScript:showDonePopup(this);">
+				<div class="order-inner">	
+					<h4>
+						<span class="order-id"><%= @order.id %></span>	
+						<i class="glyphicon glyphicon-time"></i>
+						<%= @order.pick_up.date.to_formatted_s :short %>
+					</h4>
+					<div class="order-item">
+						<%= render 'orders/resume' %>
+					</div>
+			    </div>
+			    <div id="modalDone" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+				  <div class="modal-dialog modal-md">
+				    <div class="modal-content">
+				    	<div class="modal-header">
+						    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="exampleModalLabel">Order actions</h4>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 print">
+								<a href="JavaScript:void(0);" class="btn btn-primary print-button" data-url="<%= admin_order_path(@order.id, :json) %>">
+									<i class='fa fa-spinner fa-spin' style='display:none;'></i>
+									<i class="glyphicon glyphicon-exclamation-sign" style='display:none;'></i>
+									<i class="glyphicon glyphicon-print"></i>
+									<%= @order.code %>
+								</a>
+							</div>
+							<div class="col-xs-6 danger">
+								<a class="btn btn-danger" onclick="JavaScript:hideDonePopup(this);">
+									<i class="glyphicon glyphicon-remove"></i>
+									No
+								</a>
+							</div>
+							<div class="col-xs-6 success">
+								<%= link_to admin_order_done_path(@order), class:'btn btn-success done', remote:true do %>
+									<i class="glyphicon glyphicon-ok"></i>
+									<i class="fa fa-spinner fa-spin" style="display:none;"></i>
+									Done
+								<% end %>
+							</div>
+						</div>      	
+				    </div>
+				  </div>
+				</div>
+			</a>
+		</div>
+	<% end %>
 </div>
 
 <%= javascript_tag "$(function () { setTimeout(function(){ window.location.reload(1)}, 60000)});" %>

@@ -22,25 +22,6 @@ class Caesars.Order
   bind: ->
     @$order.on 'click', '.print', @print_click
     @$order.on 'click', '.print-button', @button_print_click
-    @$order.on 'ajax:before', '.btn-danger.done', @done_before
-    @$order.on 'ajax:success', '.btn-danger.done', @done_success
-    @$order.on 'ajax:error', '.btn-danger.done', @done_error
-
-  done_before: (e, data, status, xhr) =>
-    $button = $(e.target)
-    $button.addClass 'disabled'
-    $button.find('.fa-spin').fadeIn 'fast'
-    $button.find('.glyphicon').hide()
-
-  done_success: (e, data, status, xhr) =>
-    console.log 'Admin Order done: success fired!'
-    $order = $(e.target).closest('.order')
-    $order.slideUp 'slow', ->
-      $order.remove()
-
-  done_error: (e, xhr, status, error) =>
-    console.log 'Admin Order done: error fired!'
-    Caesars.order.reload()
 
   button_print_click: (e) =>
     console.log 'Orders - button_print_click: fired!'
@@ -141,7 +122,7 @@ class Caesars.Order
 
     #specify the print data
     builder.addTextAlign builder.ALIGN_CENTER
-    builder.addText('LITTLE CAESARS AUSTRALIA PTY LTD').addFeed()
+    builder.addText('LITTLE C\'s AUSTRALIA PTY LTD').addFeed()
 
     builder.addTextStyle false, false, false, undefined
     builder.addText(order.pick_up.place.name).addFeed()
