@@ -37,13 +37,13 @@ $( document ).ready(function() {
     
 var selectedOrdem;    
 function showDonePopup (obj) {
-	$('#modalDone').modal('show');
+	$(obj).find('+ .modal').modal('show');
 	
 	selectedOrdem = $(obj).find('.order-inner');
 	selectedOrdem.addClass('active');  
 };
 function hideDonePopup (obj) {
-	$('#modalDone').modal('hide');
+	selectedOrdem.prevObject.find('+ .modal').modal('hide');
 	
 	selectedOrdem.removeClass('active');
 	selectedOrdem = null;
@@ -82,8 +82,9 @@ function doneSuccess(e, data, status, xhr) {
   $order = selectedOrdem.closest('.order');
   $order.slideUp('slow', function() {
     $order.remove();
-    hideDonePopup(e);
   });
+  
+  hideDonePopup($order.find('> .order-item-anchor'));
 };
 
 function doneError(e, xhr, status, error) {

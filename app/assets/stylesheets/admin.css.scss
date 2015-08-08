@@ -49,25 +49,25 @@ body.admin {
   .order-item-price {
     text-align: right;
   }
-  #modalDone .btn.btn-danger,
-  #modalDone .btn.btn-success {
+  .modal .btn.btn-danger,
+  .modal .btn.btn-success {
     width: 100%;
     padding: 30px;
     margin-top: 20px;
     margin-bottom: 20px;
   }
-  #modalDone .btn.btn-primary {
+  .modal .btn.btn-primary {
     width: 100%;
     margin-top: 20px;
   }
-  #modalDone .col-xs-12.print {
+  .modal .col-xs-12.print {
     padding-right: 30px;
     padding-left: 30px;
   }
-  #modalDone .col-xs-6.danger {
+  .modal .col-xs-6.danger {
     padding-left: 30px;
   }
-  #modalDone .col-xs-6.success {
+  .modal .col-xs-6.success {
     padding-right: 30px;
   }
   .order-inner.active {

@@ -2,8 +2,10 @@
 <% content_for :default_class, 'container-fluid' %>
 <div class="row">
 	<% @orders.each_with_index do |order, index| %>
+	
+		<% @order = order %>
+		
 		<div class="col-md-4 col-sm-4 order">
-			<% @order = order %>
 			<a class="order-item-anchor" onclick="JavaScript:showDonePopup(this);">
 				<div class="order-inner">	
 					<h4>
@@ -15,7 +17,7 @@
 						<%= render 'orders/resume' %>
 					</div>
 			    </div>
-			    <div id="modalDone" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+			    <div id="modalDone<%= @order.id %>" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 				  <div class="modal-dialog modal-md">
 				    <div class="modal-content">
 				    	<div class="modal-header">

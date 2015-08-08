@@ -382,7 +382,9 @@ h4.title {
     color: #9a9a9a;
 }
 
-.header .navbar-default .navbar-nav > li ul.dropdown-md a.btn{ margin-top: 8px; }
+.header .navbar-default .navbar-nav > li ul.dropdown-md a.btn{
+  width: 100%; 
+}
 
 /*
  * Cart Link
