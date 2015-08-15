@@ -112,7 +112,8 @@ class Admin::OrdersController < Admin::BaseController
 
   # GET /admin/order/id/change_order_status
   def change_order_status
-    unless @order.oven? || @order.ready?
+    
+    unless @order.processing? || @order.ready? || @order.delivered?
       
       if (@order.printed?)
         @order.oven!
