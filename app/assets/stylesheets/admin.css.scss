@@ -194,10 +194,8 @@ body.admin {
   }
   
   .live-title {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
+    text-align: center;
+    margin-top: -40px;
   }
   .live-title h1 {
     margin-top: 8px;
