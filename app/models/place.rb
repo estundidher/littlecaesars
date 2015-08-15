@@ -8,6 +8,8 @@ class Place < ActiveRecord::Base
                     styles: {large:'400x450>', medium:'300x300>', thumb:'100x100>'},
                     default_url: '/images/:style/missing.png'
 
+  has_one :oven_time
+
   validates :code,
             presence: true,
             uniqueness: true

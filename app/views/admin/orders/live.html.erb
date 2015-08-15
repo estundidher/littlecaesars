@@ -1,23 +1,38 @@
 <% content_for :module, 'orders' %>
 <% content_for :default_class, 'container-fluid' %>
+
+<% if @place.present? %>
+	<% @place_name = @place + " -" %>
+<% end %>
+
+<div class="live-title">
+	<% if @live_type == "kitchen" %>
+		<h1><%= @place_name %> Kithen Orders</h1>
+	<% else %>
+		<h1><%= @place_name %> Wrap-up Orders</h1>
+	<% end %>
+</div>
+
 <div class="row">
+		
 	<% @orders.each_with_index do |order, index| %>
 	
 		<% @order = order %>
 		
 		<div class="col-md-4 col-sm-4 order">
-			<a class="order-item-anchor" onclick="JavaScript:showDonePopup(this);">
+			<a class="order-item-anchor" onclick="JavaScript:showLivePopup(this);">
 				<div class="order-inner">	
 					<h4>
-						<span class="order-id"><%= @order.id %></span>	
+						<span class="order-id"><%= @order.id %></span>
 						<i class="glyphicon glyphicon-time"></i>
 						<%= @order.pick_up.date.to_formatted_s :short %>
+						<span class="order-customer"><%= @order.customer.name %></span>
 					</h4>
 					<div class="order-item">
 						<%= render 'orders/resume' %>
 					</div>
 			    </div>
-			    <div id="modalDone<%= @order.id %>" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+			    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 				  <div class="modal-dialog modal-md">
 				    <div class="modal-content">
 				    	<div class="modal-header">
@@ -34,16 +49,16 @@
 								</a>
 							</div>
 							<div class="col-xs-6 danger">
-								<a class="btn btn-danger" onclick="JavaScript:hideDonePopup(this);">
+								<a class="btn btn-danger" onclick="JavaScript:hideLivePopup(this);">
 									<i class="glyphicon glyphicon-remove"></i>
-									No
+									Cancel
 								</a>
 							</div>
 							<div class="col-xs-6 success">
-								<%= link_to admin_order_done_path(@order), class:'btn btn-success done', remote:true do %>
+								<%= link_to admin_order_change_order_status_path(@order), class:'btn btn-success oven', remote:true do %>
 									<i class="glyphicon glyphicon-ok"></i>
 									<i class="fa fa-spinner fa-spin" style="display:none;"></i>
-									Done
+									Oven
 								<% end %>
 							</div>
 						</div>      	
@@ -56,3 +71,5 @@
 </div>
 
 <%= javascript_tag "$(function () { setTimeout(function(){ window.location.reload(1)}, 60000)});" %>
+
+<div class="modal-loading"></div>

@@ -94,8 +94,18 @@ body.admin {
     float: left;
     border: 2px solid;
     border-radius: 15px;
+    border-style: dotted;
     padding: 5px;
     margin-top: -8px;
+    font-size: 1.1em;
+    background-color: #fff;
+    color: #333;
+  }
+  span.order-customer {
+    float: right;
+    border-radius: 15px;
+    padding: 5px;
+    margin-top: -6px;
     font-size: 1.1em;
     background-color: #fff;
     color: #333;
@@ -103,5 +113,126 @@ body.admin {
   .pizza-name {
     font-weight: bold;
   }
+  input[name='ovenTime'] {
+    width: 80px;
+  }
   
+  // Oven time
+  .navbar-nav > li > .oven-time,
+  .navbar-nav > li > .oven-time-place {
+    margin-left: 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .navbar-nav > li > .edit-oven-time {
+    margin-left: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #E7E7E7;
+    border: 3px;
+    border-style: dashed;
+  }
+  .navbar-nav > li > .edit-oven-time button  {
+    margin-left: 10px;
+  }
+  
+  
+  .dropdown-submenu {
+      position: relative;
+  }
+  
+  .dropdown-submenu>.dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -6px;
+      margin-left: -1px;
+      -webkit-border-radius: 0 6px 6px 6px;
+      -moz-border-radius: 0 6px 6px;
+      border-radius: 0 6px 6px 6px;
+  }
+  
+  .dropdown-submenu:hover>.dropdown-menu {
+      display: block;
+  }
+  
+  .dropdown-submenu>a:after {
+      display: block;
+      content: " ";
+      float: right;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+      border-width: 5px 0 5px 5px;
+      border-left-color: #F75353;
+      margin-top: 5px;
+      margin-right: -10px;
+  }
+  
+  .dropdown-submenu:hover>a:after {
+      border-left-color: #fff;
+  }
+  
+  .dropdown-submenu.pull-left {
+      float: none;
+  }
+  
+  .dropdown-submenu.pull-left>.dropdown-menu {
+      left: -100%;
+      margin-left: 10px;
+      -webkit-border-radius: 6px 0 6px 6px;
+      -moz-border-radius: 6px 0 6px 6px;
+      border-radius: 6px 0 6px 6px;
+  }
+  
+  .dropdown-submenu .dropdown-menu:before,
+  .dropdown-submenu .dropdown-menu:after {
+    content: initial;
+  }
+  .dropdown-submenu .dropdown-menu {
+    border-top: 0px !important;
+  }
+  
+  .live-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  .live-title h1 {
+    margin-top: 8px;
+    color: #000;
+    font-weight: 700;
+  }
+}
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal-loading {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                image-url('ajax-loader.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+  overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal-loading {
+    display: block;
 }

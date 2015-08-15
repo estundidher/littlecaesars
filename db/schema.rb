@@ -300,10 +300,18 @@ ActiveRecord::Schema.define(version: 20140806013856) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
+  
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+  
+  create_table "oven_times", force: true do |t|
+    t.integer  "time",       default: 1,     null: false
+    t.integer  "place_id",   null: false
+  end
+  
+  add_index "oven_times", ["place_id"], name: "index_oven_times_on_place_id", unique: true, using: :btree
+ 
 
   add_foreign_key "cart_items", "cart_items", name: "cart_items_first_half_id_fk", column: "first_half_id"
   add_foreign_key "cart_items", "cart_items", name: "cart_items_second_half_id_fk", column: "second_half_id"
@@ -369,5 +377,7 @@ ActiveRecord::Schema.define(version: 20140806013856) do
 
   add_foreign_key "sizes", "users", name: "sizes_created_by_fk", column: "created_by"
   add_foreign_key "sizes", "users", name: "sizes_updated_by_fk", column: "updated_by"
+
+  add_foreign_key "oven_times", "places", name: "oven_times_place_id_fk"
 
 end

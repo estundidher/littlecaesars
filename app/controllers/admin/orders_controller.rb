@@ -1,6 +1,6 @@
 class Admin::OrdersController < Admin::BaseController
 
-  before_action :set_order, only: [:show, :destroy, :print, :done]
+  before_action :set_order, only: [:show, :destroy, :print, :change_order_status]
 
   # GET /admin/orders
   # GET /admin/orders.json
@@ -84,23 +84,42 @@ class Admin::OrdersController < Admin::BaseController
 
   # GET /admin/live
   def live
-
-    query = Order.approved.where('status <> ?', Order.statuses[:done])
-
-    if params[:place_id].present?
-      query = query.joins(pick_up: :place)
-                   .where(places: {id:params[:place_id].to_i})
+    
+    if params[:live_type].present? && params[:live_type] == "kitchen"
+      query = Order.approved.where('status = ?', Order.statuses[:printed])
+  
+      if params[:place_id].present?
+        query = query.joins(pick_up: :place)
+                     .where(places: {id:params[:place_id].to_i})
+      else
+        query = query.joins :pick_up
+      end
     else
-      query = query.joins :pick_up
+      query = Order.approved.where('status = ?', Order.statuses[:oven])
+  
+      if params[:place_id].present?
+        query = query.joins(pick_up: :place)
+                     .where(places: {id:params[:place_id].to_i})
+      else
+        query = query.joins :pick_up
+      end
     end
 
     @orders = query.order 'pick_ups.date ASC, id ASC'
+    @place = params[:place_id].present? ? Place.find(params[:place_id]).name : "All"
+    @live_type = params[:live_type]
   end
 
-  # GET /admin/order/id/done
-  def done
-    unless @order.done?
-      @order.done!
+  # GET /admin/order/id/change_order_status
+  def change_order_status
+    unless @order.oven? || @order.ready?
+      
+      if (@order.printed?)
+        @order.oven!
+      else
+        @order.ready!
+      end
+      
       @order.save!
     end
     render nothing:true, status: :ok

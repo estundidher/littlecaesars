@@ -48,5 +48,6 @@ protected
     if customer_signed_in? && current_customer.orders.pending.last.present?
       redirect_to checkout_path(current_customer.orders.pending.last.code)
     end
-  end
+  end 
+  
 end

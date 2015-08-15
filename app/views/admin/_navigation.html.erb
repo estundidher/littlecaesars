@@ -14,7 +14,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
     <% if user_signed_in? %>
-      <ul class="nav navbar-nav menu">
+      <ul class="nav navbar-nav menu" role="menu" aria-labelledby="dropdownMenu">
         <% if current_user.admin? %>
           <li <%= is_active 'admin/product_types' %>>
             <%= link_to ProductType.model_name.human.pluralize, admin_product_types_path %>
@@ -43,18 +43,85 @@
           <li <%= is_active 'admin/chefs' %>>
             <%= link_to Chef.model_name.human.pluralize, admin_chefs_path %>
           </li>
-          <li class="dropdown <%= is_live ? 'active' : '' %>">
+        <% end %>
+        <li class="dropdown <%= is_live ? 'active' : '' %>">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Live
             </a>
-            <ul class="dropdown-menu">
-              <li> <%= link_to 'All', admin_order_live_path %> </li>
-              <% Place.where(enabled:true).each do |place| %>
-                <li> <%= link_to place.name, admin_order_live_path(place) %> </li>
-              <% end %>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+            	<li class="dropdown-submenu">
+					<a tabindex="-1" href="#">Kitchen</a>
+	                <ul class="dropdown-menu">
+	            		<li> <%= link_to 'All', admin_order_live_path(nil, "kitchen"), :onclick => '$("body").addClass("loading");' %> </li>
+		              	<% Place.where(enabled:true).each do |place| %>
+		                	<li> <%= link_to place.name, admin_order_live_path(place, "kitchen"), :onclick => '$("body").addClass("loading");' %> </li>
+		              	<% end %>
+	                </ul>
+				</li>
+            	<li class="dropdown-submenu">
+					<a tabindex="-1" href="#">Wrap-up</a>
+	                <ul class="dropdown-menu">
+	            		<li> <%= link_to 'All', admin_order_live_path(nil, "wrapup"), :onclick => '$("body").addClass("loading");' %> </li>
+		              	<% Place.where(enabled:true).each do |place| %>
+		                	<li> <%= link_to place.name, admin_order_live_path(place, "wrapup"), :onclick => '$("body").addClass("loading");' %> </li>
+		              	<% end %>
+	                </ul>
+				</li>              
             </ul>
           </li>
-        <% end %>
+		  <li <%= is_active 'admin/oven_time' %>>
+			
+			<input id="ovenId" type="hidden" />
+			<input id="ovenTime" type="hidden" />
+			<input id="ovenTimePlaceId" type="hidden" />
+			
+          	<div class="row oven-time">
+  				<div class="col-xs-12">
+		          	<div class="input-group">
+			            <button id="editOvenTimeBtn" type="button" class="btn btn-danger">
+			            	Edit oven time
+	              			<i class="glyphicon glyphicon-chevron-right"></i>
+	              		</button>
+		            </div>
+		    	</div>
+		    </div>
+		    
+		    <div class="row oven-time-place" style="display: none;">
+  				<div class="col-xs-12">
+		          	<div>
+		          		<% Place.where(enabled:true).each do |place| %>
+				          	<button type="button" class="btn btn-primary oven-time-place-btn" 
+				          		data-oven-time-id="<%= place.oven_time.id %>"
+				          		data-oven-time="<%= place.oven_time.time %>"
+				          		data-place-id="<%= place.id %>" >
+				          		
+					      		<%= place.name %>
+			            	</button>		            
+			            <% end %>
+		            </div>
+		    	</div>
+		    </div>		    			
+		    
+			<div class="row edit-oven-time" style="display: none;">	    		
+		    	<div class="col-xs-12">
+		          	<div class="input-group">
+		          		
+			            <input id="newOvenTime" name="ovenTime" type="number" class="form-control" min="1" max="50" placeholder="Time!" maxlength="2" oninput="maxLengthCheck(this)" />
+			            
+			            <button id="cancelOvenTimeBtn" type="button" class="btn btn-danger">
+			            	<i class="glyphicon glyphicon-remove-circle"></i>
+			            	Cancel
+			            </button>
+				        <button id="saveOvenTimeBtn" type="button" class="btn btn-success spinnable">
+				        	<i class="glyphicon glyphicon-ok-circle"></i>
+              				<i class="fa fa-spinner fa-spin" style="display:none;"></i>
+              				Save
+              			</button>
+		            </div>
+				</div>
+			</div>
+			
+		  </li>
       </ul>
     <% end %>
 
