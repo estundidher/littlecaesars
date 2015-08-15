@@ -21,14 +21,6 @@
 //= require users
 
 $( document ).ready(function() {
-	$(document)
-	.ajaxStart(function(){
-	   alert("a");
-	})
-	.ajaxStop(function(){
-	   alert("b");
-	});
-
     $('.orders').on('ajax:before', '.btn-success.oven', ovenBefore);
 	$('.orders').on('ajax:success', '.btn-success.oven', ovenSuccess);
 	$('.orders').on('ajax:error', '.btn-success.oven', ovenError);
