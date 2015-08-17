@@ -18,7 +18,7 @@ class Admin::OvenTimeController < Admin::BaseController
       if @oven_time.update(oven_time_params)
         format.json { head :no_content }
       else
-        format.json { render json: @size.errors, status: :unprocessable_entity }
+        format.json { render json: @oven_time.errors, status: :unprocessable_entity }
       end
     end
   end

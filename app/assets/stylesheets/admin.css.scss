@@ -101,6 +101,18 @@ body.admin {
     background-color: #fff;
     color: #333;
   }
+  span.order-not-printed {
+    float: left;
+    margin-left: 10px;
+  }
+  span.order-not-printed i.glyphicon.glyphicon-ban-circle {
+    position: absolute;
+    top: 9px;
+    color: #d43f3a;
+    font-size: 30px;
+    margin-left: -6px;
+    z-index: 1;
+  }
   span.order-customer {
     float: right;
     border-radius: 15px;
@@ -201,6 +213,56 @@ body.admin {
     margin-top: 8px;
     color: #000;
     font-weight: 700;
+  }
+  
+  .customer-view .live-title {
+    margin-top: -10px;
+  }
+  
+  table.live-customer {
+    width: 100%;
+    font-size: 2em;
+    text-align: center;
+    border: 1px solid #fff;
+    margin-bottom: 20px;
+  }
+  table.live-customer tbody tr:hover td {
+    color: #009;
+  }
+  table.live-customer th.header-order-id {
+    border-radius: 10px 0 0 0;
+    width: 120px;
+  }
+  table.live-customer th.header-order-status {
+    border-radius: 0 10px 0 0;
+  }
+  table.live-customer tr:last-child td.order-id {
+    border-radius: 0 0 0 10px;
+  }
+  table.live-customer tr:last-child td.order-status {
+    border-radius: 0 0 10px 0;
+  }
+  table.live-customer th {
+    padding: 8px;
+    font-weight: 700;
+    text-align: center;
+    color: #FFF;
+    background: #F75353;
+    border: 1px solid #fff;
+  }
+  table.live-customer td {
+    padding: 8px;
+    background: #FFFBAA;
+    border-top: 1px solid #fff;
+    color: #000;
+  }
+  table.live-customer tr.ready td {
+    background: #5CB85C;
+    color: #fff;
+  }
+  table.live-customer tr.oven td {
+    background: #609CEC;
+    color: #fff;
   }
 }
 

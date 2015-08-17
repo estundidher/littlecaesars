@@ -1,0 +1,51 @@
+<li>			
+	<input id="ovenId" type="hidden" />
+	<input id="ovenTime" type="hidden" />
+	<input id="ovenTimePlaceId" type="hidden" />
+	
+  	<div class="row oven-time">
+		<div class="col-xs-12">
+          	<div class="input-group">
+	            <button id="editOvenTimeBtn" type="button" class="btn btn-danger">
+	            	Edit oven time
+          			<i class="glyphicon glyphicon-chevron-right"></i>
+          		</button>
+            </div>
+    	</div>
+    </div>
+    
+	<div class="row oven-time-place" style="display: none;">
+		<div class="col-xs-12">
+          	<div>
+          		<% Place.where(enabled:true).each do |place| %>
+		          	<button type="button" class="btn btn-primary oven-time-place-btn" 
+		          		data-oven-time-id="<%= place.oven_time.id %>"
+		          		data-oven-time="<%= place.oven_time.time %>"
+		          		data-place-id="<%= place.id %>" >
+		          		
+			      		<%= place.name %>
+	            	</button>		            
+	            <% end %>
+            </div>
+    	</div>
+	</div>		    			
+    
+	<div class="row edit-oven-time" style="display: none;">	    		
+    	<div class="col-xs-12">
+          	<div class="input-group">
+          		
+	            <input id="newOvenTime" name="ovenTime" type="number" class="form-control" min="1" max="50" placeholder="Time!" maxlength="2" oninput="maxLengthCheck(this)" />
+	            
+	            <button id="cancelOvenTimeBtn" type="button" class="btn btn-danger">
+	            	<i class="glyphicon glyphicon-remove-circle"></i>
+	            	Cancel
+	            </button>
+		        <button id="saveOvenTimeBtn" type="button" class="btn btn-success spinnable">
+		        	<i class="glyphicon glyphicon-ok-circle"></i>
+      				<i class="fa fa-spinner fa-spin" style="display:none;"></i>
+      				Save
+      			</button>
+            </div>
+		</div>
+	</div>	
+</li>

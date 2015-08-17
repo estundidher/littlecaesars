@@ -34,6 +34,14 @@ $( document ).ready(function() {
 	$(window).on("orientationChange", function () {
 	    $('.modal:visible').each(centerModal);
 	});
+	$(".dropdown-menu > li.dropdown-submenu > a").on("click", function(e){
+		e.stopPropagation();
+	});
+	
+	if ($("div.customer-view").length > 0 && $("#adminUser").val() != "true") {
+		$(".navbar.navbar-default").hide();
+		$(".footer.padd").hide();		
+	}
 	
 	
 	$("#editOvenTimeBtn").on("click", function () {

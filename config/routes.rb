@@ -126,6 +126,8 @@ Rails.application.routes.draw do
     resources :chefs
     resources :oven_time
     resources :orders, except: [:new, :create, :edit]
+    
+    get 'live/customer', to:'orders#live_customer', as: :order_live_customer
     get 'live(/:place_id)/:live_type', to:'orders#live', as: :order_live
     get 'order/:id/change_order_status', to:'orders#change_order_status', as: :order_change_order_status
 

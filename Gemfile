@@ -82,6 +82,9 @@ gem 'dalli', '~> 2.7.1'
 
 gem 'sprockets', '2.11.0'
 
+# TimeDifference is the missing Ruby method to calculate difference between two given time. You can do a Ruby time difference in year, month, week, day, hour, minute, and seconds.
+gem 'time_difference', '~> 0.4.2'
+
 # Added by Diego
 #ruby '2.1.2'
 ruby '2.0.0'

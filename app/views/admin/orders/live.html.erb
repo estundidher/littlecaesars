@@ -24,6 +24,12 @@
 				<div class="order-inner">	
 					<h4>
 						<span class="order-id"><%= @order.id %></span>
+						<span class="order-not-printed">
+							<% if @order.processing? %>
+								<i class="glyphicon glyphicon-ban-circle"></i>
+							<% end %>
+							<i class="glyphicon glyphicon-print"></i>
+						</span>
 						<i class="glyphicon glyphicon-time"></i>
 						<%= @order.pick_up.date.to_formatted_s :short %>
 						<span class="order-customer"><%= @order.customer.name %></span>
@@ -32,7 +38,7 @@
 						<%= render 'orders/resume' %>
 					</div>
 			    </div>
-			    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+			    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myMedianModalLabel">
 				  <div class="modal-dialog modal-md">
 				    <div class="modal-content">
 				    	<div class="modal-header">
