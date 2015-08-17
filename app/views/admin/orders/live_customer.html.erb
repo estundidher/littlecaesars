@@ -1,0 +1,53 @@
+<% content_for :module, 'customer-view' %>
+<% content_for :default_class, 'container-fluid' %>
+
+<input id="adminUser" type="hidden" value="<%= current_user.admin? %>" />
+
+<div class="row live-title">
+	<h1>Order Tracker</h1>
+</div>
+
+<table class="live-customer" summary="Customer order statuses">
+    <thead>
+    	<tr>
+        	<th scope="col" class="header-order-id">Order</th>
+            <th scope="col" class="header-order-customer-name">Name</th>
+            <th scope="col" class="header-order-ready-in">Ready In</th>
+            <th scope="col" class="header-order-status">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    	<% @orders.each_with_index do |order, index| %>
+	    	<tr class="<%= order.status %>">
+	        	<td class="order-id"><%= order.id %></td>
+	            <td class="order-customer-name"><%= order.customer.name %></td>
+	            <td class="order-ready-in">
+	            	<% if order.ready? %>
+						NOW
+					<% elsif order.oven? %>
+						
+						<% if order.updated_at.advance(:minutes => + order.pick_up.place.oven_time.time) > Time.now %>
+							<% @ready_time = TimeDifference.between(Time.now, order.updated_at.advance(:minutes => + order.pick_up.place.oven_time.time)).in_minutes.to_i %>
+							<%= @ready_time %> Minutes
+						<% else %>
+							It should be ready
+						<% end %>								
+					<% else %>
+						...
+					<% end %>
+	            </td>
+	            <td class="order-status">
+	            	<% if order.oven? %>
+						In Oven
+					<% elsif order.ready? %>
+						Ready
+					<% else %>
+						Preparing
+					<% end %>            	
+	            </td>
+	        </tr>
+		<% end %>
+    </tbody>
+</table>
+
+<%= javascript_tag "$(function () { setTimeout(function(){ window.location.reload(1)}, 60000)});" %>
