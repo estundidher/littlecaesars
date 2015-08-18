@@ -10,6 +10,31 @@ body.admin {
     margin-bottom: 20px;
     color: #000;
   }
+  .order-inner .wrap-up-order-status {
+      background-color: #F75353;
+      margin: 0px;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.6em;
+  }
+  .order-inner .wrap-up-order-status.ready {
+      -webkit-animation-name: blinker;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-iteration-count: infinite;
+      
+      -moz-animation-name: blinker;
+      -moz-animation-duration: 2s;
+      -moz-animation-timing-function: linear;
+      -moz-animation-iteration-count: infinite;
+      
+       animation-name: blinker;
+       animation-duration: 2s;
+       animation-timing-function: linear;
+       animation-iteration-count: infinite;
+  }
   .order-inner h4 {
     background-color: #5cb85c;
     margin: 0px;
@@ -51,6 +76,7 @@ body.admin {
   }
   .modal .btn.btn-danger,
   .modal .btn.btn-success {
+    font-size: 2em;
     width: 100%;
     padding: 30px;
     margin-top: 20px;
@@ -242,6 +268,10 @@ body.admin {
   table.live-customer tr:last-child td.order-status {
     border-radius: 0 0 10px 0;
   }
+  table.live-customer tr td.order-id {
+      font-weight: 700;
+      font-style: italic;
+  }
   table.live-customer th {
     padding: 8px;
     font-weight: 700;
@@ -256,14 +286,17 @@ body.admin {
     border-top: 1px solid #fff;
     color: #000;
   }
-  table.live-customer tr.ready td {
-    background: #5CB85C;
-    color: #fff;
+  table.live-customer tr.printed td {
+      border-bottom: 1px solid #BFBDBD !important;
   }
   table.live-customer tr.oven td {
     background: #609CEC;
     color: #fff;
   }
+  table.live-customer tr.ready td {
+    background: #5CB85C;
+    color: #fff;
+  }  
 }
 
 /* Start by setting display:none to make this hidden.
@@ -296,3 +329,21 @@ body.loading {
 body.loading .modal-loading {
     display: block;
 }
+
+@-moz-keyframes blinker {  
+ 0% { opacity: 1.0; }
+ 50% { opacity: 0.0; }
+ 100% { opacity: 1.0; }
+ }
+
+@-webkit-keyframes blinker {  
+ 0% { opacity: 1.0; }
+ 50% { opacity: 0.0; }
+ 100% { opacity: 1.0; }
+ }
+
+@keyframes blinker {  
+ 0% { opacity: 1.0; }
+ 50% { opacity: 0.0; }
+ 100% { opacity: 1.0; }
+ }

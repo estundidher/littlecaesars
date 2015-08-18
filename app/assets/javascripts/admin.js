@@ -150,3 +150,14 @@ function maxLengthCheck(object) {
     	object.value = object.value.slice(0, object.maxLength);
     }
 }
+
+function addAjaxLoader() {
+	$("body").addClass("loading");
+};
+
+function reloadPage(time) {
+	setTimeout(function() { 
+		addAjaxLoader(); 
+		window.location.reload(1); 
+	}, time);
+};

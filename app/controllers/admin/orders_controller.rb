@@ -115,7 +115,7 @@ class Admin::OrdersController < Admin::BaseController
         query = query.joins :pick_up
       end
     else
-      query = Order.approved.where('status = ?', Order.statuses[:ready])
+      query = Order.approved.where('status = ?', Order.statuses[:oven])
   
       if params[:place_id].present?
         query = query.joins(pick_up: :place)

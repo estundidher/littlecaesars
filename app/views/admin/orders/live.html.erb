@@ -17,11 +17,23 @@
 
 	<% @orders.each_with_index do |order, index| %>
 	
+		<% @ready_time = order.updated_at.advance(:minutes => + order.pick_up.place.oven_time.time) %>
 		<% @order = order %>
 		
 		<div class="col-md-4 col-sm-4 order">
 			<a class="order-item-anchor" onclick="JavaScript:showLivePopup(this);">
-				<div class="order-inner">	
+				<div class="order-inner">
+					
+					<% if order.oven? %>
+						<div class="wrap-up-order-status <%= order.oven? && @ready_time <= Time.now ? "ready" : "oven" %>">
+							<% if order.oven? && @ready_time <= Time.now  %>
+								Ready to Deliver
+							<% elsif %>
+								<%= TimeDifference.between(Time.now, @ready_time).in_minutes.to_i %> minutes to be Ready
+							<% end %>
+						</div>
+					<% end %>
+					
 					<h4>
 						<span class="order-id"><%= @order.id %></span>
 						<span class="order-not-printed">
@@ -34,6 +46,7 @@
 						<%= @order.pick_up.date.to_formatted_s :short %>
 						<span class="order-customer"><%= @order.customer.name %></span>
 					</h4>
+					
 					<div class="order-item">
 						<%= render 'orders/resume' %>
 					</div>
@@ -64,7 +77,11 @@
 								<%= link_to admin_order_change_order_status_path(@order), class:'btn btn-success oven', remote:true do %>
 									<i class="glyphicon glyphicon-ok"></i>
 									<i class="fa fa-spinner fa-spin" style="display:none;"></i>
-									Oven
+									<% if @order.processing? || @order.printed? %>
+										Oven
+									<% else %>
+										Deliver
+									<% end %>
 								<% end %>
 							</div>
 						</div>      	
@@ -76,6 +93,4 @@
 	<% end %>
 </div>
 
-<%= javascript_tag "$(function () { setTimeout(function(){ window.location.reload(1)}, 60000)});" %>
-
-<div class="modal-loading"></div>
+<%= javascript_tag "reloadPage(60000);" %>

@@ -21,9 +21,8 @@ class Order < ActiveRecord::Base
   #processing -> approved and wating to be printed
   #printed --> already printed
   #oven --> in oven
-  #ready --> ready to deliver
   #delivered --> client picked up
-  enum status: [:processing, :printed, :oven, :ready, :delivered]
+  enum status: [:processing, :printed, :oven, :delivered]
 
   validates :state,
             presence: true
