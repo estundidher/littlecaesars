@@ -11,7 +11,7 @@ body.admin {
     color: #000;
   }
   .order-inner .wrap-up-order-status {
-      background-color: #F75353;
+      background-color: #000;
       margin: 0px;
       padding: 10px;
       color: #fff;
@@ -34,6 +34,7 @@ body.admin {
        animation-duration: 2s;
        animation-timing-function: linear;
        animation-iteration-count: infinite;
+       background-color: #F75353;
   }
   .order-inner h4 {
     background-color: #5cb85c;
@@ -282,7 +283,7 @@ body.admin {
   }
   table.live-customer td {
     padding: 8px;
-    background: #FFFBAA;
+    background: #E7E7E7;
     border-top: 1px solid #fff;
     color: #000;
   }
@@ -290,8 +291,8 @@ body.admin {
       border-bottom: 1px solid #BFBDBD !important;
   }
   table.live-customer tr.oven td {
-    background: #609CEC;
-    color: #fff;
+    background: #FFFBAA;
+    color: #000;
   }
   table.live-customer tr.ready td {
     background: #5CB85C;
