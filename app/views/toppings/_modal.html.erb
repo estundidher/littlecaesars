@@ -10,6 +10,7 @@
           <%= render partial:'toppings/available', locals:{all_products:products, product:product} %>
         </div>
       </div>
+      
       <div class="modal-footer">
       	<div class="row">
 	      	<h4> Toppings added </h4>
@@ -19,15 +20,16 @@
 	          <%= render partial:'toppings/added', locals:{product:product, toppings:toppings, mode:mode, side:side} %>
 	    	</div>
 	    </div>
-	    </div>
-        <div class="row">
+	    <div class="alert alert-danger" style="display: none;"></div>
+	  </div>
+	  
+      <div class="row">
           <div class="col-md-1 col-sm-1 total">
             Total:
           </div>
           <div class="col-md-1 col-sm-1 price">
             <%= render partial:'cart/price', locals:{value:value} %>
-          </div>
-          <div class="col-md-9 col-sm-9 warning"></div>
+          </div>          
           <div class="col-md-1 col-sm-1 button">
             <button type="button" class="btn btn-warning save">
               <i class='glyphicon glyphicon-shopping-cart'></i>

@@ -56,7 +56,7 @@ class Caesars.Toppings
       $(e.target).addClass 'disabled'
       $(e.target).find('.glyphicon-plus-sign').hide()
       $(e.target).find('.fa-spin').fadeIn 'fast'
-      $('.toppings-modal .modal-footer .warning').empty()
+      $('.toppings-modal .modal-footer .alert-danger').hide().empty()
       $('.toppings-modal .added form #topping_id').val $(e.target).data('id')
       $('.toppings-modal .added form').submit()
 
@@ -72,7 +72,7 @@ class Caesars.Toppings
 
   add_error: (e, xhr, status, error) =>
     console.log "toppings modal: .available .btn.add 'ajax:error' fired! "
-    $('.toppings-modal .modal-footer .warning').hide().empty().append(xhr.responseText).fadeIn 'fast'
+    $('.toppings-modal .modal-footer .alert-danger').hide().empty().append(xhr.responseText).fadeIn 'fast'
     $spin = $('.available .fa-spin:visible')
     if $spin?
       $spin.parent().removeClass 'disabled'
@@ -99,10 +99,11 @@ class Caesars.Toppings
     $item = $(e.target).closest('.ingredient')
     console.log "toppings modal: remove_topping fired! id: " + $item.data('id')
     if $item.data('id')?
+      $('.toppings-modal .modal-footer .alert-danger').hide().empty()
       $item.find('.additionable').remove()
       $item.fadeOut 'slow', ->
         $item.remove()
-      $('.toppings-modal .modal-footer .warning').empty()
+      $('.toppings-modal .modal-footer .alert-danger').empty()
       @calculate_price()
 
   bind_carousel: (carousel) ->
