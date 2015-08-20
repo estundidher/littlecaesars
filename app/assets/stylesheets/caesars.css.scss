@@ -2269,7 +2269,11 @@ div.footer div.container div.row .placeAddress {
   float: left;
   position: absolute;
 }
-
+.checkout-form .pull-right {
+  position: absolute;
+  right: 20px;
+}
+  
 /*
  * Tablets
  */
@@ -2490,8 +2494,6 @@ div.footer div.container div.row .placeAddress {
   
   .checkout-form .pull-right {
     padding-top: 40px;
-    position: absolute;
-    right: 20px;
   }
   
   .inner-page .checkout form .form-group.price {

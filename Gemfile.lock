@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/ifad/data-confirm-modal.git
+  revision: 931cab3b269c6dab301245be2b2d738b243ba169
+  specs:
+    data-confirm-modal (1.0.2)
+      railties (>= 3.0)
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: d1cf577656cb636148e2a9f5657f9751c732f6d5
   specs:
@@ -265,6 +272,7 @@ GEM
       addressable
     warden (1.2.3)
       rack (>= 1.0)
+    win32console (1.3.2)
     win32console (1.3.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -279,6 +287,7 @@ DEPENDENCIES
   capybara (~> 2.4.1)
   coffee-rails (~> 4.0.0)
   dalli (~> 2.7.1)
+  data-confirm-modal!
   delorean
   devise
   factory_girl_rails

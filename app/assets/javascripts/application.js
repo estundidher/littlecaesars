@@ -20,6 +20,7 @@
 //= require respond
 //= require html5shiv
 //= require eonasdan-bootstrap-datetimepicker
+//= require data-confirm-modal
 
 //= require home
 //= require modal
