@@ -20,8 +20,8 @@ class Caesars.Order
        @validateForm()
 
   bind: ->
-    @$order.on 'click', '.print', @print_click
-    @$order.on 'click', '.print-button', @button_print_click
+    @$order.on 'click', 'a.print', @print_click
+    @$order.on 'click', 'a.print-button', @button_print_click
 
   button_print_click: (e) =>
     console.log 'Orders - button_print_click: fired!'
@@ -171,66 +171,71 @@ class Caesars.Order
 
     #register callback function
     epos.onreceive = (res) ->
+    
+       if !res.success
+       
+         #Obtain the print result and error code
+         msg = 'Print ' + (res.success ? 'Success' : 'Failure') + '\nCode:' + res.code + '\nStatus:\n'
 
-      #Obtain the print result and error code
-      msg = 'Print' + (res.success ? 'Success' : 'Failure') + '\nCode:' + res.code + '\nStatus:\n'
+         #Obtain the printer status
+         asb = res.status
 
-      #Obtain the printer status
-      asb = res.status
+         if asb & epos.ASB_NO_RESPONSE
+           msg += ' No printer response\n'
 
-      if callback? && res.success
-        callback()
+         if asb & epos.ASB_PRINT_SUCCESS
+           msg += ' Print complete\n'
 
-      if asb & epos.ASB_NO_RESPONSE
-        msg += ' No printer response\n'
+         if asb & epos.ASB_DRAWER_KICK
+           msg += ' Status of the drawer kick number 3 connector pin = "H"\n'
 
-      if asb & epos.ASB_PRINT_SUCCESS
-        msg += ' Print complete\n'
+         if asb & epos.ASB_OFF_LINE
+           msg += ' Offline status\n'
 
-      if asb & epos.ASB_DRAWER_KICK
-        msg += ' Status of the drawer kick number 3 connector pin = "H"\n'
+         if asb & epos.ASB_COVER_OPEN
+           msg += ' Cover is open\n'
 
-      if asb & epos.ASB_OFF_LINE
-        msg += ' Offline status\n'
+         if asb & epos.ASB_PAPER_FEED
+           msg += ' Paper feed switch is feeding paper\n'
 
-      if asb & epos.ASB_COVER_OPEN
-        msg += ' Cover is open\n'
+         if asb & epos.ASB_WAIT_ON_LINE
+           msg += ' Waiting for online recovery\n'
 
-      if asb & epos.ASB_PAPER_FEED
-        msg += ' Paper feed switch is feeding paper\n'
+         if asb & epos.ASB_PANEL_SWITCH
+           msg += ' Panel switch is ON\n'
 
-      if asb & epos.ASB_WAIT_ON_LINE
-        msg += ' Waiting for online recovery\n'
+         if asb & epos.ASB_MECHANICAL_ERR
+           msg += ' Mechanical error generated\n'
 
-      if asb & epos.ASB_PANEL_SWITCH
-        msg += ' Panel switch is ON\n'
+         if asb & epos.ASB_AUTOCUTTER_ERR
+           msg += ' Auto cutter error generated\n'
 
-      if asb & epos.ASB_MECHANICAL_ERR
-        msg += ' Mechanical error generated\n'
+         if asb & epos.ASB_UNRECOVER_ERR
+           msg += ' Unrecoverable error generated\n'
 
-      if asb & epos.ASB_AUTOCUTTER_ERR
-        msg += ' Auto cutter error generated\n'
+         if asb & epos.ASB_AUTORECOVER_ERR
+           msg += ' Auto recovery error generated\n'
 
-      if asb & epos.ASB_UNRECOVER_ERR
-        msg += ' Unrecoverable error generated\n'
+         if asb & epos.ASB_RECEIPT_NEAR_END
+           msg += ' No paper in the roll paper near end detector\n'
 
-      if asb & epos.ASB_AUTORECOVER_ERR
-        msg += ' Auto recovery error generated\n'
+         if asb & epos.ASB_RECEIPT_END
+           msg += ' No paper in the roll paper end detector\n'
+           
+         if asb & epos.ASB_BUZZER
+           msg += ' Sounding the buzzer (limited model)\n'
 
-      if asb & epos.ASB_RECEIPT_NEAR_END
-        msg += ' No paper in the roll paper near end detector\n'
-
-      if asb & epos.ASB_RECEIPT_END
-        msg += ' No paper in the roll paper end detector\n'
-
-      if asb & epos.ASB_BUZZER
-        msg += ' Sounding the buzzer (limited model)\n'
-
-      if asb & epos.ASB_SPOOLER_IS_STOPPED
-        msg += ' Stop the spooler\n'
-
-      if $('.print-modal')?
-        $('.print-modal').find('.modal-body').empty().append msg
+         if asb & epos.ASB_SPOOLER_IS_STOPPED
+           msg += ' Stop the spooler\n'
+           
+         if $('.print-modal')?
+           $('.print-modal').find('.modal-body').empty().append msg
+       else
+         if callback?
+            callback()
+         else
+            $('.print-modal').find('.modal-body').empty()
+            $('.print-modal').modal 'hide'
 
     #register callback function
     epos.onerror = (err) ->
