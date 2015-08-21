@@ -11,17 +11,17 @@ class Order < ActiveRecord::Base
 
   has_one :payment
 
-  #0=pending  //being prepared by the customer
-  #1=sent     //sent to securepay
-  #2=approved //approved by securepay
-  #3=declined //declined by securepay
-  #3=canceled //declined by securepay
+  #0=pending  --> being prepared by the customer
+  #1=sent     --> sent to securepay
+  #2=approved --> approved by securepay
+  #3=declined --> declined by securepay
+  #3=canceled --> declined by securepay
   enum state: [:pending, :sent, :approved, :declined, :cancelled, :expired]
 
-  #processing -> approved and wating to be printed
-  #printed --> already printed
-  #oven --> in oven
-  #delivered --> client picked up
+  #processing --> approved and wating to be printed
+  #printed    --> already printed
+  #oven       --> in oven
+  #delivered  --> client picked up
   enum status: [:processing, :printed, :oven, :delivered]
 
   validates :state,
