@@ -16,7 +16,7 @@ class Caesars.Order
     @bind()
     
     # require to check because the bootstrap-validator.js is only loaded on the checkout order page
-    if ($("checkoutOrderForm").bootstrap3Validate)
+    if ($("checkoutOrderForm").bootstrap3Validate) && @$button.length > 0
        @validateForm()
 
   bind: ->
