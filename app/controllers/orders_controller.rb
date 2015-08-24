@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     return true
   end
 
-  before_filter :redirect_https, except: [:create, :success, :show, :print]
+  before_filter :redirect_https, except: [:create, :show, :print]
 
   before_filter :redirect_http, only: [:success]
 
