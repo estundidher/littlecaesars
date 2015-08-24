@@ -140,7 +140,7 @@ class Caesars.Order
     builder.addTextAlign builder.ALIGN_LEFT
     for item in order.items
       do ->
-        Caesars.order.append builder, item
+        Caesars.order.append builder, item, false
         if item.first_half?
           Caesars.order.append builder, item.first_half, true
         if item.second_half?
