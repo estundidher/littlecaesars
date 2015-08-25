@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
 
   before_filter :redirect_https, except: [:create, :success, :show, :print]
 
-  before_filter :redirect_http, only: [:success]
+  #before_filter :redirect_http, only: [:success]
 
   skip_before_filter :verify_authenticity_token, only: [:confirm]
 
