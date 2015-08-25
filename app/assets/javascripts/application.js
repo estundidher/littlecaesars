@@ -21,6 +21,7 @@
 //= require html5shiv
 //= require eonasdan-bootstrap-datetimepicker
 //= require data-confirm-modal
+//= require 'rack/ssl-enforcer'
 
 //= require home
 //= require modal
