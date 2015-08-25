@@ -2,20 +2,8 @@ class OrdersController < ApplicationController
   include PickUpConfiguratedConcern
   include CartConcern
 
-  def redirect_http
-    redirect_to protocol:'http://' if request.ssl?
-    return true
-  end
-
-  def redirect_https
-    redirect_to protocol:'https://' unless Rails.env.development? || request.ssl?
-    return true
-  end
-
-  before_filter :redirect_https, except: [:create, :success, :show, :print]
-
-  #before_filter :redirect_http, only: [:success]
-
+  before_filter :require_ssl, except: [:success]
+  
   skip_before_filter :verify_authenticity_token, only: [:confirm]
 
   skip_before_action :check_pending_order

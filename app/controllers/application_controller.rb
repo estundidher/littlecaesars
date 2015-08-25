@@ -51,3 +51,37 @@ protected
   end 
   
 end
+
+private
+  SECURE_ACTIONS = {
+    :OrdersController => [""]
+    }
+
+  # Called as a before_filter in controllers that have some https:// actions
+  def require_ssl
+    unless ENV['RAILS_ENV'] != 'production' or  @request.ssl?
+      redirect_to :protocol => 'https://', :action => action_name
+      # we don't want to continue with the action, so return false from the filter
+      return false
+    end
+  end
+
+def default_url_options(options)
+    defaults = {}    
+
+    if USE_EXPLICIT_HOST_IN_ALL_LINKS
+      # This will OVERRIDE only_path => true, not just set the default.
+      options[:only_path] = false
+      # Now set the default protocol appropriately:
+      if actions = SECURE_ACTIONS[ (options[:controller] || controller_name).to_sym ] and 
+         actions.include? options[:action]
+
+        defaults[:protocol] = 'https://'
+        defaults[:host] = SECURE_SERVER if defined? SECURE_SERVER
+      else
+        defaults[:protocol] = 'http://'
+        defaults[:host] = NON_SECURE_SERVER if defined? NON_SECURE_SERVER
+      end
+    end
+    return defaults
+  end

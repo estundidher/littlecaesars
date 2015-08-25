@@ -163,7 +163,7 @@ class Caesars.Order
     request = builder.toString()
 
     #Create an ePOS-Print object
-    url = '//' + order.pick_up.place.printer_ip_s + '/cgi-bin/epos/service.cgi?devid=' + order.pick_up.place.printer_name + '&timeout=60000'
+    url = 'http://' + order.pick_up.place.printer_ip_s + '/cgi-bin/epos/service.cgi?devid=' + order.pick_up.place.printer_name + '&timeout=60000'
     epos = new epson.ePOSPrint(url)
 
     #Send the print document
