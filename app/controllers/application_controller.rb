@@ -59,7 +59,7 @@ private
 
   # Called as a before_filter in controllers that have some https:// actions
   def require_ssl
-    unless ENV['RAILS_ENV'] != 'production' or  @request.ssl?
+    unless Rails.env.development? || request.ssl?
       redirect_to :protocol => 'https://', :action => action_name
       # we don't want to continue with the action, so return false from the filter
       return false
