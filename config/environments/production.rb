@@ -1,9 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  
-  # Use Rack::SslEnforcer in your Rails application Added by Diego
-  config.middleware.use Rack::SslEnforcer, :except => '/success'
-  
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
