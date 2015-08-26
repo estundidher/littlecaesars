@@ -39,6 +39,6 @@ module Caesars
     
     # Added by Diego
     # Conditionally dont force SSL for specific routes
-    config.middleware.use Rack::SslEnforcer, :except => ['/success'], :strict => true
+    config.middleware.use Rack::SslEnforcer, :except => ['success'], :strict => true
   end
 end
