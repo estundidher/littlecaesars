@@ -36,5 +36,9 @@ module Caesars
     #devise configuration for Heroku
     # Added by Diego
     #config.assets.initialize_on_precompile = false #The config.assets.initialize_on_precompile option has been removed on Rails 4
+    
+    # Added by Diego
+    # Conditionally dont force SSL for specific routes
+    config.middleware.use Rack::SslEnforcer, :except => ['/success'], :strict => true
   end
 end
