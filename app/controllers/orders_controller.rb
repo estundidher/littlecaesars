@@ -2,7 +2,12 @@ class OrdersController < ApplicationController
   include PickUpConfiguratedConcern
   include CartConcern
 
-  force_ssl :except => :success
+  def redirect_http
+    redirect_to protocol:'http://' if request.ssl?
+    return true
+  end
+  
+  before_filter :redirect_http, only: [:success]
 
   skip_before_filter :verify_authenticity_token, only: [:confirm]
 
