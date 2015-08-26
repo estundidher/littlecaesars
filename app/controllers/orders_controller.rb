@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   include CartConcern
 
   def redirect_https
-    redirect_to protocol:'https://' if request.ssl?
+    redirect_to protocol:'https://' unless Rails.env.development? || request.ssl?
     return true
   end
 
