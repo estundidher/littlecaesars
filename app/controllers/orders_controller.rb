@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   include CartConcern
 
   def redirect_http
-    redirect_to protocol:'http://' if request.ssl?
+    redirect_to protocol:'http://'
     return true
   end
   
