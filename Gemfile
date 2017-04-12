@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'recaptcha', require: 'recaptcha/rails'
 
 # picture upload
-gem 'paperclip', github:'thoughtbot/paperclip'
+gem 'paperclip', '~> 4.2.1', github:'thoughtbot/paperclip'
 
 gem 'activemerchant'
 
